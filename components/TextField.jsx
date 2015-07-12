@@ -21,7 +21,7 @@ var id = 1;
 module.exports = React.createClass({
 
 	propTypes: {
-		labelText : React.PropTypes.string,
+		labelText : React.PropTypes.string.isRequired,
 		errorText : React.PropTypes.string,
 		defaultValue : React.PropTypes.string,
 		floatingLabel : React.PropTypes.bool,

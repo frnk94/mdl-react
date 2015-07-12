@@ -21,9 +21,11 @@ var App = React.createClass({
 
 // 設定路由
 var Home = require('./views/Home.jsx');
+var TextField = require('./views/TextField.jsx');
 var routes = (
 	<Router.Route handler={App}>
 		<Router.Route name='home' path='/' handler={Home} />
+		<Router.Route name='textField' path='/text-field' handler={TextField} />
 	</Router.Route>
 );
 

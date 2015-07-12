@@ -45,7 +45,7 @@ gulp.task('default', ['js'], function() {
 	connect.server({
 		root : 'example',
 		livereload : true,
-		// fallback : 'dist/index.html',
+		fallback : 'example/index.html',
 		// middleware : function(connect, opt) {
 		// 	return [
 		// 		// 改寫 url 讓 SPA 在測試環境可以正常

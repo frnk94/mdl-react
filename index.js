@@ -7,5 +7,6 @@
 module.exports = {
 
 	TextField : require('./components/TextField.jsx'),
+	LayoutFixHeader : require('./components/LayoutFixHeader.jsx'),
 
 };
