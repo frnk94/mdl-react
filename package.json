@@ -1,0 +1,23 @@
+{
+  "name": "mdl-react",
+  "version": "0.0.1",
+  "description": "Google's Material Design Lite + Facebook's React :P",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Fandora/mdl-react.git"
+  },
+  "keywords": [
+    "React",
+    "Material Design"
+  ],
+  "author": "xpsteven",
+  "license": "Apache License 2.0",
+  "bugs": {
+    "url": "https://github.com/Fandora/mdl-react/issues"
+  },
+  "homepage": "https://github.com/Fandora/mdl-react"
+}
