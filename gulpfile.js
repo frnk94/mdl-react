@@ -32,10 +32,10 @@ gulp.task('js', bundle); // so you can run `gulp js` to build the file
 b.on('update', bundle); // on any dep update, runs the bundler
 b.on('log', gutil.log); // output build logs to terminal
 
-gulp.task('reload', function(callback) {
-	connect.reload();
-	return callback();
-});
+// gulp.task('reload', function(callback) {
+// 	connect.reload();
+// 	return callback();
+// });
 
 gulp.task('default', ['js'], function() {
 
