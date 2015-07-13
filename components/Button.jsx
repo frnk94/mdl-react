@@ -14,8 +14,10 @@ var _ = require('lodash');
     isPrimary: 是否使用 primary color
     isAccent: 是否使用強調色
     isMini: 是否 mini for FAB
-  State
+  States
     isDisabled
+  Methods
+    toggleButton: 啟動或禁用Button
 */
 module.exports = React.createClass({
 
@@ -84,7 +86,7 @@ module.exports = React.createClass({
 
   _getUnusedProps: function() {
     var obj = _.clone(this.props, true);
-    var props = ['text', 'style', 'type', 'isMini', 'isRipple', 'isPrimary', 'isAccent', 'isDisabled'];
+    var props = ['text', 'style', 'type', 'isMini', 'isRipple', 'isPrimary', 'isAccent'];
 
     props.forEach(function(property) {
       if(obj.hasOwnProperty(property)) delete obj[property];
