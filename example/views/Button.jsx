@@ -6,50 +6,50 @@ var MDL = require('../../index.js');
 
 module.exports = React.createClass({
 
-  click: function() {
-    //console.log('click!');
-    this.refs.FAB.toggleButton();
-  },
+	click: function() {
+		//console.log('click!');
+		this.refs.FAB.toggleButton();
+	},
 
-  render: function() {
+	render: function() {
 
-    return (
-      <div>
-        <MDL.Button ref="FAB" type="FloatingActionButton"
-          text="T"
-          isRipple={true}
-          isPrimary={true}
-          isMini={true}
-          isDisabled={false}
-          onKeyDown={this.onKeyDown}/>
+		return (
+			<div>
+				<MDL.Button ref="FAB" type="FloatingActionButton"
+					text="T"
+					isRipple={true}
+					isPrimary={true}
+					isMini={true}
+					isDisabled={false}
+					onKeyDown={this.onKeyDown}/>
 
-        <MDL.Button type="RaisedButton"
-          text="T"
-          isRipple={true}
-          isPrimary={true}
-          isMini={true}
-          isDisabled={false}
-          onClick={this.click}
-          onKeyDown={this.onKeyDown}/>
+				<MDL.Button type="RaisedButton"
+					text="T"
+					isRipple={true}
+					isPrimary={true}
+					isMini={true}
+					isDisabled={false}
+					onClick={this.click}
+					onKeyDown={this.onKeyDown}/>
 
-        <MDL.Button type="FlatButton"
-          text="Button"
-          isRipple={true}
-          isPrimary={true}
-          isMini={true}
-          isAccent={false}
-          isDisabled={false} />
+				<MDL.Button type="FlatButton"
+					text="Button"
+					isRipple={true}
+					isPrimary={true}
+					isMini={true}
+					isAccent={false}
+					isDisabled={false} />
 
-        <MDL.Button type="IconButton"
-          text={<i className="material-icons">mood</i>}
-          isRipple={true}
-          isMini={true}
-          isPrimary={true}
-          isAccent={false}
-          isDisabled={false}/>
+				<MDL.Button type="IconButton"
+					text={<i className="material-icons">mood</i>}
+					isRipple={true}
+					isMini={true}
+					isPrimary={true}
+					isAccent={false}
+					isDisabled={false}/>
 
-      </div>
-    );
-  },
+			</div>
+		);
+	},
 
 });
