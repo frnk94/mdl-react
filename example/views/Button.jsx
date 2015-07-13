@@ -7,20 +7,20 @@ var MDL = require('../../index.js');
 module.exports = React.createClass({
 
   click: function() {
-    console.log('click!');
+    //console.log('click!');
+    this.refs.FAB.toggleButton();
   },
 
   render: function() {
 
     return (
       <div>
-        <MDL.Button type="FloatingActionButton"
+        <MDL.Button ref="FAB" type="FloatingActionButton"
           text="T"
           isRipple={true}
           isPrimary={true}
           isMini={true}
           isDisabled={false}
-          onClick={this.click}
           onKeyDown={this.onKeyDown}/>
 
         <MDL.Button type="RaisedButton"

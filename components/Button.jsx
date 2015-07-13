@@ -4,15 +4,18 @@ var cx = require('classnames');
 var _ = require('lodash');
 
 /**
-props
-text, 字串或 element
-isRipple, 是否帶特效, 預設 true
-style, 設定 style 進去
-type 'FloatingActionButton', 'RaisedButton', 'FlatButton', 'IconButton'
-isPrimary, 是否使用 primary color
-isAccent, 是否使用強調設
-isMini, 是否 mini for FAB
-isDisabled
+  Button
+    http://www.getmdl.io/components/index.html#buttons-section
+  Props
+    text: 字串或 element
+    type: 'FloatingActionButton', 'RaisedButton', 'FlatButton', 'IconButton'
+    isRipple: 是否帶特效, 預設 true
+    style: 設定 style 進去
+    isPrimary: 是否使用 primary color
+    isAccent: 是否使用強調色
+    isMini: 是否 mini for FAB
+  State
+    isDisabled
 */
 module.exports = React.createClass({
 
@@ -24,8 +27,7 @@ module.exports = React.createClass({
       isMini: false,
       isRipple: true,
       isPrimary: false,
-      isAccent: false,
-      isDisabled: false,
+      isAccent: false
     };
   },
 
@@ -38,6 +40,12 @@ module.exports = React.createClass({
     isPrimary: React.PropTypes.bool,
     isAccent: React.PropTypes.bool,
     isDisabled: React.PropTypes.bool,
+  },
+
+  getInitialState: function() {
+    return {
+      isDisabled: false,
+    };
   },
 
   componentWillMount: function() {
@@ -84,10 +92,14 @@ module.exports = React.createClass({
     return obj;
   },
 
+  toggleButton: function() {
+    this.setState({isDisabled: !this.state.isDisabled});
+  },
+
   render: function() {
     var props = this._getUnusedProps();
     return (
-      <button {...props} className={this._getStyle()} disabled={this.props.isDisabled} style={this.props.style}>
+      <button {...props} className={this._getStyle()} disabled={this.state.isDisabled} style={this.props.style}>
         {this.props.text}
       </button>
     );
