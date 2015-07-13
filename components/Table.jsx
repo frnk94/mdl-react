@@ -7,7 +7,7 @@ var _ = require('lodash');
 		http://www.getmdl.io/components/index.html#tables-section
 	Props
 		selectable 		設成true才會顯示選取框
-		header 				header 內容和 css style(必填)
+		header 				header 內容和 css style(必填)   GIVE SOME EXPAMLE HERE
 		items 				表格內容(必填)
 		itemStyles 		表格的 css style
 	Methods
@@ -19,7 +19,7 @@ module.exports = React.createClass({
 	propTypes: {
 		header : React.PropTypes.array.isRequired,
 		items : React.PropTypes.array.isRequired,
-		itemStyles : React.PropTypes.array,
+		itemStyles : React.PropTypes.array, // check whether length of itemStyles equal to items
 		selectable : React.PropTypes.bool,
 	},
 
@@ -28,11 +28,12 @@ module.exports = React.createClass({
 	},
 
 	getSelected: function() {
-		var result = [], row;
+		var result = [];
+		var row;
 
 		if(this.props.selectable) {
 			_.forEach(this.refs.tbody.getDOMNode().childNodes, function(element, index) {
-				row = [];
+				row = []; //Weird Data Type
 				if(element.className == 'is-selected') {
 					_.forEach(element.childNodes, function(rowElement, index) {
 						if(index != 0) row.push(rowElement.innerHTML);  // 不用取第 0 項的值 ( checkbox )
@@ -41,19 +42,19 @@ module.exports = React.createClass({
 				if(row.length != 0) result.push(row);
 			});
 		}
-		
+
 		return result;
 	},
 
 	render: function() {
 
 		var self = this;
-		
+
 		var classes = {
 			table : {
 				'mdl-data-table' : true,
 				'mdl-js-data-table' : true,
-				'mdl-shadow--2dp' : true,
+				'mdl-shadow--2dp' : true, //Why add it here????
 			},
 		};
 
@@ -69,7 +70,7 @@ module.exports = React.createClass({
 
 		var items = this.props.items.map(function(element, index) {
 			var row = element.map(function(element, index) {
-				if(self.props.itemStyles != undefined) {
+				if(self.props.itemStyles instanceof Array) {
 					return (<td style={self.props.itemStyles[index]} key={index}>{element}</td>);
 				}
 				else {

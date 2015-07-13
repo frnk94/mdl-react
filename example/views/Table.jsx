@@ -44,13 +44,13 @@ module.exports = React.createClass({
 			<div>
 				<MDL.Table
 					ref="table"
-					selectable={true} 
-					header={header} 
-					items={items} 
+					selectable={true}
+					header={header}
+					items={items}
 					itemStyles={itemStyles}
 				/>
 				<button onClick={this.getSelected}>取得選取值</button>
-			</div>	
+			</div>
 		);
 	}
 
