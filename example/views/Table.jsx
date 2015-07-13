@@ -18,11 +18,12 @@ module.exports = React.createClass({
 					textAlign : 'left',
 				}
 			},
-			{
-				title : '標題二',
-			},
+			'標題二',
 			{
 				title : '標題三',
+				style : {
+					color : 'red',
+				},
 			},
 		];
 
@@ -36,7 +37,9 @@ module.exports = React.createClass({
 			{
 				textAlign : 'left',
 			},
-			{},
+			{
+				color : 'blue',
+			},
 			{},
 		];
 
@@ -45,11 +48,14 @@ module.exports = React.createClass({
 				<MDL.Table
 					ref="table"
 					selectable={true}
-					header={header}
+					headers={header}
 					items={items}
 					itemStyles={itemStyles}
 				/>
 				<button onClick={this.getSelected}>取得選取值</button>
+				<code>
+					<a>aa</a>
+				</code>
 			</div>
 		);
 	}
