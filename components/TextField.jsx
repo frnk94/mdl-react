@@ -10,7 +10,7 @@ var cx = require('classnames');
 		errorText
 		defaultValue
 		floatingLabel
-		pattern
+		pattern			正規表示式
 	Methods
 		getValue
 		setValue
