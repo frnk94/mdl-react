@@ -27,7 +27,7 @@ function bundleGenerator(isWatch) {
 					path.extname = '.js';
 					path.basename = 'app';
 				}))
-				.pipe(gulp.dest('./example/out'))
+				.pipe(gulp.dest('./example'))
 				.pipe(connect.reload());
 	}
 	if(isWatch) {
