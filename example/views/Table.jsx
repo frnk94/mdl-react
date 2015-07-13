@@ -1,6 +1,7 @@
 
 "use strict";
 
+var fs = require('fs');
 var React = require('react');
 var MDL = require('../../index.js');
 
@@ -11,6 +12,7 @@ module.exports = React.createClass({
 	},
 
 	render: function() {
+
 		var header = [
 			{
 				title : '標題一',
@@ -53,11 +55,9 @@ module.exports = React.createClass({
 					itemStyles={itemStyles}
 				/>
 				<button onClick={this.getSelected}>取得選取值</button>
-				<code>
-					<a>aa</a>
-				</code>
 			</div>
 		);
+		
 	}
 
 });
