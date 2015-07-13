@@ -30,13 +30,15 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount: function() {
+		var self = this;
 		superagent.get(this.props.src)
 		.end(function(err, res) {
 			if(err) {
-				console.error(err);
-				throw err;
+				return console.error(err);
 			}
-			console.log(res.body);
+			var node = React.findDOMNode(self.refs.code);
+			node.innerText = res.text;
+			Prism.highlightAll();
 		});
 	},
 
@@ -44,7 +46,8 @@ module.exports = React.createClass({
 		return (
 			<pre style={this.props.style}>
 				<code ref='code'
-					className={'language-' + this.props.lang} />
+					className={'language-' + this.props.lang}
+				/>
 			</pre>
 		);
 	}
