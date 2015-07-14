@@ -127,6 +127,10 @@ module.exports = React.createClass({
 			}
 		});
 
+
+		// items.map	-> tr data-index={index}
+			// headers.map		-> td
+
 		var items = this.props.items.map(function(element, index) {
 
 			var row = element.map(function(element, index) {
