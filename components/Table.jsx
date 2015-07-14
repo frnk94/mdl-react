@@ -31,6 +31,13 @@ module.exports = React.createClass({
 		componentHandler.upgradeDom();
 	},
 
+	componentDidUpdate: function(prevProps, prevState) {
+		componentHandler.upgradeDom();
+	},
+	componentWillUpdate: function(nextProps, nextState) {
+		this.refs.table.getDOMNode().removeAttribute('data-upgraded');
+	},
+
 	_checkProps : function() {
 
 		var self = this;
@@ -42,23 +49,6 @@ module.exports = React.createClass({
 					'MDL.Table: every object in `headers` must have key'
 				);
 			}
-		});
-
-		// 檢查 items 是不是有缺少 key
-		// 檢查 items 是 array of object
-		this.props.items.forEach(function(item) {
-			if(!(item instanceof Object)) {
-				console.warn(
-					'MDL.Table: `items` should be an array of object'
-				);
-			}
-			self.props.headers.map(function(header, index) {
-				if(!item[header.key]) {
-					console.warn(
-						'MDL.Table: every item should have all the keys in `headers`'
-					);
-				}
-			});
 		});
 
 		// 檢查 headers 和 itemStyles 的長度是否一致
@@ -143,7 +133,7 @@ module.exports = React.createClass({
 		});
 
 		return (
-			<table className={cx(classes.table)}>
+			<table ref="table" className={cx(classes.table)}>
 				<thead>
 					<tr>
 						{headers}
