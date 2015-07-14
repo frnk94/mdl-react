@@ -8,11 +8,10 @@ var cx = require('classnames');
  *	Props
  *		id: isRequired, string, 選單須以 id 跟 Button 做綁定
  *		Icon: isRequired, Button的Icon，請使用 MDL Icon Component
- *		menuList: isRequired, Array of Object
- *							Object contains 3 propetires:
-									text, isRequired, must be String or React Component
- *								events, Object, propetires should be React events
- *								style, Object, 選項個別CSS樣式
+ *		menuList: isRequired, Array of Object, Object can contains 3 propetires:
+				text, isRequired, must be String or React Component
+ *			events, Object, propetires should be React events
+ *			style, Object, 選項個別CSS樣式
  *		fromRightToLeft: Meun展開動畫是否從左到又, default false
  *		fromBottomToTop: Meun展開動畫是否從下到上, default false
  *		isRipple: 是否使用Ripple動畫，default true
@@ -42,8 +41,8 @@ module.exports = React.createClass({
 	      React.PropTypes.string,
 	      React.PropTypes.element,
 	    ]).isRequired,
-      events: React.PropTypes.objectOf(React.PropTypes.func),
-			style: React.PropTypes.objectOf(React.PropTypes.string),
+      events: React.PropTypes.object,
+			style: React.PropTypes.object,
     })).isRequired,
 	},
 
