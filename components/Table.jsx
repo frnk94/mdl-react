@@ -14,17 +14,25 @@ var _ = require('lodash');
 		items, array isRequired, 表格內容
 		items[]		存在多個 key 和 value, headers 也有的 key 才會顯示
 		itemStyles, array, 列樣式
+		shadow 		陰影的大小(只能填 2, 3, 4, 6, 8, 16)
 	Methods
 		getSelected 	取得勾選的資料值
 */
 
 module.exports = React.createClass({
 
+	getDefaultProps: function() {
+		return {
+			shadow : 2,
+		};
+	},
+
 	propTypes: {
 		headers : React.PropTypes.array.isRequired,
 		items : React.PropTypes.array.isRequired,
 		itemStyles : React.PropTypes.array,
 		selectable : React.PropTypes.bool,
+		shadow : React.PropTypes.number,
 	},
 
 	componentDidMount: function() {
@@ -62,6 +70,18 @@ module.exports = React.createClass({
 			);
 		}
 
+		// 檢查 shadow 值是否不超過 8
+		if(this.props.shadow != 2 &&
+			this.props.shadow != 3 &&
+			this.props.shadow != 4 &&
+			this.props.shadow != 6 &&
+			this.props.shadow != 8 &&
+			this.props.shadow != 16) {
+			console.warn(
+				'MDL.Table: invalid `shadow` value'
+			);
+		}
+
 	},
 
 	getSelected: function() {
@@ -87,12 +107,13 @@ module.exports = React.createClass({
 			table : {
 				'mdl-data-table' : true,
 				'mdl-js-data-table' : true,
-				'mdl-shadow--2dp' : true,
 			},
 		};
 		var self = this;
 
 		this._checkProps();
+		
+		classes.table['mdl-shadow--' + this.props.shadow + 'dp'] = true;
 
 		if(this.props.selectable) {
 			classes.table['mdl-data-table--selectable'] = true;

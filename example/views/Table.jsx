@@ -91,6 +91,7 @@ module.exports = React.createClass({
 					headers={header}
 					items={this.state.items}
 					itemStyles={itemStyles}
+					shadow={2}
 				/>
 				<button onClick={this.addData}>新增資料</button>
 				<button onClick={this.getSelected}>取得選取值</button>
