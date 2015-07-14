@@ -34,6 +34,7 @@ module.exports = React.createClass({
 	componentDidUpdate: function(prevProps, prevState) {
 		componentHandler.upgradeDom();
 	},
+
 	componentWillUpdate: function(nextProps, nextState) {
 		this.refs.table.getDOMNode().removeAttribute('data-upgraded');
 	},
@@ -96,7 +97,7 @@ module.exports = React.createClass({
 		if(this.props.selectable) {
 			classes.table['mdl-data-table--selectable'] = true;
 		}
-
+		
 		var headers = this.props.headers.map(function(element, index) {
 			if(typeof element.title == 'string') {
 				return (
@@ -108,7 +109,8 @@ module.exports = React.createClass({
 				);
 			}
 		});
-
+		
+		var date = Date.now();
 		var items = this.props.items.map(function(element, index) {
 
 			var row = self.props.headers.map(function(headerElement, index) {
@@ -125,9 +127,9 @@ module.exports = React.createClass({
 					);
 				}
 			});
-
+			var theKey = date + '-' + index;
 			return (
-				<tr key={index}>{row}</tr>
+				<tr key={theKey}>{row}</tr>
 			);
 
 		});
@@ -135,7 +137,7 @@ module.exports = React.createClass({
 		return (
 			<table ref="table" className={cx(classes.table)}>
 				<thead>
-					<tr>
+					<tr key={date}>
 						{headers}
 					</tr>
 				</thead>
