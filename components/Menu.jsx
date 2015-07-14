@@ -30,12 +30,6 @@ module.exports = React.createClass({
 		};
 	},
 
-	id: 'mdl-menu-',
-
-	componentWillMount: function() {
-		this.id += id++;
-	},
-
 	propTypes: {
 		Icon: React.PropTypes.element.isRequired,
 		style: React.PropTypes.object,
@@ -50,6 +44,12 @@ module.exports = React.createClass({
 			events: React.PropTypes.object,
 			style: React.PropTypes.object,
 		})).isRequired,
+	},
+
+	id: 'mdl-menu-',
+
+	componentWillMount: function() {
+		this.id += id++;
 	},
 
 	componentDidMount: function() {
