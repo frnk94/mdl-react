@@ -15,7 +15,7 @@ var _ = require('lodash');
 		isAccent: 是否使用強調色
 		isMini: 是否 mini for FAB
 	States
-		isDisabled
+		isDisabled: 是否禁用Button，預設False
 	Methods
 		toggleButton: 啟動或禁用Button
 */
@@ -23,13 +23,11 @@ module.exports = React.createClass({
 
 	getDefaultProps: function() {
 		return {
-			text: '',
 			style: {},
-			type: 'FloatingActionButton',
 			isMini: false,
 			isRipple: true,
 			isPrimary: false,
-			isAccent: false
+			isAccent: false,
 		};
 	},
 
@@ -62,7 +60,7 @@ module.exports = React.createClass({
 		componentHandler.upgradeDom();
 	},
 
-	_getStyle: function() {
+	_getClasses: function() {
 
 		var classes = {
 			'mdl-button': true,
@@ -101,7 +99,7 @@ module.exports = React.createClass({
 	render: function() {
 		var props = this._getUnusedProps();
 		return (
-			<button {...props} className={this._getStyle()} disabled={this.state.isDisabled} style={this.props.style}>
+			<button {...props} className={this._getClasses()} disabled={this.state.isDisabled} style={this.props.style}>
 				{this.props.text}
 			</button>
 		);

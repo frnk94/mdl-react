@@ -22,6 +22,7 @@ module.exports = React.createClass({
 					isMini={true}
 					isDisabled={false}
 					onKeyDown={this.onKeyDown}/>
+				<br />
 
 				<MDL.Button type="RaisedButton"
 					text="T"
@@ -31,6 +32,7 @@ module.exports = React.createClass({
 					isDisabled={false}
 					onClick={this.click}
 					onKeyDown={this.onKeyDown}/>
+				<br />
 
 				<MDL.Button type="FlatButton"
 					text="Button"
@@ -39,6 +41,7 @@ module.exports = React.createClass({
 					isMini={true}
 					isAccent={false}
 					isDisabled={false} />
+				<br />
 
 				<MDL.Button type="IconButton"
 					text={<i className="material-icons">mood</i>}
@@ -47,6 +50,7 @@ module.exports = React.createClass({
 					isPrimary={true}
 					isAccent={false}
 					isDisabled={false}/>
+				<br />
 
 			</div>
 		);
