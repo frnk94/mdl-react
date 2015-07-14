@@ -39,7 +39,7 @@ module.exports = React.createClass({
 		this.props.headers.forEach(function(header) {
 			if(!header.key) {
 				console.warn(
-					'MDL.Table: every object in headers must have key'
+					'MDL.Table: every object in `headers` must have key'
 				);
 			}
 		});
