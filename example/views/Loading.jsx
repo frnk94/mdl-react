@@ -8,7 +8,11 @@ module.exports = React.createClass({
 
 	render: function() {
 		return (
-			<div> <MDL.Loading /> </div>
+			<div> 
+				<MDL.Loading 
+					singleColor={false}
+				/> 
+			</div>
 		);
 	},
 

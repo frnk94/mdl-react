@@ -2,17 +2,29 @@
 /**
 	LayoutFixHeader
 		http://www.getmdl.io/components/index.html#loading-section
+	Props
 */
 var React = require('react');
+var cx = require('classnames');
 
-var Loading = React.createClass({
+module.exports = React.createClass({
 
 	render: function() {
+		var classes = {
+				container : {
+					'mdl-spinner' : true,
+					'mdl-js-spinner' : true,
+					'is-active' : true,
+				},
+			};
+
+		if(this.props.singleColor) {
+			classes.container['mdl-spinner--single-color'] = true;
+		}
+
 		return (
-			<div className="mdl-progress mdl-js-progress mdl-progress__indeterminate progress-demo"></div>
+			<div className={cx(classes.container)} > </div>
 		);
-	}
+	},
 
 });
-
-module.exports = Loading;
