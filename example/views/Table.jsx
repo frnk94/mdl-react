@@ -16,55 +16,6 @@ module.exports = React.createClass({
 		var header = [
 			{
 				title : '標題一',
-				style : {
-					textAlign : 'left',
-				}
-			},
-			'標題二',
-			{
-				title : '標題三',
-				style : {
-					color : 'red',
-				},
-			},
-		];
-
-		var items = [
-			['Acrylic (Transparent)', '25', '$2.90'],
-			['Plywood (Birch)', '50', '$1.25'],
-			['Laminate', '10', '$2.35'],
-		];
-
-		var itemStyles = [
-			{
-				textAlign : 'left',
-			},
-			{
-				color : 'blue',
-			},
-			{},
-		];
-
-		return (
-			<div>
-				<MDL.Table
-					ref="table"
-					selectable={true}
-					headers={header}
-					items={items}
-					itemStyles={itemStyles}
-				/>
-				<button onClick={this.getSelected}>取得選取值</button>
-			</div>
-		);
-
-	},
-
-	render2: function() {
-
-		var header = [
-			{
-				title : '標題一',
 				key : 'title',
 				style : {
 					textAlign : 'left',
@@ -75,22 +26,32 @@ module.exports = React.createClass({
 				key : 'region',
 			},
 			{
-				title : '標題三',
 				key : 'value',
 			},
 		];
 
 		var items = [
-			// ['Acrylic (Transparent)', '25', '$2.90'],
-			// ['Plywood (Birch)', '50', '$1.25'],
-			// ['Laminate', '10', '$2.35'],
 			{
 				title : 'Acrylic',
 				region : 'TW',
 				value : '1',
-				_id : 123,
-				avc : 'ddd',
-			}
+				id : 1,
+				avc : 'aaa',
+			},
+			{
+				title : 'title2',
+				region : 'TW2',
+				value : '2',
+				id : 2,
+				avc : 'bbb',
+			},
+			{
+				title : 'title3',
+				region : 'TW3',
+				value : '3',
+				id : 3,
+				avc : 'ccc',
+			},
 		];
 
 		var itemStyles = [

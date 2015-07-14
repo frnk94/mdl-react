@@ -8,11 +8,11 @@ var _ = require('lodash');
 	Props
 		selectable 		設成true才會顯示選取框
 		headers, array isRequired, 標題列
-		headers[], string, 標題
 		headers[].title, string, 標題
+		headers[].key, string isRequired, 資料key名(無 title 時取代 title 顯示)
 		headers[].style, object, 樣式
 		items, array isRequired, 表格內容
-		items[]
+		items[]		存在多個 key 和 value, headers 也有的 key 才會顯示
 		itemStyles, array, 列樣式
 	Methods
 		getSelected 	取得勾選的資料值
@@ -23,7 +23,7 @@ module.exports = React.createClass({
 	propTypes: {
 		headers : React.PropTypes.array.isRequired,
 		items : React.PropTypes.array.isRequired,
-		itemStyles : React.PropTypes.array, // check whether length of itemStyles equal to items
+		itemStyles : React.PropTypes.array,
 		selectable : React.PropTypes.bool,
 	},
 
@@ -37,28 +37,28 @@ module.exports = React.createClass({
 
 		// 檢查 headers
 		this.props.headers.forEach(function(header) {
-			if(
-				typeof header == 'object' &&
-				!header.title
-			) {
+			if(!header.key) {
 				console.warn(
-					'MDL.Table: 如果 `headers` 的元素為物件, 那一定要有 title 屬性'
+					'MDL.Table: header 一定要有 key 屬性'
 				);
 			}
 		});
 
-		// 檢查 items 和 headers 的長度是否一致
-		// 檢查 items 是 array of array
+		// 檢查 items 是不是有缺少 key
+		// 檢查 items 是 array of object
 		this.props.items.forEach(function(item) {
-			if(!(item instanceof Array)) {
+			if(!(item instanceof Object)) {
 				console.warn(
-					'MDL.Table: `items` should be an array of array'
-				);
-			} else if(item.length != self.props.headers.length){
-				console.warn(
-					'MDL.Table: the length of `item` should be equal to the length of `headers`'
+					'MDL.Table: `items` should be an array of object'
 				);
 			}
+			self.props.headers.map(function(header, index) {
+				if(!item[header.key]) {
+					console.warn(
+						'MDL.Table: every item should have all the keys in headers'
+					);
+				}
+			});
 		});
 
 		// 檢查 headers 和 itemStyles 的長度是否一致
@@ -76,20 +76,12 @@ module.exports = React.createClass({
 	getSelected: function() {
 
 		var result = [];
+		var self = this;
 
 		if(this.props.selectable) {
 			_.forEach(this.refs.tbody.getDOMNode().childNodes, function(element, index) {
-				var row = []; //Weird Data Type
 				if(element.className == 'is-selected') {
-					_.forEach(element.childNodes, function(rowElement, index) {
-						if(index != 0) {
-							// 不用取第 0 項的值 ( checkbox )
-							row.push(rowElement.innerHTML);
-						}
-					});
-				}
-				if(row.length != 0) {
-					result.push(row);
+					result.push(self.props.items[index]);
 				}
 			});
 		}
@@ -104,7 +96,7 @@ module.exports = React.createClass({
 			table : {
 				'mdl-data-table' : true,
 				'mdl-js-data-table' : true,
-				'mdl-shadow--2dp' : true, //Why add it here????
+				'mdl-shadow--2dp' : true,
 			},
 		};
 		var self = this;
@@ -116,34 +108,30 @@ module.exports = React.createClass({
 		}
 
 		var headers = this.props.headers.map(function(element, index) {
-			if(typeof element == 'string') {
+			if(typeof element.title == 'string') {
 				return (
-					<th key={index}>{element}</th>
+					<th key={index} style={element.style} data-key={element.key}>{element.title}</th>
 				);
 			} else {
 				return (
-					<th key={index} style={element.style}>{element.title}</th>
+					<th key={index} style={element.style} data-key={element.key}>{element.key}</th>
 				);
 			}
 		});
 
-
-		// items.map	-> tr data-index={index}
-			// headers.map		-> td
-
 		var items = this.props.items.map(function(element, index) {
 
-			var row = element.map(function(element, index) {
+			var row = self.props.headers.map(function(headerElement, index) {
 				if(self.props.itemStyles instanceof Array) {
 					return (
 						<td style={self.props.itemStyles[index]} key={index}>
-							{element}
+							{element[headerElement.key]}
 						</td>
 					);
 				}
 				else {
 					return (
-						<td key={index}>{element}</td>
+						<td key={index}>{element[headerElement.key]}</td>
 					);
 				}
 			});
