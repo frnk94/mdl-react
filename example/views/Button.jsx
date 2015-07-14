@@ -8,7 +8,8 @@ module.exports = React.createClass({
 
 	click: function() {
 		//console.log('click!');
-		this.refs.FAB.toggleButton();
+		console.log(this.refs.FAB.toggleButton());
+
 	},
 
 	render: function() {
@@ -20,8 +21,7 @@ module.exports = React.createClass({
 					isRipple={true}
 					isPrimary={true}
 					isMini={true}
-					isDisabled={false}
-					onKeyDown={this.onKeyDown}/>
+					isDisabled={false}/>
 				<br />
 
 				<MDL.Button type="RaisedButton"
@@ -30,8 +30,7 @@ module.exports = React.createClass({
 					isPrimary={true}
 					isMini={true}
 					isDisabled={false}
-					onClick={this.click}
-					onKeyDown={this.onKeyDown} />
+					onClick={this.click} />
 				<br />
 
 				<MDL.Button type="FlatButton"
