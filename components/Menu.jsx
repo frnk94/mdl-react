@@ -37,13 +37,13 @@ module.exports = React.createClass({
 		fromBottomToTop: React.PropTypes.bool,
 		isRipple: React.PropTypes.bool,
 		menuList: React.PropTypes.arrayOf(React.PropTypes.shape({
-      text: React.PropTypes.oneOfType([
-	      React.PropTypes.string,
-	      React.PropTypes.element,
-	    ]).isRequired,
-      events: React.PropTypes.object,
+			text: React.PropTypes.oneOfType([
+				React.PropTypes.string,
+				React.PropTypes.element,
+			]).isRequired,
+			events: React.PropTypes.object,
 			style: React.PropTypes.object,
-    })).isRequired,
+		})).isRequired,
 	},
 
 	componentDidMount: function() {
@@ -88,7 +88,7 @@ module.exports = React.createClass({
 		return (
 			<div style={this._getStyle()}>
 				<button id={this.props.id} className="mdl-button mdl-js-button mdl-button--icon">
-	  			{this.props.Icon}
+					{this.props.Icon}
 				</button>
 				<ul className={this._getClasses()} htmlFor={this.props.id}>
 					{list}
