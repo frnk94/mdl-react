@@ -49,11 +49,14 @@ module.exports = React.createClass({
 	},
 
 	componentWillMount: function() {
-		if (this.props.type !== 'FloatingActionButton' &&
+		if (
+			this.props.type !== 'FloatingActionButton' &&
 			this.props.type !== 'RaisedButton' &&
 			this.props.type !== 'FlatButton' &&
-			this.props.type !== 'IconButton')
-				console.log('Wrong Button Type');
+			this.props.type !== 'IconButton'
+		) {
+			console.warn('MDL.Button: Wrong Button Type');
+		}
 	},
 
 	componentDidMount: function() {
@@ -82,24 +85,41 @@ module.exports = React.createClass({
 		return cx(classes);
 	},
 
-	_getUnusedProps: function() {
+
+	_getEventProps: function() {
 		var obj = _.clone(this.props, true);
 		var props = ['text', 'style', 'type', 'isMini', 'isRipple', 'isPrimary', 'isAccent'];
 
 		props.forEach(function(property) {
 			if(obj.hasOwnProperty(property)) delete obj[property];
 		});
+
+		// var events = {};
+		// for(var key in this.props) {
+		// 	/^on/.test()
+		// }
+		// return events;
+
 		return obj;
+	},
+
+	getIsDisabled : function() {
+
 	},
 
 	toggleButton: function() {
 		this.setState({isDisabled: !this.state.isDisabled});
+		return this.state.isDisabled;
 	},
 
 	render: function() {
-		var props = this._getUnusedProps();
+		var eventHandlers = this._getEventProps();
 		return (
-			<button {...props} className={this._getClasses()} disabled={this.state.isDisabled} style={this.props.style}>
+			<button {...eventHandlers}
+				className={this._getClasses()}
+				disabled={this.state.isDisabled}
+				style={this.props.style}
+			>
 				{this.props.text}
 			</button>
 		);

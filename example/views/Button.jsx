@@ -31,7 +31,7 @@ module.exports = React.createClass({
 					isMini={true}
 					isDisabled={false}
 					onClick={this.click}
-					onKeyDown={this.onKeyDown}/>
+					onKeyDown={this.onKeyDown} />
 				<br />
 
 				<MDL.Button type="FlatButton"
