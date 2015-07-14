@@ -6,7 +6,6 @@ var cx = require('classnames');
  *	MENUS
  *		http://www.getmdl.io/components/index.html#menus-section
  *	Props
- *		id: isRequired, string, 選單須以 id 跟 Button 做綁定
  *		Icon: isRequired, Button的Icon，請使用 MDL Icon Component
  *		menuList: isRequired, Array of Object, Object can contains 3 propetires:
  *			text, isRequired, must be String or React Component
@@ -17,6 +16,8 @@ var cx = require('classnames');
  *		isRipple: 是否使用Ripple動畫，default true
  *		style: Object, Menu整體CSS樣式
  */
+
+var id = 1;
 
 module.exports = React.createClass({
 
@@ -29,8 +30,13 @@ module.exports = React.createClass({
 		};
 	},
 
+	id: 'mdl-menu-',
+
+	componentWillMount: function() {
+		this.id += id++;
+	},
+
 	propTypes: {
-		id: React.PropTypes.string.isRequired,
 		Icon: React.PropTypes.element.isRequired,
 		style: React.PropTypes.object,
 		fromRightToLeft: React.PropTypes.bool,
@@ -87,10 +93,10 @@ module.exports = React.createClass({
 
 		return (
 			<div style={this._getStyle()}>
-				<button id={this.props.id} className="mdl-button mdl-js-button mdl-button--icon">
+				<button id={this.id} className="mdl-button mdl-js-button mdl-button--icon">
 					{this.props.Icon}
 				</button>
-				<ul className={this._getClasses()} htmlFor={this.props.id}>
+				<ul className={this._getClasses()} htmlFor={this.id}>
 					{list}
 				</ul>
 			</div>
