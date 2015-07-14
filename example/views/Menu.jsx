@@ -17,14 +17,14 @@ var SvgIcon = React.createClass({
 module.exports = React.createClass({
 
 	_menuList: [{
-			text: '1111',
+			text: 'Some Action',
 			events: {
 				onClick: function() {
 					console.log("Click")
 				},
 			}
 		},{
-			text: '2222',
+			text: 'Another Action',
 			style: {
 			},
 		},
@@ -35,31 +35,31 @@ module.exports = React.createClass({
 			<div>
 				<MDL.Menu
 					Icon={<SvgIcon icon="android" />}
-					atRight={false}
-					atTop={false}
+					fromRightToLeft={false}
+					fromTopToBottom={false}
 					id="bottomLeft"
 					menuList={this._menuList}/>
 
 				<MDL.Menu
 					style={{marginLeft: '300px'}}
 					Icon={<SvgIcon icon="airplay" />}
-					atRight={true}
-					atTop={false}
+					fromRightToLeft={true}
+					fromTopToBottom={false}
 					id="bottomRight"
 					menuList={this._menuList}/>
 
 				<MDL.Menu
 					Icon={<SvgIcon icon="message" />}
-					atRight={false}
-					atTop={true}
+					fromRightToLeft={false}
+					fromTopToBottom={true}
 					id="topLeft"
 					menuList={this._menuList}/>
 
 				<MDL.Menu
 					style={{marginLeft: '300px'}}
 					Icon={<SvgIcon icon="format_list_bulleted" />}
-					atRight={true}
-					atTop={true}
+					fromRightToLeft={true}
+					fromTopToBottom={true}
 					id="topRight"
 					menuList={this._menuList}/>
 			</div>

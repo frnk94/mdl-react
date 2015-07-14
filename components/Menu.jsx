@@ -3,15 +3,20 @@ var React = require('react');
 var cx = require('classnames');
 
 /**
- *	MENUS --- Lists of clickable actions.
+ *	MENUS
  *		http://www.getmdl.io/components/index.html#menus-section
  *	Props
- *		id
- *		Icon
- *		atRight
- *		atBottom
- *		isRipple
- *		menuList
+ *		id: isRequired, string, 選單須以 id 跟 Button 做綁定
+ *		Icon: isRequired, Button的Icon，請使用 MDL Icon Component
+ *		menuList: isRequired, Array of Object
+ *							Object contains 3 propetires:
+									text, isRequired, must be String or React Component
+ *								events, Object, propetires should be React events
+ *								style, Object, 選項個別CSS樣式
+ *		fromRightToLeft: Meun展開動畫是否從左到又, default false
+ *		fromBottomToTop: Meun展開動畫是否從下到上, default false
+ *		isRipple: 是否使用Ripple動畫，default true
+ *		style: Object, Menu整體CSS樣式
  */
 
 module.exports = React.createClass({
@@ -19,8 +24,8 @@ module.exports = React.createClass({
 	getDefaultProps: function() {
 		return {
 			style: {},
-			fromRight: false,
-			fromAbove: false,
+			fromRightToLeft: false,
+			fromBottomToTop: false,
 			isRipple: true,
 		};
 	},
@@ -29,11 +34,14 @@ module.exports = React.createClass({
 		id: React.PropTypes.string.isRequired,
 		Icon: React.PropTypes.element.isRequired,
 		style: React.PropTypes.object,
-		isRight: React.PropTypes.bool,
-		isAbove: React.PropTypes.bool,
+		fromRightToLeft: React.PropTypes.bool,
+		fromBottomToTop: React.PropTypes.bool,
 		isRipple: React.PropTypes.bool,
 		menuList: React.PropTypes.arrayOf(React.PropTypes.shape({
-      text: React.PropTypes.node.isRequired,
+      text: React.PropTypes.oneOfType([
+	      React.PropTypes.string,
+	      React.PropTypes.element,
+	    ]).isRequired,
       events: React.PropTypes.objectOf(React.PropTypes.func),
 			style: React.PropTypes.objectOf(React.PropTypes.string),
     })).isRequired,
@@ -51,11 +59,11 @@ module.exports = React.createClass({
 			"mdl-js-ripple-effect": this.props.isRipple,
 		};
 
-		if (this.props.toRight && this.props.atTop){
+		if (this.props.fromBottomToTop && this.props.fromRightToLeft ){
 			classes['mdl-menu--top-right'] = true;
-		} else if (this.props.atRight) {
+		} else if (this.props.fromRightToLeft) {
 			classes['mdl-menu--bottom-right'] = true;
-		} else if (this.props.atTop) {
+		} else if (this.props.fromBottomToTop) {
 			classes['mdl-menu--top-left'] = true;
 		}
 
