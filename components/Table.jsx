@@ -55,7 +55,7 @@ module.exports = React.createClass({
 			self.props.headers.map(function(header, index) {
 				if(!item[header.key]) {
 					console.warn(
-						'MDL.Table: every item should have all the keys in headers'
+						'MDL.Table: every item should have all the keys in `headers`'
 					);
 				}
 			});
