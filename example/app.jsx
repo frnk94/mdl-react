@@ -23,11 +23,15 @@ var App = React.createClass({
 var Home = require('./views/Home.jsx');
 var TextField = require('./views/TextField.jsx');
 var PrismCode = require('./views/PrismCode.jsx');
+var Loading = require('./views/Loading.jsx');
+var Spinner = require('./views/Spinner.jsx');
 var routes = (
 	<Router.Route handler={App}>
 		<Router.Route name='home' path='/' handler={Home} />
 		<Router.Route name='textField' path='/text-field' handler={TextField} />
 		<Router.Route name='prismCode' path='/prism-code' handler={PrismCode} />
+		<Router.Route name='loading' path='/loading' handler={Loading} />
+		<Router.Route name='spinner' path='/spinner' handler={Spinner} />
 	</Router.Route>
 );
 
