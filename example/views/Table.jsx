@@ -88,7 +88,8 @@ module.exports = React.createClass({
 				title : 'Acrylic',
 				region : 'TW',
 				value : '1',
-				id : 123,
+				_id : 123,
+				avc : 'ddd',
 			}
 		];
 
