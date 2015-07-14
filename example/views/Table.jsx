@@ -1,6 +1,7 @@
 
 "use strict";
 
+var fs = require('fs');
 var React = require('react');
 var MDL = require('../../index.js');
 
@@ -11,6 +12,7 @@ module.exports = React.createClass({
 	},
 
 	render: function() {
+
 		var header = [
 			{
 				title : '標題一',
@@ -18,11 +20,12 @@ module.exports = React.createClass({
 					textAlign : 'left',
 				}
 			},
-			{
-				title : '標題二',
-			},
+			'標題二',
 			{
 				title : '標題三',
+				style : {
+					color : 'red',
+				},
 			},
 		];
 
@@ -36,7 +39,9 @@ module.exports = React.createClass({
 			{
 				textAlign : 'left',
 			},
-			{},
+			{
+				color : 'blue',
+			},
 			{},
 		];
 
@@ -45,13 +50,72 @@ module.exports = React.createClass({
 				<MDL.Table
 					ref="table"
 					selectable={true}
-					header={header}
+					headers={header}
 					items={items}
 					itemStyles={itemStyles}
 				/>
 				<button onClick={this.getSelected}>取得選取值</button>
 			</div>
 		);
+
+	},
+
+	render2: function() {
+
+		var header = [
+			{
+				title : '標題一',
+				key : 'title',
+				style : {
+					textAlign : 'left',
+				}
+			},
+			{
+				title : '標題一',
+				key : 'region',
+			},
+			{
+				title : '標題三',
+				key : 'value',
+			},
+		];
+
+		var items = [
+			// ['Acrylic (Transparent)', '25', '$2.90'],
+			// ['Plywood (Birch)', '50', '$1.25'],
+			// ['Laminate', '10', '$2.35'],
+			{
+				title : 'Acrylic',
+				region : 'TW',
+				value : '1',
+				_id : 123,
+				avc : 'ddd',
+			}
+		];
+
+		var itemStyles = [
+			{
+				textAlign : 'left',
+			},
+			{
+				color : 'blue',
+			},
+			{},
+		];
+
+		return (
+			<div>
+				<MDL.Table
+					ref="table"
+					selectable={true}
+					headers={header}
+					items={items}
+					itemStyles={itemStyles}
+				/>
+				<button onClick={this.getSelected}>取得選取值</button>
+			</div>
+		);
+
 	}
 
 });
