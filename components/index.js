@@ -18,5 +18,11 @@ module.exports = {
 	Button : require('./Button.jsx'),
 	Loading: require('./Loading.jsx'),
 	Slider : require('./Slider.jsx'),
+	Card : require('./Card.jsx'),
+	CardTitle : require('./CardComponents/CardTitle.jsx'),
+	CardAction : require('./CardComponents/CardAction.jsx'),
+	CardSupportingText : require('./CardComponents/CardSupportingText.jsx'),
+	CardMenu : require('./CardComponents/CardMenu.jsx'),
+	CardMedia : require('./CardComponents/CardMedia.jsx'),
 
 };

@@ -29,6 +29,7 @@ var App = React.createClass({
 			{ text : 'Button', href : '#button' },
 			{ text : 'Loading', href : '#loading' },
 			{ text : 'Slider', href : '#slider' },
+			{ text : 'Card', href : '#card' },
 		];
 		return (
 			<MDL.Layout
@@ -52,7 +53,8 @@ var Menu = require('./views/Menu.jsx');
 var Table = require('./views/Table.jsx');
 var Button = require('./views/Button.jsx');
 var Loading = require('./views/Loading.jsx');
-var Slider = require('./views/Slider.jsx')
+var Slider = require('./views/Slider.jsx');
+var Card = require('./views/Card.jsx');
 var routes = (
 	<Router.Route handler={App}>
 		<Router.DefaultRoute name='home' handler={Home} />
@@ -63,6 +65,7 @@ var routes = (
 		<Router.Route name='button' path='button' handler={Button} />
 		<Router.Route name='loading' path='loading' handler={Loading} />
 		<Router.Route name='slider' path='slider' handler={Slider} />
+		<Router.Route name='card' path='card' handler={Card} />
 	</Router.Route>
 );
 
