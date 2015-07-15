@@ -32,7 +32,7 @@ module.exports = React.createClass({
 		items : React.PropTypes.array.isRequired,
 		itemStyles : React.PropTypes.array,
 		selectable : React.PropTypes.bool,
-		shadow : React.PropTypes.number,
+		shadow : React.PropTypes.oneOf([ 2, 3, 4, 6, 8, 16 ]),
 	},
 
 	componentDidMount: function() {
@@ -70,18 +70,6 @@ module.exports = React.createClass({
 			);
 		}
 
-		// 檢查 shadow 值是否不超過 8
-		if(this.props.shadow != 2 &&
-			this.props.shadow != 3 &&
-			this.props.shadow != 4 &&
-			this.props.shadow != 6 &&
-			this.props.shadow != 8 &&
-			this.props.shadow != 16) {
-			console.warn(
-				'MDL.Table: invalid `shadow` value'
-			);
-		}
-
 	},
 
 	getSelected: function() {
@@ -112,13 +100,13 @@ module.exports = React.createClass({
 		var self = this;
 
 		this._checkProps();
-		
+
 		classes.table['mdl-shadow--' + this.props.shadow + 'dp'] = true;
 
 		if(this.props.selectable) {
 			classes.table['mdl-data-table--selectable'] = true;
 		}
-		
+
 		var headers = this.props.headers.map(function(element, index) {
 			if(typeof element.title == 'string') {
 				return (
@@ -130,7 +118,7 @@ module.exports = React.createClass({
 				);
 			}
 		});
-		
+
 		var date = Date.now();
 		var items = this.props.items.map(function(element, index) {
 

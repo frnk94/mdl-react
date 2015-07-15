@@ -11,12 +11,18 @@ How to use it
 module.exports = {
 
 	TextField : require('./TextField.jsx'),
-	LayoutFixHeader : require('./LayoutFixHeader.jsx'),
+	Layout : require('./Layout.jsx'),
 	PrismCode : require('./PrismCode.jsx'),
 	Menu : require('./Menu.jsx'),
 	Table : require('./Table.jsx'),
 	Button : require('./Button.jsx'),
 	Loading: require('./Loading.jsx'),
 	Slider : require('./Slider.jsx'),
+	Card : require('./Card.jsx'),
+	CardTitle : require('./CardComponents/CardTitle.jsx'),
+	CardAction : require('./CardComponents/CardAction.jsx'),
+	CardSupportingText : require('./CardComponents/CardSupportingText.jsx'),
+	CardMenu : require('./CardComponents/CardMenu.jsx'),
+	CardMedia : require('./CardComponents/CardMedia.jsx'),
 
 };

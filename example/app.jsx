@@ -11,10 +11,36 @@ var App = React.createClass({
 		Router.Navigation,
 	],
 	render : function() {
+		var headerItems = [
+			{
+				text : (
+					<span>
+						made ♥ with Fandora Shop
+					</span>
+				),
+				href : 'http://FandoraShop.com',
+				target : '_blank',
+			}
+		];
+		var drawerItems = [
+			{ text : 'Text Field', href : '#text-field' },
+			{ text : 'Menu', href : '#menu' },
+			{ text : 'Table', href : '#table' },
+			{ text : 'Button', href : '#button' },
+			{ text : 'Loading', href : '#loading' },
+			{ text : 'Slider', href : '#slider' },
+			{ text : 'Card', href : '#card' },
+		];
 		return (
-			<div>
+			<MDL.Layout
+				type='FixedDrawer'
+				title='mdl-react'
+				href='#'
+				headerItems={headerItems}
+				drawerItems={drawerItems}
+			>
 				<Router.RouteHandler />
-			</div>
+			</MDL.Layout>
 		);
 	},
 });
@@ -27,7 +53,8 @@ var Menu = require('./views/Menu.jsx');
 var Table = require('./views/Table.jsx');
 var Button = require('./views/Button.jsx');
 var Loading = require('./views/Loading.jsx');
-var Slider = require('./views/Slider.jsx')
+var Slider = require('./views/Slider.jsx');
+var Card = require('./views/Card.jsx');
 var routes = (
 	<Router.Route handler={App}>
 		<Router.DefaultRoute name='home' handler={Home} />
@@ -38,6 +65,7 @@ var routes = (
 		<Router.Route name='button' path='button' handler={Button} />
 		<Router.Route name='loading' path='loading' handler={Loading} />
 		<Router.Route name='slider' path='slider' handler={Slider} />
+		<Router.Route name='card' path='card' handler={Card} />
 	</Router.Route>
 );
 
