@@ -7,50 +7,29 @@ var cx = require('classnames');
 	Badge
 		http://www.getmdl.io/components/index.html#badges-section
 	Props
-		textBadge,		string isRequired,			the text of an <Badge> element
-		dataBadge,		string isRequired,			the legal number for <Badge> element
-		icon,			bool,						use mdl icon in Badge 
-		noBackground,	bool,						use Background in Badge
-	Methods
-		getValue									get the dataBadge from the current badge
-		setValue									sett the dataBadge to the current badge
+		badge,			node isRequired,		the legal char for <Badge> element
+		icon,			bool,					use mdl icon in Badge 
+		noBackground,	bool,					use Background in Badge
+	Icon
+		https://www.google.com/design/icons/
 */
 
 var React = require('react');
 
-var Badge = React.createClass({
+module.exports = React.createClass({
 
 	propTypes: {
-		textBadge : React.PropTypes.string.isRequired,
-		dataBadge : React.PropTypes.string.isRequired,
+		badge : React.PropTypes.node.isRequired,
 		icon : React.PropTypes.bool,
 		noBackground : React.PropTypes.bool,
 	},
 
 	getDefaultProps: function() {
 		return {
-			textBadge : 'Error',
-			dataBadge : '404',
+			badge : 404,
 			icon : false,
 			noBackground : false,
 		};
-	},
-
-	getInitialState: function() {
-		return {
-			dataBadge : this.props.dataBadge,
-		};
-	},
-
-	getValue : function() {
-		return this.state.dataBadge;
-	},
-
-	setValue : function(inputValue) {
-		console.log('inside setValue');
-		this.setState({
-			dataBadge : inputValue, 
-		});
 	},
 
 	render: function() {
@@ -61,6 +40,10 @@ var Badge = React.createClass({
 			container : {
 				'mdl-badge' : true,
 			},
+		};
+
+		var divStyle = {
+			display: 'inline-block',
 		};
 
 		if(this.props.noBackground) {
@@ -75,13 +58,12 @@ var Badge = React.createClass({
 				<div 
 					key={date}
 					className={cx(classes.container)}
-					data-badge={this.state.dataBadge}
+					data-badge={this.props.badge}
+					style={divStyle}
 				>
-				{this.props.textBadge}
+				{this.props.children}
 				</div>
 		);
 	}
 
 });
-
-module.exports = Badge;
