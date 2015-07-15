@@ -44,7 +44,6 @@ var Slider = React.createClass({
 		};
 	},
 
-
 	componentDidMount: function() {
 		this.refs.input.getDOMNode().value = this.props.defaultValue;
 		this.refs.input.getDOMNode().setAttribute('class', 'mdl-slider mdl-js-slider');
@@ -61,7 +60,6 @@ var Slider = React.createClass({
 	},
 
 	setValue : function(inputValue) {
-		this.refs.input.getDOMNode().value  = inputValue;
 		this.setState({
 			stateValue : inputValue, 
 		});
@@ -71,11 +69,11 @@ var Slider = React.createClass({
 		var date = Date.now();
 
 		if(this.props.min < 0) {
-			console.warn('MDL.Sliders : min should greater than Zero.')
+			console.warn('MDL.Slider : min should greater than Zero.')
 		}
 
 		return (
-			<div>
+			<div style={this.props.style}>
 				<input 
 					key={date}
 					ref='input'
