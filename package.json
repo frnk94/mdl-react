@@ -5,6 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "main": "./components",
   "repository": {
     "type": "git",
     "url": "https://github.com/Fandora/mdl-react.git"
@@ -13,7 +14,7 @@
     "React",
     "Material Design"
   ],
-  "author": "xpsteven",
+  "author": "Fandora Shop RD Team",
   "license": "Apache License 2.0",
   "bugs": {
     "url": "https://github.com/Fandora/mdl-react/issues"
@@ -21,6 +22,8 @@
   "homepage": "https://github.com/Fandora/mdl-react",
   "dependencies": {
     "classnames": "~2.1.3",
+    "gulp-uglify": "~1.2.0",
+    "lodash": "~3.10.0",
     "material-design-lite": "~1.0.0-3",
     "react": "~0.13.3",
     "react-router": "~0.13.3",

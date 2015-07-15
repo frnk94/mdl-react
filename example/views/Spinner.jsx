@@ -8,12 +8,7 @@ module.exports = React.createClass({
 
 	render: function() {
 		return (
-			<div>
-				<MDL.PrismCode
-					src='http://fandora.github.io/mdl-react/components/TextField.jsx'
-					lang='jsx'
-				/>
-			</div>
+			<div> <MDL.Spinner /> </div>
 		);
 	},
 

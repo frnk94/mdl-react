@@ -10,6 +10,7 @@ var gutil = require('gulp-util');
 var connect = require('gulp-connect');
 var browserify = require('browserify');
 var watchify = require('watchify');
+var uglify = require('gulp-uglify');
 
 function bundleGenerator(isWatch) {
 	var b = browserify({
@@ -37,7 +38,8 @@ function bundleGenerator(isWatch) {
 	return bundle;
 }
 
-gulp.task('js', bundleGenerator(true)); // so you can run `gulp js` to build the file
+// so you can run `gulp js` to build the file
+gulp.task('js', bundleGenerator(true));
 
 gulp.task('default', ['js'], function() {
 	connect.server({
@@ -45,4 +47,16 @@ gulp.task('default', ['js'], function() {
 		livereload : true,
 		fallback : 'example/index.html',
 	});
+});
+
+gulp.task('compress', function() {
+	return gulp.src('example/app.js')
+	.pipe(uglify({
+		compress : true,
+	}).on('error', gutil.log))
+	.pipe(rename(function (path) {
+		path.extname = '.js';
+		path.basename = 'app.page';
+	}))
+	.pipe(gulp.dest('example/'));
 });

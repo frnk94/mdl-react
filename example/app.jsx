@@ -1,7 +1,7 @@
 
 "use strict";
 
-var MDL = require('../index.js');
+var MDL = require('../components');
 var React = require('react');
 var Router = require('react-router');
 
@@ -11,10 +11,36 @@ var App = React.createClass({
 		Router.Navigation,
 	],
 	render : function() {
+		var headerItems = [
+			{
+				text : (
+					<span>
+						made ♥ with Fandora Shop
+					</span>
+				),
+				href : 'http://FandoraShop.com',
+				target : '_blank',
+			}
+		];
+		var drawerItems = [
+			{ text : 'Text Field', href : '#text-field' },
+			{ text : 'Menu', href : '#menu' },
+			{ text : 'Table', href : '#table' },
+			{ text : 'Button', href : '#button' },
+			{ text : 'Loading', href : '#loading' },
+			{ text : 'Slider', href : '#slider' },
+			{ text : 'Card', href : '#card' },
+		];
 		return (
-			<div>
+			<MDL.Layout
+				type='FixedDrawer'
+				title='mdl-react'
+				href='#'
+				headerItems={headerItems}
+				drawerItems={drawerItems}
+			>
 				<Router.RouteHandler />
-			</div>
+			</MDL.Layout>
 		);
 	},
 });
@@ -23,18 +49,31 @@ var App = React.createClass({
 var Home = require('./views/Home.jsx');
 var TextField = require('./views/TextField.jsx');
 var PrismCode = require('./views/PrismCode.jsx');
+var Menu = require('./views/Menu.jsx');
+var Table = require('./views/Table.jsx');
+var Button = require('./views/Button.jsx');
+var Loading = require('./views/Loading.jsx');
+var Slider = require('./views/Slider.jsx');
+var Card = require('./views/Card.jsx');
 var Badge = require('./views/Badge.jsx');
+
 var routes = (
 	<Router.Route handler={App}>
-		<Router.Route name='home' path='/' handler={Home} />
-		<Router.Route name='textField' path='/text-field' handler={TextField} />
-		<Router.Route name='prismCode' path='/prism-code' handler={PrismCode} />
-		<Router.Route name='Badge' path='/badge' handler={Badge} />
+		<Router.DefaultRoute name='home' handler={Home} />
+		<Router.Route name='textField' path='text-field' handler={TextField} />
+		<Router.Route name='prismCode' path='prism-code' handler={PrismCode} />
+		<Router.Route name='menu' path='menu' handler={Menu} />
+		<Router.Route name='table' path='table' handler={Table} />
+		<Router.Route name='button' path='button' handler={Button} />
+		<Router.Route name='loading' path='loading' handler={Loading} />
+		<Router.Route name='slider' path='slider' handler={Slider} />
+		<Router.Route name='card' path='card' handler={Card} />
+		<Router.Route name='badge' path='badge' handler={Badge} />
 	</Router.Route>
 );
 
 // start app
-Router.run(routes, Router.HistoryLocation, function (Handler) {
+Router.run(routes, Router.HashLocation, function (Handler) {
 	React.render(
 		<Handler />,
 		document.getElementsByTagName('body')[0]
