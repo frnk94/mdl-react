@@ -29,12 +29,12 @@ var Button = require('./views/Button.jsx');
 
 var routes = (
 	<Router.Route handler={App}>
-		<Router.Route name='home' path='/' handler={Home} />
+		<Router.DefaultRoute name='home' handler={Home} />
 		<Router.Route name='textField' path='text-field' handler={TextField} />
 		<Router.Route name='prismCode' path='prism-code' handler={PrismCode} />
-		<Router.Route name='menu' path='/menu' handler={Menu} />
-		<Router.Route name='table' path='/table' handler={Table} />
-		<Router.Route name='button' path='/button' handler={Button} />
+		<Router.Route name='menu' path='menu' handler={Menu} />
+		<Router.Route name='table' path='table' handler={Table} />
+		<Router.Route name='button' path='button' handler={Button} />
 	</Router.Route>
 );
 
