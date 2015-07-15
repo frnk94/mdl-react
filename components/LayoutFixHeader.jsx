@@ -57,8 +57,8 @@ var LayoutFixHeader = React.createClass({
 				<div className="mdl-layout__drawer">
 					<span className="mdl-layout-title">Title</span>
 					<nav className="mdl-navigation">
-						<a className="mdl-navigation__link" href="/table">Table</a>
-						<a className="mdl-navigation__link" href="/text-field">TextField</a>
+						<a className="mdl-navigation__link" href="#table">Table</a>
+						<a className="mdl-navigation__link" href="#text-field">TextField</a>
 						<a className="mdl-navigation__link" href="">Link</a>
 						<a className="mdl-navigation__link" href="">Link</a>
 					</nav>

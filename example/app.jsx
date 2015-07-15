@@ -1,7 +1,7 @@
 
 "use strict";
 
-var MDL = require('../index.js');
+var MDL = require('../components');
 var React = require('react');
 var Router = require('react-router');
 
@@ -30,19 +30,19 @@ var Loading = require('./views/Loading.jsx');
 var Slider = require('./views/Slider.jsx')
 var routes = (
 	<Router.Route handler={App}>
-		<Router.Route name='home' path='/' handler={Home} />
-		<Router.Route name='textField' path='/text-field' handler={TextField} />
-		<Router.Route name='prismCode' path='/prism-code' handler={PrismCode} />
-		<Router.Route name='menu' path='/menu' handler={Menu} />
-		<Router.Route name='table' path='/table' handler={Table} />
-		<Router.Route name='button' path='/button' handler={Button} />
-		<Router.Route name='loading' path='/loading' handler={Loading} />
-		<Router.Route name='slider' path='/slider' handler={Slider} />
+		<Router.DefaultRoute name='home' handler={Home} />
+		<Router.Route name='textField' path='text-field' handler={TextField} />
+		<Router.Route name='prismCode' path='prism-code' handler={PrismCode} />
+		<Router.Route name='menu' path='menu' handler={Menu} />
+		<Router.Route name='table' path='table' handler={Table} />
+		<Router.Route name='button' path='button' handler={Button} />
+		<Router.Route name='loading' path='loading' handler={Loading} />
+		<Router.Route name='slider' path='slider' handler={Slider} />
 	</Router.Route>
 );
 
 // start app
-Router.run(routes, Router.HistoryLocation, function (Handler) {
+Router.run(routes, Router.HashLocation, function (Handler) {
 	React.render(
 		<Handler />,
 		document.getElementsByTagName('body')[0]
