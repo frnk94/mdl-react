@@ -13,7 +13,7 @@ var cx = require('classnames');
 module.exports = React.createClass({
 
 	propTypes: {
-		Spinner : React.PropTypes.bool,
+		Spinner : React.PropTypes.bool.isRequired,
 		ProgressBar : React.PropTypes.bool,
 		indeterminate : React.PropTypes.bool,
 		singleColor : React.PropTypes.bool,
