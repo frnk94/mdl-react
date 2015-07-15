@@ -18,6 +18,7 @@ var _ = require('lodash');
 		isDisabled: 是否禁用Button，預設False
 	Methods
 		toggleButton: 啟動或禁用Button
+		getIsDisabled: 取得Button目前狀態
 */
 module.exports = React.createClass({
 
@@ -49,12 +50,7 @@ module.exports = React.createClass({
 	},
 
 	componentWillMount: function() {
-		if (
-			this.props.type !== 'FloatingActionButton' &&
-			this.props.type !== 'RaisedButton' &&
-			this.props.type !== 'FlatButton' &&
-			this.props.type !== 'IconButton'
-		) {
+		if (!_.includes(['FloatingActionButton', 'RaisedButton', 'FlatButton', 'IconButton'], this.props.type)) {
 			console.warn('MDL.Button: Wrong Button Type');
 		}
 	},
@@ -87,24 +83,17 @@ module.exports = React.createClass({
 
 
 	_getEventProps: function() {
-		var obj = _.clone(this.props, true);
-		var props = ['text', 'style', 'type', 'isMini', 'isRipple', 'isPrimary', 'isAccent'];
-
-		props.forEach(function(property) {
-			if(obj.hasOwnProperty(property)) delete obj[property];
-		});
-
-		// var events = {};
-		// for(var key in this.props) {
-		// 	/^on/.test()
-		// }
-		// return events;
-
-		return obj;
+		var events = {};
+		for(var key in this.props) {
+			if(key.match(/^on/)) {
+					events[key] = this.props[key];
+			}
+		}
+		return events;
 	},
 
-	getIsDisabled : function() {
-
+	getIsDisabled: function() {
+		return this.state.isDisabled;
 	},
 
 	toggleButton: function() {
