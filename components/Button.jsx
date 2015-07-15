@@ -7,8 +7,9 @@ var _ = require('lodash');
 	Button
 		http://www.getmdl.io/components/index.html#buttons-section
 	Props
-		text: 字串或 element
-		type: 'FloatingActionButton', 'RaisedButton', 'FlatButton', 'IconButton'
+		text:字串或 element
+		type: 'loatingActionButton', 'RaisedButton', 'FlatButton', 'IconButton'
+		id: 作為 HTML attribute for 的綁定
 		isRipple: 是否帶特效, 預設 true
 		style: 設定 style 進去
 		isPrimary: 是否使用 primary color
@@ -105,6 +106,7 @@ module.exports = React.createClass({
 		var eventHandlers = this._getEventProps();
 		return (
 			<button {...eventHandlers}
+				id={this.props.id}
 				className={this._getClasses()}
 				disabled={this.state.isDisabled}
 				style={this.props.style}

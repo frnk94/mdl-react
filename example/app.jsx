@@ -23,6 +23,7 @@ var App = React.createClass({
 var Home = require('./views/Home.jsx');
 var TextField = require('./views/TextField.jsx');
 var PrismCode = require('./views/PrismCode.jsx');
+var Menu = require('./views/Menu.jsx');
 var Table = require('./views/Table.jsx');
 var Button = require('./views/Button.jsx');
 var Slider = require('./views/Slider.jsx')
@@ -31,6 +32,7 @@ var routes = (
 		<Router.Route name='home' path='/' handler={Home} />
 		<Router.Route name='textField' path='/text-field' handler={TextField} />
 		<Router.Route name='prismCode' path='/prism-code' handler={PrismCode} />
+		<Router.Route name='menu' path='/menu' handler={Menu} />
 		<Router.Route name='table' path='/table' handler={Table} />
 		<Router.Route name='button' path='/button' handler={Button} />
 		<Router.Route name='slider' path='/slider' handler={Slider} />
