@@ -3,7 +3,7 @@ var React = require('react');
 var cx = require('classnames');
 
 /**
-	LayoutFixHeader
+	Loading
 		http://www.getmdl.io/components/index.html#loading-section
 	Props
 		Spinner,ProgressBar,
@@ -20,7 +20,7 @@ module.exports = React.createClass({
 		percentage : React.PropTypes.number,
 	},
 
-getDefaultProps: function() {
+	getDefaultProps: function() {
 	return {
 			Spinner: true,
 			indeterminate: true,
@@ -30,46 +30,41 @@ getDefaultProps: function() {
 	};
 },
 
-	componentWillMount: function() {
-		componentHandler.upgradeDom();
-	},
-
 	componentDidMount: function() {
 		if(this.props.ProgressBar && !this.props.indeterminate){
 			//console.log("set progress")
 			var self = this;
 			self.refs.loader.getDOMNode().addEventListener('mdl-componentupgraded', function() {
-    		this.MaterialProgress.setProgress(self.props.percentage);
-  		});
+				this.MaterialProgress.setProgress(self.props.percentage);
+			});
 		}
+		componentHandler.upgradeDom();
 	},
 
 	render: function() {
-		var classes = {
-				container : {},
-			};
+		var container =  {}
 
 		if(this.props.Spinner) {
-			classes.container['mdl-spinner'] = true;
-			classes.container['mdl-js-spinner'] = true;
-			classes.container['is-active'] = true;
+			container['mdl-spinner'] = true;
+			container['mdl-js-spinner'] = true;
+			container['is-active'] = true;
 		}
 
 		if(this.props.ProgressBar) {
-			classes.container['mdl-progress'] = true;
-			classes.container['mdl-js-progress'] = true;
+			container['mdl-progress'] = true;
+			container['mdl-js-progress'] = true;
 		}
 
 		if(this.props.indeterminate) {
-			classes.container['mdl-progress__indeterminate'] = true;
+			container['mdl-progress__indeterminate'] = true;
 		}
 
 		if(this.props.singleColor) {
-			classes.container['mdl-spinner--single-color'] = true;
+			container['mdl-spinner--single-color'] = true;
 		}
 
 		return (
-			<div ref="loader" className={cx(classes.container)} ></div>
+			<div ref="loader" className={cx(container)} ></div>
 		);
 	},
 
