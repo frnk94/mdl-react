@@ -64,6 +64,6 @@ module.exports = React.createClass({
 				{this.props.children}
 				</div>
 		);
-	}
+	},
 
 });
