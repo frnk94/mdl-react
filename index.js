@@ -14,5 +14,6 @@ module.exports = {
 	LayoutFixHeader : require('./components/LayoutFixHeader.jsx'),
 	PrismCode : require('./components/PrismCode.jsx'),
 	Table : require('./components/Table.jsx'),
-
+	Button : require('./components/Button.jsx'),
+	
 };
