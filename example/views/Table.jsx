@@ -5,6 +5,7 @@ var fs = require('fs');
 var React = require('react');
 var MDL = require('../../components');
 var _ = require('lodash');
+var Props = require('../document/Props.jsx');
 
 module.exports = React.createClass({
 
@@ -83,6 +84,27 @@ module.exports = React.createClass({
 			{},
 		];
 
+		var propsDetail = [
+			{
+				key : 'items',
+				type : 'array',
+				state : 'required',
+				content : 'The classname of the icon on the left of the app bar. If you are using a stylesheet for your icons, enter the class name for the icon to be used here.',
+			},
+			{
+				key : 'items',
+				type : 'array',
+				state : 'required',
+				content : 'The classname of the icon on the left of the app bar. If you are using a stylesheet for your icons, enter the class name for the icon to be used here.',
+			},
+			{
+				key : 'items',
+				type : 'array',
+				state : 'required',
+				content : 'The classname of the icon on the left of the app bar. If you are using a stylesheet for your icons, enter the class name for the icon to be used here.',
+			},
+		];
+
 		return (
 			<div>
 				<MDL.Table
@@ -95,6 +117,8 @@ module.exports = React.createClass({
 				/>
 				<button onClick={this.addData}>新增資料</button>
 				<button onClick={this.getSelected}>取得選取值</button>
+
+				<Props detail={propsDetail} />
 			</div>
 		);
 
