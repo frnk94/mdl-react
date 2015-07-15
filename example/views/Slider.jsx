@@ -15,7 +15,7 @@ module.exports = React.createClass({
 	},
 
 	setValue: function() {
-		console.log('outside set');
+		console.log('outside setValue');
 		this.refs.test.setValue('80')
 	},
 
@@ -23,26 +23,26 @@ module.exports = React.createClass({
 		console.log('outside render');
 		return (
 			<div>
-				<MDL.Sliders
+				<MDL.Slider
 					min = '0'
 					max = '100'
 					defaultValue = '10'
-					tabindex = '0'
+					tabIndex = '0'
 				/><br />
-				<MDL.Sliders
+				<MDL.Slider
 					min = '0'
 					max = '100'
 					defaultValue = '35'
-					tabindex = '0'
+					tabIndex = '1'
 					disabled = 'disabled'
 				/><br />
-				<MDL.Sliders
+				<MDL.Slider
 					ref='test'
 					min = '0'
 					max = '100'
 					defaultValue = '40'
 					step = '20'
-					tabindex = '0'
+					tabIndex = '2'
 					onChange={this.onChange}
 				/><br />
 				<button onClick={this.getValue}>get Value</button>

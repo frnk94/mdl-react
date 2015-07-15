@@ -7,21 +7,21 @@ var React = require('react');
 	Props
 		min, 			string isRequired,		a minimum value for an <input> element
 		max, 			string isRequired,		a maximum value for an <input> element
-		tabindex, 		string,					the tab order of an element
+		tabIndex, 		string,					the tab order of an element
 		step, 			string,					the legal number intervals for an <input> element
 		defaultValue, 	string,					the value of an <input> element
 	Methods
 		getValue								get the value from the current sliders
-		stateValue								Set the value in the current sliders
+		setValue								Set the value in the current sliders
 */
 
 
-var Sliders = React.createClass({
+var Slider = React.createClass({
 
 	propTypes: {
 		min : React.PropTypes.string.isRequired,
 		max : React.PropTypes.string.isRequired,
-		tabindex : React.PropTypes.string,
+		tabIndex : React.PropTypes.string,
 		step : React.PropTypes.string,
 		defaultValue : React.PropTypes.string,
 		disabled : React.PropTypes.string,
@@ -32,7 +32,7 @@ var Sliders = React.createClass({
 			min : '0',
 			max : '10',
 			defaultValue : '0',
-			tabindex : '0',
+			tabIndex : '0',
 			step : '0',
 			disabled : null,
 		};
@@ -83,7 +83,7 @@ var Sliders = React.createClass({
 					min={this.props.min}
 					max={this.props.max}
 					onChange={this.props.onChange}
-					tabIndex={this.props.tabindex}
+					tabIndex={this.props.tabIndex}
 					step={this.props.step}
 					disabled={this.props.disabled}
 				/>
@@ -92,4 +92,4 @@ var Sliders = React.createClass({
 	},
 });
 
-module.exports = Sliders;
+module.exports = Slider;
