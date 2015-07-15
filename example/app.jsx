@@ -25,7 +25,7 @@ var TextField = require('./views/TextField.jsx');
 var PrismCode = require('./views/PrismCode.jsx');
 var Table = require('./views/Table.jsx');
 var Button = require('./views/Button.jsx');
-
+var Slider = require('./views/Slider.jsx')
 var routes = (
 	<Router.Route handler={App}>
 		<Router.Route name='home' path='/' handler={Home} />
@@ -33,6 +33,7 @@ var routes = (
 		<Router.Route name='prismCode' path='/prism-code' handler={PrismCode} />
 		<Router.Route name='table' path='/table' handler={Table} />
 		<Router.Route name='button' path='/button' handler={Button} />
+		<Router.Route name='slider' path='/slider' handler={Slider} />
 	</Router.Route>
 );
 
