@@ -21,6 +21,10 @@ var Layout = React.createClass({
 			React.PropTypes.element,
 		]),
 		href : React.PropTypes.string,
+		type : React.PropTypes.oneOf([
+			'FixedHeader',
+			'FixedDrawer',
+		]),
 		// items : React.PropTypes.array,
 		headerItems : React.PropTypes.arrayOf(React.PropTypes.shape({
 			text : React.PropTypes.oneOfType([
@@ -48,7 +52,7 @@ var Layout = React.createClass({
 			drawerItems : [],
 		};
 	},
-	
+
 	componentDidMount: function() {
 		componentHandler.upgradeDom();
 	},
@@ -63,73 +67,98 @@ var Layout = React.createClass({
 			}
 		};
 
-		if(this.props.type == 'FixHeader') {
+		if(this.props.type == 'FixedHeader') {
 			classes.root['mdl-layout--fixed-header'] = true;
+		} else if(this.props.type == 'FixedDrawer') {
+			classes.root['mdl-layout--fixed-drawer'] = true;
+			classes.root['mdl-layout--overlay-drawer-button'] = true;
 		}
 
-		var headerTitle = null;
+		var titleComponent = null;
 		if(this.props.title && this.props.href) {
 			var style = {
 				textDecoration: 'none',
 				color : 'inherit',
 			};
-			headerTitle = (
+			titleComponent = (
 				<span className="mdl-layout-title">
 					<a href={this.props.href} style={style} >
 						{this.props.title}
 					</a>
 				</span>
 			);
-		}
-		else if(this.props.title) {
-			headerTitle = (
+		} else if(this.props.title) {
+			titleComponent = (
 				<span className="mdl-layout-title">
 					{this.props.title}
 				</span>
 			);
 		}
 
-		var headerItems = this.props.headerItems.map(function(element, index) {
-			return (
-				<a className="mdl-navigation__link"
-					href={element.href}
-					onClick={element.onClick}
-					key={index}
-				>
-					{element.text}
-				</a>
-			);
-		});
+		var headerBlock = null;
+		if(
+			this.props.headerItems.length > 0
+		) {
 
-		var drawerItems = this.props.drawerItems.map(function(element, index) {
-			return (
-				<a className="mdl-navigation__link"
-					href={element.href}
-					onClick={element.onClick}
-					key={index}
-				>
-					{element.text}
-				</a>
-			);
-		});
+			var headerItems = this.props.headerItems.map(function(element, index) {
+				return (
+					<a className="mdl-navigation__link"
+						href={element.href}
+						onClick={element.onClick}
+						key={index}
+					>
+						{element.text}
+					</a>
+				);
+			});
 
-		return (
-			<div className={cx(classes.root)}>
+			headerBlock = (
 				<header className="mdl-layout__header">
 					<div className="mdl-layout__header-row">
-						{headerTitle}
+						{titleComponent}
 						<div className="mdl-layout-spacer"></div>
 						<nav className="mdl-navigation mdl-layout--large-screen-only">
 							{headerItems}
 						</nav>
 					</div>
 				</header>
+			);
+
+		}
+
+		var drawerBlock = null;
+		if(
+			this.props.drawerItems.length > 0
+		) {
+
+			var drawerItems = this.props.drawerItems.map(function(element, index) {
+				return (
+					<a className="mdl-navigation__link"
+						href={element.href}
+						onClick={element.onClick}
+						key={index}
+					>
+						{element.text}
+					</a>
+				);
+			});
+
+			drawerBlock = (
 				<div className="mdl-layout__drawer">
-					{headerTitle}
+					{titleComponent}
 					<nav className="mdl-navigation">
 						{drawerItems}
 					</nav>
 				</div>
+			);
+
+		}
+
+
+		return (
+			<div className={cx(classes.root)}>
+				{headerBlock}
+				{drawerBlock}
 				<main className="mdl-layout__content">
 					<div className="page-content">
 						{this.props.children}

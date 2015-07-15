@@ -32,6 +32,7 @@ var App = React.createClass({
 		];
 		return (
 			<MDL.Layout
+				type='FixedDrawer'
 				title='mdl-react'
 				href='#'
 				headerItems={headerItems}
