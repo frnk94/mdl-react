@@ -9,6 +9,7 @@ var cx = require('classnames');
 		Spinner,ProgressBar,
 		indeterminate,
 		singleColor,
+		buffer,
 */
 module.exports = React.createClass({
 
@@ -27,18 +28,19 @@ module.exports = React.createClass({
 			ProgressBar: false,
 			singleColor: false,
 			percentage:0,
+			buffer:0,
 	};
 },
 
 	componentDidMount: function() {
+		//componentHandler.upgradeDom();
 		if(this.props.ProgressBar && !this.props.indeterminate){
-			//console.log("set progress")
 			var self = this;
-			self.refs.loader.getDOMNode().addEventListener('mdl-componentupgraded', function() {
+			self.refs.loading.getDOMNode().addEventListener('mdl-componentupgraded', function() {
 				this.MaterialProgress.setProgress(self.props.percentage);
+				this.MaterialProgress.setBuffer(self.props.buffer);
 			});
 		}
-		componentHandler.upgradeDom();
 	},
 
 	render: function() {
@@ -64,7 +66,7 @@ module.exports = React.createClass({
 		}
 
 		return (
-			<div ref="loader" className={cx(container)} ></div>
+			<div ref="loading" className={cx(container)} ></div>
 		);
 	},
 

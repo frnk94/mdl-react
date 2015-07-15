@@ -23,6 +23,7 @@ module.exports = React.createClass({
 					indeterminate={false}
 					Spinner={false}
 					percentage={44}
+					buffer={87}
 				/>
 				<MDL.Loading />
 			</div>
