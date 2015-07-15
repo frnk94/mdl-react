@@ -13,6 +13,6 @@ module.exports = {
 	TextField : require('./components/TextField.jsx'),
 	LayoutFixHeader : require('./components/LayoutFixHeader.jsx'),
 	PrismCode : require('./components/PrismCode.jsx'),
-	Slider : require('./components/Slider.jsx'),
+	Badge : require('./components/Badge.jsx'),
 
 };
