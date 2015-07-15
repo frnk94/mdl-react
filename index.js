@@ -19,4 +19,5 @@ module.exports = {
 	CardAction : require('./components/CardComponents/CardAction.jsx'),
 	CardSupportingText : require('./components/CardComponents/CardSupportingText.jsx'),
 	CardMenu : require('./components/CardComponents/CardMenu.jsx'),
+	CardMedia : require('./components/CardComponents/CardMedia.jsx'),
 };

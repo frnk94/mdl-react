@@ -32,7 +32,7 @@ module.exports = React.createClass({
 		items : React.PropTypes.array.isRequired,
 		itemStyles : React.PropTypes.array,
 		selectable : React.PropTypes.bool,
-		shadow : React.PropTypes.number,
+		shadow : React.PropTypes.oneOf([ 2, 3, 4, 6, 8, 16 ]),
 	},
 
 	componentDidMount: function() {
@@ -67,18 +67,6 @@ module.exports = React.createClass({
 		) {
 			console.warn(
 				'MDL.Table: the length of `itemStyles` should be equal to the length of `headers`'
-			);
-		}
-
-		// 檢查 shadow 值是否不超過 8
-		if(this.props.shadow != 2 &&
-			this.props.shadow != 3 &&
-			this.props.shadow != 4 &&
-			this.props.shadow != 6 &&
-			this.props.shadow != 8 &&
-			this.props.shadow != 16) {
-			console.warn(
-				'MDL.Table: invalid `shadow` value'
 			);
 		}
 
