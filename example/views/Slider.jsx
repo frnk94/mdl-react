@@ -20,7 +20,6 @@ module.exports = React.createClass({
 	},
 
 	render: function() {
-		console.log('outside render');
 		return (
 			<div>
 				<MDL.Slider
