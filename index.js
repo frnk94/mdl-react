@@ -11,7 +11,6 @@ How to use it
 module.exports = {
 
 	TextField : require('./components/TextField.jsx'),
-	LayoutFixHeader : require('./components/LayoutFixHeader.jsx'),
 	PrismCode : require('./components/PrismCode.jsx'),
 	Badge : require('./components/Badge.jsx'),
 
