@@ -16,5 +16,7 @@ module.exports = {
 	Menu : require('./components/Menu.jsx'),
 	Table : require('./components/Table.jsx'),
 	Button : require('./components/Button.jsx'),
+	Loading: require('./components/Loading.jsx'),
+	Slider : require('./components/Slider.jsx'),
 
 };

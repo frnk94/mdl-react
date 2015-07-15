@@ -26,7 +26,8 @@ var PrismCode = require('./views/PrismCode.jsx');
 var Menu = require('./views/Menu.jsx');
 var Table = require('./views/Table.jsx');
 var Button = require('./views/Button.jsx');
-
+var Loading = require('./views/Loading.jsx');
+var Slider = require('./views/Slider.jsx')
 var routes = (
 	<Router.Route handler={App}>
 		<Router.Route name='home' path='/' handler={Home} />
@@ -35,6 +36,8 @@ var routes = (
 		<Router.Route name='menu' path='/menu' handler={Menu} />
 		<Router.Route name='table' path='/table' handler={Table} />
 		<Router.Route name='button' path='/button' handler={Button} />
+		<Router.Route name='loading' path='/loading' handler={Loading} />
+		<Router.Route name='slider' path='/slider' handler={Slider} />
 	</Router.Route>
 );
 
