@@ -11,7 +11,7 @@ How to use it
 module.exports = {
 
 	TextField : require('./TextField.jsx'),
-	LayoutFixHeader : require('./LayoutFixHeader.jsx'),
+	Layout : require('./Layout.jsx'),
 	PrismCode : require('./PrismCode.jsx'),
 	Menu : require('./Menu.jsx'),
 	Table : require('./Table.jsx'),

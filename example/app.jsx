@@ -11,10 +11,35 @@ var App = React.createClass({
 		Router.Navigation,
 	],
 	render : function() {
+		var headerItems = [
+			{
+				text : (
+					<span>
+						made ♥ with Fandora Shop
+					</span>
+				),
+				href : 'http://FandoraShop.com',
+				target : '_blank',
+			}
+		];
+		var drawerItems = [
+			{ text : 'Text Field', href : '#text-field' },
+			{ text : 'Menu', href : '#menu' },
+			{ text : 'Table', href : '#table' },
+			{ text : 'Button', href : '#button' },
+			{ text : 'Loading', href : '#loading' },
+			{ text : 'Slider', href : '#slider' },
+		];
 		return (
-			<div>
+			<MDL.Layout
+				type='FixedDrawer'
+				title='mdl-react'
+				href='#'
+				headerItems={headerItems}
+				drawerItems={drawerItems}
+			>
 				<Router.RouteHandler />
-			</div>
+			</MDL.Layout>
 		);
 	},
 });

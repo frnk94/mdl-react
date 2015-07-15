@@ -2,23 +2,23 @@
 "use strict";
 
 var React = require('react');
-var MDL = require('../../index.js');
+var MDL = require('../../components');
 
 module.exports = React.createClass({
 
 	render: function() {
 		return (
-			<div> 
-				<MDL.Loading 
+			<div>
+				<MDL.Loading
 					Spinner={true}
 					singleColor={false}
 				/> <br />
-				<MDL.Loading 
+				<MDL.Loading
 					ProgressBar={true}
 					indeterminate={true}
 					Spinner={false}
 				/>  <br />
-				<MDL.Loading 
+				<MDL.Loading
 					ProgressBar={true}
 					indeterminate={false}
 					Spinner={false}

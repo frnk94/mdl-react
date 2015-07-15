@@ -112,13 +112,13 @@ module.exports = React.createClass({
 		var self = this;
 
 		this._checkProps();
-		
+
 		classes.table['mdl-shadow--' + this.props.shadow + 'dp'] = true;
 
 		if(this.props.selectable) {
 			classes.table['mdl-data-table--selectable'] = true;
 		}
-		
+
 		var headers = this.props.headers.map(function(element, index) {
 			if(typeof element.title == 'string') {
 				return (
@@ -130,7 +130,7 @@ module.exports = React.createClass({
 				);
 			}
 		});
-		
+
 		var date = Date.now();
 		var items = this.props.items.map(function(element, index) {
 

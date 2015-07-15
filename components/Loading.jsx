@@ -23,7 +23,7 @@ module.exports = React.createClass({
 	},
 
 	getDefaultProps: function() {
-	return {
+		return {
 			Spinner: true,
 			indeterminate: true,
 			ProgressBar: false,
@@ -31,14 +31,15 @@ module.exports = React.createClass({
 			percentage:0,
 			buffer:0,
 			isActive:true,
-	};
-},
+		};
+	},
 
 	componentDidMount: function() {
 		//componentHandler.upgradeDom();
 		if(this.props.ProgressBar && !this.props.indeterminate){
 			var self = this;
-			self.refs.loading.getDOMNode().addEventListener('mdl-componentupgraded', function() {
+			self.refs.loading.getDOMNode()
+			.addEventListener('mdl-componentupgraded', function() {
 				this.MaterialProgress.setProgress(self.props.percentage);
 				this.MaterialProgress.setBuffer(self.props.buffer);
 			});
