@@ -6,11 +6,12 @@ var cx = require('classnames');
  *	MENUS
  *		http://www.getmdl.io/components/index.html#menus-section
  *	Props
- *		Icon: isRequired, Button的Icon，請使用 MDL Icon Component
- *		menuList: isRequired, Array of Object, Object can contains 3 propetires:
+ *		icon: isRequired, Button的Icon，請使用 MDL Icon Component
+ *		menuList: isRequired, Array of Object, Object can contains 4 propetires:
  *			text, isRequired, must be String or React Component
  *			events, Object, propetires should be React events
  *			style, Object, 選項個別CSS樣式
+ *			isDiasbled, bool, 是否關閉選項
  *		fromRightToLeft: Meun展開動畫是否從左到又, default false
  *		fromBottomToTop: Meun展開動畫是否從下到上, default false
  *		isRipple: 是否使用Ripple動畫，default true
@@ -31,7 +32,7 @@ module.exports = React.createClass({
 	},
 
 	propTypes: {
-		Icon: React.PropTypes.element.isRequired,
+		icon: React.PropTypes.element.isRequired,
 		style: React.PropTypes.object,
 		fromRightToLeft: React.PropTypes.bool,
 		fromBottomToTop: React.PropTypes.bool,
@@ -93,6 +94,7 @@ module.exports = React.createClass({
 
 		return (
 			<div style={this._getStyle()}>
+
 				<button id={this.id} className="mdl-button mdl-js-button mdl-button--icon">
 					{this.props.Icon}
 				</button>
