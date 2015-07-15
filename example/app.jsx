@@ -24,12 +24,14 @@ var Home = require('./views/Home.jsx');
 var TextField = require('./views/TextField.jsx');
 var PrismCode = require('./views/PrismCode.jsx');
 var Table = require('./views/Table.jsx');
+var Card = require('./views/Card.jsx');
 var routes = (
 	<Router.Route handler={App}>
 		<Router.Route name='home' path='/' handler={Home} />
 		<Router.Route name='textField' path='/text-field' handler={TextField} />
 		<Router.Route name='prismCode' path='/prism-code' handler={PrismCode} />
 		<Router.Route name='table' path='/table' handler={Table} />
+		<Router.Route name='card' path='/card' handler={Card} />
 	</Router.Route>
 );
 

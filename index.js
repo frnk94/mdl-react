@@ -14,5 +14,9 @@ module.exports = {
 	LayoutFixHeader : require('./components/LayoutFixHeader.jsx'),
 	PrismCode : require('./components/PrismCode.jsx'),
 	Table : require('./components/Table.jsx'),
-
+	Card : require('./components/Card.jsx'),
+	CardTitle : require('./components/CardComponents/CardTitle.jsx'),
+	CardAction : require('./components/CardComponents/CardAction.jsx'),
+	CardSupportingText : require('./components/CardComponents/CardSupportingText.jsx'),
+	CardMenu : require('./components/CardComponents/CardMenu.jsx'),
 };

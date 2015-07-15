@@ -59,7 +59,7 @@ var LayoutFixHeader = React.createClass({
 					<nav className="mdl-navigation">
 						<a className="mdl-navigation__link" href="/table">Table</a>
 						<a className="mdl-navigation__link" href="/text-field">TextField</a>
-						<a className="mdl-navigation__link" href="">Link</a>
+						<a className="mdl-navigation__link" href="/card">Card</a>
 						<a className="mdl-navigation__link" href="">Link</a>
 					</nav>
 				</div>
