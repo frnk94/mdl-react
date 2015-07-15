@@ -23,7 +23,7 @@ var App = React.createClass({
 var Home = require('./views/Home.jsx');
 var TextField = require('./views/TextField.jsx');
 var PrismCode = require('./views/PrismCode.jsx');
-var Badge = require('./views/Badge.jsx')
+var Badge = require('./views/Badge.jsx');
 var routes = (
 	<Router.Route handler={App}>
 		<Router.Route name='home' path='/' handler={Home} />
