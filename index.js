@@ -15,4 +15,6 @@ module.exports = {
 	PrismCode : require('./components/PrismCode.jsx'),
 	Menu : require('./components/Menu.jsx'),
 	Table : require('./components/Table.jsx'),
+	Button : require('./components/Button.jsx'),
+
 };

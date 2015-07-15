@@ -6,19 +6,17 @@ var cx = require('classnames');
  *	MENUS
  *		http://www.getmdl.io/components/index.html#menus-section
  *	Props
- *		icon: isRequired, Button的Icon，請使用 MDL Icon Component
+ *		buttonId: isRequired, String, 綁定到的 Button ID，Make sure the ID is a unique.
  *		menuList: isRequired, Array of Object, Object can contains 4 propetires:
  *			text, isRequired, must be String or React Component
  *			events, Object, propetires should be React events
  *			style, Object, 選項個別CSS樣式
  *			isDiasbled, bool, 是否關閉選項
- *		fromRightToLeft: Meun展開動畫是否從左到又, default false
+ *		fromRightToLeft: Meun展開動畫是否從左到右, default false
  *		fromBottomToTop: Meun展開動畫是否從下到上, default false
  *		isRipple: 是否使用Ripple動畫，default true
- *		style: Object, Menu整體CSS樣式
+ *		style: Object, Menu List 整體 CSS 樣式
  */
-
-var id = 1;
 
 module.exports = React.createClass({
 
@@ -32,7 +30,7 @@ module.exports = React.createClass({
 	},
 
 	propTypes: {
-		icon: React.PropTypes.element.isRequired,
+		buttonId: React.PropTypes.string.isRequired,
 		style: React.PropTypes.object,
 		fromRightToLeft: React.PropTypes.bool,
 		fromBottomToTop: React.PropTypes.bool,
@@ -44,13 +42,8 @@ module.exports = React.createClass({
 			]).isRequired,
 			events: React.PropTypes.object,
 			style: React.PropTypes.object,
+			isDiasbled: React.PropTypes.bool,
 		})).isRequired,
-	},
-
-	id: 'mdl-menu-',
-
-	componentWillMount: function() {
-		this.id += id++;
 	},
 
 	componentDidMount: function() {
@@ -76,32 +69,20 @@ module.exports = React.createClass({
 		return cx(classes);
 	},
 
-	_getStyle: function() {
-		var style = this.props.style;
-		style.position = 'relative';
-		return style;
-	},
-
 	render: function() {
 
 		var list = this.props.menuList.map(function(item, index) {
 			return (
-				<li key={index} className="mdl-menu__item" style={item.style} {...item.events}>
+				<li key={index} disabled={item.isDisabled} className="mdl-menu__item" style={item.style} {...item.events} >
 					{item.text}
 				</li>
 			);
 		});
 
 		return (
-			<div style={this._getStyle()}>
-
-				<button id={this.id} className="mdl-button mdl-js-button mdl-button--icon">
-					{this.props.Icon}
-				</button>
-				<ul className={this._getClasses()} htmlFor={this.id}>
-					{list}
-				</ul>
-			</div>
+			<ul style={this.props.style} className={this._getClasses()} htmlFor={this.props.buttonId}>
+				{list}
+			</ul>
 		);
 	},
 
