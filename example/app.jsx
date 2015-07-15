@@ -20,7 +20,7 @@ var App = React.createClass({
 				),
 				href : 'http://FandoraShop.com',
 				target : '_blank',
-			}
+			},
 		];
 		var drawerItems = [
 			{ text : 'Text Field', href : '#text-field' },
@@ -30,14 +30,29 @@ var App = React.createClass({
 			{ text : 'Loading', href : '#loading' },
 			{ text : 'Slider', href : '#slider' },
 			{ text : 'Card', href : '#card' },
+			{
+				text : (
+					<span>
+						by Fandora Shop RD Team
+					</span>
+				),
+				href : 'http://FandoraShop.com',
+				target : '_blank',
+			},
 		];
 		return (
 			<MDL.Layout
-				type='FixedDrawer'
 				title='mdl-react'
 				href='#'
+				// isFixedHeader={true}
+				// isFixedDrawer={true}
 				headerItems={headerItems}
 				drawerItems={drawerItems}
+				drawerStyle={{color:'red'}}
+				// isTransparent={true}
+				// headerColor='red'
+				// noHeaderTitle={true}
+				// noDrawerTitle={true}
 			>
 				<Router.RouteHandler />
 			</MDL.Layout>
