@@ -3,7 +3,7 @@
 
 var fs = require('fs');
 var React = require('react');
-var MDL = require('../../index.js');
+var MDL = require('../../components');
 var _ = require('lodash');
 
 module.exports = React.createClass({

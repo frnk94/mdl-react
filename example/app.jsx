@@ -1,7 +1,7 @@
 
 "use strict";
 
-var MDL = require('../index.js');
+var MDL = require('../components');
 var React = require('react');
 var Router = require('react-router');
 
