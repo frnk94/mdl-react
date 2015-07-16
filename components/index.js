@@ -18,6 +18,7 @@ module.exports = {
 	Button : require('./Button.jsx'),
 	Loading: require('./Loading.jsx'),
 	Slider : require('./Slider.jsx'),
+	Badge : require('./Badge.jsx'),
 	Card : require('./Card.jsx'),
 	CardTitle : require('./CardComponents/CardTitle.jsx'),
 	CardAction : require('./CardComponents/CardAction.jsx'),

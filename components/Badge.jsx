@@ -23,7 +23,7 @@ module.exports = React.createClass({
 		badge : React.PropTypes.node.isRequired,
 		materialDesignIcon : React.PropTypes.bool,
 		noBackground : React.PropTypes.bool,
-		style : react.PropTypes.object,
+		style : React.PropTypes.object,
 	},
 
 	getDefaultProps: function() {
@@ -36,30 +36,30 @@ module.exports = React.createClass({
 			},
 		};
 	},
+	
+	_getClasses: function() {
+
+		var classes = {
+				'mdl-badge': true,
+			};
+
+		if(this.props.noBackground) {
+			classes['mdl-badge--no-background'] = true;
+		}
+
+		if(this.props.materialDesignIcon) {
+			classes['icon material-icons'] = true;
+		}
+
+		return cx(classes);
+			
+	},
 
 	render: function() {
 
 		console.log('inside render');
 
 		var date = Date.now();
-
-		_getClasses: function() {
-
-			var classes = {
-				'mdl-design': true,
-			};
-
-			if(this.props.noBackground) {
-				classes['mdl-badge--no-background'] = true;
-			}
-
-			if(this.props.materialDesignIcon) {
-				classes['icon material-icons'] = true;
-			}
-
-			return cx(classes);
-			
-		},
 
 		var style = this.props.style;
 
