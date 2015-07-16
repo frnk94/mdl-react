@@ -10,23 +10,29 @@ var Props = React.createClass({
 		};
 
 		var titleStyle = {
-			height : '100%',
+			left : '0',
+			top : '0',
 			width : '100px',
-			float : 'left',
-			position : 'relative',
+			margin : '0',
+			position : 'absolute',
 		};
 
 		var contentAreaStyle = {
 			height : '100%',
-			float : 'right',
 			marginLeft : '100px',
 			position : 'relative',
 			borderBottom : '1px solid #E0E0E0',
+			marginBottom : '30px',
 		};
 
 		var typeStyle = {
-			color : '#757575',
-			marginRight : '8px',
+			color : 'rgba(0, 0, 0, 0.54)',
+			marginRight : '24px',
+		};
+
+		var contentStyle = {
+			marginTop : '-4px',
+			marginBottom : '30px',
 		};
 		
 		var content = this.props.detail.map(function(item, key) {
@@ -38,7 +44,7 @@ var Props = React.createClass({
 							<span style={typeStyle}>{item.type}</span>
 							<label>{item.state}</label>
 						</p>
-						<p>
+						<p style={contentStyle}>
 							{item.content}
 						</p>
 					</div>

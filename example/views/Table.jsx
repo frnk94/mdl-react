@@ -115,8 +115,21 @@ module.exports = React.createClass({
 					itemStyles={itemStyles}
 					shadow={2}
 				/>
-				<button onClick={this.addData}>新增資料</button>
-				<button onClick={this.getSelected}>取得選取值</button>
+
+				<MDL.Button type="RaisedButton"
+					text="新增資料"
+					isRipple={true}
+					isPrimary={true}
+					isMini={true}
+					isDisabled={false}
+					onClick={this.addData} />
+				<MDL.Button type="RaisedButton"
+					text="取得選取值"
+					isRipple={true}
+					isPrimary={true}
+					isMini={true}
+					isDisabled={false}
+					onClick={this.getSelected} />
 
 				<Props detail={propsDetail} />
 			</div>
