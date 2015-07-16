@@ -40,6 +40,9 @@ var App = React.createClass({
 			// 	target : '_blank',
 			// },
 		];
+		var style = {
+			padding : '24px',
+		};
 		return (
 			<MDL.Layout
 				title='mdl-react'
@@ -53,8 +56,10 @@ var App = React.createClass({
 				// headerColor='red'
 				// noHeaderTitle={true}
 				noDrawerTitle={true}
-			>
-				<Router.RouteHandler />
+			>	
+				<div style={style}>
+					<Router.RouteHandler />
+				</div>
 			</MDL.Layout>
 		);
 	},
