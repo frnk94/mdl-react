@@ -41,7 +41,7 @@ module.exports = React.createClass({
 				<div>
 					<MDL.Toggle type="radio" text="Option1" name="option" value="1" isChecked={true} onChange={this._onChange}/><br/>
 					<MDL.Toggle type="radio" text="Option2" name="option" value="2" onChange={this._onChange}/><br/>
-					<MDL.Toggle type="radio" text="Option3" name="option" value="3" onChange={this._onChange}/><br/>
+					<MDL.Toggle type="radio" text="Option3" name="option" value="3" onChange={this._onChange} isDisabled={true}/><br/>
 				</div>
 			</div>
 		);

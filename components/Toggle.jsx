@@ -14,6 +14,7 @@ var _ = require('lodash');
  *		value: html element, the value of the input
  *		isRipple: 是否帶特效, 預設 true
  *		isDisabled: 是否禁用Toggle
+ *		isChecked: 預設勾選
  *		style: Toggle CSS 樣式
  *		onChange: onchange event
  *	Methods
@@ -44,6 +45,8 @@ module.exports = React.createClass({
 		isRipple: React.PropTypes.bool,
 		style: React.PropTypes.object,
 		isChecked: React.PropTypes.bool,
+		onChange:  React.PropTypes.func,
+		isDisabled: React.PropTypes.bool,
 	},
 
 	id: 'mdl-toggle-',
@@ -116,7 +119,7 @@ module.exports = React.createClass({
 				name={this.props.name}
 				value={this.props.value}
 				defaultChecked={this.props.isChecked}
-				isDisabled={this.props.isDisabled}
+				disabled={this.props.isDisabled}
 				onChange={this.props.onChange}/>
 			):
 			input = (<input ref="input"
@@ -124,7 +127,7 @@ module.exports = React.createClass({
 				id={this.id}
 				className={cx(classes.input)}
 				defaultChecked={this.props.isChecked}
-				isDisabled={this.props.isDisabled}
+				disabled={this.props.isDisabled}
 				onChange={this.props.onChange} />
 			);
 
