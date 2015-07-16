@@ -1,0 +1,1 @@
+<MDL.Table selectable={true} headers={header} items={items} itemStyles={itemStyles} shadow={2} />
