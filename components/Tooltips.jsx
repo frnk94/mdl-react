@@ -11,25 +11,37 @@ var _ = require('lodash');
 		text,			tooltips要顯示的文字
 		width,		圖片寬度
 		height,		圖片高度
-		style,
 	Methods
 */
 
-
+var id = 1;
 module.exports = React.createClass({
 
 	propTypes: {
+		element: React.PropTypes.node.isRequired,
 		large: React.PropTypes.bool,
-		text: React.PropTypes.node.isRequired,
+		url: React.PropTypes.string,
+		text: React.PropTypes.string,
 		width: React.PropTypes.number,
 		height: React.PropTypes.number,
-		style: React.PropTypes.object,
-	}
+	},
 
+	getDefaultProps: function() {
+		return {
+			element: 'text',
+			text: 'Tooltip text',
+			large: false,
+			width: 10,
+			height: 20,
+		};
+	},
+
+getInitialState: function() {
+	return {
+	};
+},
 	componentWillMount: function() {
-		if(!_.includes(this.props.text)){
-			console.warn('MDL.Tooltips: No Tip Text');
-		}
+		this.state.id = 'mdl-tooltip-' + id++;
 	},
 
 	componentDidMount: function() {
@@ -37,7 +49,9 @@ module.exports = React.createClass({
 	},
 
 	render: function() {
-		var classes = {'mdl-tooltip'=true,};
+		var classes = {
+			'mdl-tooltip' : true,
+		};
 
 		if(this.props.large) {
 			classes['mdl-tooltip--large'] = true;
@@ -45,10 +59,13 @@ module.exports = React.createClass({
 
 		return (
 			<div>
-				<span className={cx(classes)} style={this.props.style}> 
-					<img src={this.props.source} width={this.props.width} height={this.porps.height}>
+				<p id={this.state.id}>
+					{this.props.element}
+				</p>
+				<div className={cx(classes)} htmlFor={this.state.id}> 
+					<img src={this.props.url} width={this.props.width} height={this.props.height} />
 					{this.props.text}
-				</span>
+				</div>
 			</div>
 		);
 	}
