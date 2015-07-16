@@ -58,6 +58,7 @@ module.exports = React.createClass({
 			}
 
 			return cx(classes);
+			
 		},
 
 		var style = this.props.style;
