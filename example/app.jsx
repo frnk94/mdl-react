@@ -55,6 +55,8 @@ var Button = require('./views/Button.jsx');
 var Loading = require('./views/Loading.jsx');
 var Slider = require('./views/Slider.jsx');
 var Card = require('./views/Card.jsx');
+var Badge = require('./views/Badge.jsx');
+
 var routes = (
 	<Router.Route handler={App}>
 		<Router.DefaultRoute name='home' handler={Home} />
@@ -66,6 +68,7 @@ var routes = (
 		<Router.Route name='loading' path='loading' handler={Loading} />
 		<Router.Route name='slider' path='slider' handler={Slider} />
 		<Router.Route name='card' path='card' handler={Card} />
+		<Router.Route name='badge' path='badge' handler={Badge} />
 	</Router.Route>
 );
 
