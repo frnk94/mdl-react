@@ -9,6 +9,14 @@ var Props = require('../document/Props.jsx');
 
 module.exports = React.createClass({
 
+	getDefaultProps: function() {
+		return {
+			getValueStyle : {
+				color : '#ffffff',
+			},
+		};
+	},
+
 	getInitialState: function() {
 		return {
 			items : [
@@ -41,11 +49,32 @@ module.exports = React.createClass({
 					link : 'https://www.youtube.com/watch?v=SPKBtZHuzKY',
 				},
 			],
+			valueArea : 'none',
 		};
 	},
 
 	getSelected: function() {
-		console.log('value', this.refs.table.getSelected());
+		var self = this;
+		if(this.refs.table.getSelected().length == 0) {
+			alert('您沒有勾選任何欄位！');
+		}
+		else {
+			var result = this.refs.table.getSelected().map(function(item, index) {
+				var temp = _.map(item, function(element, key) {
+					return (
+						<span> <span>{key}</span> : <span style={self.props.getValueStyle}> {element} </span> , </span>
+					);
+				});
+
+				return (
+					<div>{temp}</div>
+				);
+			});
+			this.setState({
+				valueArea : 'block',
+				checkedValue : result,
+			});
+		}
 	},
 
 	addData: function() {
@@ -191,6 +220,14 @@ module.exports = React.createClass({
 			width : '100%',
 		};
 
+		var valueStyle = {
+			backgroundColor : '#00BCD4',
+			padding : '20px',
+			color : '#ddd',
+			marginBottom : '-7px',
+			display : this.state.valueArea,
+		};
+
 		return (
 			<div>
 				<MDL.Card style={cardStyle} shadow={6}>
@@ -221,7 +258,9 @@ module.exports = React.createClass({
 							isDisabled={false}
 							onClick={this.getSelected} />
 					</div>
-
+					<div style={valueStyle}>
+						{this.state.checkedValue}
+					</div>
 					<MDL.PrismCode
 						src='http://fandora.github.io/mdl-react/example/codes/Table.js'
 						lang='jsx'
