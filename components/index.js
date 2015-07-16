@@ -24,5 +24,6 @@ module.exports = {
 	CardSupportingText : require('./CardComponents/CardSupportingText.jsx'),
 	CardMenu : require('./CardComponents/CardMenu.jsx'),
 	CardMedia : require('./CardComponents/CardMedia.jsx'),
+	Tabs : require('./Tabs.jsx'),
 
 };
