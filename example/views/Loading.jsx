@@ -25,19 +25,17 @@ module.exports = React.createClass({
 		return (
 			<div>
 				<MDL.Loading
-					Spinner={true}
+					type="Spinner"
 					singleColor={false}
 					isActive={this.state.test}
 				/> <br />
 				<MDL.Loading
-					ProgressBar={true}
+					type="ProgressBar"
 					indeterminate={true}
-					Spinner={false}
 				/>  <br />
 				<MDL.Loading
-					ProgressBar={true}
+					type="ProgressBar"
 					indeterminate={false}
-					Spinner={false}
 					percentage={44}
 					buffer={87}
 				/>
