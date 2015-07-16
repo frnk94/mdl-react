@@ -173,7 +173,7 @@ module.exports = React.createClass({
 							</div>
 						</div>
 					<MDL.PrismCode
-						src='../codes/SliderInfo.js'
+						src='http://fandora.github.io/mdl-react/example/codes/SliderInfo.js'
 						style={prismCode}
 					/>
 				</MDL.Card>
