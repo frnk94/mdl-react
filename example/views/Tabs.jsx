@@ -7,21 +7,21 @@ var MDL = require('../../components');
 module.exports = React.createClass({
 
 	_firstTab: function() {
-		console.log(this.refs.tab.setTabIndex(0));
+		this.refs.tab.setTabIndex(0);
 	},
 
 	_secondTab: function() {
-		console.log(this.refs.tab.setTabIndex(1));
+		this.refs.tab.setTabIndex(1);
 	},
 
 	_thirdTab: function() {
-		console.log(this.refs.tab.setTabIndex(2));
+		this.refs.tab.setTabIndex(2);
 	},
 
 	render: function() {
 		return (
 			<div>
-				<MDL.Tabs ref="tab" tabLabels={['Starks','Lannisters','Targaryens']} isRipple={true}>
+				<MDL.Tabs ref="tab" tabLabels={['Starks','Lannisters','Targaryens',]} isRipple={true}>
 					<ul>
 						<li>Eddard</li>
 						<li>Catelyn</li>
