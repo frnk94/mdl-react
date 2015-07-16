@@ -52,7 +52,7 @@ module.exports = React.createClass({
 
 		var container =  {};
 		var style = {
-			display : 'none';
+			display : 'none',
 		};
 
 		if(this.props.Spinner) {

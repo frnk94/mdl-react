@@ -6,6 +6,7 @@ var cx = require('classnames');
  *	MENUS
  *		http://www.getmdl.io/components/index.html#menus-section
  *	Props
+ *		children: isRequired, button element
  *		buttonId: isRequired, String, 綁定到的 Button ID，Make sure the ID is a unique.
  *		menuList: isRequired, Array of Object, Object can contains 4 propetires:
  *			text, isRequired, must be String or React Component
@@ -17,6 +18,7 @@ var cx = require('classnames');
  *		isRipple: 是否使用Ripple動畫，default true
  *		style: Object, Menu List 整體 CSS 樣式
  */
+var id = 1;
 
 module.exports = React.createClass({
 
@@ -30,7 +32,8 @@ module.exports = React.createClass({
 	},
 
 	propTypes: {
-		buttonId: React.PropTypes.string.isRequired,
+		children: React.PropTypes.node.isRequired,
+		//buttonId: React.PropTypes.string.isRequired,
 		style: React.PropTypes.object,
 		fromRightToLeft: React.PropTypes.bool,
 		fromBottomToTop: React.PropTypes.bool,
@@ -44,6 +47,15 @@ module.exports = React.createClass({
 			style: React.PropTypes.object,
 			isDiasbled: React.PropTypes.bool,
 		})).isRequired,
+	},
+
+	id: 'mdl-menu-',
+
+	componentWillMount: function() {
+		if(this.props.children instanceof Array){
+			console.warn("MDL.Menu: Menu should only have one child inside");
+		}
+		this.id += id++;
 	},
 
 	componentDidMount: function() {
@@ -69,7 +81,20 @@ module.exports = React.createClass({
 		return cx(classes);
 	},
 
+	_getChild: function() {
+		if (this.props.children instanceof Array){
+			return React.cloneElement(this.props.children[0], {id: this.id});
+		} else if (this.props.children) {
+			return React.cloneElement(this.props.children, {id: this.id});
+		} else {
+			return <div/>;
+		}
+	},
+
 	render: function() {
+
+		var style = this.props.style;
+		style.position = 'relative';
 
 		var list = this.props.menuList.map(function(item, index) {
 			return (
@@ -80,9 +105,12 @@ module.exports = React.createClass({
 		});
 
 		return (
-			<ul style={this.props.style} className={this._getClasses()} htmlFor={this.props.buttonId}>
-				{list}
-			</ul>
+			<div style={style}>
+				{this._getChild()}
+				<ul className={this._getClasses()} htmlFor={this.id}>
+					{list}
+				</ul>
+			</div>
 		);
 	},
 
