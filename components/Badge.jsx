@@ -23,7 +23,7 @@ module.exports = React.createClass({
 		badge : React.PropTypes.node.isRequired,
 		materialDesignIcon : React.PropTypes.bool,
 		noBackground : React.PropTypes.bool,
-		style : react.PropTypes.object,
+		style : React.PropTypes.object,
 	},
 
 	getDefaultProps: function() {
