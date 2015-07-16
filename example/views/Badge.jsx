@@ -2,11 +2,11 @@
 "use strict";
 
 var React = require('react');
-var MDL = require('../../index.js');
+var MDL = require('../../components/');
 
 module.exports = React.createClass({
 
-	render: function() {
+	render : function() {
 		return (
 			<div>
 				<br />
@@ -14,9 +14,7 @@ module.exports = React.createClass({
 					badge = {1}
 					icon = {true}
 				>
-					<div>
-						account_box
-					</div>
+					<div>account_box</div>
 				</MDL.Badge><br />
 
 				<MDL.Badge
