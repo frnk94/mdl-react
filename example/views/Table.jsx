@@ -138,6 +138,11 @@ module.exports = React.createClass({
 					isDisabled={false}
 					onClick={this.getSelected} />
 
+				<MDL.PrismCode
+					src='http://fandora.github.io/mdl-react/example/codes/Table.js'
+					lang='jsx'
+				/>
+
 				<Props detail={propsDetail} />
 			</div>
 		);
