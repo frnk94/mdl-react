@@ -13,6 +13,7 @@ module.exports = React.createClass({
 
 	getValue: function() {
 		console.log('outside get : ', this.refs.test.getValue());
+		alert(this.refs.test.getValue());
 	},
 
 	setValue: function() {
@@ -48,7 +49,7 @@ module.exports = React.createClass({
 			fontWeight: 500,
 		};
 
-		var sliderStyle = {
+		var demoStyle = {
 			borderRadius: '0 0 2px 0',
 			padding: '24px',
 			margin: '0px',
@@ -79,13 +80,13 @@ module.exports = React.createClass({
 			{
 				key : 'min',
 				type : 'string',
-				state : 'isRequired',
+				state : 'required && default: 0',
 				content : 'a minimum value for an <input> element',
 			},
 			{
 				key : 'max',
 				type : 'string',
-				state : 'isRequired',
+				state : 'required && default: 100',
 				content : 'a maximum value for an <input> element',
 			},
 			{
@@ -97,13 +98,13 @@ module.exports = React.createClass({
 			{
 				key : 'step',
 				type : 'string',
-				state : 'optional',
+				state : 'default: 0',
 				content : 'the legal number intervals for an <input> element',
 			},
 			{
 				key : 'defaultValue',
-				type : 'string',
-				state : 'optional',
+				type : 'boolen',
+				state : 'default: 50',
 				content : 'the value of an <input> element',
 			},
 		];
@@ -128,7 +129,7 @@ module.exports = React.createClass({
 				<h2 style={titleStyle}>Slider</h2>
 				<MDL.Card style={cardStyle} shadow={6}>
 					<div style={exampleStyle}>example</div>
-						<div style={sliderStyle}>
+						<div style={demoStyle}>
 							<MDL.Slider
 								min = '0'
 								max = '100'
@@ -169,11 +170,10 @@ module.exports = React.createClass({
 									isPrimary={true}
 									onClick={this.setValue} 
 								/>
+							</div>
 						</div>
-					</div>
 					<MDL.PrismCode
 						src='../codes/SliderInfo.js'
-						lang='jsx'
 						style={prismCode}
 					/>
 				</MDL.Card>

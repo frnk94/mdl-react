@@ -32,7 +32,7 @@ var Slider = React.createClass({
 		return {
 			min : '0',
 			max : '10',
-			defaultValue : '0',
+			defaultValue : '50',
 			tabIndex : '0',
 			step : '0',
 			disabled : null,
