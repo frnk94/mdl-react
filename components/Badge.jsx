@@ -40,7 +40,7 @@ module.exports = React.createClass({
 	_getClasses: function() {
 
 		var classes = {
-				'mdl-design': true,
+				'mdl-badge': true,
 			};
 
 		if(this.props.noBackground) {
