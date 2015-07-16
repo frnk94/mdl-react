@@ -6,8 +6,7 @@ var cx = require('classnames');
  *	MENUS
  *		http://www.getmdl.io/components/index.html#menus-section
  *	Props
- *		children: isRequired, button element
- *		buttonId: isRequired, String, 綁定到的 Button ID，Make sure the ID is a unique.
+ *		children: isRequired, clickable element
  *		menuList: isRequired, Array of Object, Object can contains 4 propetires:
  *			text, isRequired, must be String or React Component
  *			events, Object, propetires should be React events
@@ -33,7 +32,6 @@ module.exports = React.createClass({
 
 	propTypes: {
 		children: React.PropTypes.node.isRequired,
-		//buttonId: React.PropTypes.string.isRequired,
 		style: React.PropTypes.object,
 		fromRightToLeft: React.PropTypes.bool,
 		fromBottomToTop: React.PropTypes.bool,
