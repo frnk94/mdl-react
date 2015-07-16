@@ -37,13 +37,7 @@ module.exports = React.createClass({
 		};
 	},
 
-	render: function() {
-
-		console.log('inside render');
-
-		var date = Date.now();
-
-		_getClasses: function() {
+	_getClasses: function() {
 
 			var classes = {
 				'mdl-design': true,
@@ -60,6 +54,12 @@ module.exports = React.createClass({
 			return cx(classes);
 			
 		},
+
+	render: function() {
+
+		console.log('inside render');
+
+		var date = Date.now();
 
 		var style = this.props.style;
 
