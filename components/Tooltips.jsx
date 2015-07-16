@@ -11,6 +11,7 @@ var _ = require('lodash');
 		text,			tooltips要顯示的文字
 		width,		圖片寬度
 		height,		圖片高度
+		style,
 	Methods
 */
 
@@ -22,6 +23,7 @@ module.exports = React.createClass({
 		text: React.PropTypes.node.isRequired,
 		width: React.PropTypes.number,
 		height: React.PropTypes.number,
+		style: React.PropTypes.object,
 	}
 
 	componentWillMount: function() {
@@ -43,7 +45,7 @@ module.exports = React.createClass({
 
 		return (
 			<div>
-				<span className={cx(classes)}> 
+				<span className={cx(classes)} style={this.props.style}> 
 					<img src={this.props.source} width={this.props.width} height={this.porps.height}>
 					{this.props.text}
 				</span>
