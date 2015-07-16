@@ -51,9 +51,7 @@ module.exports = React.createClass({
 	render: function() {
 
 		var container =  {};
-		var style = {
-			display : 'none';
-		};
+		var style = {};
 
 		if(this.props.Spinner) {
 			container['mdl-spinner'] = true;
