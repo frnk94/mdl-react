@@ -15,6 +15,7 @@ var React = require('react');
 		setValue								Set the value in the current sliders
 */
 
+var counter = 0;
 
 var Slider = React.createClass({
 
@@ -45,13 +46,15 @@ var Slider = React.createClass({
 	},
 
 	componentDidMount: function() {
-		this.refs.input.getDOMNode().value = this.props.defaultValue;
-		this.refs.input.getDOMNode().setAttribute('class', 'mdl-slider mdl-js-slider');
+		var node = this.refs.input.getDOMNode();
+		node.value = this.props.defaultValue;
+		node.setAttribute('class', 'mdl-slider mdl-js-slider');
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
-		this.refs.input.getDOMNode().value = this.state.stateValue;
-		this.refs.input.getDOMNode().setAttribute('class', 'mdl-slider mdl-js-slider');
+		var node = this.refs.input.getDOMNode();
+		node.value = this.state.stateValue;
+		node.setAttribute('class', 'mdl-slider mdl-js-slider');
 		componentHandler.upgradeDom();
 	},
 
@@ -61,21 +64,16 @@ var Slider = React.createClass({
 
 	setValue : function(inputValue) {
 		this.setState({
-			stateValue : inputValue, 
+			stateValue : inputValue,
 		});
 	},
 
 	render: function() {
-		var date = Date.now();
-
-		if(this.props.min < 0) {
-			console.warn('MDL.Slider : min should greater than Zero.')
-		}
-
+		var key = 'mdl-slider-' + (counter++);
 		return (
 			<div style={this.props.style}>
-				<input 
-					key={date}
+				<input
+					key={key}
 					ref='input'
 					type="range"
 					min={this.props.min}

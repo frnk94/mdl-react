@@ -8,7 +8,7 @@ var cx = require('classnames');
 		http://www.getmdl.io/components/index.html#badges-section
 	Props
 		badge,			node isRequired,		the legal char for <Badge> element
-		icon,			bool,					use mdl icon in Badge 
+		icon,			bool,					use mdl icon in Badge
 		noBackground,	bool,					use Background in Badge
 	Icon
 		https://www.google.com/design/icons/
@@ -33,7 +33,8 @@ module.exports = React.createClass({
 	},
 
 	render: function() {
-		console.log('inside render')
+
+		console.log('inside render');
 		var date = Date.now();
 
 		var classes = {
@@ -55,15 +56,15 @@ module.exports = React.createClass({
 		}
 
 		return (
-				<div 
-					key={date}
-					className={cx(classes.container)}
-					data-badge={this.props.badge}
-					style={divStyle}
-				>
+			<div key={date}
+				className={cx(classes.container)}
+				data-badge={this.props.badge}
+				style={divStyle}
+			>
 				{this.props.children}
-				</div>
+			</div>
 		);
+
 	},
 
 });
