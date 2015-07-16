@@ -16,10 +16,12 @@ module.exports = React.createClass({
 	propTypes: {
 		Spinner : React.PropTypes.bool.isRequired,
 		ProgressBar : React.PropTypes.bool,
+		// type : React.PropTypes.
 		indeterminate : React.PropTypes.bool,
 		singleColor : React.PropTypes.bool,
 		percentage : React.PropTypes.number,
 		isActive : React.PropTypes.bool,
+		style : React.PropTypes.object,
 	},
 
 	getDefaultProps: function() {
@@ -29,8 +31,8 @@ module.exports = React.createClass({
 			ProgressBar: false,
 			singleColor: false,
 			percentage:0,
-			buffer:0,
-			isActive:true,
+			buffer: 0,
+			isActive : true,
 		};
 	},
 
@@ -47,7 +49,11 @@ module.exports = React.createClass({
 	},
 
 	render: function() {
-		var container =  {}
+
+		var container =  {};
+		var style = {
+			display : 'none';
+		};
 
 		if(this.props.Spinner) {
 			container['mdl-spinner'] = true;
@@ -63,17 +69,14 @@ module.exports = React.createClass({
 			container['mdl-progress__indeterminate'] = true;
 		}
 
-		if(this.props.isActive) {
-			container['is-active'] = true;
-		}
-
 		if(this.props.singleColor) {
 			container['mdl-spinner--single-color'] = true;
 		}
 
 		return (
-			<div ref="loading" className={cx(container)} ></div>
+			<div ref="loading" className={cx(container)} style={style} ></div>
 		);
+
 	},
 
 });
