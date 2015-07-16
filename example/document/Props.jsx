@@ -12,14 +12,14 @@ var Props = React.createClass({
 		var titleStyle = {
 			left : '0',
 			top : '0',
-			width : '100px',
+			width : '160px',
 			margin : '0',
 			position : 'absolute',
 		};
 
 		var contentAreaStyle = {
 			height : '100%',
-			marginLeft : '100px',
+			marginLeft : '160px',
 			position : 'relative',
 			borderBottom : '1px solid #E0E0E0',
 			marginBottom : '30px',
