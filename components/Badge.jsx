@@ -7,9 +7,10 @@ var cx = require('classnames');
 	Badge
 		http://www.getmdl.io/components/index.html#badges-section
 	Props
-		badge,			node isRequired,		the legal char for <Badge> element
-		icon,			bool,					use mdl icon in Badge
-		noBackground,	bool,					use Background in Badge
+		badge,					node isRequired,		the legal char for <Badge> element
+		materialDesignIcon,		bool,					use mdl icon in Badge
+		noBackground,			bool,					use Background in Badge
+		style,					objecy,					for css
 	Icon
 		https://www.google.com/design/icons/
 */
@@ -20,46 +21,55 @@ module.exports = React.createClass({
 
 	propTypes: {
 		badge : React.PropTypes.node.isRequired,
-		icon : React.PropTypes.bool,
+		materialDesignIcon : React.PropTypes.bool,
 		noBackground : React.PropTypes.bool,
+		style : react.PropTypes.object,
 	},
 
 	getDefaultProps: function() {
 		return {
 			badge : 404,
-			icon : false,
+			materialDesignIcon : false,
 			noBackground : false,
+			style : {
+				display: 'inline-block',
+			},
 		};
 	},
 
 	render: function() {
 
 		console.log('inside render');
+
 		var date = Date.now();
 
-		var classes = {
-			container : {
-				'mdl-badge' : true,
-			},
-		};
+		_getClasses: function() {
 
-		var divStyle = {
-			display: 'inline-block',
-		};
+			var classes = {
+				'mdl-design': true,
+			};
 
-		if(this.props.noBackground) {
-			classes.container['mdl-badge--no-background'] = true;
-		}
+			if(this.props.noBackground) {
+				classes['mdl-badge--no-background'] = true;
+			}
 
-		if(this.props.icon) {
-			classes.container['icon material-icons'] = true;
-		}
+			if(this.props.materialDesignIcon) {
+				classes['icon material-icons'] = true;
+			}
+
+			return cx(classes);
+		},
+
+		var style = this.props.style;
+
+		style.display = this.props.display ? this.props.display : style.display;
 
 		return (
-			<div key={date}
-				className={cx(classes.container)}
+			<div 
+				key={date}
+				className={this._getClasses()}
 				data-badge={this.props.badge}
-				style={divStyle}
+				style={style}
 			>
 				{this.props.children}
 			</div>

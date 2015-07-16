@@ -12,14 +12,14 @@ module.exports = React.createClass({
 				<br />
 				<MDL.Badge
 					badge = {1}
-					icon = {true}
+					materialDesignIcon = {true}
 				>
 					<div>account_box</div>
 				</MDL.Badge><br />
 
 				<MDL.Badge
 					badge = {10}
-					icon = {true}
+					materialDesignIcon = {true}
 					noBackground = {true}
 				>
 					<div>
@@ -29,7 +29,7 @@ module.exports = React.createClass({
 
 				<MDL.Badge
 					badge = '♥'
-					icon = {true}
+					materialDesignIcon = {true}
 				>
 					<div>
 						mail
