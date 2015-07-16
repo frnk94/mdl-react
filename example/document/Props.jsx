@@ -6,7 +6,7 @@ var Props = React.createClass({
 
 		var style = {
 			position : 'relative',
-			maxWidth : '1200px',
+			width : '100%',
 			marginTop : '40px',
 		};
 

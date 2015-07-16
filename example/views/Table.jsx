@@ -186,19 +186,18 @@ module.exports = React.createClass({
 			}
 		];
 
+		var prismCode = {
+			fontSize : '14px',
+			marginBottom : '0px',
+		};
+
 		var cardStyle = {
-			maxWidth : '1200px',
 			width : '100%',
 			margin : '0px',
 		};
 
 		var tableStyle = {
 			margin : '24px auto',
-		};
-
-		var prismCode = {
-			fontSize : '14px',
-			marginBottom : '0px',
 		};
 
 		var buttonStyle = {
@@ -212,14 +211,6 @@ module.exports = React.createClass({
 			marginTop : '0px',
 		};
 
-		var hrStyle = {
-			borderColor : '#E0E0E0',
-			height : '1px',
-			margin : '24px 0',
-			maxWidth : '1200px',
-			width : '100%',
-		};
-
 		var valueStyle = {
 			backgroundColor : '#00BCD4',
 			padding : '20px',
@@ -228,8 +219,13 @@ module.exports = React.createClass({
 			display : this.state.valueArea,
 		};
 
+		var style = {
+			width : '100%',
+			maxWidth : '1200px',
+		};
+
 		return (
-			<div>
+			<div style={style}>
 				<MDL.Card style={cardStyle} shadow={6}>
 					<MDL.Table
 						ref="table"
@@ -267,10 +263,8 @@ module.exports = React.createClass({
 						style={prismCode}
 					/>
 				</MDL.Card>
-				<hr style={hrStyle} />
 				<Props detail={propsDetail} title="Props" />
-				<hr style={hrStyle} />
-				<Props detail={eventsDetail} title="Events" />
+				<Props detail={eventsDetail} title="Methods" />
 			</div>
 		);
 
