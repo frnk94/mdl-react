@@ -16,16 +16,20 @@ var cx = require('classnames');
 var Layout = React.createClass({
 
 	propTypes: {
+		style : React.PropTypes.object,
+		drawerStyle : React.PropTypes.object,
+		headerStyle : React.PropTypes.object,
 		title : React.PropTypes.oneOfType([
 			React.PropTypes.string,
 			React.PropTypes.element,
 		]),
 		href : React.PropTypes.string,
-		type : React.PropTypes.oneOf([
-			'FixedHeader',
-			'FixedDrawer',
-		]),
-		// items : React.PropTypes.array,
+		isFixedHeader : React.PropTypes.bool,
+		isFixedDrawer : React.PropTypes.bool,
+		isTransparent : React.PropTypes.bool,
+		backgroundImage : React.PropTypes.string,
+		noHeaderTitle : React.PropTypes.bool,
+		noDrawerTitle : React.PropTypes.bool,
 		headerItems : React.PropTypes.arrayOf(React.PropTypes.shape({
 			text : React.PropTypes.oneOfType([
 				React.PropTypes.string,
@@ -41,6 +45,8 @@ var Layout = React.createClass({
 			]).isRequired,
 			href : React.PropTypes.string,
 			onClick : React.PropTypes.func,
+			onTouchTap : React.PropTypes.func,
+			style : React.PropTypes.object,
 		})),
 	},
 
@@ -50,28 +56,37 @@ var Layout = React.createClass({
 			// items : [],
 			headerItems : [],
 			drawerItems : [],
+			style : {},
 		};
 	},
 
-	componentDidMount: function() {
+	componentDidMount : function() {
+		this._mdlize();
+	},
+
+	componentDidUpdate: function(prevProps, prevState) {
+		this._mdlize();
+	},
+
+	_mdlize : function() {
 		componentHandler.upgradeDom();
+		if(this.props.drawerStyle) {
+			React.findDOMNode(this).getElementsByClassName("mdl-layout__drawer-button")[0].style = this.props.drawerStyle;
+		}
 	},
 
 	render: function() {
 
 		var classes = {
-			root : {
-				'mdl-layout' : true,
-				'mdl-js-layout' : true,
-				// mdl-layout--overlay-drawer-button
-			}
+			'mdl-layout' : true,
+			'mdl-js-layout' : true,
 		};
 
-		if(this.props.type == 'FixedHeader') {
-			classes.root['mdl-layout--fixed-header'] = true;
-		} else if(this.props.type == 'FixedDrawer') {
-			classes.root['mdl-layout--fixed-drawer'] = true;
-			classes.root['mdl-layout--overlay-drawer-button'] = true;
+		if(this.props.isFixedHeader) {
+			classes['mdl-layout--fixed-header'] = true;
+		}
+		if(this.props.isFixedDrawer) {
+			classes['mdl-layout--fixed-drawer'] = true;
 		}
 
 		var titleComponent = null;
@@ -112,10 +127,16 @@ var Layout = React.createClass({
 				);
 			});
 
+			var headerStyle = null;
+			var className = 'mdl-layout__header';
+			if(this.props.isTransparent) {
+				className += ' mdl-layout__header--transparent';
+			}
+
 			headerBlock = (
-				<header className="mdl-layout__header">
+				<header className={className} style={this.props.headerStyle} >
 					<div className="mdl-layout__header-row">
-						{titleComponent}
+						{!this.props.noHeaderTitle ? titleComponent : null}
 						<div className="mdl-layout-spacer"></div>
 						<nav className="mdl-navigation mdl-layout--large-screen-only">
 							{headerItems}
@@ -131,11 +152,15 @@ var Layout = React.createClass({
 			this.props.drawerItems.length > 0
 		) {
 
+			classes['mdl-layout--overlay-drawer-button'] = true;
+
 			var drawerItems = this.props.drawerItems.map(function(element, index) {
 				return (
 					<a className="mdl-navigation__link"
 						href={element.href}
 						onClick={element.onClick}
+						onTouchTap={element.onTouchTap}
+						style={element.style}
 						key={index}
 					>
 						{element.text}
@@ -145,7 +170,7 @@ var Layout = React.createClass({
 
 			drawerBlock = (
 				<div className="mdl-layout__drawer">
-					{titleComponent}
+					{!this.props.noDrawerTitle ? titleComponent : null}
 					<nav className="mdl-navigation">
 						{drawerItems}
 					</nav>
@@ -154,9 +179,15 @@ var Layout = React.createClass({
 
 		}
 
+		var style = this.props.style;
+
+		if(this.props.backgroundImage) {
+			style = style || {};
+			style.background = "url('" + this.props.backgroundImage + "') center / cover";
+		}
 
 		return (
-			<div className={cx(classes.root)}>
+			<div className={cx(classes)} style={style}>
 				{headerBlock}
 				{drawerBlock}
 				<main className="mdl-layout__content">
