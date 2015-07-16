@@ -31,15 +31,7 @@ var App = React.createClass({
 			{ text : 'Slider', href : '#slider' },
 			{ text : 'Card', href : '#card' },
 			{ text : 'badge', href : '#badge' },
-			// {
-			// 	text : (
-			// 		<span>
-			// 			by Fandora Shop RD Team
-			// 		</span>
-			// 	),
-			// 	href : 'http://FandoraShop.com',
-			// 	target : '_blank',
-			// },
+			{ text : 'Toggle', href : '#toggle' },
 		];
 		var style = {
 			padding : '24px',
@@ -57,7 +49,7 @@ var App = React.createClass({
 				// headerColor='red'
 				// noHeaderTitle={true}
 				noDrawerTitle={true}
-			>	
+			>
 				<div style={style}>
 					<Router.RouteHandler />
 				</div>
@@ -77,6 +69,7 @@ var Loading = require('./views/Loading.jsx');
 var Slider = require('./views/Slider.jsx');
 var Card = require('./views/Card.jsx');
 var Badge = require('./views/Badge.jsx');
+var Toggle = require('./views/Toggle.jsx');
 
 var routes = (
 	<Router.Route handler={App}>
@@ -90,6 +83,7 @@ var routes = (
 		<Router.Route name='slider' path='slider' handler={Slider} />
 		<Router.Route name='card' path='card' handler={Card} />
 		<Router.Route name='badge' path='badge' handler={Badge} />
+		<Router.Route name='toggle' path='toggle' handler={Toggle} />
 	</Router.Route>
 );
 
