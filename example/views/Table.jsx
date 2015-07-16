@@ -148,6 +148,15 @@ module.exports = React.createClass({
 			},
 		];
 
+		var eventsDetail = [
+			{
+				key : 'getSelected',
+				type : 'function',
+				state : '',
+				content : '取得勾選的資料值',
+			}
+		];
+
 		var cardStyle = {
 			maxWidth : '1200px',
 			width : '100%',
@@ -219,10 +228,10 @@ module.exports = React.createClass({
 						style={prismCode}
 					/>
 				</MDL.Card>
-
 				<hr style={hrStyle} />
-
-				<Props detail={propsDetail} />
+				<Props detail={propsDetail} title="Props" />
+				<hr style={hrStyle} />
+				<Props detail={eventsDetail} title="Events" />
 			</div>
 		);
 

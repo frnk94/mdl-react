@@ -55,7 +55,7 @@ var Props = React.createClass({
 
 		return (
 			<div>
-				<h5>Props</h5>
+				<h5>{this.props.title}</h5>
 				<div>
 					{content}
 				</div>
