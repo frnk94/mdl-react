@@ -45,7 +45,7 @@ module.exports = React.createClass({
 	componentWillMount: function() {
 		if(!this.props.children instanceof Array ){
 			console.warn("MDL.Tabs: The tabs should have at least two `children`");
-		}	else if (!this.props.tabLabels instanceof Array || this.props.tabLabels.length == 1){
+		} else if (!this.props.tabLabels instanceof Array || this.props.tabLabels.length == 1){
 			console.warn("MDL.Tabs: The props `tabLabels` should be an array that contains at least two item");
 		} else if (this.props.tabLabels.length !== this.props.children.length){
 			console.warn("MDL.Tabs: The number of `tabLabels` should be same as props `children`");
@@ -91,9 +91,9 @@ module.exports = React.createClass({
 
 		return (
 			<div className={"mdl-tabs mdl-js-tabs "+(this.props.isRipple?'mdl-js-ripple-effect':'')} style={this.props.style}>
-			  <div className="mdl-tabs__tab-bar">
+				<div className="mdl-tabs__tab-bar">
 					{tabBars}
-			  </div>
+				</div>
 				{tabPanels}
 			</div>
 		);
