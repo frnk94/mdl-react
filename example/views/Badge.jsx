@@ -121,7 +121,7 @@ module.exports = React.createClass({
 						</MDL.Badge>
 					</div>
 					<MDL.PrismCode
-						src='../codes/BadgeInfo.js'
+						src='http://fandora.github.io/mdl-react/example/codes/BadgeInfo.js'
 						style={prismCode}
 					/>
 				</MDL.Card>
