@@ -65,7 +65,7 @@ module.exports = React.createClass({
 	},
 
 	toggle: function() {
-		this.setChecked(!React.findDOMNode(this.refs.input).checked);
+		return this.setChecked(!React.findDOMNode(this.refs.input).checked);
 	},
 
 	setChecked: function(isChecked) {
@@ -76,7 +76,7 @@ module.exports = React.createClass({
 			isChecked?
 				React.findDOMNode(this.refs.label).className += ' is-checked':
 				React.findDOMNode(this.refs.label).className = React.findDOMNode(this.refs.label).className.replace(' is-checked','');
-			return input.checked
+			return input.checked;
 	},
 
 	isChecked: function() {

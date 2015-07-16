@@ -10,12 +10,12 @@ module.exports = React.createClass({
 		console.log(e.target.value);
 	},
 
-	_turnon: function() {
+	_get: function() {
 		console.log(this.refs.checkbox.isChecked());
 	},
 
-	_turnOff: function() {
-		console.log(this.refs.checkbox.toggle(false));
+	_toggle: function() {
+		console.log(this.refs.checkbox.toggle());
 	},
 
 	render: function() {
@@ -24,15 +24,15 @@ module.exports = React.createClass({
 				<MDL.Toggle ref="checkbox" type="checkbox" text="checkbox"/>
 
 				<MDL.Button type="RaisedButton"
-					text="Turn on"
+					text="GET"
 					isRipple={true}
 					isPrimary={true}
-					onClick={this._turnon}/>
+					onClick={this._get}/>
 				<MDL.Button type="RaisedButton"
-					text="Turn off"
+					text="Toggle"
 					isRipple={true}
 					isAccent={true}
-					onClick={this._turnOff}/>
+					onClick={this._toggle}/>
 				<br />
 
 				<MDL.Toggle type="icon-toggle" text="format_bold"/>
