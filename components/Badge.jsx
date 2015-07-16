@@ -36,24 +36,24 @@ module.exports = React.createClass({
 			},
 		};
 	},
-
+	
 	_getClasses: function() {
 
-			var classes = {
+		var classes = {
 				'mdl-design': true,
 			};
 
-			if(this.props.noBackground) {
-				classes['mdl-badge--no-background'] = true;
-			}
+		if(this.props.noBackground) {
+			classes['mdl-badge--no-background'] = true;
+		}
 
-			if(this.props.materialDesignIcon) {
-				classes['icon material-icons'] = true;
-			}
+		if(this.props.materialDesignIcon) {
+			classes['icon material-icons'] = true;
+		}
 
-			return cx(classes);
+		return cx(classes);
 			
-		},
+	},
 
 	render: function() {
 
