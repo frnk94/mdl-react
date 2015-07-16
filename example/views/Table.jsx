@@ -13,25 +13,32 @@ module.exports = React.createClass({
 		return {
 			items : [
 				{
-					title : 'Acrylic',
-					region : 'TW',
-					value : '1',
 					id : 1,
-					avc : 'aaa',
+					song : 'Au bar',
+					singer : 'Joyce Jonathan',
+					country : '法國',
+					link : 'https://www.youtube.com/watch?v=pX08MtExn7U',
 				},
 				{
-					title : 'title2',
-					region : 'TW2',
-					value : '2',
 					id : 2,
-					avc : 'bbb',
+					song : 'Demain',
+					singer : 'Berry',
+					country : '法國',
+					link : 'https://www.youtube.com/watch?v=9iPGvsRijrc',
 				},
 				{
-					title : 'title3',
-					region : 'TW3',
-					value : '3',
 					id : 3,
-					avc : 'ccc',
+					song : 'Master of Tides',
+					singer : 'Lindsey Stirling',
+					country : '美國',
+					link : 'https://www.youtube.com/watch?v=RrutzRWXkKs',
+				},
+				{
+					id : 4,
+					song : 'Photograph',
+					singer : 'Ed Sheeran',
+					country : '英國',
+					link : 'https://www.youtube.com/watch?v=SPKBtZHuzKY',
 				},
 			],
 		};
@@ -44,11 +51,11 @@ module.exports = React.createClass({
 	addData: function() {
 		var temp = _.clone(this.state.items, true);
 		temp.push({
-			title : 'new',
-			region : 'new',
-			value : 'new',
-			id : 3,
-			avc : 'new',
+			id : 5,
+			song : 'Like A Fool',
+			singer : 'Keira Knightley',
+			country : '美國',
+			link : 'https://www.youtube.com/watch?v=G2JQo7-F9_s',
 		});
 		this.setState({
 			items : temp,
@@ -59,18 +66,18 @@ module.exports = React.createClass({
 
 		var header = [
 			{
-				title : '標題一',
-				key : 'title',
+				title : '歌曲',
+				key : 'song',
 				style : {
 					textAlign : 'left',
 				}
 			},
 			{
-				title : '標題一',
-				key : 'region',
+				title : '歌手',
+				key : 'singer',
 			},
 			{
-				key : 'value',
+				key : 'country',
 			},
 		];
 
@@ -79,7 +86,7 @@ module.exports = React.createClass({
 				textAlign : 'left',
 			},
 			{
-				color : 'blue',
+				color : '#00CACA',
 			},
 			{},
 		];
