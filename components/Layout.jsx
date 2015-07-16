@@ -45,6 +45,8 @@ var Layout = React.createClass({
 			]).isRequired,
 			href : React.PropTypes.string,
 			onClick : React.PropTypes.func,
+			onTouchTap : React.PropTypes.func,
+			style : React.PropTypes.object,
 		})),
 	},
 
@@ -157,6 +159,8 @@ var Layout = React.createClass({
 					<a className="mdl-navigation__link"
 						href={element.href}
 						onClick={element.onClick}
+						onTouchTap={element.onTouchTap}
+						style={element.style}
 						key={index}
 					>
 						{element.text}

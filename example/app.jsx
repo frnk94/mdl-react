@@ -15,7 +15,7 @@ var App = React.createClass({
 			{
 				text : (
 					<span>
-						made ♥ with Fandora Shop
+						by Fandora Shop
 					</span>
 				),
 				href : 'http://FandoraShop.com',
@@ -30,21 +30,21 @@ var App = React.createClass({
 			{ text : 'Loading', href : '#loading' },
 			{ text : 'Slider', href : '#slider' },
 			{ text : 'Card', href : '#card' },
-			{
-				text : (
-					<span>
-						by Fandora Shop RD Team
-					</span>
-				),
-				href : 'http://FandoraShop.com',
-				target : '_blank',
-			},
+			// {
+			// 	text : (
+			// 		<span>
+			// 			by Fandora Shop RD Team
+			// 		</span>
+			// 	),
+			// 	href : 'http://FandoraShop.com',
+			// 	target : '_blank',
+			// },
 		];
 		return (
 			<MDL.Layout
 				title='mdl-react'
 				href='#'
-				// isFixedHeader={true}
+				isFixedHeader={true}
 				// isFixedDrawer={true}
 				headerItems={headerItems}
 				drawerItems={drawerItems}
@@ -52,7 +52,7 @@ var App = React.createClass({
 				// isTransparent={true}
 				// headerColor='red'
 				// noHeaderTitle={true}
-				// noDrawerTitle={true}
+				noDrawerTitle={true}
 			>
 				<Router.RouteHandler />
 			</MDL.Layout>
