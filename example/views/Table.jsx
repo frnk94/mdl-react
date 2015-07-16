@@ -93,55 +93,134 @@ module.exports = React.createClass({
 
 		var propsDetail = [
 			{
-				key : 'items',
+				key : 'selectable',
+				type : 'boolean',
+				state : 'optional',
+				content : '是否要顯示勾選欄位',
+			},
+			{
+				key : 'headers',
 				type : 'array',
 				state : 'required',
-				content : 'The classname of the icon on the left of the app bar. If you are using a stylesheet for your icons, enter the class name for the icon to be used here.',
+				content : '標題列的內容，形式為物件陣列，顯示項目排序也會根據此陣列。可填入的參數為下列三項',
+			},
+			{
+				key : 'headers[].key',
+				type : 'string',
+				state : 'required',
+				content : '想要顯示的內容。',
+			},
+			{
+				key : 'headers[].title',
+				type : 'string',
+				state : 'optional',
+				content : '顯示的標題名稱，若無此參數則顯示 key',
+			},
+			{
+				key : 'headers[].style',
+				type : 'object',
+				state : 'optional',
+				content : '此標頭的 css style 客製設定',
 			},
 			{
 				key : 'items',
 				type : 'array',
 				state : 'required',
-				content : 'The classname of the icon on the left of the app bar. If you are using a stylesheet for your icons, enter the class name for the icon to be used here.',
+				content : '要顯示的內容，形式為物件陣列，每個物件可以有多個 key 和對應的 value，根據 headers 的 key 決定每行欲顯示的內容',
 			},
 			{
-				key : 'items',
+				key : 'itemStyles',
 				type : 'array',
-				state : 'required',
-				content : 'The classname of the icon on the left of the app bar. If you are using a stylesheet for your icons, enter the class name for the icon to be used here.',
+				state : 'optional',
+				content : '每列內容的 css 客製樣式，為陣列物件，陣列長度需與 headers 相同',
+			},
+			{
+				key : 'shadow',
+				type : 'number',
+				state : 'optional',
+				content : '陰影的大小，預設是 2 ，能填的數字只有 2, 3, 4, 6, 8, 16',
+			},
+			{
+				key : 'style',
+				type : 'object',
+				state : 'optional',
+				content : 'css 客製樣式',
 			},
 		];
 
+		var cardStyle = {
+			maxWidth : '1200px',
+			width : '100%',
+			margin : '0px',
+		};
+
+		var tableStyle = {
+			margin : '24px auto',
+		};
+
+		var prismCode = {
+			fontSize : '14px',
+			marginBottom : '0px',
+		};
+
+		var buttonStyle = {
+			width : '100px',
+			margin : '0px 10px',
+		};
+
+		var buttonAreaStyle = {
+			width : '240px',
+			margin : '24px auto',
+			marginTop : '0px',
+		};
+
+		var hrStyle = {
+			borderColor : '#E0E0E0',
+			height : '1px',
+			margin : '24px 0',
+			maxWidth : '1200px',
+			width : '100%',
+		};
+
 		return (
 			<div>
-				<MDL.Table
-					ref="table"
-					selectable={true}
-					headers={header}
-					items={this.state.items}
-					itemStyles={itemStyles}
-					shadow={2}
-				/>
+				<MDL.Card style={cardStyle} shadow={6}>
+					<MDL.Table
+						ref="table"
+						selectable={true}
+						headers={header}
+						items={this.state.items}
+						itemStyles={itemStyles}
+						style={tableStyle}
+						shadow={2}
+					/>
+					<div style={buttonAreaStyle}>
+						<MDL.Button type="RaisedButton"
+						text="新增資料"
+						style={buttonStyle}
+						isRipple={true}
+						isAccent={true}
+						isMini={true}
+						isDisabled={false}
+						onClick={this.addData} />
+						<MDL.Button type="RaisedButton"
+							text="取得勾選值"
+							style={buttonStyle}
+							isRipple={true}
+							isPrimary={true}
+							isMini={true}
+							isDisabled={false}
+							onClick={this.getSelected} />
+					</div>
 
-				<MDL.Button type="RaisedButton"
-					text="新增資料"
-					isRipple={true}
-					isPrimary={true}
-					isMini={true}
-					isDisabled={false}
-					onClick={this.addData} />
-				<MDL.Button type="RaisedButton"
-					text="取得選取值"
-					isRipple={true}
-					isPrimary={true}
-					isMini={true}
-					isDisabled={false}
-					onClick={this.getSelected} />
+					<MDL.PrismCode
+						src='http://fandora.github.io/mdl-react/example/codes/Table.js'
+						lang='jsx'
+						style={prismCode}
+					/>
+				</MDL.Card>
 
-				<MDL.PrismCode
-					src='http://fandora.github.io/mdl-react/example/codes/Table.js'
-					lang='jsx'
-				/>
+				<hr style={hrStyle} />
 
 				<Props detail={propsDetail} />
 			</div>

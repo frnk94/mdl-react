@@ -7,6 +7,7 @@ var Props = React.createClass({
 		var style = {
 			position : 'relative',
 			maxWidth : '1200px',
+			marginTop : '40px',
 		};
 
 		var titleStyle = {

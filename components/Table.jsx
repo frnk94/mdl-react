@@ -15,6 +15,7 @@ var _ = require('lodash');
 		items[]		存在多個 key 和 value, headers 也有的 key 才會顯示
 		itemStyles, array, 列樣式
 		shadow 		陰影的大小(只能填 2, 3, 4, 6, 8, 16)
+		style 		css 設定
 	Methods
 		getSelected 	取得勾選的資料值
 */
@@ -144,7 +145,7 @@ module.exports = React.createClass({
 		});
 
 		return (
-			<table ref="table" className={cx(classes.table)}>
+			<table ref="table" className={cx(classes.table)} style={this.props.style}>
 				<thead>
 					<tr key={date}>
 						{headers}
