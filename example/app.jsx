@@ -30,7 +30,7 @@ var App = React.createClass({
 			{ text : 'Loading', href : '#loading' },
 			{ text : 'Slider', href : '#slider' },
 			{ text : 'Card', href : '#card' },
-			{ text : 'badge', href : '#badge' },
+			{ text : 'Badge', href : '#badge' },
 			{ text : 'Toggle', href : '#toggle' },
 		];
 		var style = {
