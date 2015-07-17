@@ -2,9 +2,13 @@ var React = require('react');
 
 var Grid = React.createClass({
 
+	propTypes: {
+		style : React.PropTypes.object,
+	},
+
 	render: function() {
 		return (
-			<div>grid component</div>
+			<div className="mdl-grid" style={this.props.style}>{this.props.children}</div>
 		);
 	}
 

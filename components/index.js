@@ -26,4 +26,5 @@ module.exports = {
 	CardMenu : require('./CardComponents/CardMenu.jsx'),
 	CardMedia : require('./CardComponents/CardMedia.jsx'),
 	Grid : require('./Grid.jsx'),
+	GridCell : require('./GridCell.jsx'),
 };
