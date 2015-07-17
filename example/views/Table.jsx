@@ -258,7 +258,7 @@ module.exports = React.createClass({
 						{this.state.checkedValue}
 					</div>
 					<MDL.PrismCode
-						src='../codes/Table.js'
+						src='http://fandora.github.io/mdl-react/example/codes/Table.js'
 						lang='jsx'
 						style={prismCode}
 					/>

@@ -152,7 +152,7 @@ module.exports = React.createClass({
 						<MDL.GridCell col={2} colPhone={4} style={cellStyle}>2 (4 phone)</MDL.GridCell>
 					</MDL.Grid>
 					<MDL.PrismCode
-						src='../codes/Grid.js'
+						src='http://fandora.github.io/mdl-react/example/codes/Grid.js'
 						lang='jsx'
 						style={prismCode}
 					/>
