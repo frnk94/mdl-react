@@ -80,7 +80,7 @@ module.exports = React.createClass({
 			{
 				color : 'blue',
 			},
-			{},
+			{}
 		];
 
 		return (

@@ -28,9 +28,20 @@ module.exports = React.createClass({
 	},
 
 	propTypes: {
-		headers : React.PropTypes.array.isRequired,
+		headers : React.PropTypes.arrayOf(React.PropTypes.shape({
+			key : React.PropTypes.string.isRequired,
+		})).isRequired,
 		items : React.PropTypes.array.isRequired,
-		itemStyles : React.PropTypes.array,
+		itemStyles : function(props, propName, componentName) {
+			if(props[propName]) {
+				if(!(props[propName] instanceof Array)) {
+					return new Error('itemStyles should be an array');
+				}
+				if(props[propName].length != props.headers.length) {
+					return new Error('the length of `itemStyles` should be equal to the length of `headers`');
+				}
+			}
+		},
 		selectable : React.PropTypes.bool,
 		shadow : React.PropTypes.oneOf([ 2, 3, 4, 6, 8, 16 ]),
 	},
@@ -47,36 +58,9 @@ module.exports = React.createClass({
 		this.refs.table.getDOMNode().removeAttribute('data-upgraded');
 	},
 
-	_checkProps : function() {
-
-		var self = this;
-
-		// 檢查 headers
-		this.props.headers.forEach(function(header) {
-			if(!header.key) {
-				console.warn(
-					'MDL.Table: every object in `headers` must have key'
-				);
-			}
-		});
-
-		// 檢查 headers 和 itemStyles 的長度是否一致
-		if(
-			this.props.itemStyles instanceof Array &&
-			this.props.headers.length != this.props.itemStyles.length
-		) {
-			console.warn(
-				'MDL.Table: the length of `itemStyles` should be equal to the length of `headers`'
-			);
-		}
-
-	},
-
 	getSelected: function() {
-
 		var result = [];
 		var self = this;
-
 		if(this.props.selectable) {
 			_.forEach(this.refs.tbody.getDOMNode().childNodes, function(element, index) {
 				if(element.className == 'is-selected') {
@@ -84,27 +68,20 @@ module.exports = React.createClass({
 				}
 			});
 		}
-
 		return result;
-
 	},
 
 	render: function() {
 
 		var classes = {
-			table : {
-				'mdl-data-table' : true,
-				'mdl-js-data-table' : true,
-			},
+			'mdl-data-table' : true,
+			'mdl-js-data-table' : true,
 		};
 		var self = this;
 
-		this._checkProps();
-
-		classes.table['mdl-shadow--' + this.props.shadow + 'dp'] = true;
-
+		classes['mdl-shadow--' + this.props.shadow + 'dp'] = true;
 		if(this.props.selectable) {
-			classes.table['mdl-data-table--selectable'] = true;
+			classes['mdl-data-table--selectable'] = true;
 		}
 
 		var headers = this.props.headers.map(function(element, index) {
@@ -144,7 +121,7 @@ module.exports = React.createClass({
 		});
 
 		return (
-			<table ref="table" className={cx(classes.table)}>
+			<table ref="table" className={cx(classes)}>
 				<thead>
 					<tr key={date}>
 						{headers}
