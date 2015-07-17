@@ -119,13 +119,13 @@ module.exports = React.createClass({
 			{
 				key : 'getValue',
 				type : 'function',
-				state : 'optional',
+				state : '',
 				content : 'Get the value from the current sliders',
 			},
 			{
 				key : 'setValue',
 				type : 'function(inputValue)',
-				state : 'optional',
+				state : '',
 				content : 'Set the value in the current sliders',
 			},
 		];
@@ -133,7 +133,7 @@ module.exports = React.createClass({
 		return (
 			<div style={style}>
 				<h2 style={titleStyle}>Slider</h2>
-				<MDL.Card style={cardStyle} shadow={6}>
+				<MDL.Card style={cardStyle} shadow={3}>
 					<div style={demoStyle}>
 						<div style={exampleStyle}>example</div>
 						<MDL.Slider
@@ -152,7 +152,7 @@ module.exports = React.createClass({
 							defaultValue = {80}
 							disabled = {true}
 						/><br />
-						<div style={exampleStyle}>Methods</div>
+						<div style={exampleStyle}>Methods (E.g setValue = 80)</div>
 						<MDL.Slider
 							ref='test'
 							min = {0}

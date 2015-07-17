@@ -97,7 +97,7 @@ module.exports = React.createClass({
 		return (
 			<div style={style}>
 				<h2 style={titleStyle}>Badge</h2>
-				<MDL.Card style={cardStyle} shadow={6}>
+				<MDL.Card style={cardStyle} shadow={3}>
 					<div style={demoStyle}>
 					<div style={exampleStyle}>example</div>
 					<MDL.Badge
