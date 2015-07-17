@@ -18,7 +18,7 @@ module.exports = React.createClass({
 
 	setValue: function() {
 		console.log('outside setValue');
-		this.refs.test.setValue('80')
+		this.refs.test.setValue('80');
 	},
 
 	render: function() {
@@ -79,33 +79,39 @@ module.exports = React.createClass({
 		var propsDetail = [
 			{
 				key : 'min',
-				type : 'string',
-				state : 'required && default: 0',
-				content : 'a minimum value for an <input> element',
+				type : 'number',
+				state : 'required ',
+				content : 'The miximum value of the slider can scale from 0 to 100',
 			},
 			{
 				key : 'max',
-				type : 'string',
-				state : 'required && default: 100',
-				content : 'a maximum value for an <input> element',
+				type : 'number',
+				state : 'required ',
+				content : 'The maximum value of the slider can scale from 0 to 100',
 			},
 			{
 				key : 'tabIndex',
-				type : 'string',
-				state : 'optional',
-				content : 'the tab order of an element',
+				type : 'number',
+				state : 'default: 0',
+				content : 'The tab order of the slider',
 			},
 			{
 				key : 'step',
-				type : 'string',
+				type : 'number',
 				state : 'default: 0',
-				content : 'the legal number intervals for an <input> element',
+				content : 'The legal number intervals for the value of the slider',
 			},
 			{
 				key : 'defaultValue',
-				type : 'boolen',
+				type : 'number',
 				state : 'default: 50',
-				content : 'the value of an <input> element',
+				content : 'The default value of the slider',
+			},
+			{
+				key : 'disabled',
+				type : 'boolen',
+				state : 'default: false',
+				content : 'If it is true, the slider will not interact',
 			},
 		];
 
@@ -113,13 +119,13 @@ module.exports = React.createClass({
 			{
 				key : 'getValue',
 				type : 'function',
-				state : '',
-				content : 'get the value from the current sliders',
+				state : 'optional',
+				content : 'Get the value from the current sliders',
 			},
 			{
 				key : 'setValue',
 				type : 'function(inputValue)',
-				state : '',
+				state : 'optional',
 				content : 'Set the value in the current sliders',
 			},
 		];
@@ -128,50 +134,51 @@ module.exports = React.createClass({
 			<div style={style}>
 				<h2 style={titleStyle}>Slider</h2>
 				<MDL.Card style={cardStyle} shadow={6}>
-					<div style={exampleStyle}>example</div>
-						<div style={demoStyle}>
-							<MDL.Slider
-								min = '0'
-								max = '100'
-							/><br />
-							<MDL.Slider
-								min = '0'
-								max = '100'
-								defaultValue = '10'
-								step = '5'
-							/><br />
-							<MDL.Slider
-								min = '0'
-								max = '100'
-								defaultValue = '80'
-								disabled = 'disabled'
-							/><br />
-							<MDL.Slider
-								ref='test'
-								min = '0'
-								max = '100'
-								defaultValue = '40'
-								step = '10'
-								onChange={this.onChange}
-							/><br />
-							<div style={buttonAreaStyle}>
-								<MDL.Button 
+					<div style={demoStyle}>
+						<div style={exampleStyle}>example</div>
+						<MDL.Slider
+							min = {0}
+							max = {100}
+						/><br />
+						<MDL.Slider
+							min = {0}
+							max = {100}
+							defaultValue = {10}
+							step = {5}
+						/><br />
+						<MDL.Slider
+							min = {0}
+							max = {100}
+							defaultValue = {80}
+							disabled = {true}
+						/><br />
+						<div style={exampleStyle}>Methods</div>
+						<MDL.Slider
+							ref='test'
+							min = {0}
+							max = {100}
+							defaultValue = {40}
+							step = {10}
+							onChange={this.onChange}
+						/><br />
+						<div style={buttonAreaStyle}>
+							<MDL.Button 
+							type="RaisedButton"
+							text="Get Value"
+							style={buttonStyle}
+							isAccent={true}
+							onClick={this.getValue}
+							/>
+							<MDL.Button 
 								type="RaisedButton"
-								text="Get Value"
+								text="set Value"
 								style={buttonStyle}
-								isAccent={true}
-								onClick={this.getValue}
-								/>
-								<MDL.Button 
-									type="RaisedButton"
-									text="set Value"
-									style={buttonStyle}
-									isRipple={true}
-									isPrimary={true}
-									onClick={this.setValue} 
-								/>
-							</div>
+								isRipple={true}
+								isPrimary={true}
+								onClick={this.setValue} 
+							/>
 						</div>
+					</div>
 					<MDL.PrismCode
 						src='http://fandora.github.io/mdl-react/example/codes/SliderInfo.js'
 						style={prismCode}

@@ -72,25 +72,25 @@ module.exports = React.createClass({
 				key : 'badge',
 				type : 'node',
 				state : 'required',
-				content : 'the legal char for <Badge> element',
+				content : 'The legal char for badge element',
 			},
 			{
 				key : 'materialDesignIcon',
 				type : 'boolen',
-				state : 'optional',
-				content : 'use mdl icon in Badge',
+				state : 'default: false',
+				content : 'If it is true, the badge will not show material design icon',
 			},
 			{
 				key : 'noBackground',
 				type : 'bool',
-				state : 'optional',
-				content : 'use Background in Badge',
+				state : 'default: false',
+				content : 'If it is true, the badge will not interact background',
 			},
 			{
 				key : 'style',
 				type : 'object',
 				state : 'optional',
-				content : 'for CSS',
+				content : 'Override the inline-styles of the badge\'s root element',
 			},
 		];
 
@@ -98,41 +98,41 @@ module.exports = React.createClass({
 			<div style={style}>
 				<h2 style={titleStyle}>Badge</h2>
 				<MDL.Card style={cardStyle} shadow={6}>
+					<div style={demoStyle}>
 					<div style={exampleStyle}>example</div>
-						<div style={demoStyle}>
-						<MDL.Badge
-							style={badgeStyle}
-						>
-							<div>yourText</div>
-						</MDL.Badge>
-						<MDL.Badge
-							badge = {10}
-							noBackground = {true}
-							style={badgeStyle}
-						>
-							<div>
-								mail
-							</div>
-						</MDL.Badge>
-						<MDL.Badge
-							badge = {10}
-							noBackground = {true}
-							materialDesignIcon = {true}
-							style={badgeStyle}
-						>
-							<div>
-								mail
-							</div>
-						</MDL.Badge>
-						<MDL.Badge
-							badge = '♥'
-							materialDesignIcon = {true}
-							style={badgeStyle}
-						>
-							<div>
-								face
-							</div>
-						</MDL.Badge>
+					<MDL.Badge
+						style={badgeStyle}
+					>
+						<div>yourText</div>
+					</MDL.Badge>
+					<MDL.Badge
+						badge = {10}
+						noBackground = {true}
+						style={badgeStyle}
+					>
+						<div>
+							mail
+						</div>
+					</MDL.Badge>
+					<MDL.Badge
+						badge = {10}
+						noBackground = {true}
+						materialDesignIcon = {true}
+						style={badgeStyle}
+					>
+						<div>
+							mail
+						</div>
+					</MDL.Badge>
+					<MDL.Badge
+						badge = '♥'
+						materialDesignIcon = {true}
+						style={badgeStyle}
+					>
+						<div>
+							face
+						</div>
+					</MDL.Badge>
 					</div>
 					<MDL.PrismCode
 						src='http://fandora.github.io/mdl-react/example/codes/BadgeInfo.js'

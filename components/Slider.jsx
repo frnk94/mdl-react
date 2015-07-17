@@ -5,11 +5,12 @@ var React = require('react');
 	Sliders
 		http://www.getmdl.io/components/index.html#sliders-section
 	Props
-		min, 			string isRequired,		a minimum value for an <input> element
-		max, 			string isRequired,		a maximum value for an <input> element
-		tabIndex, 		string,					the tab order of an element
-		step, 			string,					the legal number intervals for an <input> element
-		defaultValue, 	string,					the value of an <input> element
+		min, 			number isRequired,		a minimum value for an <input> element
+		max, 			number isRequired,		a maximum value for an <input> element
+		tabIndex, 		number,					the tab order of an element
+		step, 			number,					the legal number intervals for an <input> element
+		defaultValue, 	number,					the value of an <input> element
+		disabled,		boolen,					disable the slider effect 
 	Methods
 		getValue								get the value from the current sliders
 		setValue								Set the value in the current sliders
@@ -20,22 +21,22 @@ var counter = 0;
 var Slider = React.createClass({
 
 	propTypes: {
-		min : React.PropTypes.string.isRequired,
-		max : React.PropTypes.string.isRequired,
-		tabIndex : React.PropTypes.string,
-		step : React.PropTypes.string,
-		defaultValue : React.PropTypes.string,
-		disabled : React.PropTypes.string,
+		min : React.PropTypes.number.isRequired,
+		max : React.PropTypes.number.isRequired,
+		tabIndex : React.PropTypes.number,
+		step : React.PropTypes.number,
+		defaultValue : React.PropTypes.number,
+		disabled : React.PropTypes.bool,
 	},
 
 	getDefaultProps: function() {
 		return {
-			min : '0',
-			max : '10',
-			defaultValue : '50',
-			tabIndex : '0',
-			step : '0',
-			disabled : null,
+			min : 0,
+			max : 10,
+			defaultValue : 50,
+			tabIndex : 0,
+			step : 0,
+			disabled : false,
 		};
 	},
 
