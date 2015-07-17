@@ -1,21 +1,21 @@
 
 /* Default */
-<MDL.Badge>
+<Badge>
 	<div>yourText</div>
-</MDL.Badge>
+</Badge>
 
 /* Staring with badge && noBackground */
-<MDL.Badge badge={10} noBackground={true}>
+<Badge badge={10} noBackground={true}>
 	<div>group</div>
-</MDL.Badge>
+</Badge>
 
 /* Staring with badge && noBackground && Icon*/
-<MDL.Badge badge={10} noBackground={true} materialDesignIcon={true}>
+<Badge badge={10} noBackground={true} materialDesignIcon={true}>
 	<div>group</div>
-</MDL.Badge>
+</Badge>
 
 /*Starting with Icon badge  */
-<MDL.Badge badge='♥' materialDesignIcon={true}>
+<Badge badge='♥' materialDesignIcon={true}>
 	<div>face</div>
-</MDL.Badge>
+</Badge>
 

@@ -4,6 +4,9 @@
 var React = require('react');
 var MDL = require('../../components');
 var Props = require('../document/Props.jsx');
+var DocTitle = require('../document/DocTitle.jsx');
+var DocSubtitle = require('../document/DocSubtitle.jsx');
+
 
 module.exports = React.createClass({
 
@@ -26,27 +29,6 @@ module.exports = React.createClass({
 		var style = {
 			width : '100%',
 			maxWidth : '1200px',
-		};
-
-		var titleStyle = {
-			fontSize: '24px',
-			lineHeight: '32px',
-			paddingTop: '16px',
-			marginBottom: '12px',
-			letterSpacing: '0px',
-			fontWeight: 400,
-			color: 'rgba(0, 0, 0, 0.87)',
-		};
-
-		var exampleStyle = {
-			color: '#e0e0e0',
-			padding: '8px',
-			marginBottom: '0px',
-			fontSize: '14px',
-			lineHeight: '20px',
-			letterSpacing: '0px',
-			textTransform: 'uppercase',
-			fontWeight: 500,
 		};
 
 		var demoStyle = {
@@ -132,10 +114,10 @@ module.exports = React.createClass({
 
 		return (
 			<div style={style}>
-				<h2 style={titleStyle}>Slider</h2>
+				<DocTitle title="Slider" />
 				<MDL.Card style={cardStyle} shadow={3}>
 					<div style={demoStyle}>
-						<h6 style={exampleStyle}>example</h6>
+						<DocSubtitle title="example" />
 						<MDL.Slider
 							min = {0}
 							max = {100}
@@ -152,7 +134,7 @@ module.exports = React.createClass({
 							defaultValue = {80}
 							disabled = {true}
 						/><br />
-						<div style={exampleStyle}>Methods (E.g setValue = 80)</div>
+						<DocSubtitle title="Methods (E.g setValue = 80)" />
 						<MDL.Slider
 							ref='test'
 							min = {0}
