@@ -34,6 +34,7 @@ var Props = React.createClass({
 		var contentStyle = {
 			marginTop : '-4px',
 			marginBottom : '30px',
+			lineHeight : '20px',
 		};
 		
 		var content = this.props.detail.map(function(item, key) {

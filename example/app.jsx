@@ -33,6 +33,7 @@ var App = React.createClass({
 			{ text : 'Badge', href : '#badge' },
 			{ text : 'Toggle', href : '#toggle' },
 			{ text : 'Tabs', href : '#tabs' },
+			{ text : 'Grid', href : '#grid' },
 		];
 		var style = {
 			padding : '24px',
@@ -70,8 +71,12 @@ var Loading = require('./views/Loading.jsx');
 var Slider = require('./views/Slider.jsx');
 var Card = require('./views/Card.jsx');
 var Badge = require('./views/Badge.jsx');
+<<<<<<< HEAD
 var Toggle = require('./views/Toggle.jsx');
 var Tabs = require('./views/Tabs.jsx');
+=======
+var Grid = require('./views/Grid.jsx');
+>>>>>>> feature/grid
 
 var routes = (
 	<Router.Route handler={App}>
@@ -85,8 +90,12 @@ var routes = (
 		<Router.Route name='slider' path='slider' handler={Slider} />
 		<Router.Route name='card' path='card' handler={Card} />
 		<Router.Route name='badge' path='badge' handler={Badge} />
+<<<<<<< HEAD
 		<Router.Route name='toggle' path='toggle' handler={Toggle} />
 		<Router.Route name='tabs' path='tabs' handler={Tabs} />
+=======
+		<Router.Route name='grid' path='grid' handler={Grid} />
+>>>>>>> feature/grid
 	</Router.Route>
 );
 
