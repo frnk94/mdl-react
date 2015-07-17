@@ -26,5 +26,6 @@ module.exports = {
 	CardMenu : require('./CardComponents/CardMenu.jsx'),
 	CardMedia : require('./CardComponents/CardMedia.jsx'),
 	Toggle : require('./Toggle.jsx'),
+	Tabs : require('./Tabs.jsx'),
 
 };
