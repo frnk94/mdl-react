@@ -6,6 +6,8 @@ var React = require('react');
 var MDL = require('../../components');
 var _ = require('lodash');
 var Props = require('../document/Props.jsx');
+var DocTitle = require('../document/DocTitle.jsx');
+var DocSubtitle = require('../document/DocSubtitle.jsx');
 
 module.exports = React.createClass({
 
@@ -219,6 +221,10 @@ module.exports = React.createClass({
 			display : this.state.valueArea,
 		};
 
+		var demoStyle = {
+			padding: '24px',
+		};
+
 		var style = {
 			width : '100%',
 			maxWidth : '1200px',
@@ -226,33 +232,37 @@ module.exports = React.createClass({
 
 		return (
 			<div style={style}>
+				<DocTitle title="Table" />
 				<MDL.Card style={cardStyle} shadow={6}>
-					<MDL.Table
-						ref="table"
-						selectable={true}
-						headers={header}
-						items={this.state.items}
-						itemStyles={itemStyles}
-						style={tableStyle}
-						shadow={2}
-					/>
-					<div style={buttonAreaStyle}>
-						<MDL.Button type="RaisedButton"
-						text="新增資料"
-						style={buttonStyle}
-						isRipple={true}
-						isAccent={true}
-						isMini={true}
-						isDisabled={false}
-						onClick={this.addData} />
-						<MDL.Button type="RaisedButton"
-							text="取得勾選值"
+					<div style={demoStyle}>
+						<DocSubtitle title="example" />
+						<MDL.Table
+							ref="table"
+							selectable={true}
+							headers={header}
+							items={this.state.items}
+							itemStyles={itemStyles}
+							style={tableStyle}
+							shadow={2}
+						/>
+						<div style={buttonAreaStyle}>
+							<MDL.Button type="RaisedButton"
+							text="新增資料"
 							style={buttonStyle}
 							isRipple={true}
-							isPrimary={true}
+							isAccent={true}
 							isMini={true}
 							isDisabled={false}
-							onClick={this.getSelected} />
+							onClick={this.addData} />
+							<MDL.Button type="RaisedButton"
+								text="取得勾選值"
+								style={buttonStyle}
+								isRipple={true}
+								isPrimary={true}
+								isMini={true}
+								isDisabled={false}
+								onClick={this.getSelected} />
+						</div>
 					</div>
 					<div style={valueStyle}>
 						{this.state.checkedValue}
