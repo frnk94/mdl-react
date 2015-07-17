@@ -25,6 +25,7 @@ var Layout = React.createClass({
 		]),
 		href : React.PropTypes.string,
 		isFixedHeader : React.PropTypes.bool,
+		isScrollHeader : React.PropTypes.bool,
 		isFixedDrawer : React.PropTypes.bool,
 		isTransparent : React.PropTypes.bool,
 		backgroundImage : React.PropTypes.string,
@@ -75,18 +76,85 @@ var Layout = React.createClass({
 		}
 	},
 
+	_renderDrawer : function(titleComponent) {
+		if(
+			this.props.drawerItems.length > 0
+		) {
+			var drawerItems = this.props.drawerItems.map(function(element, index) {
+				return (
+					<a className="mdl-navigation__link"
+						href={element.href}
+						onClick={element.onClick}
+						onTouchTap={element.onTouchTap}
+						style={element.style}
+						key={index}
+					>
+						{element.text}
+					</a>
+				);
+			});
+			return (
+				<div className="mdl-layout__drawer">
+					{!this.props.noDrawerTitle ? titleComponent : null}
+					<nav className="mdl-navigation">
+						{drawerItems}
+					</nav>
+				</div>
+			);
+		}
+	},
+
+	_renderHeader : function(titleComponent) {
+		if(
+			this.props.headerItems.length > 0
+		) {
+			var headerItems = this.props.headerItems.map(function(element, index) {
+				return (
+					<a className="mdl-navigation__link"
+						href={element.href}
+						onClick={element.onClick}
+						key={index}
+					>
+						{element.text}
+					</a>
+				);
+			});
+			var headerStyle = null;
+			var className = 'mdl-layout__header';
+			if(this.props.isTransparent) {
+				className += ' mdl-layout__header--transparent';
+			}
+			if(this.props.isScrollHeader) {
+				className += ' mdl-layout__header--scroll';
+			}
+			return (
+				<header className={className} style={this.props.headerStyle} >
+					<div className="mdl-layout__header-row">
+						{!this.props.noHeaderTitle ? titleComponent : null}
+						<div className="mdl-layout-spacer"></div>
+						<nav className="mdl-navigation mdl-layout--large-screen-only">
+							{headerItems}
+						</nav>
+					</div>
+				</header>
+			);
+		}
+	},
+
 	render: function() {
 
 		var classes = {
 			'mdl-layout' : true,
 			'mdl-js-layout' : true,
 		};
-
 		if(this.props.isFixedHeader) {
 			classes['mdl-layout--fixed-header'] = true;
 		}
 		if(this.props.isFixedDrawer) {
 			classes['mdl-layout--fixed-drawer'] = true;
+		}
+		if(this.props.drawerItems.length > 0) {
+			classes['mdl-layout--overlay-drawer-button'] = true;
 		}
 
 		var titleComponent = null;
@@ -110,88 +178,21 @@ var Layout = React.createClass({
 			);
 		}
 
-		var headerBlock = null;
-		if(
-			this.props.headerItems.length > 0
-		) {
-
-			var headerItems = this.props.headerItems.map(function(element, index) {
-				return (
-					<a className="mdl-navigation__link"
-						href={element.href}
-						onClick={element.onClick}
-						key={index}
-					>
-						{element.text}
-					</a>
-				);
-			});
-
-			var headerStyle = null;
-			var className = 'mdl-layout__header';
-			if(this.props.isTransparent) {
-				className += ' mdl-layout__header--transparent';
-			}
-
-			headerBlock = (
-				<header className={className} style={this.props.headerStyle} >
-					<div className="mdl-layout__header-row">
-						{!this.props.noHeaderTitle ? titleComponent : null}
-						<div className="mdl-layout-spacer"></div>
-						<nav className="mdl-navigation mdl-layout--large-screen-only">
-							{headerItems}
-						</nav>
-					</div>
-				</header>
-			);
-
-		}
-
-		var drawerBlock = null;
-		if(
-			this.props.drawerItems.length > 0
-		) {
-
-			classes['mdl-layout--overlay-drawer-button'] = true;
-
-			var drawerItems = this.props.drawerItems.map(function(element, index) {
-				return (
-					<a className="mdl-navigation__link"
-						href={element.href}
-						onClick={element.onClick}
-						onTouchTap={element.onTouchTap}
-						style={element.style}
-						key={index}
-					>
-						{element.text}
-					</a>
-				);
-			});
-
-			drawerBlock = (
-				<div className="mdl-layout__drawer">
-					{!this.props.noDrawerTitle ? titleComponent : null}
-					<nav className="mdl-navigation">
-						{drawerItems}
-					</nav>
-				</div>
-			);
-
-		}
-
 		var style = this.props.style;
-
 		if(this.props.backgroundImage) {
 			style = style || {};
 			style.background = "url('" + this.props.backgroundImage + "') center / cover";
 		}
 
+		var pageContentStyle = {
+			minHeight : '1000px',
+		};
 		return (
 			<div className={cx(classes)} style={style}>
-				{headerBlock}
-				{drawerBlock}
+				{this._renderHeader(titleComponent)}
+				{this._renderDrawer(titleComponent)}
 				<main className="mdl-layout__content">
-					<div className="page-content">
+					<div className="page-content" style={pageContentStyle} >
 						{this.props.children}
 					</div>
 				</main>

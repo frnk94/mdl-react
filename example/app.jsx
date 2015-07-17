@@ -44,11 +44,12 @@ var App = React.createClass({
 			<MDL.Layout
 				title='mdl-react'
 				href='#'
-				isFixedHeader={true}
+				// isFixedHeader={true}
 				// isFixedDrawer={true}
 				headerItems={headerItems}
 				drawerItems={drawerItems}
 				drawerStyle={{color:'red'}}
+				isScrollHeader={true}
 				// isTransparent={true}
 				// headerColor='red'
 				// noHeaderTitle={true}
