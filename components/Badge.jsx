@@ -10,12 +10,10 @@ var cx = require('classnames');
 		badge,					node isRequired,		the legal char for <Badge> element
 		materialDesignIcon,		bool,					use mdl icon in Badge
 		noBackground,			bool,					use Background in Badge
-		style,					objecy,					for css
+		style,					object,					for css
 	Icon
 		https://www.google.com/design/icons/
 */
-
-var React = require('react');
 
 module.exports = React.createClass({
 
@@ -63,7 +61,9 @@ module.exports = React.createClass({
 
 		var style = this.props.style;
 
-		style.display = this.props.display ? this.props.display : style.display;
+		if(style){
+			style.display= 'inline-block';
+		}
 
 		return (
 			<div 

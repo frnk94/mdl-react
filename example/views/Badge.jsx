@@ -41,6 +41,10 @@ module.exports = React.createClass({
 			margin: '0px',
 		};
 
+		var badgeStyle = {
+			  margin: '10px 30px 10px 30px',
+		};
+
 		var cardStyle = {
 			width : '100%',
 			margin : '0px',
@@ -65,18 +69,27 @@ module.exports = React.createClass({
 		var propsDetail = [
 			{
 				key : 'badge',
-				type : 'string',
-				state : 'required && default: 0',
-				content : 'a minimum value for an <input> element',
+				type : 'node',
+				state : 'required',
+				content : 'the legal char for <Badge> element',
 			},
-		];
-
-		var eventsDetail = [
 			{
-				key : 'getValue',
-				type : 'function',
-				state : '',
-				content : 'get the value from the current sliders',
+				key : 'materialDesignIcon',
+				type : 'boolen',
+				state : 'optional',
+				content : 'use mdl icon in Badge',
+			},
+			{
+				key : 'noBackground',
+				type : 'bool',
+				state : 'optional',
+				content : 'use Background in Badge',
+			},
+			{
+				key : 'style',
+				type : 'object',
+				state : 'optional',
+				content : 'for CSS',
 			},
 		];
 
@@ -87,36 +100,36 @@ module.exports = React.createClass({
 					<div style={exampleStyle}>example</div>
 						<div style={demoStyle}>
 						<MDL.Badge
-							badge = {1}
-							materialDesignIcon = {true}
+							style={badgeStyle}
 						>
-							<div>account_box</div>
+							<div>yourText</div>
 						</MDL.Badge>
-
 						<MDL.Badge
 							badge = {10}
-							materialDesignIcon = {true}
 							noBackground = {true}
-						>
-							<div>
-								group
-							</div>
-						</MDL.Badge>
-
-						<MDL.Badge
-							badge = '♥'
-							materialDesignIcon = {true}
+							style={badgeStyle}
 						>
 							<div>
 								mail
 							</div>
 						</MDL.Badge>
-
 						<MDL.Badge
-							badge = '♥'
+							badge = {10}
+							noBackground = {true}
+							materialDesignIcon = {true}
+							style={badgeStyle}
 						>
 							<div>
-								Wood
+								mail
+							</div>
+						</MDL.Badge>
+						<MDL.Badge
+							badge = '♥'
+							materialDesignIcon = {true}
+							style={badgeStyle}
+						>
+							<div>
+								face
 							</div>
 						</MDL.Badge>
 					</div>
@@ -126,7 +139,6 @@ module.exports = React.createClass({
 					/>
 				</MDL.Card>
 				<Props detail={propsDetail} title="Props" />
-				<Props detail={eventsDetail} title="Methods" />
 			</div>
 		);
 	},
