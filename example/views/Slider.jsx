@@ -135,7 +135,7 @@ module.exports = React.createClass({
 				<h2 style={titleStyle}>Slider</h2>
 				<MDL.Card style={cardStyle} shadow={3}>
 					<div style={demoStyle}>
-						<div style={exampleStyle}>example</div>
+						<h6 style={exampleStyle}>example</h6>
 						<MDL.Slider
 							min = {0}
 							max = {100}

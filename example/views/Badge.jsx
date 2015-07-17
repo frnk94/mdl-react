@@ -99,40 +99,40 @@ module.exports = React.createClass({
 				<h2 style={titleStyle}>Badge</h2>
 				<MDL.Card style={cardStyle} shadow={3}>
 					<div style={demoStyle}>
-					<div style={exampleStyle}>example</div>
-					<MDL.Badge
-						style={badgeStyle}
-					>
-						<div>yourText</div>
-					</MDL.Badge>
-					<MDL.Badge
-						badge = {10}
-						noBackground = {true}
-						style={badgeStyle}
-					>
-						<div>
-							mail
-						</div>
-					</MDL.Badge>
-					<MDL.Badge
-						badge = {10}
-						noBackground = {true}
-						materialDesignIcon = {true}
-						style={badgeStyle}
-					>
-						<div>
-							mail
-						</div>
-					</MDL.Badge>
-					<MDL.Badge
-						badge = '♥'
-						materialDesignIcon = {true}
-						style={badgeStyle}
-					>
-						<div>
-							face
-						</div>
-					</MDL.Badge>
+						<h6 style={exampleStyle}>example</h6>
+						<MDL.Badge
+							style={badgeStyle}
+						>
+							<div>yourText</div>
+						</MDL.Badge>
+						<MDL.Badge
+							badge = {10}
+							noBackground = {true}
+							style={badgeStyle}
+						>
+							<div>
+								mail
+							</div>
+						</MDL.Badge>
+						<MDL.Badge
+							badge = {10}
+							noBackground = {true}
+							materialDesignIcon = {true}
+							style={badgeStyle}
+						>
+							<div>
+								mail
+							</div>
+						</MDL.Badge>
+						<MDL.Badge
+							badge = '♥'
+							materialDesignIcon = {true}
+							style={badgeStyle}
+						>
+							<div>
+								face
+							</div>
+						</MDL.Badge>
 					</div>
 					<MDL.PrismCode
 						src='http://fandora.github.io/mdl-react/example/codes/BadgeInfo.js'
