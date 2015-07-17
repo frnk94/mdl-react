@@ -42,7 +42,8 @@ module.exports = React.createClass({
 		};
 
 		var badgeStyle = {
-			  margin: '10px 30px 10px 30px',
+			margin: '10px 30px 10px 30px',
+			verticalAlign: 'middle',
 		};
 
 		var cardStyle = {
