@@ -18,7 +18,7 @@ module.exports = React.createClass({
 		};
 
 		return (
-			<h6 style={exampleStyle}>{this.props.title}</h6>
+			<div style={exampleStyle}>{this.props.title}</div>
 		);
 	}
 
