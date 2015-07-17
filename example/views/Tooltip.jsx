@@ -9,8 +9,57 @@ module.exports = React.createClass({
 
 	render: function() {
 		var propsDetail = [
-
+			{
+				key : 'element',
+				type : 'node',
+				state : 'required',
+				content : '觸發tooltip的物件',
+			},
+			{
+				key : 'text',
+				type : 'String',
+				state : 'optional',
+				content : 'tootip裡的文字',
+			},
+			{
+				key : 'large',
+				type : 'boolean',
+				state : 'optional',
+				content : 'tootip是否要粗體',
+			},
+			{
+				key : 'url',
+				type : 'String',
+				state : 'optional',
+				content : 'tootip裡的圖片',
+			},
+			{
+				key : 'width',
+				type : 'number',
+				state : 'optional',
+				content : 'tootip裡的圖片寬度',
+			},
+			{
+				key : 'height',
+				type : 'number',
+				state : 'optional',
+				content : 'tootip裡的圖片高度',
+			},
 		];
+
+		var prismCode = {
+			fontSize : '14px',
+			marginBottom : '0px',
+		};
+
+		var cardStyle = {
+			width : '100%',
+			margin : '0px',
+		};
+
+		var tooltipStyle = {
+			margin : '24px auto',
+		};
 
 		var style = {
 			width : '100%',
@@ -21,8 +70,19 @@ module.exports = React.createClass({
 			<div style={style}>
 				<MDL.Card style={cardStyle} shadow={6}>
 				<MDL.Tooltip 
+					element = 'move your mouse on this.'
 					text = 'This is a bird.'
+					url = 'https://dl.dropboxusercontent.com/u/107164257/CSS3Images/CSS3/bird.png'
+					large = {true}
+					width = {30}
+					height = {30}
+					style = {tooltipStyle}
 				/>
+				<MDL.PrismCode
+						src='../codes/Tooltip.js'
+						lang='jsx'
+						style={prismCode}
+					/>
 				</MDL.Card>
 				<Props detail={propsDetail} title="Props" />
 			</div>

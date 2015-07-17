@@ -31,6 +31,7 @@ var App = React.createClass({
 			{ text : 'Slider', href : '#slider' },
 			{ text : 'Card', href : '#card' },
 			{ text : 'badge', href : '#badge' },
+			{ text : 'Tooltip', href : '#tooltip' },
 			// {
 			// 	text : (
 			// 		<span>
@@ -77,6 +78,7 @@ var Loading = require('./views/Loading.jsx');
 var Slider = require('./views/Slider.jsx');
 var Card = require('./views/Card.jsx');
 var Badge = require('./views/Badge.jsx');
+var Tooltip = require('./views/Tooltip.jsx');
 
 var routes = (
 	<Router.Route handler={App}>
@@ -90,6 +92,7 @@ var routes = (
 		<Router.Route name='slider' path='slider' handler={Slider} />
 		<Router.Route name='card' path='card' handler={Card} />
 		<Router.Route name='badge' path='badge' handler={Badge} />
+		<Router.Route name='tooltip' path='tooltip' handler={Tooltip} />
 	</Router.Route>
 );
 

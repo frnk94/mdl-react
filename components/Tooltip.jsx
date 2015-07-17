@@ -7,7 +7,7 @@ var _ = require('lodash');
 		http://www.getmdl.io/components/index.html#tooltips-section
 	Props
 		large,		是否要選擇 mdl-tool--large
-		cource,		圖片來源
+		url,			圖片來源
 		text,			tooltips要顯示的文字
 		width,		圖片寬度
 		height,		圖片高度
@@ -24,6 +24,7 @@ module.exports = React.createClass({
 		text: React.PropTypes.string,
 		width: React.PropTypes.number,
 		height: React.PropTypes.number,
+		style: React.PropTypes.object,
 	},
 
 	getDefaultProps: function() {
@@ -33,6 +34,7 @@ module.exports = React.createClass({
 			large: false,
 			width: 10,
 			height: 20,
+			style: {},
 		};
 	},
 
@@ -62,7 +64,7 @@ getInitialState: function() {
 				<p id={this.state.id}>
 					{this.props.element}
 				</p>
-				<div className={cx(classes)} htmlFor={this.state.id}> 
+				<div className={cx(classes)} htmlFor={this.state.id} style={this.props.style}> 
 					<img src={this.props.url} width={this.props.width} height={this.props.height} />
 					{this.props.text}
 				</div>
