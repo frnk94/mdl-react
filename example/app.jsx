@@ -12,28 +12,28 @@ var App = React.createClass({
 	],
 	render : function() {
 		var headerItems = [
-			{
-				text : (
-					<span>
-						by Fandora Shop
-					</span>
-				),
-				href : 'http://FandoraShop.com',
-				target : '_blank',
-			},
+			<a href='http://FandoraShop.com' target='_blank'>by Fandora Shop</a>
 		];
-		var secondHeaderItems = [
-			{ text : 'Text Field', href : '#text-field' },
-			{ text : 'Menu', href : '#menu' },
+		var waterfallItems = [
+			<a href='#text-field'>Text Field</a>,
+			<a href='#menu'>Menu</a>,
+		];
+		// var tabItems = [
+		// 	{ text : 'Table', href : '#table' },
+		// 	{ text : 'Button', href : '#button' },
+		// ];
+		var tabItems = [
+			<a href='#table'>Table</a>,
+			<a href='#button'>Button</a>,
 		];
 		var drawerItems = [
-			{ text : 'Text Field', href : '#text-field' },
-			{ text : 'Menu', href : '#menu' },
-			{ text : 'Table', href : '#table' },
-			{ text : 'Button', href : '#button' },
-			{ text : 'Loading', href : '#loading' },
-			{ text : 'Slider', href : '#slider' },
-			{ text : 'Card', href : '#card' },
+			<a href='#text-field'>Text Field</a>,
+			<a href='#menu'>Menu</a>,
+			<a href='#table'>Table</a>,
+			<a href='#button'>Button</a>,
+			<a href='#loading'>Loading</a>,
+			<a href='#slider'>Slider</a>,
+			<a href='#card'>Card</a>,
 		];
 		return (
 			<MDL.Layout
@@ -41,13 +41,14 @@ var App = React.createClass({
 				href='#'
 				isFixedHeader={true}
 				// isFixedDrawer={true}
-				// isHeaderSearch={true}
-				// isWaterfallHeader={true}
-				headerItems={headerItems}
-				secondHeaderItems={secondHeaderItems}
-				drawerItems={drawerItems}
-				drawerStyle={{color:'red'}}
 				// isScrollHeader={true}
+				isFixedTabs={true}
+				// showHeaderSearch={true}
+				headerItems={headerItems}
+				waterfallItems={waterfallItems}
+				tabItems={tabItems}
+				drawerItems={drawerItems}
+				// drawerButtonStyle={{color:'red'}}
 				// isTransparent={true}
 				// headerStyle={{background:"url('http://www.getmdl.io/assets/demos/transparent.jpg') center / cover"}}
 				contentStyle={{ minHeight : '1000px' }}

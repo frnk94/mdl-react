@@ -11,12 +11,14 @@ var connect = require('gulp-connect');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var uglify = require('gulp-uglify');
+var assign = require('lodash').assign;
 
 function bundleGenerator(isWatch) {
-	var b = browserify({
+	var opts = assign({}, watchify.args, {
 		entries : './example/app.jsx',
 		transform : [reactify],
 	});
+	var b = browserify(opts);
 	if(isWatch) {
 		b = watchify(b);
 	}

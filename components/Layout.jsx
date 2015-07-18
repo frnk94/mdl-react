@@ -18,57 +18,36 @@ var Layout = React.createClass({
 
 	propTypes: {
 		style : React.PropTypes.object,
-		drawerStyle : React.PropTypes.object,
+		drawerButtonStyle : React.PropTypes.object,
 		headerStyle : React.PropTypes.object,
 		contentStyle : React.PropTypes.object,
 		searchInputStyle : React.PropTypes.object,
-		title : React.PropTypes.oneOfType([
-			React.PropTypes.string,
-			React.PropTypes.element,
-		]),
-		href : React.PropTypes.string,
 		onSearchSubmit : React.PropTypes.func,
-		isHeaderSearch : React.PropTypes.bool,
+		showHeaderSearch : React.PropTypes.bool,
 		isFixedHeader : React.PropTypes.bool,
 		isScrollHeader : React.PropTypes.bool,
-		isWaterfallHeader : React.PropTypes.bool,
 		isFixedDrawer : React.PropTypes.bool,
 		isTransparent : React.PropTypes.bool,
 		isHideHeaderMenuWhenMobile : React.PropTypes.bool,
 		noHeaderTitle : React.PropTypes.bool,
 		noDrawerTitle : React.PropTypes.bool,
-		headerItems : React.PropTypes.arrayOf(React.PropTypes.shape({
-			text : React.PropTypes.oneOfType([
-				React.PropTypes.string,
-				React.PropTypes.element,
-			]).isRequired,
-			href : React.PropTypes.string,
-			onClick : React.PropTypes.func,
-		})),
-		secondHeaderItems : React.PropTypes.arrayOf(React.PropTypes.shape({
-			text : React.PropTypes.oneOfType([
-				React.PropTypes.string,
-				React.PropTypes.element,
-			]).isRequired,
-			href : React.PropTypes.string,
-			onClick : React.PropTypes.func,
-		})),
-		drawerItems : React.PropTypes.arrayOf(React.PropTypes.shape({
-			text : React.PropTypes.oneOfType([
-				React.PropTypes.string,
-				React.PropTypes.element,
-			]).isRequired,
-			href : React.PropTypes.string,
-			onClick : React.PropTypes.func,
-			style : React.PropTypes.object,
-		})),
+		title : React.PropTypes.oneOfType([
+			React.PropTypes.string,
+			React.PropTypes.element,
+		]),
+		href : React.PropTypes.string,
+		headerItems : React.PropTypes.arrayOf(React.PropTypes.element),
+		waterfallItems : React.PropTypes.arrayOf(React.PropTypes.element),
+		tabItems : React.PropTypes.arrayOf(React.PropTypes.element),
+		drawerItems : React.PropTypes.arrayOf(React.PropTypes.element),
 	},
 
 	getDefaultProps: function() {
 		return {
 			title : '',
 			headerItems : [],
-			secondHeaderItems : [],
+			waterfallItems : [],
+			tabItems : [],
 			drawerItems : [],
 			style : {},
 		};
@@ -84,51 +63,23 @@ var Layout = React.createClass({
 
 	_mdlize : function() {
 		componentHandler.upgradeDom();
-		if(this.props.drawerStyle) {
-			React.findDOMNode(this).getElementsByClassName("mdl-layout__drawer-button")[0].style = this.props.drawerStyle;
+		if(this.props.drawerButtonStyle) {
+			var btn = React.findDOMNode(this).getElementsByClassName("mdl-layout__drawer-button");
+			if(btn && btn.length > 0) {
+				for(var key in this.props.drawerButtonStyle) {
+					btn[0].style[key] = this.props.drawerButtonStyle[key];
+				}
+			}
 		}
 	},
 
-	_renderDrawer : function(titleComponent) {
-		if(
-			this.props.drawerItems.length > 0
-		) {
-			var drawerItems = this.props.drawerItems.map(function(element, index) {
-				return (
-					<a className="mdl-navigation__link"
-						href={element.href}
-						onClick={element.onClick}
-						onTouchTap={element.onClick}
-						style={element.style}
-						key={index}
-					>
-						{element.text}
-					</a>
-				);
+	_generateLinks : function(items, className) {
+		return items.map(function(item, index) {
+			var newClassName = ('' || item.props.className) + ' ' + className;
+			return React.cloneElement(item, {
+				key : index,
+				className : newClassName,
 			});
-			return (
-				<div className="mdl-layout__drawer">
-					{!this.props.noDrawerTitle ? titleComponent : null}
-					<nav className="mdl-navigation">
-						{drawerItems}
-					</nav>
-				</div>
-			);
-		}
-	},
-
-	_generateLinks : function(items) {
-		return items.map(function(element, index) {
-			return (
-				<a className="mdl-navigation__link"
-					href={element.href}
-					onClick={element.onClick}
-					onTouchTap={element.onClick}
-					key={index}
-				>
-					{element.text}
-				</a>
-			);
 		});
 	},
 
@@ -136,27 +87,32 @@ var Layout = React.createClass({
 
 		if(
 			this.props.headerItems.length > 0 ||
-			this.props.isHeaderSearch
+			this.props.tabItems.length > 0 ||
+			this.props.showHeaderSearch
 		) {
 
 			var haderNav = null;
 			if(
 				this.props.headerItems.length > 0 &&
-				!this.props.isHeaderSearch
+				!this.props.showHeaderSearch
 			) {
 				var headerNavClassName = 'mdl-navigation';
 				if(this.props.isHideHeaderMenuWhenMobile) {
 					headerNavClassName += ' mdl-layout--large-screen-only';
 				}
+				var items = this._generateLinks(
+					this.props.headerItems,
+					'mdl-navigation__link'
+				);
 				haderNav = (
 					<nav className={headerNavClassName}>
-						{this._generateLinks(this.props.headerItems)}
+						{items}
 					</nav>
 				);
 			}
 
 			var headerSearch = null;
-			if(this.props.isHeaderSearch) {
+			if(this.props.showHeaderSearch) {
 				headerSearch = (
 					<HeaderSearch
 						submit={this.props.onSearchSubmit}
@@ -167,15 +123,42 @@ var Layout = React.createClass({
 
 			var secondHeaderRow = null;
 			if(
-				this.props.isWaterfallHeader &&
-				this.props.secondHeaderItems.length > 0
+				this.props.waterfallItems.length > 0 &&
+				this.props.tabItems == 0
 			) {
+				var items = this._generateLinks(
+					this.props.waterfallItems,
+					'mdl-navigation__link'
+				);
+				if(
+					this.props.showHeaderSearch &&
+					items.length > 0
+				) {
+					items[items.length - 1] = React.cloneElement(
+						items[items.length - 1],
+						{
+							style : { paddingRight : 0 },
+						}
+					);
+				}
 				secondHeaderRow = (
 					<div className="mdl-layout__header-row">
 						<div className="mdl-layout-spacer"></div>
 						<nav className="waterfall-demo-header-nav mdl-navigation">
-							{this._generateLinks(this.props.secondHeaderItems)}
+							{items}
 						</nav>
+					</div>
+				);
+			}
+
+			var headerTab = null;
+			if(
+				this.props.tabItems.length > 0
+			) {
+				var tabItems = this._generateLinks(this.props.tabItems, 'mdl-layout__tab');
+				headerTab = (
+					<div className="mdl-layout__tab-bar mdl-js-ripple-effect">
+						{tabItems}
 					</div>
 				);
 			}
@@ -187,7 +170,10 @@ var Layout = React.createClass({
 			if(this.props.isScrollHeader) {
 				className += ' mdl-layout__header--scroll';
 			}
-			if(this.props.isWaterfallHeader) {
+			if(
+				this.props.waterfallItems.length > 0 &&
+				this.props.tabItems.length == 0
+			) {
 				className += ' mdl-layout__header--waterfall';
 			}
 
@@ -200,11 +186,28 @@ var Layout = React.createClass({
 						{headerSearch}
 					</div>
 					{secondHeaderRow}
+					{headerTab}
 				</header>
 			);
 
 		}
 
+	},
+
+	_renderDrawer : function(titleComponent) {
+		if(
+			this.props.drawerItems.length > 0
+		) {
+			var items = this._generateLinks(this.props.drawerItems, 'mdl-navigation__link');
+			return (
+				<div className="mdl-layout__drawer">
+					{!this.props.noDrawerTitle ? titleComponent : null}
+					<nav className="mdl-navigation">
+						{items}
+					</nav>
+				</div>
+			);
+		}
 	},
 
 	render: function() {
@@ -221,6 +224,12 @@ var Layout = React.createClass({
 		}
 		if(this.props.drawerItems.length > 0) {
 			classes['mdl-layout--overlay-drawer-button'] = true;
+		}
+		if(
+			this.props.tabItems.length > 0 &&
+			this.props.isFixedTabs
+		) {
+			classes['mdl-layout--fixed-tabs'] = true
 		}
 
 		var titleComponent = null;
