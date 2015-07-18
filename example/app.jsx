@@ -46,6 +46,7 @@ var App = React.createClass({
 				href='#'
 				// isFixedHeader={true}
 				// isFixedDrawer={true}
+				isHeaderSearch={true}
 				headerItems={headerItems}
 				drawerItems={drawerItems}
 				drawerStyle={{color:'red'}}
