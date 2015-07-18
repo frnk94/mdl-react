@@ -22,6 +22,10 @@ var App = React.createClass({
 				target : '_blank',
 			},
 		];
+		var secondHeaderItems = [
+			{ text : 'Text Field', href : '#text-field' },
+			{ text : 'Menu', href : '#menu' },
+		];
 		var drawerItems = [
 			{ text : 'Text Field', href : '#text-field' },
 			{ text : 'Menu', href : '#menu' },
@@ -30,29 +34,23 @@ var App = React.createClass({
 			{ text : 'Loading', href : '#loading' },
 			{ text : 'Slider', href : '#slider' },
 			{ text : 'Card', href : '#card' },
-			// {
-			// 	text : (
-			// 		<span>
-			// 			by Fandora Shop RD Team
-			// 		</span>
-			// 	),
-			// 	href : 'http://FandoraShop.com',
-			// 	target : '_blank',
-			// },
 		];
 		return (
 			<MDL.Layout
 				title='mdl-react'
 				href='#'
-				// isFixedHeader={true}
+				isFixedHeader={true}
 				// isFixedDrawer={true}
-				isHeaderSearch={true}
+				// isHeaderSearch={true}
+				// isWaterfallHeader={true}
 				headerItems={headerItems}
+				secondHeaderItems={secondHeaderItems}
 				drawerItems={drawerItems}
 				drawerStyle={{color:'red'}}
-				isScrollHeader={true}
+				// isScrollHeader={true}
 				// isTransparent={true}
-				// headerColor='red'
+				// headerStyle={{background:"url('http://www.getmdl.io/assets/demos/transparent.jpg') center / cover"}}
+				contentStyle={{ minHeight : '1000px' }}
 				// noHeaderTitle={true}
 				noDrawerTitle={true}
 			>

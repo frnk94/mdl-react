@@ -12,6 +12,7 @@
 
 var React = require('react');
 var cx = require('classnames');
+var _ = require('lodash');
 
 var Layout = React.createClass({
 
@@ -19,6 +20,8 @@ var Layout = React.createClass({
 		style : React.PropTypes.object,
 		drawerStyle : React.PropTypes.object,
 		headerStyle : React.PropTypes.object,
+		contentStyle : React.PropTypes.object,
+		searchInputStyle : React.PropTypes.object,
 		title : React.PropTypes.oneOfType([
 			React.PropTypes.string,
 			React.PropTypes.element,
@@ -32,10 +35,17 @@ var Layout = React.createClass({
 		isFixedDrawer : React.PropTypes.bool,
 		isTransparent : React.PropTypes.bool,
 		isHideHeaderMenuWhenMobile : React.PropTypes.bool,
-		backgroundImage : React.PropTypes.string,
 		noHeaderTitle : React.PropTypes.bool,
 		noDrawerTitle : React.PropTypes.bool,
 		headerItems : React.PropTypes.arrayOf(React.PropTypes.shape({
+			text : React.PropTypes.oneOfType([
+				React.PropTypes.string,
+				React.PropTypes.element,
+			]).isRequired,
+			href : React.PropTypes.string,
+			onClick : React.PropTypes.func,
+		})),
+		secondHeaderItems : React.PropTypes.arrayOf(React.PropTypes.shape({
 			text : React.PropTypes.oneOfType([
 				React.PropTypes.string,
 				React.PropTypes.element,
@@ -50,7 +60,6 @@ var Layout = React.createClass({
 			]).isRequired,
 			href : React.PropTypes.string,
 			onClick : React.PropTypes.func,
-			onTouchTap : React.PropTypes.func,
 			style : React.PropTypes.object,
 		})),
 	},
@@ -59,6 +68,7 @@ var Layout = React.createClass({
 		return {
 			title : '',
 			headerItems : [],
+			secondHeaderItems : [],
 			drawerItems : [],
 			style : {},
 		};
@@ -88,7 +98,7 @@ var Layout = React.createClass({
 					<a className="mdl-navigation__link"
 						href={element.href}
 						onClick={element.onClick}
-						onTouchTap={element.onTouchTap}
+						onTouchTap={element.onClick}
 						style={element.style}
 						key={index}
 					>
@@ -107,6 +117,21 @@ var Layout = React.createClass({
 		}
 	},
 
+	_generateLinks : function(items) {
+		return items.map(function(element, index) {
+			return (
+				<a className="mdl-navigation__link"
+					href={element.href}
+					onClick={element.onClick}
+					onTouchTap={element.onClick}
+					key={index}
+				>
+					{element.text}
+				</a>
+			);
+		});
+	},
+
 	_renderHeader : function(titleComponent) {
 
 		if(
@@ -123,31 +148,39 @@ var Layout = React.createClass({
 				if(this.props.isHideHeaderMenuWhenMobile) {
 					headerNavClassName += ' mdl-layout--large-screen-only';
 				}
-				var headerItems = this.props.headerItems.map(function(element, index) {
-					return (
-						<a className="mdl-navigation__link"
-							href={element.href}
-							onClick={element.onClick}
-							key={index}
-						>
-							{element.text}
-						</a>
-					);
-				});
 				haderNav = (
 					<nav className={headerNavClassName}>
-						{headerItems}
+						{this._generateLinks(this.props.headerItems)}
 					</nav>
 				);
 			}
 
 			var headerSearch = null;
 			if(this.props.isHeaderSearch) {
-				headerSearch = <HeaderSearch submit={this.props.onSearchSubmit} />;
+				headerSearch = (
+					<HeaderSearch
+						submit={this.props.onSearchSubmit}
+						style={this.props.searchInputStyle}
+					/>
+				);
+			}
+
+			var secondHeaderRow = null;
+			if(
+				this.props.isWaterfallHeader &&
+				this.props.secondHeaderItems.length > 0
+			) {
+				secondHeaderRow = (
+					<div className="mdl-layout__header-row">
+						<div className="mdl-layout-spacer"></div>
+						<nav className="waterfall-demo-header-nav mdl-navigation">
+							{this._generateLinks(this.props.secondHeaderItems)}
+						</nav>
+					</div>
+				);
 			}
 
 			var className = 'mdl-layout__header';
-
 			if(this.props.isTransparent) {
 				className += ' mdl-layout__header--transparent';
 			}
@@ -166,6 +199,7 @@ var Layout = React.createClass({
 						{haderNav}
 						{headerSearch}
 					</div>
+					{secondHeaderRow}
 				</header>
 			);
 
@@ -210,21 +244,12 @@ var Layout = React.createClass({
 			);
 		}
 
-		var style = this.props.style;
-		if(this.props.backgroundImage) {
-			style = style || {};
-			style.background = "url('" + this.props.backgroundImage + "') center / cover";
-		}
-
-		var pageContentStyle = {
-			minHeight : '1000px',
-		};
 		return (
-			<div className={cx(classes)} style={style}>
+			<div className={cx(classes)} style={this.props.style}>
 				{this._renderHeader(titleComponent)}
 				{this._renderDrawer(titleComponent)}
 				<main className="mdl-layout__content">
-					<div className="page-content" style={pageContentStyle} >
+					<div className="page-content" style={this.props.contentStyle} >
 						{this.props.children}
 					</div>
 				</main>
@@ -239,6 +264,7 @@ var HeaderSearch = React.createClass({
 
 	propTypes: {
 		submit : React.PropTypes.func,
+		inputStyle : React.PropTypes.object,
 	},
 
 	_onKeyPress : function(e) {
@@ -251,6 +277,9 @@ var HeaderSearch = React.createClass({
 	},
 
 	render : function() {
+		var inputStyle = _.extend({
+			borderBottomColor : 'white',
+		}, this.props.inputStyle);
 		return (
 			<div className="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
 				<label
@@ -262,6 +291,7 @@ var HeaderSearch = React.createClass({
 					<input
 						className="mdl-textfield__input" type="text" name="sample"
 						id="fixed-header-drawer-exp"
+						style={inputStyle}
 						onKeyPress={this._onKeyPress}
 					/>
 				</div>
