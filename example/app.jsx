@@ -15,13 +15,10 @@ var App = React.createClass({
 			<a href='http://FandoraShop.com' target='_blank'>by Fandora Shop</a>
 		];
 		var waterfallItems = [
-			<a href='#text-field'>Text Field</a>,
-			<a href='#menu'>Menu</a>,
+			<a href='http://www.getmdl.io/' target='_blank'>Material Design Lite</a>,
+			<a href='https://facebook.github.io/react/' target='_blank'>React</a>,
+			// <a href='http://FandoraShop.com' target='_blank'>by Fandora Shop</a>,
 		];
-		// var tabItems = [
-		// 	{ text : 'Table', href : '#table' },
-		// 	{ text : 'Button', href : '#button' },
-		// ];
 		var tabItems = [
 			<a href='#table'>Table</a>,
 			<a href='#button'>Button</a>,
@@ -52,8 +49,8 @@ var App = React.createClass({
 				isFixedTabs={true}
 				// showHeaderSearch={true}
 				headerItems={headerItems}
-				waterfallItems={waterfallItems}
-				tabItems={tabItems}
+				// waterfallItems={waterfallItems}
+				// tabItems={tabItems}
 				drawerItems={drawerItems}
 				// drawerButtonStyle={{color:'red'}}
 				// isTransparent={true}
