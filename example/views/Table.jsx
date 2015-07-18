@@ -119,7 +119,7 @@ module.exports = React.createClass({
 			{
 				color : '#00CACA',
 			},
-			{},
+			{}
 		];
 
 		var propsDetail = [
