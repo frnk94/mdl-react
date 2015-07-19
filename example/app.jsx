@@ -34,6 +34,7 @@ var App = React.createClass({
 			{ text : 'Toggle', href : '#toggle' },
 			{ text : 'Tabs', href : '#tabs' },
 			{ text : 'Grid', href : '#grid' },
+			{ text : 'Footer', href : '#footer' },
 		];
 		var style = {
 			padding : '24px',
@@ -74,6 +75,7 @@ var Badge = require('./views/Badge.jsx');
 var Toggle = require('./views/Toggle.jsx');
 var Tabs = require('./views/Tabs.jsx');
 var Grid = require('./views/Grid.jsx');
+var Footer = require('./views/Footer.jsx');
 
 var routes = (
 	<Router.Route handler={App}>
@@ -90,6 +92,7 @@ var routes = (
 		<Router.Route name='toggle' path='toggle' handler={Toggle} />
 		<Router.Route name='tabs' path='tabs' handler={Tabs} />
 		<Router.Route name='grid' path='grid' handler={Grid} />
+		<Router.Route name='footer' path='footer' handler={Footer} />
 	</Router.Route>
 );
 
