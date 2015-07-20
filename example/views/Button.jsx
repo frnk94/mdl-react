@@ -52,8 +52,8 @@ module.exports = React.createClass({
 			state : 'required',
 			content : (<div>
 				<p>This is what will be displayed inside the button.</p>
-				<p>If the type of button is IconButton, the text will be directly transformed to material-icons.
-					(You can searach the label of material icons in <a href="https://www.google.com/design/icons/" target="_blank">https://www.google.com/design/icons/</a>.
+				<p>If the type of button is IconButton, you should manually wrap the icon element inside.
+					(You can search the label of material icons in <a href="https://www.google.com/design/icons/" target="_blank">https://www.google.com/design/icons/</a>.
 						If the label consists of at least 2 words, remember using the underline symbol _ to joint words, i.e. open_in_browser.)</p>
 				</div>),
 			},
@@ -169,7 +169,7 @@ module.exports = React.createClass({
 								<MDL.Button type="FloatingActionButton" style={this.styles.button}
 									ref="FAB"
 									text={<i className="material-icons">star</i>}
-									isDisabled={true}/>
+									defaultDisabled={true}/>
 								<br />
 								<MDL.Button type="FloatingActionButton" style={this.styles.miniFAB}
 									text={<i className="material-icons">notifications_none</i>}
@@ -208,7 +208,7 @@ module.exports = React.createClass({
 								<MDL.Button type="RaisedButton" style={this.styles.button}
 									ref="raised"
 									text="Disabled"
-									isDisabled={true}/>
+									defaultDisabled={true}/>
 							</div>
 
 							<div style={this.styles.tab}>
@@ -232,32 +232,32 @@ module.exports = React.createClass({
 								<MDL.Button type="FlatButton" style={this.styles.button}
 									ref="flat"
 									text="Disabled"
-									isDisabled={true}/>
+									defaultDisabled={true}/>
 
 							</div>
 
 							<div style={this.styles.tab}>
 								<MDL.Button type="IconButton" style={this.styles.button}
-									text='mood'
+									text={<i className="material-icons">mood</i>}
 									isPrimary={true}/>
 								<MDL.Button type="IconButton" style={this.styles.button}
-									text='mood'
+									text={<i className="material-icons">mood</i>}
 									isAccent={true}/>
 								<MDL.Button type="IconButton" style={this.styles.button}
-									text='mood'
+									text={<i className="material-icons">mood</i>}
 									onClick={ function() {this.refs.icon.toggleButton();}.bind(this) }
 									isPrimary={true}
 									isRipple={false}/>
 								<br />
 								<MDL.Button type="IconButton" style={this.styles.button}
-									text='plus_one'/>
+									text={<i className="material-icons">plus_one</i>} />
 								<MDL.Button type="IconButton" style={this.styles.button}
-									text='plus_one'
+									text={<i className="material-icons">plus_one</i>}
 									isRipple={false}/>
 								<MDL.Button type="IconButton" style={this.styles.button}
 									ref="icon"
-									text='plus_one'
-									isDisabled={true}/>
+									text={<i className="material-icons">plus_one</i>}
+									defaultDisabled={true}/>
 							</div>
 						</MDL.Tabs>
 					</div>

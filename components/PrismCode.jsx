@@ -42,6 +42,20 @@ module.exports = React.createClass({
 		});
 	},
 
+	componentWillUpdate: function(nextProps) {
+		if(this.props.src === nextProps.src) return;
+		superagent.get(nextProps.src)
+		.end(function(err, res) {
+			if(err) {
+				return console.error(err);
+			}
+			var node = React.findDOMNode(this.refs.code);
+			node.innerText = res.text;
+			Prism.highlightAll();
+		}.bind(this));
+	},
+
+
 	render: function() {
 		return (
 			<pre style={this.props.style}>
