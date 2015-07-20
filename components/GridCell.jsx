@@ -11,13 +11,13 @@ var cx = require('classnames');
 		colDesktop 		在桌面寬度下佔的寬度
 		colTablet 		在平板寬度下佔的寬度
 		colPhone 		在手機寬度下佔的寬度
-		hideDesktop 	在桌面寬度是否隱藏
-		hideTablet 		在平板寬度是否隱藏
-		hidePhone 		在手機寬度是否隱藏
-		stretch 		Stretches the cell vertically to fill the parent
-		top 			Aligns the cell to the top of the parent
-		middle 			Aligns the cell to the middle of the parent
-		bottom 			Aligns the cell to the bottom of the parent
+		isHideDesktop 	在桌面寬度是否隱藏
+		isHideTablet 		在平板寬度是否隱藏
+		isHidePhone 		在手機寬度是否隱藏
+		isStretch 		Stretches the cell vertically to fill the parent
+		isTop 			Aligns the cell to the top of the parent
+		isMiddle 			Aligns the cell to the middle of the parent
+		isBottom 			Aligns the cell to the bottom of the parent
 		style 			css setting
 */
 
@@ -37,13 +37,13 @@ module.exports = React.createClass({
 		colDesktop : React.PropTypes.number,
 		colTablet : React.PropTypes.number,
 		colPhone : React.PropTypes.number,
-		hideDesktop : React.PropTypes.bool,
-		hideTablet : React.PropTypes.bool,
-		hidePhone : React.PropTypes.bool,
-		stretch : React.PropTypes.bool,
-		top : React.PropTypes.bool,
-		middle : React.PropTypes.bool,
-		bottom : React.PropTypes.bool,
+		isHideDesktop : React.PropTypes.bool,
+		isHideTablet : React.PropTypes.bool,
+		isHidePhone : React.PropTypes.bool,
+		isStretch : React.PropTypes.bool,
+		isTop : React.PropTypes.bool,
+		isMiddle : React.PropTypes.bool,
+		isBottom : React.PropTypes.bool,
 		style : React.PropTypes.object,
 	},
 
@@ -65,25 +65,25 @@ module.exports = React.createClass({
 		if(this.props.colPhone != 0) {
 			classes['mdl-cell--' + this.props.colPhone + '-col-phone'] = true;
 		}
-		if(this.props.hideDesktop) {
+		if(this.props.isHideDesktop) {
 			classes['mdl-cell--hide-desktop'] = true;
 		}
-		if(this.props.hideTablet) {
+		if(this.props.isHideTablet) {
 			classes['mdl-cell--hide-tablet'] = true;
 		}
-		if(this.props.hidePhone) {
+		if(this.props.isHidePhone) {
 			classes['mdl-cell--hide-phone'] = true;
 		}
-		if(this.props.stretch) {
+		if(this.props.isStretch) {
 			classes['mdl-cell--stretch'] = true;
 		}
-		if(this.props.top) {
+		if(this.props.isTop) {
 			classes['mdl-cell--top'] = true;
 		}
-		if(this.props.middle) {
+		if(this.props.isMiddle) {
 			classes['mdl-cell--middle'] = true;
 		}
-		if(this.props.bottom) {
+		if(this.props.isBottom) {
 			classes['mdl-cell--bottom'] = true;
 		}
 

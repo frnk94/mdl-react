@@ -39,12 +39,6 @@ module.exports = React.createClass({
 			marginBottom : '0',
 		},
 	},
-
-	getInitialState: function() {
-		return {
-			url: 'FAB.jsx'
-		};
-	},
 	propsDetail: [
 		{
 			key : 'text',
@@ -105,8 +99,7 @@ module.exports = React.createClass({
 				state : 'optional',
 				content : "Override the inline-styles of the button's root element.",
 			},
-		],
-
+	],
 	methodsDetail: [
 		{
 			key : 'setDisabled',
@@ -124,6 +117,12 @@ module.exports = React.createClass({
 			content : 'Check whether the button is disabled. If the button is disabled, true will be returned.',
 		},
 	],
+
+	getInitialState: function() {
+		return {
+			url: 'FAB.jsx'
+		};
+	},
 
 	tabChanged: function(tabIndex, e) {
 		if (tabIndex === 0) {
@@ -185,6 +184,7 @@ module.exports = React.createClass({
 									isPrimary={true}
 									isMini={true}
 									isRipple={false}/>
+
 							</div>
 
 							<div style={this.styles.tab}>
@@ -199,6 +199,7 @@ module.exports = React.createClass({
 									onClick={ function() {this.refs.raised.toggleButton();}.bind(this) }
 									isPrimary={true}
 									isRipple={false}/>
+
 								<br />
 								<MDL.Button type="RaisedButton" style={this.styles.button}
 									text="Default"/>
@@ -209,6 +210,7 @@ module.exports = React.createClass({
 									ref="raised"
 									text="Disabled"
 									defaultDisabled={true}/>
+
 							</div>
 
 							<div style={this.styles.tab}>
@@ -250,7 +252,7 @@ module.exports = React.createClass({
 									isRipple={false}/>
 								<br />
 								<MDL.Button type="IconButton" style={this.styles.button}
-									text={<i className="material-icons">plus_one</i>} />
+									text={<i className="material-icons">plus_one</i>}/>
 								<MDL.Button type="IconButton" style={this.styles.button}
 									text={<i className="material-icons">plus_one</i>}
 									isRipple={false}/>
@@ -258,14 +260,16 @@ module.exports = React.createClass({
 									ref="icon"
 									text={<i className="material-icons">plus_one</i>}
 									defaultDisabled={true}/>
+
 							</div>
 						</MDL.Tabs>
 					</div>
+
 					<MDL.PrismCode
 						src={'http://fandora.github.io/mdl-react/example/codes/Buttons/'+this.state.url}
 						lang='jsx'
 						style={this.styles.prismCode}
-					/>
+						/>
 				</MDL.Card>
 
 				<Props detail={this.propsDetail} title="Props" />
