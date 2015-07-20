@@ -122,7 +122,7 @@ module.exports = React.createClass({
 		});
 
 		return (
-			<table ref="table" className={cx(classes.table)} style={this.props.style}>
+			<table ref="table" className={cx(classes)} style={this.props.style}>
 				<thead>
 					<tr key={date}>
 						{headers}
