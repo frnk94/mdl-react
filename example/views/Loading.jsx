@@ -102,7 +102,6 @@ module.exports = React.createClass({
 					/>
 
 					<MDL.PrismCode
-						// src='http://fandora.github.io/mdl-react/example/codes/Loading.js'
 						src='../codes/Loading.js'
 						lang='jsx'
 						style={prismCode}
