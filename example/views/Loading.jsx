@@ -80,7 +80,6 @@ module.exports = React.createClass({
 
 		var loadingStyle = {
 			margin : '24px auto',
-			// width : '200px',
 		};
 
 		var style = {
@@ -95,7 +94,6 @@ module.exports = React.createClass({
 						ref='test'
 						type="ProgressBar"
 						indeterminate={false}
-						// percentage={44}
 						percentage={this.state.percentage}
 						buffer={87}
 						style={loadingStyle}
