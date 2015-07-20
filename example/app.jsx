@@ -24,18 +24,26 @@ var App = React.createClass({
 			<a href='#button'>Button</a>,
 		];
 		var drawerItems = [
+
 			<a href='#text-field'>Text Field</a>,
-			<a href='#menu'>Menu</a>,
-			<a href='#table'>Table</a>,
-			<a href='#button'>Button</a>,
+			<a href='#layout'>Layout</a>,
+
 			<a href='#loading'>Loading</a>,
 			<a href='#tooltip'>Tooltip</a>,
+
 			<a href='#slider'>Slider</a>,
-			<a href='#card'>Card</a>,
 			<a href='#badge'>Badge</a>,
-			<a href='#toggle'>Toggle</a>,
+			<a href='#footer'>Footer</a>,
+
 			<a href='#tab'>Tab</a>,
+			<a href='#button'>Button</a>,
+			<a href='#menu'>Menu</a>,
+			<a href='#toggle'>Toggle</a>,
+
+			<a href='#table'>Table</a>,
+			<a href='#card'>Card</a>,
 			<a href='#grid'>Grid</a>,
+
 		];
 		var style = {
 			padding : '24px',

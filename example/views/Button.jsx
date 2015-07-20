@@ -261,7 +261,7 @@ module.exports = React.createClass({
 									src='http://fandora.github.io/mdl-react/example/codes/Buttons/Icon.jsx'
 									lang='jsx'
 									style={this.styles.prismCode}
-									/>
+								/>
 							</div>
 						</MDL.Tabs>
 					</div>
