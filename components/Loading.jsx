@@ -52,7 +52,6 @@ module.exports = React.createClass({
 	},
 
 	componentDidUpdate : function(nextProps) {
-		// console.log(React.findDOMNode(this)[0].events);
 		if(
 			this.props.type == 'ProgressBar' &&
 			!this.props.indeterminate

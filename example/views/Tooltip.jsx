@@ -10,8 +10,8 @@ module.exports = React.createClass({
 	render: function() {
 		var propsDetail = [
 			{
-				key : 'element',
-				type : 'node',
+				key : 'children',
+				type : 'element',
 				state : 'required',
 				content : 'The picture or text that trigger the tooltip.',
 			},
@@ -44,6 +44,12 @@ module.exports = React.createClass({
 				type : 'number',
 				state : 'optional',
 				content : 'The height of the picture in tooltip.',
+			},
+			{
+				key : 'style',
+				type : 'object',
+				state : 'optional',
+				content : 'CSS style setting.',
 			},
 		];
 
@@ -80,9 +86,8 @@ module.exports = React.createClass({
 							style = {tooltipStyle}
 						>
 							<i className="material-icons">add</i>
-						</MDL.Tooltip>
+						</MDL.Tooltip> <br />
 						<MDL.Tooltip
-							// element = 'Please move your mouse on it.'
 							text = 'this is a bird.'
 							url = 'https://dl.dropboxusercontent.com/u/107164257/CSS3Images/CSS3/bird.png'
 							large = {false}
