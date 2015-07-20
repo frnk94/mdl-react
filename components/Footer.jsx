@@ -18,9 +18,9 @@ module.exports = React.createClass({
 	render: function() {
 
 		return (
-				<footer className={"mdl-" + (this.props.isMega ? 'mega' : 'mini') + "-footer"} >
-					{this.props.children}
-				</footer>
+			<footer className={"mdl-" + (this.props.isMega ? 'mega' : 'mini') + "-footer"} >
+				{this.props.children}
+			</footer>
 		);
 	},
 

@@ -4,6 +4,8 @@ var React = require('react');
 var MDL = require('../../components');
 var Props = require('../document/Props.jsx');
 var MainContent = require('../document/MainContent.jsx');
+var DocTitle = require('../document/DocTitle.jsx');
+var DocSubtitle = require('../document/DocSubtitle.jsx');
 
 module.exports = React.createClass({
 
@@ -115,42 +117,50 @@ module.exports = React.createClass({
 			margin : '0',
 		};
 
+		var demoStyle = {
+			padding: '24px',
+		};
+
 		var style = {
 			maxWidth : '1200px',
 		};
 
 		return (
 			<div style={style}>
+				<DocTitle title="Grid" />
 				<MDL.Card style={cardStyle} shadow={6}>
-					<MDL.Grid style={gridStyle}>
-						<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
-						<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
-						<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
-						<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
-						<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
-						<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
-						<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
-						<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
-						<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
-						<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
-						<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
-						<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
-					</MDL.Grid>
-					<MDL.Grid style={gridStyle}>
-						<MDL.GridCell col={4} style={cellStyle}>4</MDL.GridCell>
-						<MDL.GridCell col={4} style={cellStyle}>4</MDL.GridCell>
-						<MDL.GridCell col={4} style={cellStyle}>4</MDL.GridCell>
-					</MDL.Grid>
-					<MDL.Grid style={gridStyle}>
-						<MDL.GridCell col={6} style={cellStyle}>6</MDL.GridCell>
-						<MDL.GridCell col={4} style={cellStyle}>4</MDL.GridCell>
-						<MDL.GridCell col={2} style={cellStyle}>2</MDL.GridCell>
-					</MDL.Grid>
-					<MDL.Grid style={gridStyle}>
-						<MDL.GridCell col={6} colTablet={8} style={cellStyle}>6 (8 tablet)</MDL.GridCell>
-						<MDL.GridCell col={4} colTablet={6} style={cellStyle}>4 (6 tablet)</MDL.GridCell>
-						<MDL.GridCell col={2} colPhone={4} style={cellStyle}>2 (4 phone)</MDL.GridCell>
-					</MDL.Grid>
+					<div style={demoStyle}>
+						<DocSubtitle title="example" />
+						<MDL.Grid>
+							<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
+							<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
+							<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
+							<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
+							<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
+							<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
+							<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
+							<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
+							<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
+							<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
+							<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
+							<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
+						</MDL.Grid>
+						<MDL.Grid>
+							<MDL.GridCell col={4} style={cellStyle}>4</MDL.GridCell>
+							<MDL.GridCell col={4} style={cellStyle}>4</MDL.GridCell>
+							<MDL.GridCell col={4} style={cellStyle}>4</MDL.GridCell>
+						</MDL.Grid>
+						<MDL.Grid>
+							<MDL.GridCell col={6} style={cellStyle}>6</MDL.GridCell>
+							<MDL.GridCell col={4} style={cellStyle}>4</MDL.GridCell>
+							<MDL.GridCell col={2} style={cellStyle}>2</MDL.GridCell>
+						</MDL.Grid>
+						<MDL.Grid>
+							<MDL.GridCell col={6} colTablet={8} style={cellStyle}>6 (8 tablet)</MDL.GridCell>
+							<MDL.GridCell col={4} colTablet={6} style={cellStyle}>4 (6 tablet)</MDL.GridCell>
+							<MDL.GridCell col={2} colPhone={4} style={cellStyle}>2 (4 phone)</MDL.GridCell>
+						</MDL.Grid>
+					</div>
 					<MDL.PrismCode
 						src='http://fandora.github.io/mdl-react/example/codes/Grid.js'
 						lang='jsx'

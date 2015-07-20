@@ -17,6 +17,7 @@ module.exports = React.createClass({
 	mixins: [FooterMixin],
 
 	propTypes: {
+		// 改用 oneOf
 		vertical: React.PropTypes.string,
 		logoTitle: React.PropTypes.string,
 	},
@@ -34,7 +35,7 @@ module.exports = React.createClass({
 
 		if(this.props.vertical == 'bottom' && this.props.isMega == true){
 			logo = (
-				<div 
+				<div
 					className="mdl-logo"
 				>
 				{this.props.logoTitle}
@@ -44,9 +45,9 @@ module.exports = React.createClass({
 
 		return (
 			<div className={
-				"mdl-" + 
-				(this.props.isMega ? 'mega' : 'mini') + 
-				"-footer" + "--" +this.props.vertical + 
+				"mdl-" +
+				(this.props.isMega ? 'mega' : 'mini') +
+				"-footer" + "--" +this.props.vertical +
 				"-section"}
 			>
 				{logo}

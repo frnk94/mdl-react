@@ -12,29 +12,38 @@ var App = React.createClass({
 	],
 	render : function() {
 		var headerItems = [
-			{
-				text : (
-					<span>
-						by Fandora Shop
-					</span>
-				),
-				href : 'http://FandoraShop.com',
-				target : '_blank',
-			},
+			<a href='http://FandoraShop.com' target='_blank'>by Fandora Shop</a>
+		];
+		var waterfallItems = [
+			<a href='http://www.getmdl.io/' target='_blank'>Material Design Lite</a>,
+			<a href='https://facebook.github.io/react/' target='_blank'>React</a>,
+			// <a href='http://FandoraShop.com' target='_blank'>by Fandora Shop</a>,
+		];
+		var tabItems = [
+			<a href='#table'>Table</a>,
+			<a href='#button'>Button</a>,
 		];
 		var drawerItems = [
-			{ text : 'Text Field', href : '#text-field' },
-			{ text : 'Menu', href : '#menu' },
-			{ text : 'Table', href : '#table' },
-			{ text : 'Button', href : '#button' },
-			{ text : 'Loading', href : '#loading' },
-			{ text : 'Slider', href : '#slider' },
-			{ text : 'Card', href : '#card' },
-			{ text : 'Badge', href : '#badge' },
-			{ text : 'Toggle', href : '#toggle' },
-			{ text : 'Tabs', href : '#tabs' },
-			{ text : 'Grid', href : '#grid' },
-			{ text : 'Footer', href : '#footer' },
+
+			<a href='#text-field'>Text Field</a>,
+			<a href='#layout'>Layout</a>,
+
+			<a href='#loading'>Loading</a>,
+			<a href='#tooltip'>Tooltip</a>,
+
+			<a href='#slider'>Slider</a>,
+			<a href='#badge'>Badge</a>,
+			<a href='#footer'>Footer</a>,
+
+			<a href='#tab'>Tab</a>,
+			<a href='#button'>Button</a>,
+			<a href='#menu'>Menu</a>,
+			<a href='#toggle'>Toggle</a>,
+
+			<a href='#table'>Table</a>,
+			<a href='#card'>Card</a>,
+			<a href='#grid'>Grid</a>,
+
 		];
 		var style = {
 			padding : '24px',
@@ -45,11 +54,17 @@ var App = React.createClass({
 				href='#'
 				isFixedHeader={true}
 				// isFixedDrawer={true}
+				// isScrollHeader={true}
+				isFixedTabs={true}
+				// showHeaderSearch={true}
 				headerItems={headerItems}
+				// waterfallItems={waterfallItems}
+				// tabItems={tabItems}
 				drawerItems={drawerItems}
-				drawerStyle={{color:'red'}}
+				// drawerButtonStyle={{color:'red'}}
 				// isTransparent={true}
-				// headerColor='red'
+				// headerStyle={{background:"url('http://www.getmdl.io/assets/demos/transparent.jpg') center / cover"}}
+				contentStyle={{ minHeight : '1000px' }}
 				// noHeaderTitle={true}
 				noDrawerTitle={true}
 			>
@@ -73,9 +88,10 @@ var Slider = require('./views/Slider.jsx');
 var Card = require('./views/Card.jsx');
 var Badge = require('./views/Badge.jsx');
 var Toggle = require('./views/Toggle.jsx');
-var Tabs = require('./views/Tabs.jsx');
+var Tab = require('./views/Tab.jsx');
 var Grid = require('./views/Grid.jsx');
 var Footer = require('./views/Footer.jsx');
+var Tooltip = require('./views/Tooltip.jsx');
 
 var routes = (
 	<Router.Route handler={App}>
@@ -90,9 +106,10 @@ var routes = (
 		<Router.Route name='card' path='card' handler={Card} />
 		<Router.Route name='badge' path='badge' handler={Badge} />
 		<Router.Route name='toggle' path='toggle' handler={Toggle} />
-		<Router.Route name='tabs' path='tabs' handler={Tabs} />
+		<Router.Route name='tab' path='tab' handler={Tab} />
 		<Router.Route name='grid' path='grid' handler={Grid} />
 		<Router.Route name='footer' path='footer' handler={Footer} />
+		<Router.Route name='tooltip' path='tooltip' handler={Tooltip} />
 	</Router.Route>
 );
 

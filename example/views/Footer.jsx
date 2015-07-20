@@ -107,7 +107,6 @@ module.exports = React.createClass({
 							<MDL.FooterLinkList isMega={true} dropList ={this.props.dropList4} />
 						</MDL.FooterDropSection>
 					</MDL.FooterVertical>
-
 					<MDL.FooterVertical isMega={true} vertical='bottom' logoTitle='Title'>
 						<MDL.FooterLinkList isMega={true} dropList ={this.props.dropList5} />
 					</MDL.FooterVertical>

@@ -20,6 +20,7 @@ module.exports = {
 	Slider : require('./Slider.jsx'),
 	Badge : require('./Badge.jsx'),
 	Card : require('./Card.jsx'),
+	Tooltip: require('./Tooltip.jsx'),
 	CardTitle : require('./CardComponents/CardTitle.jsx'),
 	CardAction : require('./CardComponents/CardAction.jsx'),
 	CardSupportingText : require('./CardComponents/CardSupportingText.jsx'),

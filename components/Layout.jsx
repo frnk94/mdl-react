@@ -12,49 +12,42 @@
 
 var React = require('react');
 var cx = require('classnames');
+var _ = require('lodash');
 
 var Layout = React.createClass({
 
 	propTypes: {
 		style : React.PropTypes.object,
-		drawerStyle : React.PropTypes.object,
+		drawerButtonStyle : React.PropTypes.object,
 		headerStyle : React.PropTypes.object,
+		contentStyle : React.PropTypes.object,
+		searchInputStyle : React.PropTypes.object,
+		onSearchSubmit : React.PropTypes.func,
+		showHeaderSearch : React.PropTypes.bool,
+		isFixedHeader : React.PropTypes.bool,
+		isScrollHeader : React.PropTypes.bool,
+		isFixedDrawer : React.PropTypes.bool,
+		isTransparent : React.PropTypes.bool,
+		isHideHeaderMenuWhenMobile : React.PropTypes.bool,
+		noHeaderTitle : React.PropTypes.bool,
+		noDrawerTitle : React.PropTypes.bool,
 		title : React.PropTypes.oneOfType([
 			React.PropTypes.string,
 			React.PropTypes.element,
 		]),
 		href : React.PropTypes.string,
-		isFixedHeader : React.PropTypes.bool,
-		isFixedDrawer : React.PropTypes.bool,
-		isTransparent : React.PropTypes.bool,
-		backgroundImage : React.PropTypes.string,
-		noHeaderTitle : React.PropTypes.bool,
-		noDrawerTitle : React.PropTypes.bool,
-		headerItems : React.PropTypes.arrayOf(React.PropTypes.shape({
-			text : React.PropTypes.oneOfType([
-				React.PropTypes.string,
-				React.PropTypes.element,
-			]).isRequired,
-			href : React.PropTypes.string,
-			onClick : React.PropTypes.func,
-		})),
-		drawerItems : React.PropTypes.arrayOf(React.PropTypes.shape({
-			text : React.PropTypes.oneOfType([
-				React.PropTypes.string,
-				React.PropTypes.element,
-			]).isRequired,
-			href : React.PropTypes.string,
-			onClick : React.PropTypes.func,
-			onTouchTap : React.PropTypes.func,
-			style : React.PropTypes.object,
-		})),
+		headerItems : React.PropTypes.arrayOf(React.PropTypes.element),
+		waterfallItems : React.PropTypes.arrayOf(React.PropTypes.element),
+		tabItems : React.PropTypes.arrayOf(React.PropTypes.element),
+		drawerItems : React.PropTypes.arrayOf(React.PropTypes.element),
 	},
 
 	getDefaultProps: function() {
 		return {
 			title : '',
-			// items : [],
 			headerItems : [],
+			waterfallItems : [],
+			tabItems : [],
 			drawerItems : [],
 			style : {},
 		};
@@ -70,8 +63,150 @@ var Layout = React.createClass({
 
 	_mdlize : function() {
 		componentHandler.upgradeDom();
-		if(this.props.drawerStyle) {
-			React.findDOMNode(this).getElementsByClassName("mdl-layout__drawer-button")[0].style = this.props.drawerStyle;
+		if(this.props.drawerButtonStyle) {
+			var btn = React.findDOMNode(this).getElementsByClassName("mdl-layout__drawer-button");
+			if(btn && btn.length > 0) {
+				for(var key in this.props.drawerButtonStyle) {
+					btn[0].style[key] = this.props.drawerButtonStyle[key];
+				}
+			}
+		}
+	},
+
+	_generateLinks : function(items, className) {
+		return items.map(function(item, index) {
+			var newClassName = ('' || item.props.className) + ' ' + className;
+			return React.cloneElement(item, {
+				key : index,
+				className : newClassName,
+			});
+		});
+	},
+
+	_renderHeader : function(titleComponent) {
+
+		if(
+			this.props.headerItems.length > 0 ||
+			this.props.tabItems.length > 0 ||
+			this.props.showHeaderSearch
+		) {
+
+			var haderNav = null;
+			if(
+				this.props.headerItems.length > 0 &&
+				!this.props.showHeaderSearch
+			) {
+				var headerNavClassName = 'mdl-navigation';
+				if(this.props.isHideHeaderMenuWhenMobile) {
+					headerNavClassName += ' mdl-layout--large-screen-only';
+				}
+				var items = this._generateLinks(
+					this.props.headerItems,
+					'mdl-navigation__link'
+				);
+				haderNav = (
+					<nav className={headerNavClassName}>
+						{items}
+					</nav>
+				);
+			}
+
+			var headerSearch = null;
+			if(this.props.showHeaderSearch) {
+				headerSearch = (
+					<HeaderSearch
+						submit={this.props.onSearchSubmit}
+						style={this.props.searchInputStyle}
+					/>
+				);
+			}
+
+			var secondHeaderRow = null;
+			if(
+				this.props.waterfallItems.length > 0 &&
+				this.props.tabItems == 0
+			) {
+				var items = this._generateLinks(
+					this.props.waterfallItems,
+					'mdl-navigation__link'
+				);
+				if(
+					this.props.showHeaderSearch &&
+					items.length > 0
+				) {
+					items[items.length - 1] = React.cloneElement(
+						items[items.length - 1],
+						{
+							style : { paddingRight : 0 },
+						}
+					);
+				}
+				secondHeaderRow = (
+					<div className="mdl-layout__header-row">
+						<div className="mdl-layout-spacer"></div>
+						<nav className="waterfall-demo-header-nav mdl-navigation">
+							{items}
+						</nav>
+					</div>
+				);
+			}
+
+			var headerTab = null;
+			if(
+				this.props.tabItems.length > 0
+			) {
+				var tabItems = this._generateLinks(this.props.tabItems, 'mdl-layout__tab');
+				headerTab = (
+					<div className="mdl-layout__tab-bar mdl-js-ripple-effect">
+						{tabItems}
+					</div>
+				);
+			}
+
+			var className = 'mdl-layout__header';
+			if(this.props.isTransparent) {
+				className += ' mdl-layout__header--transparent';
+			}
+			if(this.props.isScrollHeader) {
+				className += ' mdl-layout__header--scroll';
+			}
+			if(
+				this.props.waterfallItems.length > 0 &&
+				this.props.tabItems.length == 0
+			) {
+				className += ' mdl-layout__header--waterfall';
+			}
+
+			return (
+				<header className={className} style={this.props.headerStyle} >
+					<div className="mdl-layout__header-row">
+						{!this.props.noHeaderTitle ? titleComponent : null}
+						<div className="mdl-layout-spacer"></div>
+						{haderNav}
+						{headerSearch}
+					</div>
+					{secondHeaderRow}
+					{headerTab}
+				</header>
+			);
+
+		}
+
+	},
+
+	_renderDrawer : function(titleComponent) {
+		if(
+			this.props.drawerItems.length > 0
+		) {
+			var items = this._generateLinks(this.props.drawerItems, 'mdl-navigation__link');
+			return (
+				<div className="mdl-layout__drawer">
+					{!this.props.noDrawerTitle ? titleComponent : null}
+					<nav className="mdl-navigation">
+						{items}
+					</nav>
+				</div>
+			);
 		}
 	},
 
@@ -81,12 +216,20 @@ var Layout = React.createClass({
 			'mdl-layout' : true,
 			'mdl-js-layout' : true,
 		};
-
 		if(this.props.isFixedHeader) {
 			classes['mdl-layout--fixed-header'] = true;
 		}
 		if(this.props.isFixedDrawer) {
 			classes['mdl-layout--fixed-drawer'] = true;
+		}
+		if(this.props.drawerItems.length > 0) {
+			classes['mdl-layout--overlay-drawer-button'] = true;
+		}
+		if(
+			this.props.tabItems.length > 0 &&
+			this.props.isFixedTabs
+		) {
+			classes['mdl-layout--fixed-tabs'] = true
 		}
 
 		var titleComponent = null;
@@ -110,88 +253,12 @@ var Layout = React.createClass({
 			);
 		}
 
-		var headerBlock = null;
-		if(
-			this.props.headerItems.length > 0
-		) {
-
-			var headerItems = this.props.headerItems.map(function(element, index) {
-				return (
-					<a className="mdl-navigation__link"
-						href={element.href}
-						onClick={element.onClick}
-						key={index}
-					>
-						{element.text}
-					</a>
-				);
-			});
-
-			var headerStyle = null;
-			var className = 'mdl-layout__header';
-			if(this.props.isTransparent) {
-				className += ' mdl-layout__header--transparent';
-			}
-
-			headerBlock = (
-				<header className={className} style={this.props.headerStyle} >
-					<div className="mdl-layout__header-row">
-						{!this.props.noHeaderTitle ? titleComponent : null}
-						<div className="mdl-layout-spacer"></div>
-						<nav className="mdl-navigation mdl-layout--large-screen-only">
-							{headerItems}
-						</nav>
-					</div>
-				</header>
-			);
-
-		}
-
-		var drawerBlock = null;
-		if(
-			this.props.drawerItems.length > 0
-		) {
-
-			classes['mdl-layout--overlay-drawer-button'] = true;
-
-			var drawerItems = this.props.drawerItems.map(function(element, index) {
-				return (
-					<a className="mdl-navigation__link"
-						href={element.href}
-						onClick={element.onClick}
-						onTouchTap={element.onTouchTap}
-						style={element.style}
-						key={index}
-					>
-						{element.text}
-					</a>
-				);
-			});
-
-			drawerBlock = (
-				<div className="mdl-layout__drawer">
-					{!this.props.noDrawerTitle ? titleComponent : null}
-					<nav className="mdl-navigation">
-						{drawerItems}
-					</nav>
-				</div>
-			);
-
-		}
-
-		var style = this.props.style;
-
-		if(this.props.backgroundImage) {
-			style = style || {};
-			style.background = "url('" + this.props.backgroundImage + "') center / cover";
-		}
-
 		return (
-			<div className={cx(classes)} style={style}>
-				{headerBlock}
-				{drawerBlock}
+			<div className={cx(classes)} style={this.props.style}>
+				{this._renderHeader(titleComponent)}
+				{this._renderDrawer(titleComponent)}
 				<main className="mdl-layout__content">
-					<div className="page-content">
+					<div className="page-content" style={this.props.contentStyle} >
 						{this.props.children}
 					</div>
 				</main>
@@ -199,6 +266,47 @@ var Layout = React.createClass({
 		);
 
 	}
+
+});
+
+var HeaderSearch = React.createClass({
+
+	propTypes: {
+		submit : React.PropTypes.func,
+		inputStyle : React.PropTypes.object,
+	},
+
+	_onKeyPress : function(e) {
+		if(
+			e.which == 13 &&
+			this.props.submit instanceof Function
+		) {
+			this.props.submit(e);
+		}
+	},
+
+	render : function() {
+		var inputStyle = _.extend({
+			borderBottomColor : 'white',
+		}, this.props.inputStyle);
+		return (
+			<div className="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+				<label
+					className="mdl-button mdl-js-button mdl-button--icon" htmlFor="fixed-header-drawer-exp"
+				>
+					<i className="material-icons">search</i>
+				</label>
+				<div className="mdl-textfield__expandable-holder">
+					<input
+						className="mdl-textfield__input" type="text" name="sample"
+						id="fixed-header-drawer-exp"
+						style={inputStyle}
+						onKeyPress={this._onKeyPress}
+					/>
+				</div>
+			</div>
+		);
+	},
 
 });
 

@@ -15,7 +15,7 @@ var _ = require('lodash');
 module.exports = React.createClass({
 
 	propTypes: {
-		type :  React.PropTypes.string.isRequired,
+		type :  React.PropTypes.oneOf(['Spinner', 'ProgressBar']).isRequired,
 		indeterminate : React.PropTypes.bool,
 		singleColor : React.PropTypes.bool,
 		percentage : React.PropTypes.number,
@@ -33,48 +33,52 @@ module.exports = React.createClass({
 		};
 	},
 
-	componentWillMount: function() {
-		if (!_.includes(['Spinner', 'ProgressBar'], this.props.type)) {
-			console.warn('MDL.Loading: Wrong Loading Type');
+	componentDidMount: function() {
+		if(this.props.type == 'ProgressBar' && !this.props.indeterminate){
+			var self = this;
+			this.refs.loading.getDOMNode().addEventListener(
+				'mdl-componentupgraded',
+				function() {
+					self._updateProgressBar();
+				}
+			);
 		}
 	},
 
-	componentDidMount: function() {
-		// componentHandler.upgradeDom();
+	_updateProgressBar : function() {
+		var mp = this.refs.loading.getDOMNode().MaterialProgress;
+		mp.setProgress(this.props.percentage);
+		mp.setBuffer(this.props.buffer);
+	},
 
-		if(this.props.type ==='ProgressBar' && !this.props.indeterminate){
-			var self = this;
-			self.refs.loading.getDOMNode()
-			.addEventListener('mdl-componentupgraded', function() {
-				this.MaterialProgress.setProgress(self.props.percentage);
-				this.MaterialProgress.setBuffer(self.props.buffer);
-			});
+	componentDidUpdate : function(nextProps) {
+		// console.log(React.findDOMNode(this)[0].events);
+		if(
+			this.props.type == 'ProgressBar' &&
+			!this.props.indeterminate
+		) {
+			this._updateProgressBar();
 		}
 	},
 
 	_getClasses: function() {
-
-			var classes={};
-
-			if (this.props.type ==='Spinner'){
-				classes['mdl-spinner'] = true;
-				classes['mdl-js-spinner'] = true;
-				classes['is-active'] = true;
-			}else if(this.props.type ==='ProgressBar'){
-				classes['mdl-progress'] = true;
-				classes['mdl-js-progress'] = true;
-			}
-
-			if(this.props.indeterminate) {
-				classes['mdl-progress__indeterminate'] = true;
-			}
-
-			if(this.props.singleColor) {
-				classes['mdl-spinner--single-color'] = true;
-			}
-			
-			return cx(classes);
-		},
+		var classes={};
+		if (this.props.type ==='Spinner'){
+			classes['mdl-spinner'] = true;
+			classes['mdl-js-spinner'] = true;
+			classes['is-active'] = true;
+		}else if(this.props.type ==='ProgressBar'){
+			classes['mdl-progress'] = true;
+			classes['mdl-js-progress'] = true;
+		}
+		if(this.props.indeterminate) {
+			classes['mdl-progress__indeterminate'] = true;
+		}
+		if(this.props.singleColor) {
+			classes['mdl-spinner--single-color'] = true;
+		}
+		return cx(classes);
+	},
 
 	render: function() {
 		return (

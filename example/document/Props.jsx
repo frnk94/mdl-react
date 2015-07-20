@@ -39,7 +39,7 @@ var Props = React.createClass({
 		
 		var content = this.props.detail.map(function(item, key) {
 			return (
-				<div style={style}>
+				<div style={style} key={key}>
 					<h6 style={titleStyle}>{item.key}</h6>
 					<div style={contentAreaStyle}>
 						<p>
