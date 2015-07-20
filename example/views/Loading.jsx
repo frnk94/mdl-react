@@ -108,7 +108,6 @@ module.exports = React.createClass({
 						lang='jsx'
 						style={prismCode}
 					/>
-
 				</MDL.Card>
 				<Props detail={propsDetail} title="Props" />
 				</div>
@@ -119,12 +118,13 @@ module.exports = React.createClass({
 	componentDidMount: function() {
 		var self = this;
 		setInterval(function() {
-			console.log(self.state.percentage);
 			var percentage = self.state.percentage;
-			percentage++;
-			self.setState({
-				percentage : percentage
-			});
+			if(percentage < 65) {
+				percentage++;
+				self.setState({
+					percentage : percentage
+				});
+			}
 		}, 1000);
 	},
 
