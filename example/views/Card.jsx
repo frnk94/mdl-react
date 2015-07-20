@@ -137,6 +137,11 @@ module.exports = React.createClass({
 			},
 		];
 
+		var style = {
+			width : '100%',
+			maxWidth : '1200px',
+		};
+
 		var firstStyle = {
 			width : '100px',
 			margin : '24px auto',
@@ -217,7 +222,7 @@ module.exports = React.createClass({
 		};
 
 		return (
-			<div>
+			<div style={style}>
 				<DocTitle title="Card" />
 				<MDL.Card style={cardStyle} shadow={6}>
 					<MDL.Tabs ref="tab" tabLabels={['Example 1','Example 2','Example 3','Example 4','Example 5',]} isRipple={true}>
