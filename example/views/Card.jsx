@@ -2,6 +2,8 @@
 
 var React = require('react');
 var MDL = require('../../components');
+var DocTitle = require('../document/DocTitle.jsx');
+var DocSubtitle = require('../document/DocSubtitle.jsx');
 
 module.exports = React.createClass({
 
@@ -9,7 +11,7 @@ module.exports = React.createClass({
 
 		var firstStyle = {
 			width : '100px',
-			margin : '20px',
+			margin : '24px auto',
 		};
 
 		var firstTitleStyle = {
@@ -22,7 +24,7 @@ module.exports = React.createClass({
 		};
 
 		var secondStyle = {
-			margin : '20px',
+			margin : '24px auto',
 		};
 
 		var secondTitleStyle = {
@@ -31,7 +33,7 @@ module.exports = React.createClass({
 		};
 
 		var thirdStyle = {
-			margin : '20px',
+			margin : '24px auto',
 			background: 'url("http://i.imgur.com/ZD4iVTs.jpg") center / cover',
 		};
 
@@ -43,7 +45,7 @@ module.exports = React.createClass({
 		};
 
 		var fourthStyle = {
-			margin : '20px',
+			margin : '24px auto',
 			background: '#3E4EB8',
 			color: '#ffffff',
 		};
@@ -64,61 +66,104 @@ module.exports = React.createClass({
 			color: '#ffffff',
 		};
 
+		var iconStyle = {
+			color :'#ffffff',
+		};
+
+		var cardStyle = {
+			width : '100%',
+			margin : '0px',
+		};
+
+		var demoStyle = {
+			padding: '24px',
+		};
+
+		var prismCode = {
+			fontSize : '14px',
+			marginBottom : '0px',
+		};
+
 		return (
 			<div>
-				<MDL.Card style={firstStyle} width='512'>
-					<MDL.CardTitle height='176' style={firstTitleStyle}>
-						Welcome
-					</MDL.CardTitle>
-					<MDL.CardSupportingText>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...
-					</MDL.CardSupportingText>
-					<MDL.CardAction border={true}>
-						<a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-							Get Started
-						</a>
-					</MDL.CardAction>
-					<MDL.CardMenu style={firstMenuStyle}>
-						<button className="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-							<i className="material-icons">share</i>
-						</button>
-					</MDL.CardMenu>
-				</MDL.Card>
-
-				<MDL.Card width='320' height='320' shadow={8} style={secondStyle}>
-					<MDL.CardTitle height="199" style={secondTitleStyle}>
-						Update
-					</MDL.CardTitle>
-					<MDL.CardSupportingText>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis.
-					</MDL.CardSupportingText>
-					<MDL.CardAction border={true}>
-						<a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-							View Updates
-						</a>
-					</MDL.CardAction>
-				</MDL.Card>
-
-				<MDL.Card width='256' height='256' style={thirdStyle}>
-					<MDL.CardTitle height='256'></MDL.CardTitle>
-					<MDL.CardAction style={thirdActionStyle}>
-						<span className="demo-card-image__filename">Image.jpg</span>
-					</MDL.CardAction>
-				</MDL.Card>
-
-				<MDL.Card width='256' height='256' style={fourthStyle}>
-					<MDL.CardTitle height="203">
-						<h4 style={fourthColor}>
-							Featured event:<br />
-							May 24, 2016<br />
-							7-11pm
-						</h4>
-					</MDL.CardTitle>
-					<MDL.CardAction border={true} style={fourthActionStyle}>
-						<a style={fourthColor} className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-							Add to Calendar
-						</a>
-					</MDL.CardAction>
+				<DocTitle title="Card" />
+				<MDL.Card style={cardStyle} shadow={6}>
+					<div style={demoStyle}>
+						<DocSubtitle title="example 1" />
+						<MDL.Card style={firstStyle} width='512'>
+							<MDL.CardTitle height='176' style={firstTitleStyle}>
+								Welcome
+							</MDL.CardTitle>
+							<MDL.CardSupportingText>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...
+							</MDL.CardSupportingText>
+							<MDL.CardAction border={true}>
+								<MDL.Button type="FlatButton"
+									text="GET STARTED"
+									isRipple={true}
+									isPrimary={true}
+									isMini={true}
+									isAccent={false}
+									isDisabled={false} />
+								<br />
+							</MDL.CardAction>
+							<MDL.CardMenu style={firstMenuStyle}>
+								<MDL.Button type="IconButton"
+									text={<i style={iconStyle} className="material-icons">share</i>}
+									isRipple={true}
+									isMini={true}
+									isPrimary={true}
+									isAccent={false}
+									isDisabled={false}/>
+								<br />
+							</MDL.CardMenu>
+						</MDL.Card>
+						<DocSubtitle title="example 2" />
+						<MDL.Card width='320' height='320' shadow={8} style={secondStyle}>
+							<MDL.CardTitle height="199" style={secondTitleStyle}>
+								Update
+							</MDL.CardTitle>
+							<MDL.CardSupportingText>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis.
+							</MDL.CardSupportingText>
+							<MDL.CardAction border={true}>
+								<MDL.Button type="FlatButton"
+									text="View Updates"
+									isRipple={true}
+									isPrimary={true}
+									isMini={true}
+									isAccent={false}
+									isDisabled={false} />
+							</MDL.CardAction>
+						</MDL.Card>
+						<DocSubtitle title="example 3" />
+						<MDL.Card width='256' height='256' style={thirdStyle}>
+							<MDL.CardTitle height='256'></MDL.CardTitle>
+							<MDL.CardAction style={thirdActionStyle}>
+								<span className="demo-card-image__filename">Image.jpg</span>
+							</MDL.CardAction>
+						</MDL.Card>
+						<DocSubtitle title="example 4" />
+						<MDL.Card width='256' height='256' style={fourthStyle}>
+							<MDL.CardTitle height="203">
+								<h4 style={fourthColor}>
+									Featured event:<br />
+									May 24, 2016<br />
+									7-11pm
+								</h4>
+							</MDL.CardTitle>
+							<MDL.CardAction border={true} style={fourthActionStyle}>
+								<MDL.Button type="FlatButton"
+									style={fourthColor}
+									text="Add to Calendar"
+									isRipple={true}
+									isPrimary={true}
+									isMini={true}
+									isAccent={false}
+									isDisabled={false} />
+							</MDL.CardAction>
+						</MDL.Card>
+					</div>
 				</MDL.Card>
 
 				<MDL.Card style={fifthStyle}>
@@ -129,6 +174,11 @@ module.exports = React.createClass({
 						<img src="http://i.imgur.com/ZD4iVTs.jpg" width="256" height="256" border="0" alt="" />
 					</MDL.CardMedia>
 				</MDL.Card>
+				<MDL.PrismCode
+					src='http://fandora.github.io/mdl-react/example/codes/Card.js'
+					lang='jsx'
+					style={prismCode}
+				/>
 			</div>
 		);
 	},
