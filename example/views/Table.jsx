@@ -127,55 +127,55 @@ module.exports = React.createClass({
 				key : 'selectable',
 				type : 'boolean',
 				state : 'optional',
-				content : '是否要顯示勾選欄位',
+				content : 'Show select box or not',
 			},
 			{
 				key : 'headers',
 				type : 'array',
 				state : 'required',
-				content : '標題列的內容，形式為物件陣列，顯示項目排序也會根據此陣列。可填入的參數為下列三項',
+				content : 'header\'s content, is a array of objects. The column order will follow this.',
 			},
 			{
 				key : 'headers[].key',
 				type : 'string',
 				state : 'required',
-				content : '想要顯示的內容。',
+				content : 'The content what you want to show.',
 			},
 			{
 				key : 'headers[].title',
 				type : 'string',
 				state : 'optional',
-				content : '顯示的標題名稱，若無此參數則顯示 key',
+				content : 'Title name. If no this data, it will show "key".',
 			},
 			{
 				key : 'headers[].style',
 				type : 'object',
 				state : 'optional',
-				content : '此標頭的 css style 客製設定',
+				content : 'this header\'s css style',
 			},
 			{
 				key : 'items',
 				type : 'array',
 				state : 'required',
-				content : '要顯示的內容，形式為物件陣列，每個物件可以有多個 key 和對應的 value，根據 headers 的 key 決定每行欲顯示的內容',
+				content : 'The content what you want to show, is a array of objects. Every object has many key and value. Every column will follow header\'s "key" to show the same key content.',
 			},
 			{
 				key : 'itemStyles',
 				type : 'array',
 				state : 'optional',
-				content : '每列內容的 css 客製樣式，為陣列物件，陣列長度需與 headers 相同',
+				content : 'Every content css style, is a array of objects and the array length need to be same with headers.',
 			},
 			{
 				key : 'shadow',
 				type : 'number',
 				state : 'optional',
-				content : '陰影的大小，預設是 2 ，能填的數字只有 2, 3, 4, 6, 8, 16',
+				content : 'Shadow size, default is 2. Just allow 2, 3, 4, 6, 8, 16.',
 			},
 			{
 				key : 'style',
 				type : 'object',
 				state : 'optional',
-				content : 'css 客製樣式',
+				content : 'css style setting',
 			},
 		];
 
@@ -184,7 +184,7 @@ module.exports = React.createClass({
 				key : 'getSelected',
 				type : 'function',
 				state : '',
-				content : '取得勾選的資料值',
+				content : 'Get the data from the rows you selected.',
 			}
 		];
 
