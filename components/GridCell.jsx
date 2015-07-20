@@ -1,6 +1,26 @@
 var React = require('react');
 var cx = require('classnames');
 
+/**
+	GridCell
+		http://www.getmdl.io/components/index.html#layout-section/grid
+		在 grid system 裡的每個單位
+		A grid has 12 columns in the desktop screen size, 8 in the tablet size, and 4 in the phone size.
+	Props
+		col 			佔的寬度
+		colDesktop 		在桌面寬度下佔的寬度
+		colTablet 		在平板寬度下佔的寬度
+		colPhone 		在手機寬度下佔的寬度
+		hideDesktop 	在桌面寬度是否隱藏
+		hideTablet 		在平板寬度是否隱藏
+		hidePhone 		在手機寬度是否隱藏
+		stretch 		Stretches the cell vertically to fill the parent
+		top 			Aligns the cell to the top of the parent
+		middle 			Aligns the cell to the middle of the parent
+		bottom 			Aligns the cell to the bottom of the parent
+		style 			css setting
+*/
+
 module.exports = React.createClass({
 
 	getDefaultProps: function() {
@@ -25,7 +45,6 @@ module.exports = React.createClass({
 		middle : React.PropTypes.bool,
 		bottom : React.PropTypes.bool,
 		style : React.PropTypes.object,
-
 	},
 
 	render: function() {
