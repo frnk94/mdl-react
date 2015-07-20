@@ -9,19 +9,9 @@ module.exports = React.createClass({
 
 	getInitialState: function() {
 		return {
-			// test : true
 			percentage : 0,
 		};
 	},
-
-	// componentDidMount: function() {
-	// 	var self = this;
-	// 	setInterval(function() {
-	// 		self.setState({
-	// 			test : !self.state.test,
-	// 		});
-	// 	}, 1000 * 2);
-	// },
 
 	render: function() {
 		var propsDetail=[
