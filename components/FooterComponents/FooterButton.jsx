@@ -1,4 +1,4 @@
-// Footer.jsx
+/** @jsx React.DOM */
 
 /**
 	Layout
@@ -9,7 +9,7 @@
 */
 
 var React = require('react');
-var FooterMixin = require('./FooterComponents/FooterMixin.js');
+var FooterMixin = require('./FooterMixin.js');
 
 module.exports = React.createClass({
 
@@ -18,10 +18,10 @@ module.exports = React.createClass({
 	render: function() {
 
 		return (
-				<footer className={"mdl-" + (this.props.isMega ? 'mega' : 'mini') + "-footer"} >
-					{this.props.children}
-				</footer>
+			<button className={"mdl-" + 
+				(this.props.isMega ? 'mega' : 'mini') + "-footer" + "__social-btn"}>
+			</button>
 		);
-	},
+	}
 
 });
