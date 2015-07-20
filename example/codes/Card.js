@@ -46,3 +46,41 @@
 			isDisabled={false} />
 	</MDL.CardAction>
 </MDL.Card>
+
+// Example 3
+<MDL.Card width='256' height='256'>
+	<MDL.CardTitle height='256'></MDL.CardTitle>
+	<MDL.CardAction>
+		<span className="demo-card-image__filename">Image.jpg</span>
+	</MDL.CardAction>
+</MDL.Card>
+
+// Example 4
+<MDL.Card width='256' height='256'>
+	<MDL.CardTitle height="203">
+		<h4>
+			Featured event:<br />
+			May 24, 2016<br />
+			7-11pm
+		</h4>
+	</MDL.CardTitle>
+	<MDL.CardAction border={true}>
+		<MDL.Button type="FlatButton"
+			text="Add to Calendar"
+			isRipple={true}
+			isPrimary={true}
+			isMini={true}
+			isAccent={false}
+			isDisabled={false} />
+	</MDL.CardAction>
+</MDL.Card>
+
+// Example 5
+<MDL.Card>
+	<MDL.CardTitle height="20">
+		<h6>media</h6>
+	</MDL.CardTitle>
+	<MDL.CardMedia height="256" width="256">
+		<img src="http://i.imgur.com/ZD4iVTs.jpg" width="256" height="256" border="0" alt="" />
+	</MDL.CardMedia>
+</MDL.Card>
