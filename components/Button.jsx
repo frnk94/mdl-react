@@ -15,11 +15,13 @@ var _ = require('lodash');
 		isPrimary: 是否使用 primary color
 		isAccent: 是否使用強調色
 		isMini: 是否 mini for FAB
+		defaultDisabled: 預設是否禁愈用
 	States
 		isDisabled: 是否禁用Button，預設False
 	Methods
+		setDisabled: 設定Button啟動或禁用
 		toggleButton: 啟動或禁用Button
-		getIsDisabled: 取得Button目前狀態
+		getDisabled: 取得Button目前狀態
 */
 module.exports = React.createClass({
 
@@ -41,12 +43,12 @@ module.exports = React.createClass({
 		isRipple: React.PropTypes.bool,
 		isPrimary: React.PropTypes.bool,
 		isAccent: React.PropTypes.bool,
-		isDisabled: React.PropTypes.bool,
+		defaultDisabled: React.PropTypes.bool,
 	},
 
 	getInitialState: function() {
 		return {
-			isDisabled: this.props.isDisabled,
+			isDisabled: this.props.defaultDisabled,
 		};
 	},
 
@@ -93,12 +95,17 @@ module.exports = React.createClass({
 		return events;
 	},
 
-	getIsDisabled: function() {
+	getDisabled: function() {
+		return this.state.isDisabled;
+	},
+
+	setDisabled: function(isDisabled) {
+		this.setState({isDisabled: Boolean(isDisabled)});
 		return this.state.isDisabled;
 	},
 
 	toggleButton: function() {
-		this.setState({isDisabled: !this.state.isDisabled});
+		this.setDisabled(!this.state.isDisabled);
 		return this.state.isDisabled;
 	},
 
