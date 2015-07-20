@@ -169,7 +169,7 @@ module.exports = React.createClass({
 						</div>
 					</MDL.Tabs>
 					<MDL.PrismCode
-						src='http://fandora.github.io/mdl-react/example/codes/Card/example1.js'
+						src='http://fandora.github.io/mdl-react/example/codes/Card.js'
 						lang='jsx'
 						style={prismCode}
 					/>
