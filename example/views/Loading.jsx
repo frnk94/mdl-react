@@ -28,42 +28,42 @@ module.exports = React.createClass({
 				key : 'type',
 				type : 'string',
 				state : 'required',
-				content : '選擇loading的樣式，ProgressBar或是Spanning',
+				content : 'Choose the loading type, progress bar or spinner.',
 			},
 
 			{
 				key : 'indeterminate',
 				type : 'boolean',
 				state : 'optional',
-				content : '選擇ProgressBar是否要動畫呈現',
+				content : 'Apply animation effect on progress bar.',
 			},
 
 			{
 				key : 'singleColor',
 				type : 'boolean',
 				state : 'optional',
-				content : '選擇Spinner是否要用單一顏色',
+				content : 'Uses a single color instead of changing colors',
 			},
 
 			{
 				key : 'percentage',
 				type : 'number',
 				state : 'optional',
-				content : '設定ProgressBar的loading值',
+				content : 'Set the loading percentage of progress bar.',
 			},
 
 			{
 				key : 'buffer',
 				type : 'number',
 				state : 'optional',
-				content : '設定ProgressBar是否要動畫呈現',
+				content : 'Set the loading buffer of progerss bar.',
 			},
 
 			{
 				key : 'style',
 				type : 'object',
 				state : 'optional',
-				content : '客製化css樣式',
+				content : 'CSS style setting.',
 			},
 		];
 
@@ -108,7 +108,6 @@ module.exports = React.createClass({
 					/>
 
 				</MDL.Card>
-				
 				<Props detail={propsDetail} title="Props" />
 				</div>
 		);

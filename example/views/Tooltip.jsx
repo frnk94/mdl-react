@@ -13,37 +13,37 @@ module.exports = React.createClass({
 				key : 'element',
 				type : 'node',
 				state : 'required',
-				content : '觸發tooltip的文字或圖片',
+				content : 'The picture or text that trigger the tooltip.',
 			},
 			{
 				key : 'text',
 				type : 'String',
 				state : 'optional',
-				content : 'tootip裡的文字',
+				content : 'The text in tooltip.',
 			},
 			{
 				key : 'large',
 				type : 'boolean',
 				state : 'optional',
-				content : 'tootip是否要粗體',
+				content : 'Applies large font effect.',
 			},
 			{
 				key : 'url',
 				type : 'String',
 				state : 'optional',
-				content : 'tootip裡的圖片',
+				content : 'The url of the picture in tooltip.',
 			},
 			{
 				key : 'width',
 				type : 'number',
 				state : 'optional',
-				content : 'tootip裡的圖片寬度',
+				content : 'The width of the picture in tooltip.',
 			},
 			{
 				key : 'height',
 				type : 'number',
 				state : 'optional',
-				content : 'tootip裡的圖片高度',
+				content : 'The height of the picture in tooltip.',
 			},
 		];
 
