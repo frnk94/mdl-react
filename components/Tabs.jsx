@@ -74,15 +74,16 @@ module.exports = React.createClass({
 		var tabBars = [];
 		var tabPanels = [];
 		this.props.tabLabels.map(function(label, index){
+				var id = 'mdl-tab-' + label.split(' ').join('');
 				tabBars.push(
-					<a key={label} href={'#mdl-tab-'+label}
+					<a key={label} href={'#'+id}
 						className={"mdl-tabs__tab " + (index == this.state.tabIndex? 'is-active':'')}
 						onClick={this.setTabIndex.bind(this, index)}>
 						{label}
 					</a>
 				);
 				tabPanels.push(
-					<div key={label} id={'mdl-tab-'+label}
+					<div key={label} id={id}
 						className={"mdl-tabs__panel " + (index == this.state.tabIndex? 'is-active':'')}>
 						{this.props.children[index]}
 					</div>
