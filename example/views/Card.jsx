@@ -59,7 +59,7 @@ module.exports = React.createClass({
 		};
 
 		var fifthStyle = {
-			margin : '20px',
+			margin : '24px auto',
 			width: '256px',
 			height: '276px',
 			background: '#46B6AC',
@@ -84,11 +84,15 @@ module.exports = React.createClass({
 			marginBottom : '0px',
 		};
 
+		var whiteStyle = {
+			color :'#ffffff',
+		};
+
 		return (
 			<div>
 				<DocTitle title="Card" />
 				<MDL.Card style={cardStyle} shadow={6}>
-					<MDL.Tabs ref="tab" tabLabels={['Example 1','Example 2','Example 3','Example 4',]} isRipple={true}>
+					<MDL.Tabs ref="tab" tabLabels={['Example 1','Example 2','Example 3','Example 4','Example 5',]} isRipple={true}>
 						<div style={demoStyle}>
 							<MDL.Card style={firstStyle} width='512'>
 								<MDL.CardTitle height='176' style={firstTitleStyle}>
@@ -167,6 +171,16 @@ module.exports = React.createClass({
 								</MDL.CardAction>
 							</MDL.Card>
 						</div>
+						<div style={demoStyle}>
+							<MDL.Card style={fifthStyle}>
+								<MDL.CardTitle height="20" style={whiteStyle}>
+									<h6>media</h6>
+								</MDL.CardTitle>
+								<MDL.CardMedia height="256" width="256">
+									<img src="http://i.imgur.com/ZD4iVTs.jpg" width="256" height="256" border="0" alt="" />
+								</MDL.CardMedia>
+							</MDL.Card>
+						</div>
 					</MDL.Tabs>
 					<MDL.PrismCode
 						src='http://fandora.github.io/mdl-react/example/codes/Card.js'
@@ -177,14 +191,7 @@ module.exports = React.createClass({
 
 				
 
-				<MDL.Card style={fifthStyle}>
-					<MDL.CardTitle height="20">
-						<h6>media</h6>
-					</MDL.CardTitle>
-					<MDL.CardMedia height="256" width="256">
-						<img src="http://i.imgur.com/ZD4iVTs.jpg" width="256" height="256" border="0" alt="" />
-					</MDL.CardMedia>
-				</MDL.Card>
+				
 				
 			</div>
 		);
