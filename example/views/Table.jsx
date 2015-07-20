@@ -64,12 +64,12 @@ module.exports = React.createClass({
 			var result = this.refs.table.getSelected().map(function(item, index) {
 				var temp = _.map(item, function(element, key) {
 					return (
-						<span> <span>{key}</span> : <span style={self.props.getValueStyle}> {element} </span> , </span>
+						<span key={key}> <span>{key}</span> : <span style={self.props.getValueStyle}> {element} </span> , </span>
 					);
 				});
 
 				return (
-					<div>{temp}</div>
+					<div key={index}>{temp}</div>
 				);
 			});
 			this.setState({
