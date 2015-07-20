@@ -4,10 +4,138 @@ var React = require('react');
 var MDL = require('../../components');
 var DocTitle = require('../document/DocTitle.jsx');
 var DocSubtitle = require('../document/DocSubtitle.jsx');
+var MainContent = require('../document/MainContent.jsx');
+var Props = require('../document/Props.jsx');
 
 module.exports = React.createClass({
 
 	render: function() {
+
+		var gridDetail = [
+			{
+				key : 'shadow',
+				type : 'number',
+				state : 'optional',
+				content : 'Shadow size, default is 2. Just allow 2, 3, 4, 6, 8, 16.',
+			},
+			{
+				key : 'height',
+				type : 'number',
+				state : 'optional',
+				content : 'Card\'s height. Priority is bigger than height in style.',
+			},
+			{
+				key : 'width',
+				type : 'number',
+				state : 'optional',
+				content : 'Card\'s width. Priority is bigger than width in style.',
+			},
+			{
+				key : 'style',
+				type : 'object',
+				state : 'optional',
+				content : 'Css setting',
+			},
+		];
+
+		var gridTitleDetail = [
+			{
+				key : 'height',
+				type : 'number',
+				state : 'optional',
+				content : 'Card\'s height. Priority is bigger than height in style.',
+			},
+			{
+				key : 'width',
+				type : 'number',
+				state : 'optional',
+				content : 'Card\'s width. Priority is bigger than width in style.',
+			},
+			{
+				key : 'style',
+				type : 'object',
+				state : 'optional',
+				content : 'Css setting',
+			},
+		];
+
+		var gridSupportingDetail = [
+			{
+				key : 'height',
+				type : 'number',
+				state : 'optional',
+				content : 'Card\'s height. Priority is bigger than height in style.',
+			},
+			{
+				key : 'width',
+				type : 'number',
+				state : 'optional',
+				content : 'Card\'s width. Priority is bigger than width in style.',
+			},
+			{
+				key : 'style',
+				type : 'object',
+				state : 'optional',
+				content : 'Css setting',
+			},
+		];
+
+		var gridActionDetail = [
+			{
+				key : 'height',
+				type : 'number',
+				state : 'optional',
+				content : 'Card\'s height. Priority is bigger than height in style.',
+			},
+			{
+				key : 'width',
+				type : 'number',
+				state : 'optional',
+				content : 'Card\'s width. Priority is bigger than width in style.',
+			},
+			{
+				key : 'style',
+				type : 'object',
+				state : 'optional',
+				content : 'Css setting',
+			},
+			{
+				key : 'border',
+				type : 'boolean',
+				state : 'optional',
+				content : 'Use default border or not',
+			},
+		];
+
+		var gridMenuDetail = [
+			{
+				key : 'style',
+				type : 'object',
+				state : 'optional',
+				content : 'Css setting',
+			},
+		];
+
+		var gridMediaDetail = [
+			{
+				key : 'height',
+				type : 'number',
+				state : 'optional',
+				content : 'Card\'s height. Priority is bigger than height in style.',
+			},
+			{
+				key : 'width',
+				type : 'number',
+				state : 'optional',
+				content : 'Card\'s width. Priority is bigger than width in style.',
+			},
+			{
+				key : 'style',
+				type : 'object',
+				state : 'optional',
+				content : 'Css setting',
+			},
+		];
 
 		var firstStyle = {
 			width : '100px',
@@ -188,11 +316,18 @@ module.exports = React.createClass({
 						style={prismCode}
 					/>
 				</MDL.Card>
-
-				
-
-				
-				
+				<MainContent>
+					<p>The card component is a user interface element representing a virtual piece of paper that contains related data — such as a photo, some text, and a link — that are all about a single subject.</p>
+					<p>Cards are a convenient means of coherently displaying related content that is composed of different types of objects. They are also well-suited for presenting similar objects whose size or supported actions can vary considerably, like photos with captions of variable length. Cards have a constant width and a variable height, depending on their content.</p>
+					<p>Cards are a fairly new feature in user interfaces, and allow users an access point to more complex and detailed information. Their design and use is an important factor in the overall user experience. </p>
+					<p>Cards have five type sub component -- CardTitle, CardSupportingText, CardAction, CardMenu, CardMedia.</p>
+				</MainContent>
+				<Props detail={gridDetail} title="Props (Card)" />
+				<Props detail={gridDetail} title="Props (CardTitle)" />
+				<Props detail={gridSupportingDetail} title="Props (CardSupportingText)" />
+				<Props detail={gridActionDetail} title="Props (CardAction)" />
+				<Props detail={gridMenuDetail} title="Props (CardMenu)" />
+				<Props detail={gridMediaDetail} title="Props (CardMedia)" />
 			</div>
 		);
 	},
