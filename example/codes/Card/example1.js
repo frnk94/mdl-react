@@ -18,12 +18,12 @@
 	</MDL.CardAction>
 	<MDL.CardMenu>
 		<MDL.Button type="IconButton"
-			text={<i style={iconStyle} className="material-icons">share</i>}
+			text={<i className="material-icons">share</i>}
 			isRipple={true}
 			isMini={true}
 			isPrimary={true}
 			isAccent={false}
-			isDisabled={false}/>
+			isDisabled={false} />
 		<br />
 	</MDL.CardMenu>
 </MDL.Card>
