@@ -1,3 +1,6 @@
+
+"use strict";
+
 var React = require('react');
 var cx = require('classnames');
 var _ = require('lodash');
@@ -14,11 +17,12 @@ var _ = require('lodash');
 	Methods
 */
 
-var id = 1;
+var token = 1;
+
 module.exports = React.createClass({
 
 	propTypes: {
-		element: React.PropTypes.node.isRequired,
+		children: React.PropTypes.element.isRequired,
 		large: React.PropTypes.bool,
 		url: React.PropTypes.string,
 		text: React.PropTypes.string,
@@ -29,47 +33,67 @@ module.exports = React.createClass({
 
 	getDefaultProps: function() {
 		return {
-			element: 'text',
 			text: 'Tooltip text',
-			large: false,
 			width: 10,
 			height: 20,
-			style: {},
+			// style: {
+			// 	display : 'inline-block',
+			// },
 		};
 	},
 
-getInitialState: function() {
-	return {
-	};
-},
-	componentWillMount: function() {
-		this.state.id = 'mdl-tooltip-' + id++;
-	},
+	// getInitialState: function() {
+	// 	return {
+	// 	};
+	// },
+	// componentWillMount: function() {
+	// 	this.state.id = 'mdl-tooltip-' + id++;
+	// },
 
 	componentDidMount: function() {
 		componentHandler.upgradeDom();
 	},
 
 	render: function() {
+
 		var classes = {
 			'mdl-tooltip' : true,
+		};
+		var style = {
+			display : 'inline-block',
 		};
 
 		if(this.props.large) {
 			classes['mdl-tooltip--large'] = true;
 		}
 
+		var id = 'mdl-tooltip-' + (token++);
+		var children = React.cloneElement(this.props.children, {
+			id : id,
+			// key : id,
+		});
+
+		var style = _.extend(style, this.props.style);
+
 		return (
-			<div>
-				<p id={this.state.id} style={this.props.style}>
-					{this.props.element}
-				</p>
-				<div className={cx(classes)} htmlFor={this.state.id} > 
-					<img src={this.props.url} width={this.props.width} height={this.props.height} />
+			<div style={style}>
+				{children}
+				<div className={cx(classes)} htmlFor={id} >
 					{this.props.text}
 				</div>
 			</div>
 		);
+
+		// return (
+		// 	<div>
+		// 		<p id={this.state.id} style={this.props.style}>
+		// 			{this.props.element}
+		// 		</p>
+		// 		<div className={cx(classes)} htmlFor={this.state.id} >
+		// 			{this.props.text}
+		// 		</div>
+		// 	</div>
+		// );
 	}
 
 });

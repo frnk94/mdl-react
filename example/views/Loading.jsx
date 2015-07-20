@@ -7,11 +7,12 @@ var Props = require('../document/Props.jsx');
 
 module.exports = React.createClass({
 
-	// getInitialState: function() {
-	// 	return {
-	// 		test : true
-	// 	};
-	// },
+	getInitialState: function() {
+		return {
+			// test : true
+			percentage : 0,
+		};
+	},
 
 	// componentDidMount: function() {
 	// 	var self = this;
@@ -79,6 +80,7 @@ module.exports = React.createClass({
 
 		var loadingStyle = {
 			margin : '24px auto',
+			// width : '200px',
 		};
 
 		var style = {
@@ -89,20 +91,20 @@ module.exports = React.createClass({
 		return (
 			<div style={style}>
 				<MDL.Card style={cardStyle} shadow={6}>
-
 					<MDL.Loading
+						ref='test'
 						type="ProgressBar"
 						indeterminate={false}
-						percentage={44}
+						// percentage={44}
+						percentage={this.state.percentage}
 						buffer={87}
 						style={loadingStyle}
 					/> <br />
-					<MDL.Loading 
+					<MDL.Loading
 						style={loadingStyle}
 					/>
-
 					<MDL.PrismCode
-						src='../codes/Loading.js'
+						src='../codes/Loading.jsx'
 						lang='jsx'
 						style={prismCode}
 					/>
@@ -111,6 +113,19 @@ module.exports = React.createClass({
 				<Props detail={propsDetail} title="Props" />
 				</div>
 		);
+
+	},
+
+	componentDidMount: function() {
+		var self = this;
+		setInterval(function() {
+			console.log(self.state.percentage);
+			var percentage = self.state.percentage;
+			percentage++;
+			self.setState({
+				percentage : percentage
+			});
+		}, 1000);
 	},
 
 });
