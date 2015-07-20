@@ -66,9 +66,14 @@ module.exports = React.createClass({
 			maxWidth : '1200px',
 		};
 
+		var demoStyle = {
+			padding : '36px',
+		};
+
 		return (
 			<div style={style}>
 				<MDL.Card style={cardStyle} shadow={6}>
+				<div style = {demoStyle}>
 				<MDL.Tooltip 
 					element = {<i className="material-icons">add</i>}
 					text = 'Follow'
@@ -79,11 +84,12 @@ module.exports = React.createClass({
 					element = 'Please move your mouse on it.'
 					text = 'this is a bird.'
 					url = 'https://dl.dropboxusercontent.com/u/107164257/CSS3Images/CSS3/bird.png'
-					large = {true}
+					large = {false}
 					width = {30}
 					height = {30}
 					style = {tooltipStyle}
 				/>
+				</div>
 				<MDL.PrismCode
 						src='../codes/Tooltip.js'
 						lang='jsx'
