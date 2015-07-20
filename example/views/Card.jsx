@@ -89,114 +89,90 @@ module.exports = React.createClass({
 				<DocTitle title="Card" />
 				<MDL.Card style={cardStyle} shadow={6}>
 					<MDL.Tabs ref="tab" tabLabels={['Example 1','Example 2','Example 3','Example 4',]} isRipple={true}>
-						<div>
-							<div style={demoStyle}>
-								<MDL.Card style={firstStyle} width='512'>
-									<MDL.CardTitle height='176' style={firstTitleStyle}>
-										Welcome
-									</MDL.CardTitle>
-									<MDL.CardSupportingText>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...
-									</MDL.CardSupportingText>
-									<MDL.CardAction border={true}>
-										<MDL.Button type="FlatButton"
-											text="GET STARTED"
-											isRipple={true}
-											isPrimary={true}
-											isMini={true}
-											isAccent={false}
-											isDisabled={false} />
-										<br />
-									</MDL.CardAction>
-									<MDL.CardMenu style={firstMenuStyle}>
-										<MDL.Button type="IconButton"
-											text={<i style={iconStyle} className="material-icons">share</i>}
-											isRipple={true}
-											isMini={true}
-											isPrimary={true}
-											isAccent={false}
-											isDisabled={false} />
-										<br />
-									</MDL.CardMenu>
-								</MDL.Card>
-							</div>
-							<MDL.PrismCode
-								src='http://fandora.github.io/mdl-react/example/codes/Card/example1.js'
-								lang='jsx'
-								style={prismCode}
-							/>
+						<div style={demoStyle}>
+							<MDL.Card style={firstStyle} width='512'>
+								<MDL.CardTitle height='176' style={firstTitleStyle}>
+									Welcome
+								</MDL.CardTitle>
+								<MDL.CardSupportingText>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...
+								</MDL.CardSupportingText>
+								<MDL.CardAction border={true}>
+									<MDL.Button type="FlatButton"
+										text="GET STARTED"
+										isRipple={true}
+										isPrimary={true}
+										isMini={true}
+										isAccent={false}
+										isDisabled={false} />
+									<br />
+								</MDL.CardAction>
+								<MDL.CardMenu style={firstMenuStyle}>
+									<MDL.Button type="IconButton"
+										text={<i style={iconStyle} className="material-icons">share</i>}
+										isRipple={true}
+										isMini={true}
+										isPrimary={true}
+										isAccent={false}
+										isDisabled={false} />
+									<br />
+								</MDL.CardMenu>
+							</MDL.Card>
 						</div>
-						<div>
-							<div style={demoStyle}>
-								<MDL.Card width='320' height='320' shadow={8} style={secondStyle}>
-									<MDL.CardTitle height="199" style={secondTitleStyle}>
-										Update
-									</MDL.CardTitle>
-									<MDL.CardSupportingText>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis.
-									</MDL.CardSupportingText>
-									<MDL.CardAction border={true}>
-										<MDL.Button type="FlatButton"
-											text="View Updates"
-											isRipple={true}
-											isPrimary={true}
-											isMini={true}
-											isAccent={false}
-											isDisabled={false} />
-									</MDL.CardAction>
-								</MDL.Card>
-							</div>
-							<MDL.PrismCode
-								src='http://fandora.github.io/mdl-react/example/codes/Card/example2.js'
-								lang='jsx'
-								style={prismCode}
-							/>
+						<div style={demoStyle}>
+							<MDL.Card width='320' height='320' shadow={8} style={secondStyle}>
+								<MDL.CardTitle height="199" style={secondTitleStyle}>
+									Update
+								</MDL.CardTitle>
+								<MDL.CardSupportingText>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis.
+								</MDL.CardSupportingText>
+								<MDL.CardAction border={true}>
+									<MDL.Button type="FlatButton"
+										text="View Updates"
+										isRipple={true}
+										isPrimary={true}
+										isMini={true}
+										isAccent={false}
+										isDisabled={false} />
+								</MDL.CardAction>
+							</MDL.Card>
 						</div>
-						<div>
-							<div style={demoStyle}>
-								<MDL.Card width='256' height='256' style={thirdStyle}>
-									<MDL.CardTitle height='256'></MDL.CardTitle>
-									<MDL.CardAction style={thirdActionStyle}>
-										<span className="demo-card-image__filename">Image.jpg</span>
-									</MDL.CardAction>
-								</MDL.Card>
-							</div>
-							<MDL.PrismCode
-								src='http://fandora.github.io/mdl-react/example/codes/Card.js'
-								lang='jsx'
-								style={prismCode}
-							/>
+						<div style={demoStyle}>
+							<MDL.Card width='256' height='256' style={thirdStyle}>
+								<MDL.CardTitle height='256'></MDL.CardTitle>
+								<MDL.CardAction style={thirdActionStyle}>
+									<span className="demo-card-image__filename">Image.jpg</span>
+								</MDL.CardAction>
+							</MDL.Card>
 						</div>
-						<div>
-							<div style={demoStyle}>
-								<MDL.Card width='256' height='256' style={fourthStyle}>
-									<MDL.CardTitle height="203">
-										<h4 style={fourthColor}>
-											Featured event:<br />
-											May 24, 2016<br />
-											7-11pm
-										</h4>
-									</MDL.CardTitle>
-									<MDL.CardAction border={true} style={fourthActionStyle}>
-										<MDL.Button type="FlatButton"
-											style={fourthColor}
-											text="Add to Calendar"
-											isRipple={true}
-											isPrimary={true}
-											isMini={true}
-											isAccent={false}
-											isDisabled={false} />
-									</MDL.CardAction>
-								</MDL.Card>
-							</div>
-							<MDL.PrismCode
-								src='http://fandora.github.io/mdl-react/example/codes/Card.js'
-								lang='jsx'
-								style={prismCode}
-							/>
+						<div style={demoStyle}>
+							<MDL.Card width='256' height='256' style={fourthStyle}>
+								<MDL.CardTitle height="203">
+									<h4 style={fourthColor}>
+										Featured event:<br />
+										May 24, 2016<br />
+										7-11pm
+									</h4>
+								</MDL.CardTitle>
+								<MDL.CardAction border={true} style={fourthActionStyle}>
+									<MDL.Button type="FlatButton"
+										style={fourthColor}
+										text="Add to Calendar"
+										isRipple={true}
+										isPrimary={true}
+										isMini={true}
+										isAccent={false}
+										isDisabled={false} />
+								</MDL.CardAction>
+							</MDL.Card>
 						</div>
-						
 					</MDL.Tabs>
+					<MDL.PrismCode
+						src='http://fandora.github.io/mdl-react/example/codes/Card/example1.js'
+						lang='jsx'
+						style={prismCode}
+					/>
 				</MDL.Card>
 
 				
