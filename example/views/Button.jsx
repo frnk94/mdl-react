@@ -37,11 +37,14 @@ module.exports = React.createClass({
 		prismCode: {
 			fontSize : '14px',
 			marginBottom : '0',
-			marginLeft: '-24px',
-			width: '104%',
 		},
 	},
 
+	getInitialState: function() {
+		return {
+			url: 'FAB.jsx'
+		};
+	},
 	propsDetail: [
 		{
 			key : 'text',
@@ -122,6 +125,18 @@ module.exports = React.createClass({
 		},
 	],
 
+	tabChanged: function(tabIndex, e) {
+		if (tabIndex === 0) {
+			this.setState({url: 'FAB.jsx'});
+		} else if (tabIndex === 1) {
+			this.setState({url: 'Raised.jsx'});
+		} else if (tabIndex === 2) {
+			this.setState({url: 'Flat.jsx'});
+		} else if (tabIndex === 3) {
+			this.setState({url: 'Icon.jsx'});
+		}
+	},
+
 	render: function() {
 		return (
 			<div style={this.styles.main}>
@@ -129,7 +144,8 @@ module.exports = React.createClass({
 				<MDL.Card style={this.styles.card} shadow={6}>
 					<div style={this.styles.demo}>
 						<DocSubtitle title="example" />
-						<MDL.Tabs tabLabels={['Floating Action Buttons','Raised Buttons','Flat Buttons','Icon Buttons',]} isRipple={true}>
+						<MDL.Tabs onChange={this.tabChanged}
+							tabLabels={['Floating Action Buttons','Raised Buttons','Flat Buttons','Icon Buttons',]} isRipple={true}>
 
 							<div style={this.styles.tab}>
 								<MDL.Button type="FloatingActionButton" style={this.styles.button}
@@ -169,12 +185,6 @@ module.exports = React.createClass({
 									isPrimary={true}
 									isMini={true}
 									isRipple={false}/>
-
-								<MDL.PrismCode
-									src='http://fandora.github.io/mdl-react/example/codes/Buttons/FAB.jsx'
-									lang='jsx'
-									style={this.styles.prismCode}
-									/>
 							</div>
 
 							<div style={this.styles.tab}>
@@ -199,11 +209,6 @@ module.exports = React.createClass({
 									ref="raised"
 									text="Disabled"
 									isDisabled={true}/>
-								<MDL.PrismCode
-									src='http://fandora.github.io/mdl-react/example/codes/Buttons/Raised.jsx'
-									lang='jsx'
-									style={this.styles.prismCode}
-									/>
 							</div>
 
 							<div style={this.styles.tab}>
@@ -228,11 +233,7 @@ module.exports = React.createClass({
 									ref="flat"
 									text="Disabled"
 									isDisabled={true}/>
-								<MDL.PrismCode
-									src='http://fandora.github.io/mdl-react/example/codes/Buttons/Flat.jsx'
-									lang='jsx'
-									style={this.styles.prismCode}
-									/>
+
 							</div>
 
 							<div style={this.styles.tab}>
@@ -257,15 +258,16 @@ module.exports = React.createClass({
 									ref="icon"
 									text='plus_one'
 									isDisabled={true}/>
-								<MDL.PrismCode
-									src='http://fandora.github.io/mdl-react/example/codes/Buttons/Icon.jsx'
-									lang='jsx'
-									style={this.styles.prismCode}
-									/>
 							</div>
 						</MDL.Tabs>
 					</div>
+					<MDL.PrismCode
+						src={'http://fandora.github.io/mdl-react/example/codes/Buttons/'+this.state.url}
+						lang='jsx'
+						style={this.styles.prismCode}
+					/>
 				</MDL.Card>
+
 				<Props detail={this.propsDetail} title="Props" />
 				<Props detail={this.methodsDetail} title="Methods" />
 			</div>
