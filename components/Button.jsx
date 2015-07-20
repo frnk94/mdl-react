@@ -8,7 +8,7 @@ var _ = require('lodash');
 		http://www.getmdl.io/components/index.html#buttons-section
 	Props
 		text:字串或 element
-		type: 'loatingActionButton', 'RaisedButton', 'FlatButton', 'IconButton'
+		type: 'FloatingActionButton', 'RaisedButton', 'FlatButton', 'IconButton'
 		id: 作為 HTML attribute for 的綁定
 		isRipple: 是否帶特效, 預設 true
 		style: 設定 style 進去
@@ -46,7 +46,7 @@ module.exports = React.createClass({
 
 	getInitialState: function() {
 		return {
-			isDisabled: false,
+			isDisabled: this.props.isDisabled,
 		};
 	},
 
@@ -66,13 +66,13 @@ module.exports = React.createClass({
 			'mdl-button': true,
 			'mdl-js-button': true,
 			'mdl-js-ripple-effect': this.props.isRipple,
-			'mdl-button--colored': this.props.isPrimary,
+			'mdl-button--primary': this.props.isPrimary,
 			'mdl-button--accent': this.props.isAccent,
 		};
 
 		if (this.props.type === 'FloatingActionButton') {
 			classes['mdl-button--fab'] = true;
-			classes['mdl-button--mini-fab']= this.props.isMini;
+			classes['mdl-button--mini-fab'] = this.props.isMini;
 		} else if (this.props.type === 'RaisedButton') {
 			classes['mdl-button--raised'] = true;
 		} else if (this.props.type === 'IconButton') {
@@ -111,7 +111,9 @@ module.exports = React.createClass({
 				disabled={this.state.isDisabled}
 				style={this.props.style}
 			>
-				{this.props.text}
+				{	this.props.type === 'IconButton'
+						? <i className="material-icons">{this.props.text}</i>
+						: this.props.text }
 			</button>
 		);
 	},
