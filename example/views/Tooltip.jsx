@@ -13,7 +13,7 @@ module.exports = React.createClass({
 				key : 'element',
 				type : 'node',
 				state : 'required',
-				content : '觸發tooltip的物件',
+				content : '觸發tooltip的文字或圖片',
 			},
 			{
 				key : 'text',
@@ -70,8 +70,14 @@ module.exports = React.createClass({
 			<div style={style}>
 				<MDL.Card style={cardStyle} shadow={6}>
 				<MDL.Tooltip 
-					element = 'move your mouse on this.'
-					text = 'This is a bird.'
+					element = {<i className="material-icons">add</i>}
+					text = 'Follow'
+					large = {true}
+					style = {tooltipStyle}
+				/>
+				<MDL.Tooltip 
+					element = 'Please move your mouse on it.'
+					text = 'this is a bird.'
 					url = 'https://dl.dropboxusercontent.com/u/107164257/CSS3Images/CSS3/bird.png'
 					large = {true}
 					width = {30}

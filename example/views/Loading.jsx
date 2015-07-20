@@ -35,7 +35,7 @@ module.exports = React.createClass({
 				key : 'indeterminate',
 				type : 'boolean',
 				state : 'optional',
-				content : '選擇ProgressBar是否要動畫',
+				content : '選擇ProgressBar是否要動畫呈現',
 			},
 
 			{
@@ -56,7 +56,7 @@ module.exports = React.createClass({
 				key : 'buffer',
 				type : 'number',
 				state : 'optional',
-				content : '設定ProgressBar是否要動畫',
+				content : '設定ProgressBar是否要動畫呈現',
 			},
 
 			{

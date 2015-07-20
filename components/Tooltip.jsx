@@ -61,10 +61,10 @@ getInitialState: function() {
 
 		return (
 			<div>
-				<p id={this.state.id}>
+				<p id={this.state.id} style={this.props.style}>
 					{this.props.element}
 				</p>
-				<div className={cx(classes)} htmlFor={this.state.id} style={this.props.style}> 
+				<div className={cx(classes)} htmlFor={this.state.id} > 
 					<img src={this.props.url} width={this.props.width} height={this.props.height} />
 					{this.props.text}
 				</div>
