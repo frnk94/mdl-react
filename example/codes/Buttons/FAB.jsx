@@ -1,5 +1,6 @@
 
 /* Primary-colored FAB button */
+<MDL.Button type="FloatingActionButton"
 	text={<i className="material-icons">notifications_none</i>}
 	isPrimary={true}/>
 

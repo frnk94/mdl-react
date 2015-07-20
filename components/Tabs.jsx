@@ -34,6 +34,7 @@ module.exports = React.createClass({
 		isRipple: React.PropTypes.bool,
 		style: React.PropTypes.object,
 		defaultIndex: React.PropTypes.number,
+		onChange: React.PropTypes.func,
 	},
 
 	getInitialState: function() {
@@ -56,8 +57,9 @@ module.exports = React.createClass({
 		componentHandler.upgradeDom();
 	},
 
-	setTabIndex: function(index) {
+	setTabIndex: function(index, e) {
 		if(index == this.state.tabIndex) return;
+		if(this.props.onChange) this.props.onChange(index, e);
 		this.setState({tabIndex: index});
 	},
 
