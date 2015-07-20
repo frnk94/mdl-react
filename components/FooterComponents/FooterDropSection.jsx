@@ -5,9 +5,9 @@
 		http://www.getmdl.io/components/index.html#layout-section/footer
 
 	props
-		title: string, be --drop-down-section title
-		checked: boolen, usualy it is checked
-		dropList: array, push <li> element inside
+		heading: 			string, 		be --drop-down-section heading
+		checked: 		boolen, 		usualy it is checked
+		dropList: 		array, 			push <li> element inside
 */
 
 var React = require('react');
@@ -15,15 +15,13 @@ var React = require('react');
 module.exports = React.createClass({
 
 	propTypes: {
-		title: React.PropTypes.string,
-		checked : React.PropTypes.bool,
+		heading: React.PropTypes.string,
 		dropList: React.PropTypes.array,
 	},
 
 	getDefaultProps: function() {
 		return {
-			checked: true,
-			title: 'Your title',
+			heading: 'Your heading',
 			dropList:[],
 		};
 	},
@@ -34,7 +32,7 @@ module.exports = React.createClass({
 
 		list = this.props.dropList.map(function(item, index) {
 			return (
-				<li>
+				<li key={item.id}>
 					<a 
 						href={item.href}
 					>
@@ -49,10 +47,14 @@ module.exports = React.createClass({
 				<input 
 					className={"mdl-mega-footer--heading-checkbox"}
 					type={"checkbox"}
-					checked={this.props.checked}
+					defaultChecked={'checked'}
 				/>
-					<h1 className={"mdl-mega-footer--heading"}>{this.props.title}</h1>
-					{this.props.children}
+				<h1 
+					className={"mdl-mega-footer--heading"}
+				>
+					{this.props.heading}
+				</h1>
+				{this.props.children}
 			</div>
 		);
 	}

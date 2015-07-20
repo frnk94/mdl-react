@@ -6,6 +6,7 @@
 
 	props
 		vertical,		string				top, bottom, middle
+		logoTitle,		string				required in class="mega-footer bottom-section"
 */
 
 var React = require('react');
@@ -17,18 +18,28 @@ module.exports = React.createClass({
 
 	propTypes: {
 		vertical: React.PropTypes.string,
+		logoTitle: React.PropTypes.string,
 	},
 
 	getDefaultProps: function() {
 		return {
 			vertical: 'middle',
+			logoTitle: 'logoTitle',
 		};
 	},
 
 	render: function() {
 
+		var logo = null;
+
 		if(this.props.vertical == 'bottom' && this.props.isMega == true){
-			console.warn("vertical: Make sure mdl-logo is in mega-footer bottom-section");
+			logo = (
+				<div 
+					className="mdl-logo"
+				>
+				{this.props.logoTitle}
+				</div>
+			);
 		}
 
 		return (
@@ -38,6 +49,7 @@ module.exports = React.createClass({
 				"-footer" + "--" +this.props.vertical + 
 				"-section"}
 			>
+				{logo}
 				{this.props.children}
 			</div>
 		);

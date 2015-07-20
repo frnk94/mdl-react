@@ -37,8 +37,10 @@ module.exports = React.createClass({
 
 		list = this.props.dropList.map(function(item, index) {
 			return (
-				<li>
-					<a href={item.href}>
+				<li key={item.id}>
+					<a 
+						href={item.href}
+					>
 						{item.text}
 					</a>
 				</li>
@@ -46,7 +48,8 @@ module.exports = React.createClass({
 		});
 
 		return (
-				<ul className={
+				<ul 
+					className={
 						"mdl-" + 
 						(this.props.isMega ? 'mega' : 'mini') + 
 						"-footer--link-list"

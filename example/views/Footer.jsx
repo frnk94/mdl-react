@@ -93,71 +93,67 @@ module.exports = React.createClass({
 		return (
 			<div>
 				<MDL.Footer isMega={true} >
-					<MDL.FooterVertical isMega={true} vertical={'top'} >
-						<MDL.FooterDropSection title='Features' >
+					<MDL.FooterVertical isMega={true} vertical='top' >
+						<MDL.FooterDropSection heading='Features' >
 							<MDL.FooterLinkList isMega={true} dropList ={this.props.dropList1} />
 						</MDL.FooterDropSection>
-						<MDL.FooterDropSection title='Details' >
+						<MDL.FooterDropSection heading='Details' >
 							<MDL.FooterLinkList isMega={true} dropList ={this.props.dropList2} />
 						</MDL.FooterDropSection>
-						<MDL.FooterDropSection title='Technology' >
+						<MDL.FooterDropSection heading='Technology' >
 							<MDL.FooterLinkList isMega={true} dropList ={this.props.dropList3} />
 						</MDL.FooterDropSection>
-						<MDL.FooterDropSection title='FAQ' >
+						<MDL.FooterDropSection heading='FAQ' >
 							<MDL.FooterLinkList isMega={true} dropList ={this.props.dropList4} />
 						</MDL.FooterDropSection>
 					</MDL.FooterVertical>
 
-					<MDL.FooterVertical isMega={true} vertical={'bottom'} >
-						<MDL.FooterLogo title='Title' />
+					<MDL.FooterVertical isMega={true} vertical='bottom' logoTitle='Title'>
 						<MDL.FooterLinkList isMega={true} dropList ={this.props.dropList5} />
 					</MDL.FooterVertical>
 				</MDL.Footer>
 				<br />
 				<MDL.Footer isMega={false}>
-					<MDL.FooterHorizontal isMega={false} horizontal={'left'}>
-						<MDL.FooterLogo title='Title' />
+					<MDL.FooterHorizontal isMega={false} horizontal='left' logoTitle='Title'>
 						<MDL.FooterLinkList isMega={false} dropList ={this.props.dropList5} />
 					</MDL.FooterHorizontal>
 				</MDL.Footer>
 				<br />
 				<MDL.Footer isMega={true}>
-					<MDL.FooterVertical isMega={true} vertical={'top'} >
-						<MDL.FooterHorizontal isMega={true} horizontal={'left'}>
+					<MDL.FooterVertical isMega={true} vertical='top' >
+						<MDL.FooterHorizontal isMega={true} horizontal='left'>
 							<MDL.FooterButton isMega={true} />
 							<MDL.FooterButton isMega={true} />
 							<MDL.FooterButton isMega={true} />
 						</MDL.FooterHorizontal>
-						<MDL.FooterHorizontal isMega={true} horizontal={'right'}>
+						<MDL.FooterHorizontal isMega={true} horizontal='right'>
 							<MDL.FooterLinkList isMega={true} dropList ={this.props.dropList5} />
 						</MDL.FooterHorizontal>
 					</MDL.FooterVertical>
 
-					<MDL.FooterVertical isMega={true} vertical={'middle'} >
-						<MDL.FooterDropSection title='Learning and Support' >
+					<MDL.FooterVertical isMega={true} vertical='middle' >
+						<MDL.FooterDropSection heading='Learning and Support' >
 							<MDL.FooterLinkList isMega={true} dropList ={this.props.dropList2} />
 						</MDL.FooterDropSection>
-						<MDL.FooterDropSection title='Just for Developers' >
+						<MDL.FooterDropSection heading='Just for Developers' >
 							<MDL.FooterLinkList isMega={true} dropList ={this.props.dropList3} />
 						</MDL.FooterDropSection>
 					</MDL.FooterVertical>
 
-					<MDL.FooterVertical isMega={true} vertical={'bottom'} >
-						<MDL.FooterLogo title='More Information' />
+					<MDL.FooterVertical isMega={true} vertical='bottom' logoTitle='More Information'>
 						<MDL.FooterLinkList isMega={true} dropList ={this.props.dropList5} />
 					</MDL.FooterVertical>
 				</MDL.Footer>
 				<br />
 				<MDL.Footer isMega={false}>
-					<MDL.FooterHorizontal isMega={false} horizontal={'left'}>
-						<MDL.FooterLogo title='Mini-footer Heading' />
+					<MDL.FooterHorizontal isMega={false} horizontal='left' logoTitle="Mini-footer Heading">
 						<MDL.FooterLinkList isMega={false} dropList ={this.props.dropList5} />
 					</MDL.FooterHorizontal>
 
-					<MDL.FooterHorizontal isMega={false} horizontal={'right'}>
-						<MDL.FooterButton isMega={false} />
-						<MDL.FooterButton isMega={false} />
-						<MDL.FooterButton isMega={false} />
+					<MDL.FooterHorizontal isMega={false} horizontal='right'>
+						<MDL.FooterButton isMega={false} social='twitter'/>
+						<MDL.FooterButton isMega={false} social='github'/>
+						<MDL.FooterButton isMega={false} social='gplus'/>
 					</MDL.FooterHorizontal>
 				</MDL.Footer>
 			</div>

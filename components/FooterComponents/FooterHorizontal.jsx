@@ -6,6 +6,7 @@
 
 	props
 		horizontal,		string				left, right
+		logoTitle,		string				required in class="mini-footer left-section"
 */
 
 var React = require('react');
@@ -17,18 +18,28 @@ module.exports = React.createClass({
 
 	propTypes: {
 		horizontal: React.PropTypes.string,
+		logoTitle: React.PropTypes.string,
 	},
 
 	getDefaultProps: function() {
 		return {
 			horizontal: 'left',
+			logoTitle: 'logotitle',
 		};
 	},
 
 	render: function() {
 
+		var logo = null;
+
 		if(this.props.horizontal == 'left' && this.props.isMega == false){
-			console.warn("Horizontal: Make sure mdl-logo is in mini-footer left-section");
+			logo = (
+				<div 
+					className="mdl-logo"
+				>
+				{this.props.logoTitle}
+				</div>
+			);
 		}
 
 		return (
@@ -38,6 +49,7 @@ module.exports = React.createClass({
 				"-footer" + "--" +this.props.horizontal + 
 				"-section"}
 			>
+				{logo}
 				{this.props.children}
 			</div>
 		);
