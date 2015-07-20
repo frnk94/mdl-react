@@ -104,7 +104,7 @@ module.exports = React.createClass({
 						style={loadingStyle}
 					/>
 					<MDL.PrismCode
-						src='../codes/Loading.jsx'
+						src='example/codes/Loading.jsx'
 						lang='jsx'
 						style={prismCode}
 					/>

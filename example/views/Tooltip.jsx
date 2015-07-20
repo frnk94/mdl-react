@@ -94,7 +94,7 @@ module.exports = React.createClass({
 						</MDL.Tooltip>
 					</div>
 					<MDL.PrismCode
-						src='../codes/Tooltip.jsx'
+						src='example/codes/Tooltip.jsx'
 						lang='jsx'
 						style={prismCode}
 					/>
