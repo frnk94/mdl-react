@@ -28,7 +28,6 @@ module.exports = React.createClass({
 	},
 
 	render: function() {
-
 		var classes = {
 			'mdl-card' : true,
 		};
