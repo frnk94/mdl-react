@@ -26,15 +26,15 @@
 	</ul>
 </MDL.Tabs>
 
-changedTab(index, e) {
+function changedTab(index, e) {
 	console.log("The tab is changed to", index);
 },
 
-nextTab() {
+function nextTab() {
 	this.refs.tab.setTabIndex( (this.refs.tab.getTabIndex() + 1) % 3 );
 },
 
-previousTab() {
+function previousTab() {
 	var index = this.refs.tab.getTabIndex() - 1;
 	if( index<0 ) index = 2;
 	this.refs.tab.setTabIndex( index % 3 );

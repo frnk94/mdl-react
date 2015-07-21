@@ -20,7 +20,7 @@ var _ = require('lodash');
  *	Methods
  *		toggle: toggle checkbox
  *		setChecked: set checkbox checked or unchecked
- *		isChecked: whether the checkbox is checked
+ *		getChecked: whether the checkbox is checked
  */
 
 var id = 1;
@@ -39,7 +39,7 @@ module.exports = React.createClass({
 
 	propTypes: {
 		text: React.PropTypes.node,
-		type: React.PropTypes.string.isRequired,
+		type: React.PropTypes.oneOf(['checkbox', 'radio', 'icon-toggle', 'switch']).isRequired,
 		name: React.PropTypes.string,
 		value: React.PropTypes.string,
 		isRipple: React.PropTypes.bool,
@@ -52,10 +52,8 @@ module.exports = React.createClass({
 	id: 'mdl-toggle-',
 
 	componentWillMount: function() {
-		if (!_.includes(['checkbox', 'radio', 'icon-toggle', 'switch'], this.props.type)) {
-			console.warn('MDL.Toggle: Wrong Toggle Type');
-		}
-		if (this.props.type == "radio"){
+
+		if (this.props.type == "radio") {
 			if(!this.props.name) console.warn('MDL.Toggle: Radio button needs props name');
 			if(!this.props.value) console.warn('MDL.Toggle: Radio button needs props value');
 		}
@@ -82,7 +80,7 @@ module.exports = React.createClass({
 			return input.checked;
 	},
 
-	isChecked: function() {
+	getChecked: function() {
 		return React.findDOMNode(this.refs.input).checked;
 	},
 
@@ -105,30 +103,30 @@ module.exports = React.createClass({
 	render: function() {
 
 		var classes = this._getClasses();
-		var text;
-		this.props.type == 'icon-toggle'?
-			text = (<i className="mdl-icon-toggle__label material-icons">{this.props.text}</i>) :
-			text = (<span className={cx(classes.text)}>{this.props.text}</span>);
+		var text = this.props.type == 'icon-toggle'?
+			(<i className="mdl-icon-toggle__label material-icons">{this.props.text}</i>) :
+			(<span className={cx(classes.text)}>{this.props.text}</span>);
 
-		var input;
-		this.props.type == 'radio'?
-			input = (<input ref="input"
-				type="radio"
-				id={this.id}
-				className="mdl-radio__button"
-				name={this.props.name}
-				value={this.props.value}
-				defaultChecked={this.props.isChecked}
-				disabled={this.props.isDisabled}
-				onChange={this.props.onChange}/>
+		var input = this.props.type == 'radio'?
+			(
+				<input ref="input"
+					type="radio"
+					id={this.id}
+					className="mdl-radio__button"
+					name={this.props.name}
+					value={this.props.value}
+					defaultChecked={this.props.isChecked}
+					disabled={this.props.isDisabled}
+					onChange={this.props.onChange}/>
 			):
-			input = (<input ref="input"
-				type="checkbox"
-				id={this.id}
-				className={cx(classes.input)}
-				defaultChecked={this.props.isChecked}
-				disabled={this.props.isDisabled}
-				onChange={this.props.onChange} />
+			(
+				<input ref="input"
+					type="checkbox"
+					id={this.id}
+					className={cx(classes.input)}
+					defaultChecked={this.props.isChecked}
+					disabled={this.props.isDisabled}
+					onChange={this.props.onChange} />
 			);
 
 		return (
