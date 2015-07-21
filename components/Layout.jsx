@@ -39,23 +39,21 @@ var Layout = React.createClass({
 		isScrollHeader : React.PropTypes.bool,
 		isFixedDrawer : React.PropTypes.bool,
 
+				waterfallLinks : React.PropTypes.arrayOf(React.PropTypes.element),
+
 		tabs : React.PropTypes.arrayOf(React.PropTypes.element),
+		initialTabIndex : React.PropTypes.number,
 		isFixedTabs : React.PropTypes.bool,
 
-		searchInputStyle : React.PropTypes.object,
-		onSearchSubmit : React.PropTypes.func,
 		showHeaderSearch : React.PropTypes.bool,
+		onSearchSubmit : React.PropTypes.func,
+		searchInputStyle : React.PropTypes.object,
 
 		style : React.PropTypes.object,
 		contentStyle : React.PropTypes.object,
 
-
 		isTransparent : React.PropTypes.bool,
 		isHideHeaderMenuWhenMobile : React.PropTypes.bool,
-
-		waterfallLinks : React.PropTypes.arrayOf(React.PropTypes.element),
-
-
 
 	},
 
@@ -90,9 +88,15 @@ var Layout = React.createClass({
 		}
 	},
 
-	_generateLinks : function(items, className) {
+	_generateLinks : function(items, className, activeIndex) {
 		return items.map(function(item, index) {
-			var newClassName = ('' || item.props.className) + ' ' + className;
+			var newClassName = (item.props.className || '') + ' ' + className;
+			if(
+				activeIndex &&
+				index == activeIndex
+			) {
+				newClassName += ' is-active';
+			}
 			return React.cloneElement(item, {
 				key : index,
 				className : newClassName,
@@ -172,7 +176,9 @@ var Layout = React.createClass({
 			if(
 				this.props.tabs.length > 0
 			) {
-				var tabs = this._generateLinks(this.props.tabs, 'mdl-layout__tab');
+				var tabs = this._generateLinks(
+					this.props.tabs, 'mdl-layout__tab', this.props.initialTabIndex
+				);
 				headerTabs = (
 					<div className="mdl-layout__tab-bar mdl-js-ripple-effect">
 						{tabs}
@@ -286,6 +292,8 @@ var Layout = React.createClass({
 
 });
 
+var counter = 0;
+
 var HeaderSearch = React.createClass({
 
 	propTypes: {
@@ -304,13 +312,15 @@ var HeaderSearch = React.createClass({
 	},
 
 	render : function() {
+		var inputId = 'fixed-header-drawer-exp-' + (++counter);
 		var inputStyle = _.extend({
 			borderBottomColor : 'white',
 		}, this.props.inputStyle);
 		return (
 			<div className="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
 				<label
-					className="mdl-button mdl-js-button mdl-button--icon" htmlFor="fixed-header-drawer-exp"
+					className="mdl-button mdl-js-button mdl-button--icon"
+					htmlFor={inputId}
 				>
 					<i className="material-icons">search</i>
 				</label>
@@ -319,7 +329,7 @@ var HeaderSearch = React.createClass({
 						className="mdl-textfield__input"
 						type="text"
 						name="sample"
-						id="fixed-header-drawer-exp"
+						id={inputId}
 						style={inputStyle}
 						onKeyPress={this._onKeyPress}
 					/>

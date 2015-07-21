@@ -58,21 +58,21 @@ var ExampleTextField = React.createClass({
 		];
 
 		var fewTabs = [
-			<a href='#'>Tab 1</a>,
-			<a href='#'>Tab 2</a>,
-			<a href='#'>Tab 3</a>,
+			<a href=''>Tab 1</a>,
+			<a href=''>Tab 2</a>,
+			<a href=''>Tab 3</a>,
 		];
 
 		var manyTabs = [
-			<a href='#'>Tab 1</a>,
-			<a href='#'>Tab 2</a>,
-			<a href='#'>Tab 3</a>,
-			<a href='#'>Tab 4</a>,
-			<a href='#'>Tab 5</a>,
-			<a href='#'>Tab 6</a>,
-			<a href='#'>Tab 7</a>,
-			<a href='#'>Tab 8</a>,
-			<a href='#'>Tab 9</a>,
+			<a href=''>Tab 1</a>,
+			<a href=''>Tab 2</a>,
+			<a href=''>Tab 3</a>,
+			<a href=''>Tab 4</a>,
+			<a href=''>Tab 5</a>,
+			<a href=''>Tab 6</a>,
+			<a href=''>Tab 7</a>,
+			<a href=''>Tab 8</a>,
+			<a href=''>Tab 9</a>,
 		];
 
 		return (
@@ -176,8 +176,10 @@ var ExampleTextField = React.createClass({
 						<MDL.Layout
 							title='Fixed tabs'
 							href='#'
-							headerLinks={links}
+							showHeaderSearch={true}
 							tabs={fewTabs}
+							isFixedTabs={true}
+							initialTabIndex={1}
 							drawerLinks={links}
 							noDrawerTitle={true}
 							isFixedTabs={true}
@@ -207,43 +209,103 @@ var ExampleTextField = React.createClass({
 				key : 'href',
 				type : 'string',
 				state : 'optional',
-				content : 'the href attribute of title',
+				content : 'The href attribute of title',
 			},
 			{
 				key : 'noHeaderTitle',
 				type : 'bool',
 				state : 'optional',
-				content : 'disable displaying header title',
+				content : 'Disable displaying header title',
 			},
 			{
 				key : 'noDrawerTitle',
 				type : 'bool',
 				state : 'optional',
-				content : 'disable displaying drawer title',
+				content : 'Disable displaying drawer title',
 			},
 			{
 				key : 'headerLinks',
 				type : 'array of elements',
 				state : 'optional',
-				content : 'array of links',
+				content : 'Links in header',
 			},
 			{
 				key : 'headerStyle',
 				type : 'object',
 				state : 'optional',
-				content : 'the CSS inline style of the root element of header',
+				content : 'The CSS inline style of the root element of header',
+			},
+			{
+				key : 'drawerLinks',
+				type : 'array of elements',
+				state : 'optional',
+				content : 'Links in drawer',
+			},
+			{
+				key : 'drawerStyle',
+				type : 'object',
+				state : 'optional',
+				content : 'The CSS inline style of the root element of drawer',
+			},
+			{
+				key : 'drawerButtonStyle',
+				type : 'object',
+				state : 'optional',
+				content : 'The CSS inline style of the root element of drawer toggle button',
 			},
 			{
 				key : 'isFixHeader',
 				type : 'bool',
 				state : 'optional',
-				content : 'enable fixed header',
+				content : 'Enable fixed header',
+			},
+			{
+				key : 'isFixedDrawer',
+				type : 'bool',
+				state : 'optional',
+				content : 'Enable fixed drawer',
 			},
 			{
 				key : 'isScrollHeader',
 				type : 'bool',
 				state : 'optional',
-				content : 'enable scrolling header',
+				content : 'Enable scrolling header',
+			},
+			{
+				key : 'waterfallLinks',
+				type : 'array of elements',
+				state : 'optional',
+				content : 'Links in waterfall',
+			},
+			{
+				key : 'tabs',
+				type : 'array of elements',
+				state : 'optional',
+				content : 'Links in tabs',
+			},
+			{
+				key : 'initialTabIndex',
+				type : 'number',
+				state : 'optional',
+				content : 'Set the default active tab',
+			},
+			{
+				key : 'isFixedTabs',
+				type : 'bool',
+				state : 'optional',
+				content : 'Enable fixed tabs',
+			},
+			{
+				key : 'showHeaderSearch',
+				type : 'bool',
+				state : 'optional',
+				content : 'Show the search field in header',
+			},
+			{
+				key : 'onSearchSubmit',
+				type : 'function(value)',
+				state : 'optional',
+				content : 'Callback function fired when the user submit',
 			},
 		];
 		return <Props detail={propsDetail} title="Props" />;

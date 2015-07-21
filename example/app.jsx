@@ -36,9 +36,9 @@ var App = React.createClass({
 			<a href='#tooltip'>Tooltip</a>,
 		];
 		var tabs = [
-			<a href='#'>Tab 1</a>,
-			<a href='#'>Tab 2</a>,
-			<a href='#'>Tab 3</a>,
+			<a href=''>Tab 1</a>,
+			<a href=''>Tab 2</a>,
+			<a href=''>Tab 3</a>,
 		];
 		return (
 			<MDL.Layout
@@ -47,8 +47,9 @@ var App = React.createClass({
 				isFixedHeader={true}
 				// isFixedDrawer={true}
 				// isScrollHeader={true}
-				tabs={tabs}
+				// tabs={tabs}
 				// isFixedTabs={true}
+				// initialTabIndex={1}
 				// showHeaderSearch={true}
 				headerLinks={headerLinks}
 				// waterfallLinks={waterfallLinks}
