@@ -28,7 +28,7 @@ module.exports = React.createClass({
 		};
 
 		var rightItems = {
-			type : 'buttons',		// or 'buttons'
+			type : 'button',		// or 'list'
 			items : [
 				<a href='#cloud'>
 					<i className='material-icons'>cloud</i>
@@ -38,10 +38,11 @@ module.exports = React.createClass({
 
 		return (
 			<div>
+				<span>Footer2</span>
 				<MDL.Footer2
 					isMini={true}
-					rightItems={rightItems}
 					leftItems={leftItems}
+					rightItems={rightItems}
 				>
 				</MDL.Footer2>
 			</div>

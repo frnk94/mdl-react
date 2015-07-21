@@ -44,6 +44,8 @@ var App = React.createClass({
 			<a href='#card'>Card</a>,
 			<a href='#grid'>Grid</a>,
 
+			<a href='#Footer2'>Footer2</a>,
+
 		];
 		var style = {
 			padding : '24px',
@@ -91,6 +93,7 @@ var Toggle = require('./views/Toggle.jsx');
 var Tab = require('./views/Tab.jsx');
 var Grid = require('./views/Grid.jsx');
 var Footer = require('./views/Footer.jsx');
+var Footer2 = require('./views/Footer2.jsx');
 var Tooltip = require('./views/Tooltip.jsx');
 
 var routes = (
@@ -109,6 +112,7 @@ var routes = (
 		<Router.Route name='tab' path='tab' handler={Tab} />
 		<Router.Route name='grid' path='grid' handler={Grid} />
 		<Router.Route name='footer' path='footer' handler={Footer} />
+		<Router.Route name='footer2' path='footer2' handler={Footer2} />
 		<Router.Route name='tooltip' path='tooltip' handler={Tooltip} />
 	</Router.Route>
 );

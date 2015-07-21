@@ -30,6 +30,7 @@ module.exports = {
 	Tabs : require('./Tabs.jsx'),
 	Grid : require('./Grid.jsx'),
 	GridCell : require('./GridCell.jsx'),
+	Footer2 : require('./Footer2.jsx'),
 	Footer : require('./Footer.jsx'),
 	FooterLogo : require('./FooterComponents/FooterLogo.jsx'),
 	FooterButton : require('./FooterComponents/FooterButton.jsx'),
