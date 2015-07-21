@@ -98,7 +98,7 @@ module.exports = React.createClass({
 					/>
 				</MDL.Card>
 				<Props detail={propsDetail} title="Props" />
-				</div>
+			</div>
 		);
 
 	},
