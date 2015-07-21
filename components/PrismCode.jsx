@@ -1,6 +1,7 @@
 
 var React = require('react');
 var superagent = require('superagent');
+var _ = require('lodash');
 
 /**
 	PrismCode
@@ -26,6 +27,7 @@ module.exports = React.createClass({
 	getDefaultProps: function() {
 		return {
 			lang : 'javascript',
+			style : {},
 		};
 	},
 
@@ -57,8 +59,11 @@ module.exports = React.createClass({
 
 
 	render: function() {
+		var style = _.extend({
+			margin : '0',
+		}, this.props.style);
 		return (
-			<pre style={this.props.style}>
+			<pre style={style}>
 				<code ref='code'
 					className={'language-' + this.props.lang}
 				/>

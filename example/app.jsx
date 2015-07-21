@@ -24,30 +24,26 @@ var App = React.createClass({
 			<a href='#button'>Button</a>,
 		];
 		var drawerItems = [
-
+			// xpsteven
 			<a href='#text-field'>Text Field</a>,
 			<a href='#layout'>Layout</a>,
-
+			// wen wen
 			<a href='#loading'>Loading</a>,
 			<a href='#tooltip'>Tooltip</a>,
-
+			// xiu xiu
 			<a href='#slider'>Slider</a>,
 			<a href='#badge'>Badge</a>,
 			<a href='#footer'>Footer</a>,
-
+			// pin chia
 			<a href='#tab'>Tab</a>,
 			<a href='#button'>Button</a>,
 			<a href='#menu'>Menu</a>,
 			<a href='#toggle'>Toggle</a>,
-
+			// terence
 			<a href='#table'>Table</a>,
 			<a href='#card'>Card</a>,
 			<a href='#grid'>Grid</a>,
-
 		];
-		var style = {
-			padding : '24px',
-		};
 		return (
 			<MDL.Layout
 				title='mdl-react'
@@ -64,13 +60,11 @@ var App = React.createClass({
 				// drawerButtonStyle={{color:'red'}}
 				// isTransparent={true}
 				// headerStyle={{background:"url('http://www.getmdl.io/assets/demos/transparent.jpg') center / cover"}}
-				contentStyle={{ minHeight : '1000px' }}
+				contentStyle={{ minHeight : '1000px', padding : '24px' }}
 				// noHeaderTitle={true}
 				noDrawerTitle={true}
 			>
-				<div style={style}>
-					<Router.RouteHandler />
-				</div>
+				<Router.RouteHandler />
 			</MDL.Layout>
 		);
 	},
@@ -91,6 +85,7 @@ var Toggle = require('./views/Toggle.jsx');
 var Tab = require('./views/Tab.jsx');
 var Grid = require('./views/Grid.jsx');
 var Tooltip = require('./views/Tooltip.jsx');
+var Layout = require('./views/Layout.jsx');
 
 var routes = (
 	<Router.Route handler={App}>
@@ -108,6 +103,7 @@ var routes = (
 		<Router.Route name='tab' path='tab' handler={Tab} />
 		<Router.Route name='grid' path='grid' handler={Grid} />
 		<Router.Route name='tooltip' path='tooltip' handler={Tooltip} />
+		<Router.Route name='layout' path='layout' handler={Layout} />
 	</Router.Route>
 );
 

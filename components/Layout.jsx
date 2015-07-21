@@ -17,6 +17,14 @@ var _ = require('lodash');
 var Layout = React.createClass({
 
 	propTypes: {
+
+		title : React.PropTypes.oneOfType([
+			React.PropTypes.string,
+			React.PropTypes.element,
+		]),
+		noHeaderTitle : React.PropTypes.bool,
+		noDrawerTitle : React.PropTypes.bool,
+
 		style : React.PropTypes.object,
 		drawerButtonStyle : React.PropTypes.object,
 		headerStyle : React.PropTypes.object,
@@ -29,12 +37,6 @@ var Layout = React.createClass({
 		isFixedDrawer : React.PropTypes.bool,
 		isTransparent : React.PropTypes.bool,
 		isHideHeaderMenuWhenMobile : React.PropTypes.bool,
-		noHeaderTitle : React.PropTypes.bool,
-		noDrawerTitle : React.PropTypes.bool,
-		title : React.PropTypes.oneOfType([
-			React.PropTypes.string,
-			React.PropTypes.element,
-		]),
 		href : React.PropTypes.string,
 		headerItems : React.PropTypes.arrayOf(React.PropTypes.element),
 		waterfallItems : React.PropTypes.arrayOf(React.PropTypes.element),
