@@ -1,4 +1,4 @@
-<MDL.Tab ref="tab"
+<Tabs ref="tab"
 	tabLabels={['Starks','Lannisters','Targaryens',]}
 	defaultIndex={1}
 	onChange={this.changedTab}>
@@ -24,7 +24,7 @@
 		<li>Viserys</li>
 		<li>Daenerys</li>
 	</ul>
-</MDL.Tab>
+</Tabs>
 
 changedTab(index, e) {
 	console.log("The tab is changed to", index);

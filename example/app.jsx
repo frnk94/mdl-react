@@ -24,25 +24,20 @@ var App = React.createClass({
 			<a href='#button'>Button</a>,
 		];
 		var drawerItems = [
-			// xpsteven
-			<a href='#text-field'>Text Field</a>,
-			<a href='#layout'>Layout</a>,
-			// wen wen
-			<a href='#loading'>Loading</a>,
-			<a href='#tooltip'>Tooltip</a>,
-			// xiu xiu
-			<a href='#slider'>Slider</a>,
 			<a href='#badge'>Badge</a>,
-			<a href='#footer'>Footer</a>,
-			// pin chia
-			<a href='#tab'>Tab</a>,
 			<a href='#button'>Button</a>,
-			<a href='#menu'>Menu</a>,
-			<a href='#toggle'>Toggle</a>,
-			// terence
-			<a href='#table'>Table</a>,
 			<a href='#card'>Card</a>,
+			<a href='#footer'>Footer</a>,
 			<a href='#grid'>Grid</a>,
+			<a href='#layout'>Layout</a>,
+			<a href='#loading'>Loading</a>,
+			<a href='#menu'>Menu</a>,
+			<a href='#slider'>Slider</a>,
+			<a href='#table'>Table</a>,
+			<a href='#tabs'>Tabs</a>,
+			<a href='#text-field'>Text Field</a>,
+			<a href='#toggle'>Toggle</a>,
+			<a href='#tooltip'>Tooltip</a>,
 		];
 		return (
 			<MDL.Layout
@@ -82,7 +77,7 @@ var Slider = require('./views/Slider.jsx');
 var Card = require('./views/Card.jsx');
 var Badge = require('./views/Badge.jsx');
 var Toggle = require('./views/Toggle.jsx');
-var Tab = require('./views/Tab.jsx');
+var Tabs = require('./views/Tabs.jsx');
 var Grid = require('./views/Grid.jsx');
 var Tooltip = require('./views/Tooltip.jsx');
 var Layout = require('./views/Layout.jsx');
@@ -100,7 +95,7 @@ var routes = (
 		<Router.Route name='card' path='card' handler={Card} />
 		<Router.Route name='badge' path='badge' handler={Badge} />
 		<Router.Route name='toggle' path='toggle' handler={Toggle} />
-		<Router.Route name='tab' path='tab' handler={Tab} />
+		<Router.Route name='tabs' path='tabs' handler={Tabs} />
 		<Router.Route name='grid' path='grid' handler={Grid} />
 		<Router.Route name='tooltip' path='tooltip' handler={Tooltip} />
 		<Router.Route name='layout' path='layout' handler={Layout} />
