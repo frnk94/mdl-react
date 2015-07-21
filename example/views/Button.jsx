@@ -60,7 +60,7 @@ module.exports = React.createClass({
 			{
 				key : 'isRipple',
 				type : 'boolean',
-				state : 'default true',
+				state : 'default: true',
 				content : 'If false, the click event will not activate ripple animation.',
 			},
 			{
