@@ -1,9 +1,8 @@
 <MDL.Layout
-    title='Fixed header and drawer'
+    title='Scrolling header'
     href='#'
-    isFixedHeader={true}
+    isScrollHeader={true}
     headerItems={items}
-    drawerItems={items}
 >
     put your content here
 </MDL.Layout>

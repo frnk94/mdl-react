@@ -22,23 +22,30 @@ var Layout = React.createClass({
 			React.PropTypes.string,
 			React.PropTypes.element,
 		]),
+		href : React.PropTypes.string,
 		noHeaderTitle : React.PropTypes.bool,
 		noDrawerTitle : React.PropTypes.bool,
 
-		style : React.PropTypes.object,
-		drawerButtonStyle : React.PropTypes.object,
 		headerStyle : React.PropTypes.object,
-		contentStyle : React.PropTypes.object,
+		headerItems : React.PropTypes.arrayOf(React.PropTypes.element),
+
+		isFixedHeader : React.PropTypes.bool,
+		isScrollHeader : React.PropTypes.bool,
+
 		searchInputStyle : React.PropTypes.object,
 		onSearchSubmit : React.PropTypes.func,
 		showHeaderSearch : React.PropTypes.bool,
-		isFixedHeader : React.PropTypes.bool,
-		isScrollHeader : React.PropTypes.bool,
+
+		style : React.PropTypes.object,
+		drawerButtonStyle : React.PropTypes.object,
+
+		contentStyle : React.PropTypes.object,
+
+
 		isFixedDrawer : React.PropTypes.bool,
 		isTransparent : React.PropTypes.bool,
 		isHideHeaderMenuWhenMobile : React.PropTypes.bool,
-		href : React.PropTypes.string,
-		headerItems : React.PropTypes.arrayOf(React.PropTypes.element),
+
 		waterfallItems : React.PropTypes.arrayOf(React.PropTypes.element),
 		tabItems : React.PropTypes.arrayOf(React.PropTypes.element),
 		drawerItems : React.PropTypes.arrayOf(React.PropTypes.element),
@@ -283,7 +290,8 @@ var HeaderSearch = React.createClass({
 			e.which == 13 &&
 			this.props.submit instanceof Function
 		) {
-			this.props.submit(e);
+			console.log(this.refs.input.getDOMNode().value);
+			this.props.submit(this.refs.input.getDOMNode().value);
 		}
 	},
 
@@ -299,8 +307,10 @@ var HeaderSearch = React.createClass({
 					<i className="material-icons">search</i>
 				</label>
 				<div className="mdl-textfield__expandable-holder">
-					<input
-						className="mdl-textfield__input" type="text" name="sample"
+					<input ref='input'
+						className="mdl-textfield__input"
+						type="text"
+						name="sample"
 						id="fixed-header-drawer-exp"
 						style={inputStyle}
 						onKeyPress={this._onKeyPress}

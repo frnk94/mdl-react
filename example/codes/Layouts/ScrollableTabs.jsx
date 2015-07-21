@@ -1,9 +1,10 @@
 <MDL.Layout
-    title='Fixed header and drawer'
+    title='Scrollable tabs'
     href='#'
-    isFixedHeader={true}
     headerItems={items}
+    tabItems={items}
     drawerItems={items}
+    noDrawerTitle={true}
 >
     put your content here
 </MDL.Layout>

@@ -46,6 +46,9 @@ var ExampleTextField = React.createClass({
 				backgroundColor : 'white',
 				marginBottom : '20px',
 			},
+			prismCode : {
+				fontSize : '14px',
+			},
 		};
 
 		var items = [
@@ -68,6 +71,7 @@ var ExampleTextField = React.createClass({
 							<MDL.PrismCode
 								src='example/codes/Layouts/FixHeader.jsx'
 								lang='jsx'
+								style={styles.prismCode}
 							/>
 						</MDL.Layout>
 					</div>
@@ -82,6 +86,7 @@ var ExampleTextField = React.createClass({
 							<MDL.PrismCode
 								src='example/codes/Layouts/FixHeaderAndDrawer.jsx'
 								lang='jsx'
+								style={styles.prismCode}
 							/>
 						</MDL.Layout>
 					</div>
@@ -97,6 +102,55 @@ var ExampleTextField = React.createClass({
 							<MDL.PrismCode
 								src='example/codes/Layouts/FixHeaderAndDrawerWithoutTitle.jsx'
 								lang='jsx'
+								style={styles.prismCode}
+							/>
+						</MDL.Layout>
+					</div>
+					<div style={styles.layoutContainer}>
+						<MDL.Layout
+							title='Scrolling header'
+							href='#'
+							isScrollHeader={true}
+							headerItems={items}
+						>
+							<MDL.PrismCode
+								src='example/codes/Layouts/ScrollingHeader.jsx'
+								lang='jsx'
+								style={styles.prismCode}
+							/>
+						</MDL.Layout>
+					</div>
+					<div style={styles.layoutContainer}>
+						<MDL.Layout
+							title='Waterfall header'
+							href='#'
+							isScrollHeader={true}
+							showHeaderSearch={true}
+							onSearchSubmit={function(value){alert('onSearchSubmit' + value)}}
+							waterfallItems={items}
+							drawerItems={items}
+							noDrawerTitle={true}
+						>
+							<MDL.PrismCode
+								src='example/codes/Layouts/WaterfallHeader.jsx'
+								lang='jsx'
+								style={styles.prismCode}
+							/>
+						</MDL.Layout>
+					</div>
+					<div style={styles.layoutContainer}>
+						<MDL.Layout
+							title='Scrollable tabs'
+							href='#'
+							headerItems={items}
+							tabItems={items}
+							drawerItems={items}
+							noDrawerTitle={true}
+						>
+							<MDL.PrismCode
+								src='example/codes/Layouts/ScrollableTabs.jsx'
+								lang='jsx'
+								style={styles.prismCode}
 							/>
 						</MDL.Layout>
 					</div>
@@ -115,6 +169,12 @@ var ExampleTextField = React.createClass({
 				content : 'Header title and drawer title',
 			},
 			{
+				key : 'href',
+				type : 'string',
+				state : 'optional',
+				content : 'the href attribute of title',
+			},
+			{
 				key : 'noHeaderTitle',
 				type : 'bool',
 				state : 'optional',
@@ -126,7 +186,30 @@ var ExampleTextField = React.createClass({
 				state : 'optional',
 				content : 'disable displaying drawer title',
 			},
-
+			{
+				key : 'headerItems',
+				type : 'array of elements',
+				state : 'optional',
+				content : 'array of links',
+			},
+			{
+				key : 'headerStyle',
+				type : 'object',
+				state : 'optional',
+				content : 'the CSS inline style of the root element of header',
+			},
+			{
+				key : 'isFixHeader',
+				type : 'bool',
+				state : 'optional',
+				content : 'enable fixed header',
+			},
+			{
+				key : 'isScrollHeader',
+				type : 'bool',
+				state : 'optional',
+				content : 'enable scrolling header',
+			},
 		];
 		return <Props detail={propsDetail} title="Props" />;
 	},
