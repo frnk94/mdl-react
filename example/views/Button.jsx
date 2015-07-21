@@ -37,11 +37,8 @@ module.exports = React.createClass({
 		prismCode: {
 			fontSize : '14px',
 			marginBottom : '0',
-			marginLeft: '-24px',
-			width: '104%',
 		},
 	},
-
 	propsDetail: [
 		{
 			key : 'text',
@@ -49,8 +46,8 @@ module.exports = React.createClass({
 			state : 'required',
 			content : (<div>
 				<p>This is what will be displayed inside the button.</p>
-				<p>If the type of button is IconButton, the text will be directly transformed to material-icons.
-					(You can searach the label of material icons in <a href="https://www.google.com/design/icons/" target="_blank">https://www.google.com/design/icons/</a>.
+				<p>If the type of button is IconButton, you should manually wrap the icon element inside.
+					(You can search the label of material icons in <a href="https://www.google.com/design/icons/" target="_blank">https://www.google.com/design/icons/</a>.
 						If the label consists of at least 2 words, remember using the underline symbol _ to joint words, i.e. open_in_browser.)</p>
 				</div>),
 			},
@@ -102,8 +99,7 @@ module.exports = React.createClass({
 				state : 'optional',
 				content : "Override the inline-styles of the button's root element.",
 			},
-		],
-
+	],
 	methodsDetail: [
 		{
 			key : 'setDisabled',
@@ -122,6 +118,24 @@ module.exports = React.createClass({
 		},
 	],
 
+	getInitialState: function() {
+		return {
+			url: 'FAB.jsx'
+		};
+	},
+
+	tabChanged: function(tabIndex, e) {
+		if (tabIndex === 0) {
+			this.setState({url: 'FAB.jsx'});
+		} else if (tabIndex === 1) {
+			this.setState({url: 'Raised.jsx'});
+		} else if (tabIndex === 2) {
+			this.setState({url: 'Flat.jsx'});
+		} else if (tabIndex === 3) {
+			this.setState({url: 'Icon.jsx'});
+		}
+	},
+
 	render: function() {
 		return (
 			<div style={this.styles.main}>
@@ -129,7 +143,8 @@ module.exports = React.createClass({
 				<MDL.Card style={this.styles.card} shadow={6}>
 					<div style={this.styles.demo}>
 						<DocSubtitle title="example" />
-						<MDL.Tabs tabLabels={['Floating Action Buttons','Raised Buttons','Flat Buttons','Icon Buttons',]} isRipple={true}>
+						<MDL.Tabs onChange={this.tabChanged}
+							tabLabels={['Floating Action Buttons','Raised Buttons','Flat Buttons','Icon Buttons',]} isRipple={true}>
 
 							<div style={this.styles.tab}>
 								<MDL.Button type="FloatingActionButton" style={this.styles.button}
@@ -153,7 +168,7 @@ module.exports = React.createClass({
 								<MDL.Button type="FloatingActionButton" style={this.styles.button}
 									ref="FAB"
 									text={<i className="material-icons">star</i>}
-									isDisabled={true}/>
+									defaultDisabled={true}/>
 								<br />
 								<MDL.Button type="FloatingActionButton" style={this.styles.miniFAB}
 									text={<i className="material-icons">notifications_none</i>}
@@ -170,11 +185,6 @@ module.exports = React.createClass({
 									isMini={true}
 									isRipple={false}/>
 
-								<MDL.PrismCode
-									src='http://fandora.github.io/mdl-react/example/codes/Buttons/FAB.jsx'
-									lang='jsx'
-									style={this.styles.prismCode}
-									/>
 							</div>
 
 							<div style={this.styles.tab}>
@@ -189,6 +199,7 @@ module.exports = React.createClass({
 									onClick={ function() {this.refs.raised.toggleButton();}.bind(this) }
 									isPrimary={true}
 									isRipple={false}/>
+
 								<br />
 								<MDL.Button type="RaisedButton" style={this.styles.button}
 									text="Default"/>
@@ -198,12 +209,8 @@ module.exports = React.createClass({
 								<MDL.Button type="RaisedButton" style={this.styles.button}
 									ref="raised"
 									text="Disabled"
-									isDisabled={true}/>
-								<MDL.PrismCode
-									src='http://fandora.github.io/mdl-react/example/codes/Buttons/Raised.jsx'
-									lang='jsx'
-									style={this.styles.prismCode}
-									/>
+									defaultDisabled={true}/>
+
 							</div>
 
 							<div style={this.styles.tab}>
@@ -227,45 +234,44 @@ module.exports = React.createClass({
 								<MDL.Button type="FlatButton" style={this.styles.button}
 									ref="flat"
 									text="Disabled"
-									isDisabled={true}/>
-								<MDL.PrismCode
-									src='http://fandora.github.io/mdl-react/example/codes/Buttons/Flat.jsx'
-									lang='jsx'
-									style={this.styles.prismCode}
-									/>
+									defaultDisabled={true}/>
+
 							</div>
 
 							<div style={this.styles.tab}>
 								<MDL.Button type="IconButton" style={this.styles.button}
-									text='mood'
+									text={<i className="material-icons">mood</i>}
 									isPrimary={true}/>
 								<MDL.Button type="IconButton" style={this.styles.button}
-									text='mood'
+									text={<i className="material-icons">mood</i>}
 									isAccent={true}/>
 								<MDL.Button type="IconButton" style={this.styles.button}
-									text='mood'
+									text={<i className="material-icons">mood</i>}
 									onClick={ function() {this.refs.icon.toggleButton();}.bind(this) }
 									isPrimary={true}
 									isRipple={false}/>
 								<br />
 								<MDL.Button type="IconButton" style={this.styles.button}
-									text='plus_one'/>
+									text={<i className="material-icons">plus_one</i>}/>
 								<MDL.Button type="IconButton" style={this.styles.button}
-									text='plus_one'
+									text={<i className="material-icons">plus_one</i>}
 									isRipple={false}/>
 								<MDL.Button type="IconButton" style={this.styles.button}
 									ref="icon"
-									text='plus_one'
-									isDisabled={true}/>
-								<MDL.PrismCode
-									src='http://fandora.github.io/mdl-react/example/codes/Buttons/Icon.jsx'
-									lang='jsx'
-									style={this.styles.prismCode}
-									/>
+									text={<i className="material-icons">plus_one</i>}
+									defaultDisabled={true}/>
+
 							</div>
 						</MDL.Tabs>
 					</div>
+
+					<MDL.PrismCode
+						src={'http://fandora.github.io/mdl-react/example/codes/Buttons/'+this.state.url}
+						lang='jsx'
+						style={this.styles.prismCode}
+						/>
 				</MDL.Card>
+
 				<Props detail={this.propsDetail} title="Props" />
 				<Props detail={this.methodsDetail} title="Methods" />
 			</div>

@@ -200,7 +200,8 @@ module.exports = React.createClass({
 		};
 
 		var iconStyle = {
-			color :'#ffffff',
+			color : '#ffffff',
+			paddingTop : '12px',
 		};
 
 		var cardStyle = {

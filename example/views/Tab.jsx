@@ -21,7 +21,7 @@ module.exports = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<MDL.Tabs ref="tab" tabLabels={['Starks','Lannisters','Targaryens',]} isRipple={true}>
+				<MDL.Tabs ref="tab" tabLabels={['Starks','Lannisters','Targaryens',]} isRipple={true} defaultIndex={1}>
 					<ul>
 						<li>Eddard</li>
 						<li>Catelyn</li>

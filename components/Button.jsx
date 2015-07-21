@@ -118,9 +118,7 @@ module.exports = React.createClass({
 				disabled={this.state.isDisabled}
 				style={this.props.style}
 			>
-				{	this.props.type === 'IconButton'
-						? <i className="material-icons">{this.props.text}</i>
-						: this.props.text }
+				{this.props.text}
 			</button>
 		);
 	},

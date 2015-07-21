@@ -28,6 +28,7 @@ module.exports = React.createClass({
 	},
 
 	render: function() {
+
 		var classes = {
 			'mdl-card' : true,
 		};
@@ -44,6 +45,7 @@ module.exports = React.createClass({
 				{this.props.children}
 			</div>
 		);
+		
 	}
 
 });
