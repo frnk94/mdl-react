@@ -4,6 +4,7 @@
 var MDL = require('../components');
 var React = require('react');
 var Router = require('react-router');
+var Link = Router.Link;
 
 var App = React.createClass({
 	mixins : [
@@ -11,45 +12,34 @@ var App = React.createClass({
 		Router.Navigation,
 	],
 	render : function() {
-		var headerItems = [
+		var headerLinks = [
 			<a href='http://FandoraShop.com' target='_blank'>by Fandora Shop</a>
 		];
-		var waterfallItems = [
+		var waterfallLinks = [
 			<a href='http://www.getmdl.io/' target='_blank'>Material Design Lite</a>,
 			<a href='https://facebook.github.io/react/' target='_blank'>React</a>,
-			// <a href='http://FandoraShop.com' target='_blank'>by Fandora Shop</a>,
 		];
-		var tabItems = [
-			<a href='#table'>Table</a>,
-			<a href='#button'>Button</a>,
-		];
-		var drawerItems = [
-
-			<a href='#text-field'>Text Field</a>,
-			<a href='#layout'>Layout</a>,
-
-			<a href='#loading'>Loading</a>,
-			<a href='#tooltip'>Tooltip</a>,
-
-			<a href='#slider'>Slider</a>,
+		var drawerLinks = [
 			<a href='#badge'>Badge</a>,
-			<a href='#footer'>Footer</a>,
-
-			<a href='#tab'>Tab</a>,
 			<a href='#button'>Button</a>,
-			<a href='#menu'>Menu</a>,
-			<a href='#toggle'>Toggle</a>,
-
-			<a href='#table'>Table</a>,
 			<a href='#card'>Card</a>,
+			<a href='#footer'>Footer</a>,
 			<a href='#grid'>Grid</a>,
-
-			<a href='#Footer2'>Footer2</a>,
-
+			<a href='#layout'>Layout</a>,
+			<a href='#loading'>Loading</a>,
+			<a href='#menu'>Menu</a>,
+			<a href='#slider'>Slider</a>,
+			<a href='#table'>Table</a>,
+			<a href='#tabs'>Tabs</a>,
+			<a href='#text-field'>Text Field</a>,
+			<a href='#toggle'>Toggle</a>,
+			<a href='#tooltip'>Tooltip</a>,
 		];
-		var style = {
-			padding : '24px',
-		};
+		var tabs = [
+			<a href=''>Tab 1</a>,
+			<a href=''>Tab 2</a>,
+			<a href=''>Tab 3</a>,
+		];
 		return (
 			<MDL.Layout
 				title='mdl-react'
@@ -57,22 +47,21 @@ var App = React.createClass({
 				isFixedHeader={true}
 				// isFixedDrawer={true}
 				// isScrollHeader={true}
-				isFixedTabs={true}
+				// tabs={tabs}
+				// isFixedTabs={true}
+				// initialTabIndex={1}
 				// showHeaderSearch={true}
-				headerItems={headerItems}
-				// waterfallItems={waterfallItems}
-				// tabItems={tabItems}
-				drawerItems={drawerItems}
+				headerLinks={headerLinks}
+				// waterfallLinks={waterfallLinks}
+				drawerLinks={drawerLinks}
 				// drawerButtonStyle={{color:'red'}}
 				// isTransparent={true}
 				// headerStyle={{background:"url('http://www.getmdl.io/assets/demos/transparent.jpg') center / cover"}}
-				contentStyle={{ minHeight : '1000px' }}
+				contentStyle={{ minHeight : '1000px', padding : '24px' }}
 				// noHeaderTitle={true}
 				noDrawerTitle={true}
 			>
-				<div style={style}>
-					<Router.RouteHandler />
-				</div>
+				<Router.RouteHandler />
 			</MDL.Layout>
 		);
 	},
@@ -90,11 +79,11 @@ var Slider = require('./views/Slider.jsx');
 var Card = require('./views/Card.jsx');
 var Badge = require('./views/Badge.jsx');
 var Toggle = require('./views/Toggle.jsx');
-var Tab = require('./views/Tab.jsx');
+var Tabs = require('./views/Tabs.jsx');
 var Grid = require('./views/Grid.jsx');
 var Footer = require('./views/Footer.jsx');
-var Footer2 = require('./views/Footer2.jsx');
 var Tooltip = require('./views/Tooltip.jsx');
+var Layout = require('./views/Layout.jsx');
 
 var routes = (
 	<Router.Route handler={App}>
@@ -109,11 +98,11 @@ var routes = (
 		<Router.Route name='card' path='card' handler={Card} />
 		<Router.Route name='badge' path='badge' handler={Badge} />
 		<Router.Route name='toggle' path='toggle' handler={Toggle} />
-		<Router.Route name='tab' path='tab' handler={Tab} />
+		<Router.Route name='tabs' path='tabs' handler={Tabs} />
 		<Router.Route name='grid' path='grid' handler={Grid} />
 		<Router.Route name='footer' path='footer' handler={Footer} />
-		<Router.Route name='footer2' path='footer2' handler={Footer2} />
 		<Router.Route name='tooltip' path='tooltip' handler={Tooltip} />
+		<Router.Route name='layout' path='layout' handler={Layout} />
 	</Router.Route>
 );
 

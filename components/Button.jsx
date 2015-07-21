@@ -38,7 +38,7 @@ module.exports = React.createClass({
 	propTypes: {
 		text: React.PropTypes.node.isRequired,
 		style: React.PropTypes.object,
-		type: React.PropTypes.string.isRequired,
+		type: React.PropTypes.oneOf(['FloatingActionButton', 'RaisedButton', 'FlatButton', 'IconButton']).isRequired,
 		isMini: React.PropTypes.bool,
 		isRipple: React.PropTypes.bool,
 		isPrimary: React.PropTypes.bool,
@@ -53,9 +53,7 @@ module.exports = React.createClass({
 	},
 
 	componentWillMount: function() {
-		if (!_.includes(['FloatingActionButton', 'RaisedButton', 'FlatButton', 'IconButton'], this.props.type)) {
-			console.warn('MDL.Button: Wrong Button Type');
-		}
+		
 	},
 
 	componentDidMount: function() {
@@ -118,9 +116,7 @@ module.exports = React.createClass({
 				disabled={this.state.isDisabled}
 				style={this.props.style}
 			>
-				{	this.props.type === 'IconButton'
-						? <i className="material-icons">{this.props.text}</i>
-						: this.props.text }
+				{this.props.text}
 			</button>
 		);
 	},

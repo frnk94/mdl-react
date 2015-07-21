@@ -1,4 +1,6 @@
 
+"use strict";
+
 var React = require('react');
 var cx = require('classnames');
 
@@ -9,8 +11,10 @@ var cx = require('classnames');
 		labelText
 		errorText
 		defaultValue
-		floatingLabel
+		isFloatingLabel
 		pattern			正規表示式
+		isMultiline
+		style
 	Methods
 		getValue
 		setValue
@@ -21,11 +25,18 @@ var id = 1;
 module.exports = React.createClass({
 
 	propTypes: {
-		labelText : React.PropTypes.string.isRequired,
+		labelText : React.PropTypes.string,
+		isFloatingLabel : React.PropTypes.bool,
 		errorText : React.PropTypes.string,
-		defaultValue : React.PropTypes.string,
-		floatingLabel : React.PropTypes.bool,
 		pattern : React.PropTypes.string,
+		defaultValue : React.PropTypes.oneOfType([
+			React.PropTypes.string,
+			React.PropTypes.number,
+		]),
+		onChange : React.PropTypes.func,
+		isMultiline : React.PropTypes.bool,
+		rows : React.PropTypes.number,
+		style : React.PropTypes.object,
 	},
 
 	getInitialState: function() {
@@ -34,15 +45,30 @@ module.exports = React.createClass({
 		};
 	},
 
+	getDefaultProps: function() {
+		return {
+			rows : 3,
+		};
+	},
+
 	componentWillMount: function() {
 		if(this.props.defaultValue) {
 			this.state.value = this.props.defaultValue;
 		}
-		this.state.id = 'mdl-textfield-' + id++;
+		this.state.id = 'mdl-textfield-' + Date.now();
 	},
 
 	componentDidMount: function() {
 		componentHandler.upgradeDom();
+	},
+
+	componentWillReceiveProps: function(nextProps) {
+		if(
+			nextProps.defaultValue &&
+			this.props.defaultValue != nextProps.defaultValue
+		) {
+			this.setValue(nextProps.defaultValue);
+		}
 	},
 
 	getValue : function() {
@@ -59,54 +85,73 @@ module.exports = React.createClass({
 		this.setState({
 			value : event.target.value,
 		});
+		if(this.props.onChange instanceof Function) {
+			this.props.onChange(event);
+		}
+	},
+
+	_renderInput : function() {
+		if(!this.props.isMultiline) {
+			return (
+				<input ref='input'
+					className="mdl-textfield__input"
+					type="text"
+					id={this.state.id}
+					value={this.state.value}
+					onChange={this._onChange}
+					pattern={this.props.pattern}
+				/>
+			);
+		} else {
+			return (
+				<textarea ref='input'
+					className="mdl-textfield__input"
+					type="text"
+					rows={this.props.rows}
+					id={this.state.id}
+					value={this.state.value}
+					onChange={this._onChange}
+				/>
+			);
+		}
+	},
+
+	_renderLabel : function() {
+		if(this.props.labelText) {
+			return (
+				<label
+					className="mdl-textfield__label"
+					htmlFor={this.state.id}
+				>
+					{this.props.labelText}
+				</label>
+			);
+		}
 	},
 
 	render : function() {
 
 		var classes = {
-			container : {
-				'mdl-textfield' : true,
-				'mdl-js-textfield' : true,
-			},
-			input : {
-				'mdl-textfield__input' : true,
-			},
-			label : {
-				'mdl-textfield__label' : true,
-			},
-			error : {
-				'mdl-textfield__error' : true,
-			},
+			'mdl-textfield' : true,
+			'mdl-js-textfield' : true,
 		};
-
-		if(this.props.floatingLabel) {
-			classes.container['mdl-textfield--floating-label'] = true;
+		if(this.props.isFloatingLabel) {
+			classes['mdl-textfield--floating-label'] = true;
 		}
 
 		var error = null;
 		if(this.props.errorText) {
 			error = (
-				<span className={cx(classes.error)}>
+				<span className="mdl-textfield__error">
 					{this.props.errorText}
 				</span>
 			);
 		}
 
 		return (
-			<div className={cx(classes.container)} >
-				<input className={cx(classes.input)}
-					type="text"
-					value={this.state.value}
-					id={this.state.id}
-					onChange={this._onChange}
-					pattern={this.props.pattern}
-				/>
-				<label
-					className={cx(classes.label)}
-					htmlFor={this.state.id}
-				>
-					{this.props.labelText}
-				</label>
+			<div className={cx(classes)} style={this.props.style} >
+				{this._renderInput()}
+				{this._renderLabel()}
 				{error}
 			</div>
 		);

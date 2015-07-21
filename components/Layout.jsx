@@ -40,7 +40,6 @@ var Layout = React.createClass({
 		isFixedDrawer : React.PropTypes.bool,
 
 		waterfallLinks : React.PropTypes.arrayOf(React.PropTypes.element),
-
 		tabs : React.PropTypes.arrayOf(React.PropTypes.element),
 		initialTabIndex : React.PropTypes.number,
 		isFixedTabs : React.PropTypes.bool,

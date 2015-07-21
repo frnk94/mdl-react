@@ -1,7 +1,8 @@
 <Loading
+	ref='test'
 	type="ProgressBar"
 	indeterminate={false}
-	percentage={44}
+	percentage={this.state.percentage}
 	buffer={87}
-/>
-<Loading />
+/>					
+<Loading style={loadingStyle} />

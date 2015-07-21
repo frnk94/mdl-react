@@ -1,4 +1,5 @@
-/** @jsx React.DOM */
+
+'use strict';
 
 var React = require('react');
 var cx = require('classnames');
@@ -34,40 +35,27 @@ module.exports = React.createClass({
 			},
 		};
 	},
-	
+
 	_getClasses: function() {
-
 		var classes = {
-				'mdl-badge': true,
-			};
-
+			'mdl-badge': true,
+		};
 		if(this.props.noBackground) {
 			classes['mdl-badge--no-background'] = true;
 		}
-
 		if(this.props.materialDesignIcon) {
 			classes['icon material-icons'] = true;
 		}
-
 		return cx(classes);
-			
 	},
 
 	render: function() {
-
-		console.log('inside render');
-
-		var date = Date.now();
-
 		var style = this.props.style;
-
 		if(style){
 			style.display= 'inline-block';
 		}
-
 		return (
-			<div 
-				key={date}
+			<div
 				className={this._getClasses()}
 				data-badge={this.props.badge}
 				style={style}
@@ -75,7 +63,6 @@ module.exports = React.createClass({
 				{this.props.children}
 			</div>
 		);
-
 	},
 
 });

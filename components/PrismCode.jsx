@@ -1,6 +1,7 @@
 
 var React = require('react');
 var superagent = require('superagent');
+var _ = require('lodash');
 
 /**
 	PrismCode
@@ -26,6 +27,7 @@ module.exports = React.createClass({
 	getDefaultProps: function() {
 		return {
 			lang : 'javascript',
+			style : {},
 		};
 	},
 
@@ -42,9 +44,26 @@ module.exports = React.createClass({
 		});
 	},
 
+	componentWillUpdate: function(nextProps) {
+		if(this.props.src === nextProps.src) return;
+		superagent.get(nextProps.src)
+		.end(function(err, res) {
+			if(err) {
+				return console.error(err);
+			}
+			var node = React.findDOMNode(this.refs.code);
+			node.innerText = res.text;
+			Prism.highlightAll();
+		}.bind(this));
+	},
+
+
 	render: function() {
+		var style = _.extend({
+			margin : '0',
+		}, this.props.style);
 		return (
-			<pre style={this.props.style}>
+			<pre style={style}>
 				<code ref='code'
 					className={'language-' + this.props.lang}
 				/>
