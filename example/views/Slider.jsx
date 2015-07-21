@@ -7,7 +7,6 @@ var Props = require('../document/Props.jsx');
 var DocTitle = require('../document/DocTitle.jsx');
 var DocSubtitle = require('../document/DocSubtitle.jsx');
 
-
 module.exports = React.createClass({
 
 	onChange: function(event) {
@@ -144,20 +143,20 @@ module.exports = React.createClass({
 							onChange={this.onChange}
 						/><br />
 						<div style={buttonAreaStyle}>
-							<MDL.Button 
+							<MDL.Button
 							type="RaisedButton"
 							text="Get Value"
 							style={buttonStyle}
 							isAccent={true}
 							onClick={this.getValue}
 							/>
-							<MDL.Button 
+							<MDL.Button
 								type="RaisedButton"
 								text="set Value"
 								style={buttonStyle}
 								isRipple={true}
 								isPrimary={true}
-								onClick={this.setValue} 
+								onClick={this.setValue}
 							/>
 						</div>
 					</div>

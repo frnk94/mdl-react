@@ -4,6 +4,7 @@
 var React = require('react');
 var MDL = require('../../components');
 var Props = require('../document/Props.jsx');
+var DocTitle = require('../document/DocTitle.jsx');
 
 var ExampleTextField = React.createClass({
 
@@ -42,9 +43,11 @@ var ExampleTextField = React.createClass({
 
 		return (
 			<div style={styles.root}>
+				<DocTitle title="Text Field" />
 				<MDL.Card style={styles.card} shadow={6}>
 					<MDL.TextField
 						defaultValue='no label text'
+						onChange={function(e) { console.log(e.target.value) }}
 					/><br />
 					<MDL.TextField
 						labelText='test label text'
@@ -115,6 +118,12 @@ var ExampleTextField = React.createClass({
 				type : 'string or number',
 				state : 'optional',
 				content : 'the default value',
+			},
+			{
+				key : 'onChange',
+				type : 'function(event)',
+				state : 'optional',
+				content : 'Callback function fired when the value changed',
 			},
 			{
 				key : 'isMultiline',
