@@ -35,7 +35,7 @@ var App = React.createClass({
 			<a href='#badge'>Badge</a>,
 			<a href='#footer'>Footer</a>,
 
-			<a href='#tab'>Tab</a>,
+			<a href='#tabs'>Tabs</a>,
 			<a href='#button'>Button</a>,
 			<a href='#menu'>Menu</a>,
 			<a href='#toggle'>Toggle</a>,
@@ -88,7 +88,7 @@ var Slider = require('./views/Slider.jsx');
 var Card = require('./views/Card.jsx');
 var Badge = require('./views/Badge.jsx');
 var Toggle = require('./views/Toggle.jsx');
-var Tab = require('./views/Tab.jsx');
+var Tabs = require('./views/Tabs.jsx');
 var Grid = require('./views/Grid.jsx');
 var Tooltip = require('./views/Tooltip.jsx');
 
@@ -105,7 +105,7 @@ var routes = (
 		<Router.Route name='card' path='card' handler={Card} />
 		<Router.Route name='badge' path='badge' handler={Badge} />
 		<Router.Route name='toggle' path='toggle' handler={Toggle} />
-		<Router.Route name='tab' path='tab' handler={Tab} />
+		<Router.Route name='tabs' path='tabs' handler={Tabs} />
 		<Router.Route name='grid' path='grid' handler={Grid} />
 		<Router.Route name='tooltip' path='tooltip' handler={Tooltip} />
 	</Router.Route>

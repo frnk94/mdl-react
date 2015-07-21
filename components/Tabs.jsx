@@ -12,6 +12,8 @@ var React = require('react');
  *		defaultIndex: default displayed tab's index,
  *	State
  *		tabIndex
+ *	Event
+ *		onChange: if tab is clicked, this event will be trigger.
  *	Method
  *		setTabIndex: change to another tab
  *		getTabLabel: get the label of currently active tab
@@ -29,7 +31,11 @@ module.exports = React.createClass({
 	},
 
 	propTypes: {
-		tabLabels: React.PropTypes.arrayOf(React.PropTypes.node).isRequired,
+		tabLabels: React.PropTypes.arrayOf(
+			React.PropTypes.oneOfType([
+				React.PropTypes.string,
+				React.PropTypes.element,
+			])).isRequired,
 		children: React.PropTypes.arrayOf(React.PropTypes.element).isRequired,
 		isRipple: React.PropTypes.bool,
 		style: React.PropTypes.object,
@@ -58,7 +64,7 @@ module.exports = React.createClass({
 	},
 
 	setTabIndex: function(index, e) {
-		if(index == this.state.tabIndex) return;
+		if(index == this.state.tabIndex || index >= this.props.children.length) return;
 		if(this.props.onChange) this.props.onChange(index, e);
 		this.setState({tabIndex: index});
 	},

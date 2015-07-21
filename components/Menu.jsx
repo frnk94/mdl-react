@@ -31,7 +31,7 @@ module.exports = React.createClass({
 
 	propTypes: {
 		children: React.PropTypes.element.isRequired,
-		openDirection: React.PropTypes.string,
+		openDirection: React.PropTypes.oneOf(['bottom-left', 'bottom-right', 'top-left', 'top-right']),
 		isRipple: React.PropTypes.bool,
 		style: React.PropTypes.object,
 		menuList: React.PropTypes.arrayOf(React.PropTypes.shape({
@@ -51,9 +51,6 @@ module.exports = React.createClass({
 		if(this.props.children instanceof Array){
 			console.warn("MDL.Menu: Menu should only have one child inside");
 		}
-		if (!_.includes(['bottom-left', 'bottom-right', 'top-left', 'top-right'], this.props.openDirection)) {
-			console.warn('MDL.Button: Invaild openDirection prop: ', this.props.openDirection);
-		}
 
 		this.id += id++;
 	},
@@ -69,14 +66,6 @@ module.exports = React.createClass({
 			"mdl-js-menu": true,
 			"mdl-js-ripple-effect": this.props.isRipple,
 		};
-
-		// if (this.props.fromBottomToTop && this.props.fromRightToLeft ){
-		// 	classes['mdl-menu--top-right'] = true;
-		// } else if (this.props.fromRightToLeft) {
-		// 	classes['mdl-menu--bottom-right'] = true;
-		// } else if (this.props.fromBottomToTop) {
-		// 	classes['mdl-menu--top-left'] = true;
-		// }
 
 		if (this.props.openDirection === 'top-right') {
 			classes['mdl-menu--top-right'] = true;
