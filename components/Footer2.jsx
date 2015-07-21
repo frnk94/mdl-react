@@ -1,4 +1,5 @@
 
+'use strict';
 
 var React = require('react');
 
@@ -6,7 +7,7 @@ module.exports = React.createClass({
 
 	getDefaultProps: function() {
 		return {
-			
+
 		};
 	},
 
@@ -33,31 +34,22 @@ module.exports = React.createClass({
 	render: function() {
 
 		if(this.props.leftItems) {
-
 			if(this.props.leftItems.logo) {
-
 				var newLeftLogo = null;
-
 				newLeftLogo = React.cloneElement(this.props.leftItems.logo, {
 					className: 'mdl-logo',
 				});
 			}
-
 			if(this.props.leftItems.type == 'list') {
-
 				var newLeftList = null;
-
 				list = this.props.leftItems.items.map(function(item, index) {
-					return (
-						<li>{item}</li>
-					);
+					return <li>{item}</li>;
 				});
-
 				newLeftList = (
-					<ul 
+					<ul
 						className={
-							"mdl-" + 
-							(this.props.isMega ? 'mega' : 'mini') + 
+							"mdl-" +
+							(this.props.isMega ? 'mega' : 'mini') +
 							"-footer--link-list"
 						}
 					>
@@ -115,10 +107,10 @@ module.exports = React.createClass({
 				});
 
 				newrightList = (
-					<ul 
+					<ul
 						className={
-							"mdl-" + 
-							(this.props.isMega ? 'mega' : 'mini') + 
+							"mdl-" +
+							(this.props.isMega ? 'mega' : 'mini') +
 							"-footer--link-list"
 						}
 					>
@@ -128,20 +120,11 @@ module.exports = React.createClass({
 			}
 
 			if(this.props.rightItems.type == 'button') {
-
-				var newrightBtn = null;
-
-				newrightBtn = this.props.rightItems.items.map(function(item, index) {
-
-					item = React.cloneElement(item, {
+				var newrightBtn = this.props.rightItems.items.map(function(item, index) {
+					return React.cloneElement(item, {
 						className: 'mdl-mini-footer--social-btn',
 					});
-
-					return (
-							{item}
-					);
 				});
-
 			}
 
 			var right = null;
