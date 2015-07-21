@@ -4,8 +4,8 @@
     isScrollHeader={true}
     showHeaderSearch={true}
     onSearchSubmit={function(value){alert('onSearchSubmit' + value)}}
-    waterfallItems={items}
-    drawerItems={items}
+    waterfallLinks={links}
+    drawerLinks={links}
     noDrawerTitle={true}
 >
     put your content here

@@ -114,15 +114,15 @@ module.exports = React.createClass({
 
 	_renderTab1: function() {
 		return (
-				<ul style={this.styles.tab}>
-		      <li>Eddard</li>
-		      <li>Catelyn</li>
-		      <li>Robb</li>
-		      <li>Sansa</li>
-		      <li>Brandon</li>
-		      <li>Arya</li>
-		      <li>Rickon</li>
-		    </ul>
+			<ul style={this.styles.tab}>
+				<li>Eddard</li>
+				<li>Catelyn</li>
+				<li>Robb</li>
+				<li>Sansa</li>
+				<li>Brandon</li>
+				<li>Arya</li>
+				<li>Rickon</li>
+			</ul>
 		);
 	},
 

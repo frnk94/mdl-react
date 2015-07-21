@@ -2,8 +2,8 @@
     title='Fixed header and drawer without title'
     href='#'
     isFixedHeader={true}
-    headerItems={items}
-    drawerItems={items}
+    headerLinks={links}
+    drawerLinks={links}
     noDrawerTitle={true}
 >
     put your content here

@@ -12,18 +12,14 @@ var App = React.createClass({
 		Router.Navigation,
 	],
 	render : function() {
-		var headerItems = [
+		var headerLinks = [
 			<a href='http://FandoraShop.com' target='_blank'>by Fandora Shop</a>
 		];
-		var waterfallItems = [
+		var waterfallLinks = [
 			<a href='http://www.getmdl.io/' target='_blank'>Material Design Lite</a>,
 			<a href='https://facebook.github.io/react/' target='_blank'>React</a>,
 		];
-		var tabItems = [
-			<a href='#table'>Table</a>,
-			<a href='#button'>Button</a>,
-		];
-		var drawerItems = [
+		var drawerLinks = [
 			<a href='#badge'>Badge</a>,
 			<a href='#button'>Button</a>,
 			<a href='#card'>Card</a>,
@@ -39,6 +35,11 @@ var App = React.createClass({
 			<a href='#toggle'>Toggle</a>,
 			<a href='#tooltip'>Tooltip</a>,
 		];
+		var tabs = [
+			<a href='#'>Tab 1</a>,
+			<a href='#'>Tab 2</a>,
+			<a href='#'>Tab 3</a>,
+		];
 		return (
 			<MDL.Layout
 				title='mdl-react'
@@ -46,12 +47,12 @@ var App = React.createClass({
 				isFixedHeader={true}
 				// isFixedDrawer={true}
 				// isScrollHeader={true}
-				isFixedTabs={true}
+				tabs={tabs}
+				// isFixedTabs={true}
 				// showHeaderSearch={true}
-				headerItems={headerItems}
-				// waterfallItems={waterfallItems}
-				// tabItems={tabItems}
-				drawerItems={drawerItems}
+				headerLinks={headerLinks}
+				// waterfallLinks={waterfallLinks}
+				drawerLinks={drawerLinks}
 				// drawerButtonStyle={{color:'red'}}
 				// isTransparent={true}
 				// headerStyle={{background:"url('http://www.getmdl.io/assets/demos/transparent.jpg') center / cover"}}

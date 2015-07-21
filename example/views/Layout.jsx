@@ -51,10 +51,28 @@ var ExampleTextField = React.createClass({
 			},
 		};
 
-		var items = [
+		var links = [
 			<a href='#'>Link 1</a>,
 			<a href='#'>Link 2</a>,
 			<a href='#'>Link 3</a>,
+		];
+
+		var fewTabs = [
+			<a href='#'>Tab 1</a>,
+			<a href='#'>Tab 2</a>,
+			<a href='#'>Tab 3</a>,
+		];
+
+		var manyTabs = [
+			<a href='#'>Tab 1</a>,
+			<a href='#'>Tab 2</a>,
+			<a href='#'>Tab 3</a>,
+			<a href='#'>Tab 4</a>,
+			<a href='#'>Tab 5</a>,
+			<a href='#'>Tab 6</a>,
+			<a href='#'>Tab 7</a>,
+			<a href='#'>Tab 8</a>,
+			<a href='#'>Tab 9</a>,
 		];
 
 		return (
@@ -66,7 +84,7 @@ var ExampleTextField = React.createClass({
 							title='Fixed Header'
 							href='#'
 							isFixedHeader={true}
-							headerItems={items}
+							headerLinks={links}
 						>
 							<MDL.PrismCode
 								src='example/codes/Layouts/FixHeader.jsx'
@@ -80,8 +98,8 @@ var ExampleTextField = React.createClass({
 							title='Fixed header and drawer'
 							href='#'
 							isFixedHeader={true}
-							headerItems={items}
-							drawerItems={items}
+							headerLinks={links}
+							drawerLinks={links}
 						>
 							<MDL.PrismCode
 								src='example/codes/Layouts/FixHeaderAndDrawer.jsx'
@@ -95,8 +113,8 @@ var ExampleTextField = React.createClass({
 							title='Fixed header and drawer without title'
 							href='#'
 							isFixedHeader={true}
-							headerItems={items}
-							drawerItems={items}
+							headerLinks={links}
+							drawerLinks={links}
 							noDrawerTitle={true}
 						>
 							<MDL.PrismCode
@@ -111,7 +129,7 @@ var ExampleTextField = React.createClass({
 							title='Scrolling header'
 							href='#'
 							isScrollHeader={true}
-							headerItems={items}
+							headerLinks={links}
 						>
 							<MDL.PrismCode
 								src='example/codes/Layouts/ScrollingHeader.jsx'
@@ -127,8 +145,8 @@ var ExampleTextField = React.createClass({
 							isScrollHeader={true}
 							showHeaderSearch={true}
 							onSearchSubmit={function(value){alert('onSearchSubmit' + value)}}
-							waterfallItems={items}
-							drawerItems={items}
+							waterfallLinks={links}
+							drawerLinks={links}
 							noDrawerTitle={true}
 						>
 							<MDL.PrismCode
@@ -142,13 +160,30 @@ var ExampleTextField = React.createClass({
 						<MDL.Layout
 							title='Scrollable tabs'
 							href='#'
-							headerItems={items}
-							tabItems={items}
-							drawerItems={items}
+							headerLinks={links}
+							tabs={manyTabs}
+							drawerLinks={links}
 							noDrawerTitle={true}
 						>
 							<MDL.PrismCode
 								src='example/codes/Layouts/ScrollableTabs.jsx'
+								lang='jsx'
+								style={styles.prismCode}
+							/>
+						</MDL.Layout>
+					</div>
+					<div style={styles.layoutContainer}>
+						<MDL.Layout
+							title='Fixed tabs'
+							href='#'
+							headerLinks={links}
+							tabs={fewTabs}
+							drawerLinks={links}
+							noDrawerTitle={true}
+							isFixedTabs={true}
+						>
+							<MDL.PrismCode
+								src='example/codes/Layouts/FixedTabs.jsx'
 								lang='jsx'
 								style={styles.prismCode}
 							/>
@@ -187,7 +222,7 @@ var ExampleTextField = React.createClass({
 				content : 'disable displaying drawer title',
 			},
 			{
-				key : 'headerItems',
+				key : 'headerLinks',
 				type : 'array of elements',
 				state : 'optional',
 				content : 'array of links',

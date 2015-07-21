@@ -2,7 +2,7 @@
     title='Scrolling header'
     href='#'
     isScrollHeader={true}
-    headerItems={items}
+    headerLinks={links}
 >
     put your content here
 </MDL.Layout>

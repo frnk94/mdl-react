@@ -2,8 +2,8 @@
     title='Fixed header and drawer'
     href='#'
     isFixedHeader={true}
-    headerItems={items}
-    drawerItems={items}
+    headerLinks={links}
+    drawerLinks={links}
 >
     put your content here
 </MDL.Layout>
