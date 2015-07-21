@@ -1,5 +1,6 @@
 <TextField
 	defaultValue='no label text'
+	onChange={function(e) { console.log(e.target.value) }}
 /><br />
 <TextField
 	labelText='test label text'

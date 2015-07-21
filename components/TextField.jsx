@@ -33,6 +33,7 @@ module.exports = React.createClass({
 			React.PropTypes.string,
 			React.PropTypes.number,
 		]),
+		onChange : React.PropTypes.func,
 		isMultiline : React.PropTypes.bool,
 		rows : React.PropTypes.number,
 		style : React.PropTypes.object,
@@ -84,12 +85,16 @@ module.exports = React.createClass({
 		this.setState({
 			value : event.target.value,
 		});
+		if(this.props.onChange instanceof Function) {
+			this.props.onChange(event);
+		}
 	},
 
 	_renderInput : function() {
 		if(!this.props.isMultiline) {
 			return (
-				<input className="mdl-textfield__input"
+				<input ref='input'
+					className="mdl-textfield__input"
 					type="text"
 					id={this.state.id}
 					value={this.state.value}
@@ -99,7 +104,7 @@ module.exports = React.createClass({
 			);
 		} else {
 			return (
-				<textarea
+				<textarea ref='input'
 					className="mdl-textfield__input"
 					type="text"
 					rows={this.props.rows}

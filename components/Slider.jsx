@@ -10,7 +10,7 @@ var React = require('react');
 		tabIndex, 		number,					the tab order of an element
 		step, 			number,					the legal number intervals for an <input> element
 		defaultValue, 	number,					the value of an <input> element
-		disabled,		boolen,					disable the slider effect 
+		disabled,		boolen,					disable the slider effect
 	Methods
 		getValue								get the value from the current sliders
 		setValue								Set the value in the current sliders
@@ -42,7 +42,7 @@ var Slider = React.createClass({
 
 	getInitialState: function() {
 		return {
-			stateValue : this.props.defaultValue,
+			value : this.props.defaultValue,
 		};
 	},
 
@@ -54,7 +54,7 @@ var Slider = React.createClass({
 
 	componentDidUpdate: function(prevProps, prevState) {
 		var node = this.refs.input.getDOMNode();
-		node.value = this.state.stateValue;
+		node.value = this.state.value;
 		node.setAttribute('class', 'mdl-slider mdl-js-slider');
 		componentHandler.upgradeDom();
 	},
@@ -63,9 +63,9 @@ var Slider = React.createClass({
 		return this.refs.input.getDOMNode().value ;
 	},
 
-	setValue : function(inputValue) {
+	setValue : function(value) {
 		this.setState({
-			stateValue : inputValue,
+			value : value,
 		});
 	},
 
