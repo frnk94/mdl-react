@@ -39,12 +39,12 @@ module.exports = React.createClass({
 		return (
 			<div>
 				<span>Footer2</span>
-				<MDL.Footer2
+				<MDL.Footer
 					isMini={true}
 					leftItems={leftItems}
 					rightItems={rightItems}
 				>
-				</MDL.Footer2>
+				</MDL.Footer>
 			</div>
 		);
 	},
