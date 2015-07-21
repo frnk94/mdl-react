@@ -114,15 +114,15 @@ module.exports = React.createClass({
 
 	_renderTab1: function() {
 		return (
-				<ul style={this.styles.tab}>
-		      <li>Eddard</li>
-		      <li>Catelyn</li>
-		      <li>Robb</li>
-		      <li>Sansa</li>
-		      <li>Brandon</li>
-		      <li>Arya</li>
-		      <li>Rickon</li>
-		    </ul>
+			<ul style={this.styles.tab}>
+				<li>Eddard</li>
+				<li>Catelyn</li>
+				<li>Robb</li>
+				<li>Sansa</li>
+				<li>Brandon</li>
+				<li>Arya</li>
+				<li>Rickon</li>
+			</ul>
 		);
 	},
 
@@ -186,7 +186,9 @@ module.exports = React.createClass({
 				<MDL.Card style={this.styles.card} shadow={6}>
 					<div style={this.styles.demo}>
 						<DocSubtitle title="example" />
-						<MDL.Tabs ref="tab" tabLabels={['Starks','Lannisters','Targaryens',]} defaultIndex={1} onChange={this.changedTab}>
+						<MDL.Tabs ref="tab"
+							tabLabels={['Starks','Lannisters','Targaryens',]} defaultIndex={1} onChange={this.changedTab}
+						>
 							{this._renderTab1()}
 							{this._renderTab2()}
 							{this._renderTab3()}

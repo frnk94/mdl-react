@@ -1,4 +1,6 @@
 
+"use strict";
+
 /**
 	Layout
 		http://www.getmdl.io/components/index.html#layout-section/layout
@@ -7,7 +9,7 @@
 		title, string or element
 		href, string, 標題的連結
 		items, array of object
-		headerItems, array of obbject
+		headerLinks, array of obbject
 */
 
 var React = require('react');
@@ -17,38 +19,51 @@ var _ = require('lodash');
 var Layout = React.createClass({
 
 	propTypes: {
-		style : React.PropTypes.object,
-		drawerButtonStyle : React.PropTypes.object,
-		headerStyle : React.PropTypes.object,
-		contentStyle : React.PropTypes.object,
-		searchInputStyle : React.PropTypes.object,
-		onSearchSubmit : React.PropTypes.func,
-		showHeaderSearch : React.PropTypes.bool,
-		isFixedHeader : React.PropTypes.bool,
-		isScrollHeader : React.PropTypes.bool,
-		isFixedDrawer : React.PropTypes.bool,
-		isTransparent : React.PropTypes.bool,
-		isHideHeaderMenuWhenMobile : React.PropTypes.bool,
-		noHeaderTitle : React.PropTypes.bool,
-		noDrawerTitle : React.PropTypes.bool,
+
 		title : React.PropTypes.oneOfType([
 			React.PropTypes.string,
 			React.PropTypes.element,
 		]),
 		href : React.PropTypes.string,
-		headerItems : React.PropTypes.arrayOf(React.PropTypes.element),
-		waterfallItems : React.PropTypes.arrayOf(React.PropTypes.element),
-		tabItems : React.PropTypes.arrayOf(React.PropTypes.element),
-		drawerItems : React.PropTypes.arrayOf(React.PropTypes.element),
+		noHeaderTitle : React.PropTypes.bool,
+		noDrawerTitle : React.PropTypes.bool,
+
+		headerStyle : React.PropTypes.object,
+		headerLinks : React.PropTypes.arrayOf(React.PropTypes.element),
+
+		drawerStyle : React.PropTypes.object,
+		drawerButtonStyle : React.PropTypes.object,
+		drawerLinks : React.PropTypes.arrayOf(React.PropTypes.element),
+
+		isFixedHeader : React.PropTypes.bool,
+		isScrollHeader : React.PropTypes.bool,
+		isFixedDrawer : React.PropTypes.bool,
+
+				waterfallLinks : React.PropTypes.arrayOf(React.PropTypes.element),
+
+		tabs : React.PropTypes.arrayOf(React.PropTypes.element),
+		initialTabIndex : React.PropTypes.number,
+		isFixedTabs : React.PropTypes.bool,
+
+		showHeaderSearch : React.PropTypes.bool,
+		onSearchSubmit : React.PropTypes.func,
+		searchInputStyle : React.PropTypes.object,
+
+		style : React.PropTypes.object,
+		contentStyle : React.PropTypes.object,
+
+		isTransparent : React.PropTypes.bool,
+		isHideHeaderMenuWhenMobile : React.PropTypes.bool,
+
 	},
 
 	getDefaultProps: function() {
 		return {
 			title : '',
-			headerItems : [],
-			waterfallItems : [],
-			tabItems : [],
-			drawerItems : [],
+			headerLinks : [],
+			waterfallLinks : [],
+			tabs : [],
+			drawerLinks : [],
 			style : {},
 		};
 	},
@@ -73,9 +88,15 @@ var Layout = React.createClass({
 		}
 	},
 
-	_generateLinks : function(items, className) {
+	_generateLinks : function(items, className, activeIndex) {
 		return items.map(function(item, index) {
-			var newClassName = ('' || item.props.className) + ' ' + className;
+			var newClassName = (item.props.className || '') + ' ' + className;
+			if(
+				activeIndex &&
+				index == activeIndex
+			) {
+				newClassName += ' is-active';
+			}
 			return React.cloneElement(item, {
 				key : index,
 				className : newClassName,
@@ -86,14 +107,14 @@ var Layout = React.createClass({
 	_renderHeader : function(titleComponent) {
 
 		if(
-			this.props.headerItems.length > 0 ||
-			this.props.tabItems.length > 0 ||
+			this.props.headerLinks.length > 0 ||
+			this.props.tabs.length > 0 ||
 			this.props.showHeaderSearch
 		) {
 
 			var haderNav = null;
 			if(
-				this.props.headerItems.length > 0 &&
+				this.props.headerLinks.length > 0 &&
 				!this.props.showHeaderSearch
 			) {
 				var headerNavClassName = 'mdl-navigation';
@@ -101,7 +122,7 @@ var Layout = React.createClass({
 					headerNavClassName += ' mdl-layout--large-screen-only';
 				}
 				var items = this._generateLinks(
-					this.props.headerItems,
+					this.props.headerLinks,
 					'mdl-navigation__link'
 				);
 				haderNav = (
@@ -123,11 +144,11 @@ var Layout = React.createClass({
 
 			var secondHeaderRow = null;
 			if(
-				this.props.waterfallItems.length > 0 &&
-				this.props.tabItems == 0
+				this.props.waterfallLinks.length > 0 &&
+				this.props.tabs == 0
 			) {
 				var items = this._generateLinks(
-					this.props.waterfallItems,
+					this.props.waterfallLinks,
 					'mdl-navigation__link'
 				);
 				if(
@@ -151,14 +172,16 @@ var Layout = React.createClass({
 				);
 			}
 
-			var headerTab = null;
+			var headerTabs = null;
 			if(
-				this.props.tabItems.length > 0
+				this.props.tabs.length > 0
 			) {
-				var tabItems = this._generateLinks(this.props.tabItems, 'mdl-layout__tab');
-				headerTab = (
+				var tabs = this._generateLinks(
+					this.props.tabs, 'mdl-layout__tab', this.props.initialTabIndex
+				);
+				headerTabs = (
 					<div className="mdl-layout__tab-bar mdl-js-ripple-effect">
-						{tabItems}
+						{tabs}
 					</div>
 				);
 			}
@@ -171,8 +194,8 @@ var Layout = React.createClass({
 				className += ' mdl-layout__header--scroll';
 			}
 			if(
-				this.props.waterfallItems.length > 0 &&
-				this.props.tabItems.length == 0
+				this.props.waterfallLinks.length > 0 &&
+				this.props.tabs.length == 0
 			) {
 				className += ' mdl-layout__header--waterfall';
 			}
@@ -186,7 +209,7 @@ var Layout = React.createClass({
 						{headerSearch}
 					</div>
 					{secondHeaderRow}
-					{headerTab}
+					{headerTabs}
 				</header>
 			);
 
@@ -196,11 +219,11 @@ var Layout = React.createClass({
 
 	_renderDrawer : function(titleComponent) {
 		if(
-			this.props.drawerItems.length > 0
+			this.props.drawerLinks.length > 0
 		) {
-			var items = this._generateLinks(this.props.drawerItems, 'mdl-navigation__link');
+			var items = this._generateLinks(this.props.drawerLinks, 'mdl-navigation__link');
 			return (
-				<div className="mdl-layout__drawer">
+				<div className="mdl-layout__drawer" style={this.props.drawerStyle} >
 					{!this.props.noDrawerTitle ? titleComponent : null}
 					<nav className="mdl-navigation">
 						{items}
@@ -222,11 +245,11 @@ var Layout = React.createClass({
 		if(this.props.isFixedDrawer) {
 			classes['mdl-layout--fixed-drawer'] = true;
 		}
-		if(this.props.drawerItems.length > 0) {
+		if(this.props.drawerLinks.length > 0) {
 			classes['mdl-layout--overlay-drawer-button'] = true;
 		}
 		if(
-			this.props.tabItems.length > 0 &&
+			this.props.tabs.length > 0 &&
 			this.props.isFixedTabs
 		) {
 			classes['mdl-layout--fixed-tabs'] = true
@@ -269,6 +292,8 @@ var Layout = React.createClass({
 
 });
 
+var counter = 0;
+
 var HeaderSearch = React.createClass({
 
 	propTypes: {
@@ -281,25 +306,30 @@ var HeaderSearch = React.createClass({
 			e.which == 13 &&
 			this.props.submit instanceof Function
 		) {
-			this.props.submit(e);
+			console.log(this.refs.input.getDOMNode().value);
+			this.props.submit(this.refs.input.getDOMNode().value);
 		}
 	},
 
 	render : function() {
+		var inputId = 'fixed-header-drawer-exp-' + (++counter);
 		var inputStyle = _.extend({
 			borderBottomColor : 'white',
 		}, this.props.inputStyle);
 		return (
 			<div className="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
 				<label
-					className="mdl-button mdl-js-button mdl-button--icon" htmlFor="fixed-header-drawer-exp"
+					className="mdl-button mdl-js-button mdl-button--icon"
+					htmlFor={inputId}
 				>
 					<i className="material-icons">search</i>
 				</label>
 				<div className="mdl-textfield__expandable-holder">
-					<input
-						className="mdl-textfield__input" type="text" name="sample"
-						id="fixed-header-drawer-exp"
+					<input ref='input'
+						className="mdl-textfield__input"
+						type="text"
+						name="sample"
+						id={inputId}
 						style={inputStyle}
 						onKeyPress={this._onKeyPress}
 					/>

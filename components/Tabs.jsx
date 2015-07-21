@@ -51,11 +51,11 @@ module.exports = React.createClass({
 
 	componentWillMount: function() {
 		if(!this.props.children instanceof Array ){
-			console.warn("MDL.Tabs: The tabs should have at least two `children`");
+			console.warn("MDL.Tab: The tabs should have at least two `children`");
 		} else if (!this.props.tabLabels instanceof Array || this.props.tabLabels.length == 1){
-			console.warn("MDL.Tabs: The props `tabLabels` should be an array that contains at least two item");
+			console.warn("MDL.Tab: The props `tabLabels` should be an array that contains at least two item");
 		} else if (this.props.tabLabels.length !== this.props.children.length){
-			console.warn("MDL.Tabs: The number of `tabLabels` should be same as props `children`");
+			console.warn("MDL.Tab: The number of `tabLabels` should be same as props `children`");
 		}
 	},
 
@@ -82,20 +82,20 @@ module.exports = React.createClass({
 		var tabBars = [];
 		var tabPanels = [];
 		this.props.tabLabels.map(function(label, index){
-				var id = 'mdl-tab-' + label.split(' ').join('');
-				tabBars.push(
-					<a key={label} href={'#'+id}
-						className={"mdl-tabs__tab " + (index == this.state.tabIndex? 'is-active':'')}
-						onClick={this.setTabIndex.bind(this, index)}>
-						{label}
-					</a>
-				);
-				tabPanels.push(
-					<div key={label} id={id}
-						className={"mdl-tabs__panel " + (index == this.state.tabIndex? 'is-active':'')}>
-						{this.props.children[index]}
-					</div>
-				);
+			var id = 'mdl-tab-' + label.split(' ').join('');
+			tabBars.push(
+				<a key={label} href={'#'+id}
+					className={"mdl-tabs__tab " + (index == this.state.tabIndex? 'is-active':'')}
+					onClick={this.setTabIndex.bind(this, index)}>
+					{label}
+				</a>
+			);
+			tabPanels.push(
+				<div key={label} id={id}
+					className={"mdl-tabs__panel " + (index == this.state.tabIndex? 'is-active':'')}>
+					{this.props.children[index]}
+				</div>
+			);
 		}.bind(this));
 
 		return (
