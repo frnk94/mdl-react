@@ -4,6 +4,7 @@
 var MDL = require('../components');
 var React = require('react');
 var Router = require('react-router');
+var Link = Router.Link;
 
 var App = React.createClass({
 	mixins : [
@@ -17,7 +18,6 @@ var App = React.createClass({
 		var waterfallItems = [
 			<a href='http://www.getmdl.io/' target='_blank'>Material Design Lite</a>,
 			<a href='https://facebook.github.io/react/' target='_blank'>React</a>,
-			// <a href='http://FandoraShop.com' target='_blank'>by Fandora Shop</a>,
 		];
 		var tabItems = [
 			<a href='#table'>Table</a>,

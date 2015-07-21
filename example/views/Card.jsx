@@ -226,7 +226,7 @@ module.exports = React.createClass({
 			<div style={style}>
 				<DocTitle title="Card" />
 				<MDL.Card style={cardStyle} shadow={6}>
-					<MDL.Tabs ref="tab" tabLabels={['Example 1','Example 2','Example 3','Example 4','Example 5',]} isRipple={true}>
+					<MDL.Tab ref="tab" tabLabels={['Example 1','Example 2','Example 3','Example 4','Example 5',]} isRipple={true}>
 						<div style={demoStyle}>
 							<MDL.Card style={firstStyle} width='512'>
 								<MDL.CardTitle height='176' style={firstTitleStyle}>
@@ -315,7 +315,7 @@ module.exports = React.createClass({
 								</MDL.CardMedia>
 							</MDL.Card>
 						</div>
-					</MDL.Tabs>
+					</MDL.Tab>
 					<MDL.PrismCode
 						src='http://fandora.github.io/mdl-react/example/codes/Card.js'
 						lang='jsx'

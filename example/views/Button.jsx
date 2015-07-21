@@ -143,7 +143,7 @@ module.exports = React.createClass({
 				<MDL.Card style={this.styles.card} shadow={6}>
 					<div style={this.styles.demo}>
 						<DocSubtitle title="example" />
-						<MDL.Tabs onChange={this._onTabChange}
+						<MDL.Tab onChange={this._onTabChange}
 							tabLabels={['Floating Action Buttons','Raised Buttons','Flat Buttons','Icon Buttons',]} isRipple={true}>
 
 							<div style={this.styles.tab}>
@@ -262,7 +262,7 @@ module.exports = React.createClass({
 									defaultDisabled={true}/>
 
 							</div>
-						</MDL.Tabs>
+						</MDL.Tab>
 					</div>
 
 					<MDL.PrismCode

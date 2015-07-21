@@ -19,10 +19,16 @@ var ExampleTextField = React.createClass({
 	},
 
 	componentDidMount: function() {
-		setInterval(this._cron, 1000);
+		this._intervalId = setInterval(this._cron, 1000);
+	},
+
+	componentWillUnmount: function() {
+		console.log('componentWillUnmount');
+		clearInterval(this._intervalId);
 	},
 
 	_cron : function() {
+		console.log('_cron');
 		this.setState({
 			counter : ++this.state.counter,
 		});

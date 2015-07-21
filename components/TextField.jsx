@@ -55,7 +55,7 @@ module.exports = React.createClass({
 		if(this.props.defaultValue) {
 			this.state.value = this.props.defaultValue;
 		}
-		this.state.id = 'mdl-textfield-' + id++;
+		this.state.id = 'mdl-textfield-' + Date.now();
 	},
 
 	componentDidMount: function() {

@@ -105,7 +105,7 @@ module.exports = React.createClass({
 
 	componentDidMount: function() {
 		var self = this;
-		setInterval(function() {
+		this._intervalId = setInterval(function() {
 			var percentage = self.state.percentage;
 			if(percentage < 65) {
 				percentage++;
@@ -114,6 +114,10 @@ module.exports = React.createClass({
 				});
 			}
 		}, 1000);
+	},
+
+	componentWillUnmount: function() {
+		clearInterval(this._intervalId);
 	},
 
 });

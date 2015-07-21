@@ -18,6 +18,15 @@ var ExampleTextField = React.createClass({
 		});
 	},
 
+	componentDidMount: function() {
+		console.log('componentDidMount');
+	},
+
+	componentWillUnmount: function() {
+		console.log('componentWillUnmount');
+		// clearInterval(this._intervalId);
+	},
+
 	render: function() {
 
 		var styles = {
