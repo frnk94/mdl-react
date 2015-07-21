@@ -1,14 +1,9 @@
 
+'use strict';
 
 var React = require('react');
 
 module.exports = React.createClass({
-
-	getDefaultProps: function() {
-		return {
-			
-		};
-	},
 
 	propTypes: {
 		leftItems : React.PropTypes.shape({
@@ -30,144 +25,103 @@ module.exports = React.createClass({
 		isMini: React.PropTypes.bool,
 	},
 
-	render: function() {
+	_checkType: function(inputItem) {
+		if(inputItem.type == 'list')
+			return 'list';
+		if(inputItem.type == 'button')
+			return 'button';
+	},
 
-		if(this.props.leftItems) {
+	_checkHorizontal: function(inputItem) {
+		if(inputItem === this.props.leftItems)
+			return 'left';
+		if(inputItem === this.props.rightItems)
+			return 'right';
+	},
 
-			if(this.props.leftItems.logo) {
-
-				var newLeftLogo = null;
-
-				newLeftLogo = React.cloneElement(this.props.leftItems.logo, {
-					className: 'mdl-logo',
-				});
-			}
-
-			if(this.props.leftItems.type == 'list') {
-
-				var newLeftList = null;
-
-				list = this.props.leftItems.items.map(function(item, index) {
-					return (
-						<li>{item}</li>
-					);
-				});
-
-				newLeftList = (
-					<ul 
-						className={
-							"mdl-" + 
-							(this.props.isMega ? 'mega' : 'mini') + 
-							"-footer--link-list"
-						}
-					>
-						{list}
-					</ul>
-				);
-			}
-
-			if(this.props.leftItems.type == 'button') {
-
-				item = React.cloneElement(item, {
-					className: 'mdl-mini-footer--social-btn',
-				});
-
-				var newLeftBtn = this.props.leftItems.items.map(function(item, index) {
-					return (
-							{item}
-					);
-				});
-
-			}
-
-			var left = null;
-
-			left = (
-				<div className={"mdl-"+(this.props.isMini? 'mini': 'mega')+"-footer--left-section"}>
-					{newLeftLogo}
-					{newLeftList}
-					{newLeftBtn}
-				</div>
-			);
+	_generateLogo: function(inputItem) {
+		if(inputItem.logo) {
+			console.log('_generateLogo');
+			return React.cloneElement(inputItem.logo, {
+				className: 'mdl-logo',
+			});
 		}
+	},
 
-		if(this.props.rightItems) {
-
-			if(this.props.rightItems.logo) {
-
-				var newrightLogo = null;
-
-				newrightLogo = React.cloneElement(this.props.rightItems.logo, {
-					className: 'mdl-logo',
-				});
-			}
-
-			if(this.props.rightItems.type == 'list') {
-
-				var newrightList = null;
-
-				list = this.props.rightItems.items.map(function(item, index) {
-					return (
-						<li>{item}</li>
-					);
-				});
-
-				newrightList = (
-					<ul 
-						className={
-							"mdl-" + 
-							(this.props.isMega ? 'mega' : 'mini') + 
-							"-footer--link-list"
-						}
-					>
-						{list}
-					</ul>
-				);
-			}
-
-			if(this.props.rightItems.type == 'button') {
-
-				var isMini = this.props.isMini? 'mini': 'mega';
-
-				var newrightBtn = this.props.rightItems.items.map(function(item, index) {
-
-					var newClassName = 
-						('' || item.props.className) +
-						' ' +
-						'mdl-' +
+	_generateList: function(inputItem, isMini) {
+		if(inputItem.type == 'list') {
+			console.log('_generateList');
+			var newList = null;
+			var list = inputItem.items.map(function(item, index) {
+				return <li>{item}</li>;
+			});
+			newList = (
+				<ul
+					className={
+						"mdl-" +
 						isMini +
-						"-footer--social-btn";
+						"-footer--link-list"
+					}
+				>
+					{list}
+				</ul>
+			);
+			return {newList};
+		}
+	},
 
-					item = React.cloneElement(item, {
-						className: newClassName,
-					});
-
-					return (
-						{item}
-					);
+	_generateBtn: function(inputItem, isMini) {
+		if(inputItem.type == 'button') {
+			console.log('_generateBtn');
+			var newBtn = null;
+			var newClassName = 'mdl-'+isMini+'-footer--social-btn';
+			newBtn = inputItem.items.map(function(item, index) {
+				return React.cloneElement(item, {
+					className: newClassName,
 				});
+			});
+			return {newBtn};
+		}
+	},
 
-			}
-
-			var right = null;
-
-			right = (
-				<div className={"mdl-"+(this.props.isMini? 'mini': 'mega')+"-footer--right-section"}>
-					{newrightLogo}
-					{newrightList}
-					{newrightBtn}
+	_generateHorizontal: function(propsItem) {
+		if(propsItem == this.props.leftItems) {
+			console.log('Generate leftItem');
+			var isMini = this.props.isMini? 'mini': 'mega';
+			var isLeft = this._checkHorizontal(this.props.leftItems);
+			var left = (
+				<div className={"mdl-"+isMini+"-footer--"+isLeft+"-section"}>
+					{this._generateLogo(propsItem)}
+					{this._generateList(propsItem, isMini)}
+					{this._generateBtn(propsItem, isMini)}
 				</div>
 			);
-
+			return {left}
 		}
 
+		if(propsItem == this.props.rightItems) {
+			console.log('Generate rightItem');
+			var isMini = this.props.isMini? 'mini': 'mega';
+			var isLeft = this._checkHorizontal(this.props.rightItems);
+			var right = (
+				<div className={"mdl-"+isMini+"-footer--"+isLeft+"-section"}>
+					{this._generateLogo(propsItem)}
+					{this._generateList(propsItem, isMini)}
+					{this._generateBtn(propsItem, isMini)}
+				</div>
+			);
+			return {right}
+		}
+	},
+
+
+	render: function() {
+		var isMini = this.props.isMini? 'mini': 'mega';
 		return (
-			<div>
-				<footer className={"mdl-"+ (this.props.isMini? 'mini': 'mega')+"-footer"}>
-					{left}
-					{right}
-				</footer>
-			</div>
+			<footer className={"mdl-" + isMini + "-footer"}>
+				{this._generateHorizontal(this.props.leftItems)}
+				{this._generateHorizontal(this.props.rightItems)}
+			</footer>
 		);
 	}
 
