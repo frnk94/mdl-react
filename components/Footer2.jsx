@@ -68,13 +68,11 @@ module.exports = React.createClass({
 
 			if(this.props.leftItems.type == 'button') {
 
-				var newLeftBtn = null;
-
 				item = React.cloneElement(item, {
 					className: 'mdl-mini-footer--social-btn',
 				});
 
-				newLeftBtn = this.props.leftItems.items.map(function(item, index) {
+				var newLeftBtn = this.props.leftItems.items.map(function(item, index) {
 					return (
 							{item}
 					);
@@ -129,16 +127,23 @@ module.exports = React.createClass({
 
 			if(this.props.rightItems.type == 'button') {
 
-				var newrightBtn = null;
+				var isMini = this.props.isMini? 'mini': 'mega';
 
-				newrightBtn = this.props.rightItems.items.map(function(item, index) {
+				var newrightBtn = this.props.rightItems.items.map(function(item, index) {
+
+					var newClassName = 
+						('' || item.props.className) +
+						' ' +
+						'mdl-' +
+						isMini +
+						"-footer--social-btn";
 
 					item = React.cloneElement(item, {
-						className: 'mdl-mini-footer--social-btn',
+						className: newClassName,
 					});
 
 					return (
-							{item}
+						{item}
 					);
 				});
 
