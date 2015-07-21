@@ -124,7 +124,7 @@ module.exports = React.createClass({
 		};
 	},
 
-	tabChanged: function(tabIndex, e) {
+	_onTabChange: function(tabIndex, e) {
 		if (tabIndex === 0) {
 			this.setState({url: 'FAB.jsx'});
 		} else if (tabIndex === 1) {
@@ -143,7 +143,7 @@ module.exports = React.createClass({
 				<MDL.Card style={this.styles.card} shadow={6}>
 					<div style={this.styles.demo}>
 						<DocSubtitle title="example" />
-						<MDL.Tabs onChange={this.tabChanged}
+						<MDL.Tabs onChange={this._onTabChange}
 							tabLabels={['Floating Action Buttons','Raised Buttons','Flat Buttons','Icon Buttons',]} isRipple={true}>
 
 							<div style={this.styles.tab}>
