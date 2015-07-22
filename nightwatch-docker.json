@@ -7,7 +7,6 @@
 	"page_objects_path" : "",
 	"globals_path" : "",
 	"live_output" : true,
-	"globals_path" : "test/_init.js",
 
 	"test_settings" : {
 		"default" : {
@@ -29,7 +28,15 @@
 			"filter": "test/*.js",
 			"log_screenshot_data" : false,
 			"end_session_on_fail" : true,
-			"skip_testcases_on_fail": false
+			"skip_testcases_on_fail": false,
+			"globals_path" : "test/_init.js",
+		},
+		"saucelabs" : {
+			"launch_url" : "http://fandora.github.io/mdl-react/#/",
+			"selenium_host" : "ondemand.saucelabs.com",
+			"selenium_port" : 80,
+			"username" : "xpsteven",
+			"access_key" : "7fcb0970-9e39-4da2-b289-8e2e78c8a34b"
 		}
 	}
 
