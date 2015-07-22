@@ -9,13 +9,25 @@ var DocSubtitle = require('../document/DocSubtitle.jsx');
 
 module.exports = React.createClass({
 
+	getInitialState: function() {
+		return {
+			checkedValue: 'none', 
+			valueArea: 'none',
+		};
+	},
+
 	onChange: function(event) {
 		console.log('outside get value : ', event.target.value);
 	},
 
 	getValue: function() {
-		console.log('outside get : ', this.refs.test.getValue());
-		alert(this.refs.test.getValue());
+		var result = this.refs.test.getValue();
+		console.log('outside get : ', result);
+		result = (<div key={'result'}><span>Get value : </span>{result}</div>);
+		this.setState({
+			checkedValue : result,
+			valueArea : 'block',
+		});
 	},
 
 	setValue: function() {
@@ -50,6 +62,14 @@ module.exports = React.createClass({
 			width : '240px',
 			margin : '24px auto',
 			marginTop : '0px',
+		};
+
+		var valueStyle = {
+			backgroundColor : '#00BCD4',
+			padding : '20px',
+			color : '#ddd',
+			marginBottom : '-7px',
+			display : this.state.valueArea,
 		};
 
 		var prismCode = {
@@ -159,6 +179,9 @@ module.exports = React.createClass({
 								onClick={this.setValue}
 							/>
 						</div>
+					</div>
+					<div style={valueStyle}>
+						{this.state.checkedValue}
 					</div>
 					<MDL.PrismCode
 						src='http://fandora.github.io/mdl-react/example/codes/SliderInfo.js'
