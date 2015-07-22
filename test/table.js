@@ -17,6 +17,7 @@ module.exports = {
 		.click('.mdl-button--primary')
 		.pause(500)
 		.assert.visible(".showValueArea")
-		.assert.containsText(".showValueArea", "Au bar");
+		.assert.containsText(".showValueArea", "Au bar")
+		.end();
 	}
 };

@@ -3,6 +3,7 @@ module.exports = {
 	client
 		.url('http://localhost:8080/#/card')
 		.waitForElementVisible('body', 1000)
-		.assert.elementPresent(".mdl-card");
+		.assert.elementPresent(".mdl-card")
+		.end();
 	}
 };
