@@ -42,6 +42,7 @@ function bundleGenerator(isWatch) {
 
 // so you can run `gulp js` to build the file
 gulp.task('js', bundleGenerator(true));
+gulp.task('js:nowatch', bundleGenerator(false));
 
 gulp.task('default', ['js'], function() {
 	connect.server({
@@ -51,7 +52,7 @@ gulp.task('default', ['js'], function() {
 	});
 });
 
-gulp.task('compress', function() {
+gulp.task('compress', ['js:nowatch'], function() {
 	return gulp.src('example/app.js')
 	.pipe(uglify({
 		compress : true,
