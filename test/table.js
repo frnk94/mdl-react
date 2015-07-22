@@ -1,7 +1,7 @@
 module.exports = {
 	'Table Test' : function (client) {
 	client
-		.url('http://localhost:8080')
+		.url(client.launch_url)
 		.waitForElementVisible('body', 1000)
 		.click('div.mdl-layout__drawer-button')
 		.pause(500)
