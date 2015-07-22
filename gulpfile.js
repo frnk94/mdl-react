@@ -52,6 +52,13 @@ gulp.task('default', ['js'], function() {
 	});
 });
 
+gulp.task('server', function() {
+	connect.server({
+		root : 'example',
+		fallback : 'example/index.html',
+	});
+});
+
 gulp.task('compress', ['js:nowatch'], function() {
 	return gulp.src('example/app.js')
 	.pipe(uglify({

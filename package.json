@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "description": "Material Design Lite + React ",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/nightwatch/bin/nightwatch -c ./nightwatch-docker.json"
   },
   "main": "./components",
   "repository": {
@@ -25,13 +25,13 @@
     "gulp-uglify": "~1.2.0",
     "lodash": "~3.10.0",
     "material-design-lite": "~1.0.0-3",
-    "nightwatch": "^0.7.9",
     "react": "~0.13.3",
     "react-router": "~0.13.3",
     "superagent": "~1.2.0"
   },
   "devDependencies": {
     "browserify": "~10.2.6",
+    "nightwatch": "~0.7.9",
     "del": "~1.2.0",
     "gulp": "~3.9.0",
     "gulp-rename": "~1.2.2",

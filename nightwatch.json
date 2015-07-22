@@ -1,4 +1,5 @@
 {
+
 	"src_folders" : ["test"],
 	"output_folder" : "reports",
 	"custom_commands_path" : "",
@@ -34,12 +35,12 @@
 				"javascriptEnabled": true,
 				"acceptSslCerts": true
 			},
+			"exclude": "test/_*.js",
 			"filter": "test/*.js",
 			"log_screenshot_data" : false,
 			"end_session_on_fail" : true,
 			"skip_testcases_on_fail": false
 		},
-
 		"firefox" : {
 			"desiredCapabilities": {
 				"browserName": "firefox",
@@ -47,7 +48,6 @@
 				"acceptSslCerts": true
 			}
 		},
-
 		"screenshot" : {
 			"screenshots" : {
 				"enabled" : true,
@@ -59,10 +59,8 @@
 	},
 
 	"live_output" : true,
-
 	"disable_colors" : false,
-
 	"parallel_process_delay" : 500,
-
 	"test_workds" : true
+
 }
