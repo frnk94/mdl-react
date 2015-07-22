@@ -39,8 +39,7 @@ var Layout = React.createClass({
 		isScrollHeader : React.PropTypes.bool,
 		isFixedDrawer : React.PropTypes.bool,
 
-				waterfallLinks : React.PropTypes.arrayOf(React.PropTypes.element),
-
+		waterfallLinks : React.PropTypes.arrayOf(React.PropTypes.element),
 		tabs : React.PropTypes.arrayOf(React.PropTypes.element),
 		initialTabIndex : React.PropTypes.number,
 		isFixedTabs : React.PropTypes.bool,
