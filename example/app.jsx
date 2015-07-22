@@ -27,6 +27,7 @@ var App = React.createClass({
 			<a href='#button'>Button</a>,
 			<a href='#card'>Card</a>,
 			<a href='#grid'>Grid</a>,
+			<a href='#icon'>Icon</a>,
 			<a href='#layout'>Layout</a>,
 			<a href='#loading'>Loading</a>,
 			<a href='#menu'>Menu</a>,
@@ -87,6 +88,7 @@ var Grid = require('./views/Grid.jsx');
 var MiniFooter = require('./views/MiniFooter.jsx');
 var Tooltip = require('./views/Tooltip.jsx');
 var Layout = require('./views/Layout.jsx');
+var Icon = require('./views/Icon.jsx');
 
 var routes = (
 	<Router.Route handler={App}>
@@ -106,6 +108,7 @@ var routes = (
 		<Router.Route name='miniFooter' path='miniFooter' handler={MiniFooter} />
 		<Router.Route name='tooltip' path='tooltip' handler={Tooltip} />
 		<Router.Route name='layout' path='layout' handler={Layout} />
+		<Router.Route name='icon' path='icon' handler={Icon} />
 	</Router.Route>
 );
 
