@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "description": "Material Design Lite + React ",
   "scripts": {
-    "test": "./node_modules/nightwatch/bin/nightwatch -c ./nightwatch-docker.json"
+    "test": "./node_modules/nightwatch/bin/nightwatch -e docker"
   },
   "main": "./components",
   "repository": {
