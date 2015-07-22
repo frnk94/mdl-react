@@ -3,7 +3,7 @@
 
 var React = require('react');
 var MDL = require('../../components');
-var DocTitle 		= require('../document/DocTitle.jsx');
+var DocTitle = require('../document/DocTitle.jsx');
 
 module.exports = React.createClass({
 
@@ -18,6 +18,9 @@ module.exports = React.createClass({
 				padding : '20px',
 				width : '100%',
 				// backgroundColor : '#eee',
+			},
+			prismCode : {
+				fontSize : '14px',
 			},
 		};
 
@@ -48,6 +51,11 @@ module.exports = React.createClass({
 					<MDL.MiniFooter
 						leftSection={leftSection}
 						rightSection={rightSection}
+					/>
+					<MDL.PrismCode
+						src='example/codes/MiniFooter.jsx'
+						lang='jsx'
+						style={styles.prismCode}
 					/>
 				</MDL.Card>
 			</div>

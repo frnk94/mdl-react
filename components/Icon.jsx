@@ -16,10 +16,10 @@ var Icon = React.createClass({
 			style.fontSize = 'inherit';
 		}
 		return (
-			<i className='material-icons'
+			<span className='material-icons'
 			style={style} >
 				{this.props.children}
-			</i>
+			</span>
 		);
 	},
 
