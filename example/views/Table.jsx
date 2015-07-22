@@ -264,7 +264,7 @@ module.exports = React.createClass({
 								onClick={this.getSelected} />
 						</div>
 					</div>
-					<div style={valueStyle}>
+					<div className="showValueArea" style={valueStyle}>
 						{this.state.checkedValue}
 					</div>
 					<MDL.PrismCode
