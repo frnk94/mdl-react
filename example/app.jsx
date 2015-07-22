@@ -13,7 +13,10 @@ var App = React.createClass({
 	],
 	render : function() {
 		var headerLinks = [
-			<a href='http://FandoraShop.com' target='_blank'>by Fandora Shop</a>
+			<a href='http://fandora.github.io/mdl-react' target='_blank'>
+				<i className="fa fa-github" style={{fontSize:'15px'}}> </i> GitHub
+			</a>,
+			<a href='http://FandoraShop.com' target='_blank'>by Fandora Shop</a>,
 		];
 		var waterfallLinks = [
 			<a href='http://www.getmdl.io/' target='_blank'>Material Design Lite</a>,

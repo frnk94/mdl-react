@@ -4,18 +4,19 @@
 var React = require('react');
 
 module.exports = React.createClass({
+
 	propTypes: {
-		leftItems : React.PropTypes.shape({
+		leftSection : React.PropTypes.shape({
 			type : React.PropTypes.oneOf(['list', 'button']).isRequired,
-			items : React.PropTypes.arrayOf(React.PropTypes.node).isRequired,
+			links : React.PropTypes.arrayOf(React.PropTypes.node).isRequired,
 			logo : React.PropTypes.oneOfType([
 				React.PropTypes.string,
 				React.PropTypes.element,
 			]),
 		}),
-		rightItems : React.PropTypes.shape({
+		rightSection : React.PropTypes.shape({
 			type : React.PropTypes.oneOf(['list', 'button']).isRequired,
-			items : React.PropTypes.arrayOf(React.PropTypes.node).isRequired,
+			links : React.PropTypes.arrayOf(React.PropTypes.node).isRequired,
 			logo : React.PropTypes.oneOfType([
 				React.PropTypes.string,
 				React.PropTypes.element,
@@ -33,13 +34,12 @@ module.exports = React.createClass({
 
 	_generateList: function(inputItem) {
 		if(inputItem.type == 'list') {
-			// console.log('_generateList');
-			var list = inputItem.items.map(function(item, index) {
-				return <li 
-							key={index}
-						>
-							{item}
-						</li>;
+			var list = inputItem.links.map(function(item, index) {
+				return (
+					<li key={index}>
+						{item}
+					</li>
+				);
 			});
 			return (
 				<ul
@@ -56,7 +56,6 @@ module.exports = React.createClass({
 	},
 
 	_generateHorizontal: function(inputItem, side) {
-		// console.log('Generate' + side + 'item');
 		var logo = null;
 		if(inputItem.logo) {
 			logo = React.cloneElement(inputItem.logo, {
@@ -74,8 +73,8 @@ module.exports = React.createClass({
 	render: function() {
 		return (
 			<footer className={"mdl-" + this.state.miniOrMega + "-footer"}>
-				{this._generateHorizontal(this.props.leftItems, 'left')}
-				{this._generateHorizontal(this.props.rightItems, 'right')}
+				{this._generateHorizontal(this.props.leftSection, 'left')}
+				{this._generateHorizontal(this.props.rightSection, 'right')}
 			</footer>
 		);
 	}
