@@ -49,7 +49,16 @@ var Icon = React.createClass({
 				key : 'children',
 				type : 'string',
 				state : 'required',
-				content : 'icon name, https://www.google.com/design/icons/',
+				content : (
+					<div>
+						The icon name<br/>
+						<br/>
+						Reference:
+							<a href='https://www.google.com/design/icons/'>
+								{'https://www.google.com/design/icons/'}
+							</a>
+					</div>
+				),
 			},
 			{
 				key : 'style',
