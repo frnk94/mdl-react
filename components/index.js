@@ -31,5 +31,6 @@ module.exports = {
 	Grid : require('./Grid.jsx'),
 	GridCell : require('./GridCell.jsx'),
 	MiniFooter : require('./MiniFooter.jsx'),
+	Icon : require('./Icon.jsx'),
 
 };
