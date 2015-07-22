@@ -7,9 +7,9 @@
 	"globals_path" : "",
 
 	"selenium" : {
-		"start_process" : false,
-		"server_path" : "",
-		"log_path" : "",
+		"start_process" : true,
+		"server_path" : "test/bin/selenium-server-standalone-2.46.0.jar",
+		"log_path" : false,
 		"host" : "127.0.0.1",
 		"port" : 4444,
 		"cli_args" : {
@@ -23,24 +23,46 @@
 			"launch_url" : "http://localhost",
 			"selenium_port"  : 4444,
 			"selenium_host"  : "localhost",
-			"silent": true,
+			"silent" : true,
+			"output" : true,
+			"disable_colors" : false,
 			"screenshots" : {
-				"enabled" : false,
-				"path" : ""
+				"enabled" : false
 			},
 			"desiredCapabilities": {
 				"browserName": "chrome",
 				"javascriptEnabled": true,
 				"acceptSslCerts": true
-			}
+			},
+			"filter": "test/*.js",
+			"log_screenshot_data" : false,
+			"end_session_on_fail" : true,
+			"skip_testcases_on_fail": false
 		},
 
-		"chrome" : {
+		"firefox" : {
 			"desiredCapabilities": {
-				"browserName": "chrome",
+				"browserName": "firefox",
 				"javascriptEnabled": true,
 				"acceptSslCerts": true
 			}
+		},
+
+		"screenshot" : {
+			"screenshots" : {
+				"enabled" : true,
+				"on_failure" : true,
+				"on_error" : false,
+				"path" : "test/screenshots"
+			}
 		}
-	}
+	},
+
+	"live_output" : true,
+
+	"disable_colors" : false,
+
+	"parallel_process_delay" : 500,
+
+	"test_workds" : true
 }
