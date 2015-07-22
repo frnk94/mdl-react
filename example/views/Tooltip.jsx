@@ -28,24 +28,6 @@ module.exports = React.createClass({
 				content : 'Applies large font effect.',
 			},
 			{
-				key : 'url',
-				type : 'String',
-				state : 'optional',
-				content : 'The url of the picture in tooltip.',
-			},
-			{
-				key : 'width',
-				type : 'number',
-				state : 'optional',
-				content : 'The width of the picture in tooltip.',
-			},
-			{
-				key : 'height',
-				type : 'number',
-				state : 'optional',
-				content : 'The height of the picture in tooltip.',
-			},
-			{
 				key : 'style',
 				type : 'object',
 				state : 'optional',
@@ -89,10 +71,7 @@ module.exports = React.createClass({
 						</MDL.Tooltip> <br />
 						<MDL.Tooltip
 							text = 'this is a bird.'
-							url = 'https://dl.dropboxusercontent.com/u/107164257/CSS3Images/CSS3/bird.png'
 							large = {false}
-							width = {30}
-							height = {30}
 							style = {tooltipStyle}
 						>
 							<span>Please move your mouse on it.</span>
