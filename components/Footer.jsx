@@ -25,11 +25,11 @@ module.exports = React.createClass({
 		isMini: React.PropTypes.bool,
 	},
 
-	_checkType: function(inputItem) {
-		if(inputItem.type == 'list')
-			return 'list';
-		if(inputItem.type == 'button')
-			return 'button';
+
+	getInitialState: function() {
+		return {
+			miniOrMega : this.props.isMini? 'mini': 'mega',
+		};
 	},
 
 	_checkHorizontal: function(inputItem) {
@@ -41,7 +41,7 @@ module.exports = React.createClass({
 
 	_generateLogo: function(inputItem) {
 		if(inputItem.logo) {
-			console.log('_generateLogo');
+			// console.log('_generateLogo');
 			return React.cloneElement(inputItem.logo, {
 				className: 'mdl-logo',
 			});
@@ -50,12 +50,11 @@ module.exports = React.createClass({
 
 	_generateList: function(inputItem, miniOrmega) {
 		if(inputItem.type == 'list') {
-			console.log('_generateList');
-			var newList = null;
+			// console.log('_generateList');
 			var list = inputItem.items.map(function(item, index) {
-				return <li>{item}</li>;
+				return <li key={index}>{item}</li>;
 			});
-			newList = (
+			return (
 				<ul
 					className={
 						"mdl-" +
@@ -66,25 +65,22 @@ module.exports = React.createClass({
 					{list}
 				</ul>
 			);
-			return {newList};
 		}
 	},
 
 	_generateBtn: function(inputItem, miniOrmega) {
 		if(inputItem.type == 'button') {
 			console.log('_generateBtn');
-			var newBtn = null;
 			var newClassName = 'mdl-'+miniOrmega+'-footer--social-btn';
-			newBtn = inputItem.items.map(function(item, index) {
+			return inputItem.items.map(function(item, index) {
 				return React.cloneElement(item, {
 					className: newClassName,
 				});
 			});
-			return {newBtn};
 		}
 	},
 
-	_generateHorizontal: function(propsItem) {
+	_generateHorizontal: function(propsItem, leftOrRight) {
 		if(propsItem == this.props.leftItems) {
 			console.log('Generate leftItem');
 			var miniOrmega = this.props.isMini? 'mini': 'mega';
@@ -98,7 +94,6 @@ module.exports = React.createClass({
 			);
 			return {left}
 		}
-
 		if(propsItem == this.props.rightItems) {
 			console.log('Generate rightItem');
 			var miniOrmega = this.props.isMini? 'mini': 'mega';
@@ -119,8 +114,8 @@ module.exports = React.createClass({
 		var miniOrmega = this.props.isMini? 'mini': 'mega';
 		return (
 			<footer className={"mdl-" + miniOrmega + "-footer"}>
-				{this._generateHorizontal(this.props.leftItems)}
-				{this._generateHorizontal(this.props.rightItems)}
+				{this._generateHorizontal(this.props.leftItems, 'left')}
+				{this._generateHorizontal(this.props.rightItems, 'right')}
 			</footer>
 		);
 	}
