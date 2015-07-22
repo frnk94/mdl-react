@@ -26,11 +26,11 @@ var App = React.createClass({
 			<a href='#badge'>Badge</a>,
 			<a href='#button'>Button</a>,
 			<a href='#card'>Card</a>,
-			<a href='#footer'>Footer</a>,
 			<a href='#grid'>Grid</a>,
 			<a href='#layout'>Layout</a>,
 			<a href='#loading'>Loading</a>,
 			<a href='#menu'>Menu</a>,
+			<a href='#miniFooter'>Mini Footer</a>,
 			<a href='#slider'>Slider</a>,
 			<a href='#table'>Table</a>,
 			<a href='#tabs'>Tabs</a>,
@@ -84,7 +84,7 @@ var Badge = require('./views/Badge.jsx');
 var Toggle = require('./views/Toggle.jsx');
 var Tabs = require('./views/Tabs.jsx');
 var Grid = require('./views/Grid.jsx');
-var Footer = require('./views/Footer.jsx');
+var MiniFooter = require('./views/MiniFooter.jsx');
 var Tooltip = require('./views/Tooltip.jsx');
 var Layout = require('./views/Layout.jsx');
 
@@ -103,7 +103,7 @@ var routes = (
 		<Router.Route name='toggle' path='toggle' handler={Toggle} />
 		<Router.Route name='tabs' path='tabs' handler={Tabs} />
 		<Router.Route name='grid' path='grid' handler={Grid} />
-		<Router.Route name='footer' path='footer' handler={Footer} />
+		<Router.Route name='miniFooter' path='miniFooter' handler={MiniFooter} />
 		<Router.Route name='tooltip' path='tooltip' handler={Tooltip} />
 		<Router.Route name='layout' path='layout' handler={Layout} />
 	</Router.Route>

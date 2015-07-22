@@ -21,8 +21,7 @@ module.exports = React.createClass({
 			},
 		};
 
-		var leftItems = {
-			type : 'list',		// or 'buttons'
+		var leftSection = {
 			links : [
 				<a href='#help'>Help</a>,
 				<a href='#help'>Help</a>,
@@ -34,8 +33,7 @@ module.exports = React.createClass({
 			),
 		};
 
-		var rightItems = {
-			type : 'button',		// or 'list'
+		var rightSection = {
 			links : [
 				<a href='#cloud'>
 					<i className='material-icons'>cloud</i>
@@ -47,10 +45,9 @@ module.exports = React.createClass({
 			<div style={styles.root}>
 				<DocTitle title="Mini Footer" />
 				<MDL.Card style={styles.card} shadow={6}>
-					<MDL.Footer
-						isMini={true}
-						leftSection={leftItems}
-						rightSection={rightItems}
+					<MDL.MiniFooter
+						leftSection={leftSection}
+						rightSection={rightSection}
 					/>
 				</MDL.Card>
 			</div>
