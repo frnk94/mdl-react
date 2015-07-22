@@ -81,6 +81,7 @@ var Badge = require('./views/Badge.jsx');
 var Toggle = require('./views/Toggle.jsx');
 var Tabs = require('./views/Tabs.jsx');
 var Grid = require('./views/Grid.jsx');
+var Footer = require('./views/Footer.jsx');
 var Tooltip = require('./views/Tooltip.jsx');
 var Layout = require('./views/Layout.jsx');
 
@@ -99,6 +100,7 @@ var routes = (
 		<Router.Route name='toggle' path='toggle' handler={Toggle} />
 		<Router.Route name='tabs' path='tabs' handler={Tabs} />
 		<Router.Route name='grid' path='grid' handler={Grid} />
+		<Router.Route name='footer' path='footer' handler={Footer} />
 		<Router.Route name='tooltip' path='tooltip' handler={Tooltip} />
 		<Router.Route name='layout' path='layout' handler={Layout} />
 	</Router.Route>

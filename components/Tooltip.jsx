@@ -42,20 +42,19 @@ module.exports = React.createClass({
 		var classes = {
 			'mdl-tooltip' : true,
 		};
-		var style = {
-			display : 'inline-block',
-		};
-
 		if(this.props.large) {
 			classes['mdl-tooltip--large'] = true;
 		}
+
+		var style = {
+			display : 'inline-block',
+		};
+		var style = _.extend(style, this.props.style);
 
 		var id = 'mdl-tooltip-' + (token++);
 		var children = React.cloneElement(this.props.children, {
 			id : id,
 		});
-
-		var style = _.extend(style, this.props.style);
 
 		return (
 			<div style={style}>
