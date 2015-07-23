@@ -43,7 +43,12 @@ var Slider = React.createClass({
 	getInitialState: function() {
 		return {
 			value : this.props.defaultValue,
+			changeIndex : 0,
 		};
+	},
+
+	shouldComponentUpdate: function(nextProps, nextState) {
+		return (JSON.stringify(this.props) != JSON.stringify(nextProps) || JSON.stringify(this.state) != JSON.stringify(nextState));
 	},
 
 	componentDidMount: function() {
@@ -66,6 +71,7 @@ var Slider = React.createClass({
 	setValue : function(value) {
 		this.setState({
 			value : value,
+			changeIndex : this.state.changeIndex + 1,
 		});
 	},
 
