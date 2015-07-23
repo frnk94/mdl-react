@@ -10,13 +10,6 @@ module.exports = {
       .moveToElement('#mdl-tooltip-1.material-icons',12,12)
       .pause(1000)
       .moveToElement('#mdl-tooltip-2',106,9)
-      // .click('.mdl-button--accent')
-      // .click('.mdl-button--accent')
-      // .click('.mdl-button--accent')
-      // .assert.elementPresent('tbody tr:nth-child(7)')
-      // .click('thead .mdl-checkbox')
-      // .pause(500)
-      // .click('.mdl-button--primary');
-      
+      .end();
   }
 };
