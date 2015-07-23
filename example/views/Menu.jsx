@@ -6,29 +6,6 @@ var Components = require('../components');
 
 module.exports = React.createClass({
 
-	getInitialState: function() {
-		return {
-			menuList: [
-				{
-					text: 'Some Action',
-					events: {
-						onClick: function(e) {
-							alert("Click");
-						},
-					},
-				},
-				{
-					text: 'Another Action',
-					style: {color: 'red'},
-				},
-				{
-					text: 'Disabled Action',
-					isDisabled: true,
-				},
-			],
-		};
-	},
-
 	styles: {
 		demo: {
 			padding: '24px',
@@ -100,8 +77,9 @@ module.exports = React.createClass({
 						<div style={this.styles.block}>
 
 							<MDL.Menu openDirection='bottom-left'>
-								<MDL.Button type="IconButton"
-									text={<i className="material-icons">mood</i>}/>
+								<MDL.Button type="IconButton">
+									<button><i className="material-icons">mood</i></button>
+								</MDL.Button>
 								<div onClick={function(e) {alert("Click");}.bind(this)}> Some Action </div>
 								<div style={{color: 'red'}}> Another Action </div>
 								<div disabled>Disabled Action</div>
@@ -112,9 +90,9 @@ module.exports = React.createClass({
 								style={this.styles.menu}
 								openDirection='bottom-right'>
 
-								<MDL.Button type="IconButton"
-									isRipple={false}
-									text={<i className="material-icons">airplay</i>}/>
+								<MDL.Button type="IconButton">
+									<button><i className="material-icons">airplay</i></button>
+								</MDL.Button>
 								<div onClick={function(e) {alert("Click");}.bind(this)}> Some Action </div>
 								<div style={{color: 'red'}}> Another Action </div>
 								<div disabled>Disabled Action</div>
@@ -123,16 +101,18 @@ module.exports = React.createClass({
 
 						<div style={this.styles.block}>
 							<MDL.Menu openDirection='top-left'>
-								<MDL.Button type="IconButton"
-									text={<i className="material-icons">message</i>}/>
+								<MDL.Button type="IconButton">
+									<button><i className="material-icons">message</i></button>
+								</MDL.Button>
 								<div onClick={function(e) {alert("Click");}.bind(this)}> Some Action </div>
 								<div style={{color: 'red'}}> Another Action </div>
 								<div disabled>Disabled Action</div>
 							</MDL.Menu>
 
 							<MDL.Menu style={this.styles.menu} openDirection='top-right'>
-								<MDL.Button type="IconButton"
-									text={<i className="material-icons">format_list_bulleted</i>}/>
+								<MDL.Button type="IconButton">
+									<button><i className="material-icons">format_list_bulleted</i></button>
+								</MDL.Button>
 								<div onClick={function(e) {alert("Click");}.bind(this)}> Some Action </div>
 								<div style={{color: 'red'}}> Another Action </div>
 								<div disabled>Disabled Action</div>
