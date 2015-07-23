@@ -28,11 +28,6 @@ module.exports = React.createClass({
 						<MDL.Button type="RaisedButton" >
 							<a href='http://fandora.github.io/mdl-react/' style={btnStyle}>GitHub</a>
 						</MDL.Button>
-						<MDL.Button type="RaisedButton" isPrimary={true} >
-							<a href='http://fandora.github.io/mdl-react/' style={btnStyle}>
-								Starter Kit
-							</a>
-						</MDL.Button>
 						<MDL.Button type="RaisedButton" isAccent={true} >
 							<a href='#layout' style={btnStyle}>Components</a>
 						</MDL.Button>

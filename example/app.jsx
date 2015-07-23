@@ -11,6 +11,18 @@ var App = React.createClass({
 		Router.State,
 		Router.Navigation,
 	],
+	componentDidMount: function() {
+		global._transitionTo = this.transitionTo;	// just for some test
+	},
+	componentDidUpdate: function(prevProps, prevState) {
+		// console.log('App.componentDidUpdate');
+		if(
+			window instanceof Object &&
+			window.scrollTo instanceof Function
+		) {
+			return window.scrollTo(0, 0);
+		}
+	},
 	render : function() {
 		var headerLinks = [
 			<a href='https://github.com/Fandora/mdl-react' target='_blank'>
@@ -92,7 +104,7 @@ var Layout = require('./views/Layout.jsx');
 var Icon = require('./views/Icon.jsx');
 
 var routes = (
-	<Router.Route handler={App}>
+	<Router.Route handler={App} >
 		<Router.DefaultRoute name='home' handler={Home} />
 		<Router.Route name='textField' path='text-field' handler={TextField} />
 		<Router.Route name='prismCode' path='prismCode' handler={PrismCode} />
@@ -114,9 +126,13 @@ var routes = (
 );
 
 // start app
-Router.run(routes, Router.HashLocation, function (Handler) {
+Router.create({
+	routes: routes,
+	location: Router.HashLocation,
+	// scrollBehavior: Router.ScrollToTopBehavior,
+}).run(function (Handler) {
 	React.render(
-		<Handler />,
+		<div><Handler /></div>,
 		document.body
 	);
 	console.log('App 程式載入終了');
