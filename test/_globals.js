@@ -8,9 +8,9 @@ module.exports = {
 		shouldStartServer : true,
 	},
 
-	'headlessChrome' : {
+	'headless' : {
 		shouldStartServer : true,
-		headlessChrome : true
+		headless : true
 	},
 
 	before : function(cb) {
@@ -23,8 +23,7 @@ module.exports = {
 			if(err) return cb(err);
 			console.log('gulp server');
 			server = fork.spawn('gulp', ['server']);
-			if(!self.headlessChrome) {
-				console.log('no headless chrome')
+			if(!self.headless) {
 				return cb();
 			}
 			console.log('start Xvfg');
