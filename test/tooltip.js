@@ -1,7 +1,7 @@
 module.exports = {
 	'Demo test Tooltip' : function (client) {
 		client
-			.url('http://fandora.github.io/mdl-react/')
+			.url(client.launch_url)
 			.waitForElementVisible('body', 1000)
 			.click('div.mdl-layout__drawer-button')
 			.pause(1000)
