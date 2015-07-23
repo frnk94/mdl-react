@@ -7,6 +7,12 @@ var Components = require('../components');
 
 module.exports = React.createClass({
 
+	displayName : 'MDL.Badge',
+
+	componentWillUnmount: function() {
+		console.log('Badge.componentWillUnmount');
+	},
+
 	render : function() {
 
 		var demoStyle = {
