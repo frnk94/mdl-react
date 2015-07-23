@@ -247,14 +247,9 @@ module.exports = React.createClass({
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...
 								</MDL.CardSupportingText>
 								<MDL.CardAction border={true}>
-									<MDL.Button type="FlatButton"
-										text="GET STARTED"
-										isRipple={true}
-										isPrimary={true}
-										isMini={true}
-										isAccent={false}
-										isDisabled={false} />
-									<br />
+									<MDL.Button type="FlatButton" isPrimary={true}>
+										GET STARTED
+									</MDL.Button>
 								</MDL.CardAction>
 								<MDL.CardMenu style={firstMenuStyle}>
 									<MDL.Button type="IconButton"
@@ -277,13 +272,9 @@ module.exports = React.createClass({
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis.
 								</MDL.CardSupportingText>
 								<MDL.CardAction border={true}>
-									<MDL.Button type="FlatButton"
-										text="View Updates"
-										isRipple={true}
-										isPrimary={true}
-										isMini={true}
-										isAccent={false}
-										isDisabled={false} />
+									<MDL.Button type="FlatButton" isPrimary={true}>
+										View Updates
+									</MDL.Button>
 								</MDL.CardAction>
 							</MDL.Card>
 						</div>
