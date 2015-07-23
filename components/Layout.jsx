@@ -89,7 +89,15 @@ var Layout = React.createClass({
 		}
 	},
 
+	_closeDrawer : function() {
+		var drawerNode = document.getElementsByClassName('mdl-layout__drawer');
+		if(drawerNode && drawerNode.length > 0) {
+			drawerNode[0].className = drawerNode[0].className.replace('is-visible', '');
+		}
+	},
+
 	_generateLinks : function(items, className, activeIndex) {
+		var self = this;
 		return items.map(function(item, index) {
 			var newClassName = (item.props.className || '') + ' ' + className;
 			if(
@@ -101,6 +109,12 @@ var Layout = React.createClass({
 			return React.cloneElement(item, {
 				key : index,
 				className : newClassName,
+				onClick : function(e) {
+					self._closeDrawer();
+				},
+				onTouchTap : function(e) {
+					self._closeDrawer();
+				},
 			});
 		});
 	},
