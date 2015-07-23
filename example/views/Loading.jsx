@@ -3,7 +3,6 @@
 
 var React = require('react');
 var MDL = require('../../components');
-var Props = require('../document/Props.jsx');
 
 module.exports = React.createClass({
 
@@ -72,13 +71,8 @@ module.exports = React.createClass({
 			margin : '24px auto',
 		};
 
-		var style = {
-			width : '100%',
-			maxWidth : '1200px',
-		};
-
 		return (
-			<div style={style}>
+			<Components.Page>
 				<MDL.Card style={cardStyle} shadow={6}>
 					<MDL.Loading
 						ref='test'
@@ -97,8 +91,8 @@ module.exports = React.createClass({
 						style={prismCode}
 					/>
 				</MDL.Card>
-				<Props detail={propsDetail} title="Props" />
-			</div>
+				<Components.Props detail={propsDetail} title="Props" />
+			</Components.Page>
 		);
 
 	},

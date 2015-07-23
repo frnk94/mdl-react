@@ -34,21 +34,23 @@ var MiniFooter = React.createClass({
 	},
 
 	_generateSection: function(section, side) {
-		var logo = null;
-		if(section.logo) {
-			logo = (
-				<div className="mdl-logo">
-					{section.logo}
+		if(section) {
+			var logo = null;
+			if(section.logo) {
+				logo = (
+					<div className="mdl-logo">
+						{section.logo}
+					</div>
+				);
+			}
+			var cname = "mdl-mini-footer--" + side + "-section";
+			return (
+				<div className={cname}>
+					{logo}
+					{this._generateList(section.links)}
 				</div>
 			);
 		}
-		var cname = "mdl-mini-footer--" + side + "-section";
-		return (
-			<div className={cname}>
-				{logo}
-				{this._generateList(section.links)}
-			</div>
-		);
 	},
 
 	render: function() {

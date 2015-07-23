@@ -3,15 +3,15 @@
 
 var React = require('react');
 var MDL = require('../../components');
-var Props = require('../document/Props.jsx');
-var DocTitle = require('../document/DocTitle.jsx');
-var DocSubtitle = require('../document/DocSubtitle.jsx');
+
+var Components = require('../components');
+
 
 module.exports = React.createClass({
 
 	getInitialState: function() {
 		return {
-			checkedValue: 'none', 
+			checkedValue: 'none',
 			valueArea: 'none',
 		};
 	},
@@ -36,11 +36,6 @@ module.exports = React.createClass({
 	},
 
 	render: function() {
-
-		var style = {
-			width : '100%',
-			maxWidth : '1200px',
-		};
 
 		var demoStyle = {
 			borderRadius: '0 0 2px 0',
@@ -132,11 +127,11 @@ module.exports = React.createClass({
 		];
 
 		return (
-			<div style={style}>
-				<DocTitle title="Slider" />
+			<Components.Page>
+				<Components.DocTitle title="Slider" />
 				<MDL.Card style={cardStyle} shadow={3}>
 					<div style={demoStyle}>
-						<DocSubtitle title="example" />
+						<Components.DocSubtitle title="example" />
 						<MDL.Slider
 							min = {0}
 							max = {100}
@@ -153,7 +148,7 @@ module.exports = React.createClass({
 							defaultValue = {80}
 							disabled = {true}
 						/><br />
-						<DocSubtitle title="Methods (E.g setValue = 80)" />
+						<Components.DocSubtitle title="Methods (E.g setValue = 80)" />
 						<MDL.Slider
 							ref='test'
 							min = {0}
@@ -188,9 +183,9 @@ module.exports = React.createClass({
 						style={prismCode}
 					/>
 				</MDL.Card>
-				<Props detail={propsDetail} title="Props" />
-				<Props detail={eventsDetail} title="Methods" />
-			</div>
+				<Components.Props detail={propsDetail} title="Props" />
+				<Components.Props detail={eventsDetail} title="Methods" />
+			</Components.Page>
 		);
 	},
 

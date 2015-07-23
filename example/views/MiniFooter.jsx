@@ -3,17 +3,13 @@
 
 var React = require('react');
 var MDL = require('../../components');
-var DocTitle = require('../document/DocTitle.jsx');
+var Components = require('../components');
 
 module.exports = React.createClass({
 
 	render: function() {
 
 		var styles = {
-			root : {
-				width : '100%',
-				maxWidth : '1200px',
-			},
 			card : {
 				padding : '20px',
 				width : '100%',
@@ -45,8 +41,8 @@ module.exports = React.createClass({
 		};
 
 		return (
-			<div style={styles.root}>
-				<DocTitle title="Mini Footer" />
+			<Components.Page>
+				<Components.DocTitle title="Mini Footer" />
 				<MDL.Card style={styles.card} shadow={6}>
 					<MDL.MiniFooter
 						leftSection={leftSection}
@@ -58,7 +54,7 @@ module.exports = React.createClass({
 						style={styles.prismCode}
 					/>
 				</MDL.Card>
-			</div>
+			</Components.Page>
 		);
 	},
 
