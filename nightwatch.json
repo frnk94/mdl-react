@@ -59,6 +59,9 @@
 				"path" : "test/screenshots"
 			}
 		},
+		"headlessChrome" : {
+			"launch_url" : "http://localhost:8080"
+		},
 		"docker" : {
 			"launch_url" : "http://172.17.42.1:8080",
 			"selenium_host" : "localhost",
