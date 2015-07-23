@@ -5,9 +5,9 @@ var fs = require('fs');
 var React = require('react');
 var MDL = require('../../components');
 var _ = require('lodash');
-var Props = require('../document/Props.jsx');
-var DocTitle = require('../document/DocTitle.jsx');
-var DocSubtitle = require('../document/DocSubtitle.jsx');
+
+var Components = require('../components');
+
 
 module.exports = React.createClass({
 
@@ -35,6 +35,7 @@ module.exports = React.createClass({
 					singer : 'Berry',
 					country : '法國',
 					link : 'https://www.youtube.com/watch?v=9iPGvsRijrc',
+					_selected : true,
 				},
 				{
 					id : 3,
@@ -49,6 +50,7 @@ module.exports = React.createClass({
 					singer : 'Ed Sheeran',
 					country : '英國',
 					link : 'https://www.youtube.com/watch?v=SPKBtZHuzKY',
+					_selected : true,
 				},
 			],
 			valueArea : 'none',
@@ -160,6 +162,12 @@ module.exports = React.createClass({
 				content : 'The content what you want to show, is a array of objects. Every object has many key and value. Every column will follow header\'s "key" to show the same key content.',
 			},
 			{
+				key : 'items[]._selected',
+				type : 'boolean',
+				state : 'optional',
+				content : 'If this value is true, this item will be selected at the beginning.',
+			},
+			{
 				key : 'itemStyles',
 				type : 'array',
 				state : 'optional',
@@ -169,7 +177,7 @@ module.exports = React.createClass({
 				key : 'shadow',
 				type : 'number',
 				state : 'optional',
-				content : 'Shadow size, default is 2. Just allow 2, 3, 4, 6, 8, 16.',
+				content : 'Shadow size, just allow 2, 3, 4, 6, 8, 16.',
 			},
 			{
 				key : 'style',
@@ -225,17 +233,12 @@ module.exports = React.createClass({
 			padding: '24px',
 		};
 
-		var style = {
-			width : '100%',
-			maxWidth : '1200px',
-		};
-
 		return (
-			<div style={style}>
-				<DocTitle title="Table" />
+			<Components.Page>
+				<Components.DocTitle title="Table" />
 				<MDL.Card style={cardStyle} shadow={6}>
 					<div style={demoStyle}>
-						<DocSubtitle title="example" />
+						<Components.DocSubtitle title="example" />
 						<MDL.Table
 							ref="table"
 							selectable={true}
@@ -247,13 +250,14 @@ module.exports = React.createClass({
 						/>
 						<div style={buttonAreaStyle}>
 							<MDL.Button type="RaisedButton"
-							text="新增資料"
 							style={buttonStyle}
 							isRipple={true}
 							isAccent={true}
 							isMini={true}
 							isDisabled={false}
-							onClick={this.addData} />
+							onClick={this.addData}>
+								<button className='tableTestBtn01'>新增資料</button>
+							</MDL.Button>
 							<MDL.Button type="RaisedButton"
 								text="取得勾選值"
 								style={buttonStyle}
@@ -273,9 +277,9 @@ module.exports = React.createClass({
 						style={prismCode}
 					/>
 				</MDL.Card>
-				<Props detail={propsDetail} title="Props" />
-				<Props detail={eventsDetail} title="Methods" />
-			</div>
+				<Components.Props detail={propsDetail} title="Props" />
+				<Components.Props detail={eventsDetail} title="Methods" />
+			</Components.Page>
 		);
 
 	}

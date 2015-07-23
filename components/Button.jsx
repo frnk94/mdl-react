@@ -38,7 +38,9 @@ module.exports = React.createClass({
 	propTypes: {
 		text: React.PropTypes.node.isRequired,
 		style: React.PropTypes.object,
-		type: React.PropTypes.oneOf(['FloatingActionButton', 'RaisedButton', 'FlatButton', 'IconButton']).isRequired,
+		type: React.PropTypes.oneOf(
+			['FloatingActionButton', 'RaisedButton', 'FlatButton', 'IconButton']
+		).isRequired,
 		isMini: React.PropTypes.bool,
 		isRipple: React.PropTypes.bool,
 		isPrimary: React.PropTypes.bool,
@@ -52,16 +54,11 @@ module.exports = React.createClass({
 		};
 	},
 
-	componentWillMount: function() {
-		
-	},
-
 	componentDidMount: function() {
 		componentHandler.upgradeDom();
 	},
 
 	_getClasses: function() {
-
 		var classes = {
 			'mdl-button': true,
 			'mdl-js-button': true,
@@ -69,7 +66,6 @@ module.exports = React.createClass({
 			'mdl-button--primary': this.props.isPrimary,
 			'mdl-button--accent': this.props.isAccent,
 		};
-
 		if (this.props.type === 'FloatingActionButton') {
 			classes['mdl-button--fab'] = true;
 			classes['mdl-button--mini-fab'] = this.props.isMini;
@@ -78,7 +74,6 @@ module.exports = React.createClass({
 		} else if (this.props.type === 'IconButton') {
 			classes['mdl-button--icon'] = true;
 		}
-
 		return cx(classes);
 	},
 
@@ -87,7 +82,7 @@ module.exports = React.createClass({
 		var events = {};
 		for(var key in this.props) {
 			if(key.match(/^on/)) {
-					events[key] = this.props[key];
+				events[key] = this.props[key];
 			}
 		}
 		return events;

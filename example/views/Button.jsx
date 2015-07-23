@@ -3,17 +3,12 @@
 
 var React 			= require('react');
 var MDL 				= require('../../components');
-var Props 			= require('../document/Props.jsx');
-var DocTitle 		= require('../document/DocTitle.jsx');
-var DocSubtitle = require('../document/DocSubtitle.jsx');
+var Components 		= require('../components');
+
 
 module.exports = React.createClass({
 
 	styles: {
-		main: {
-			width : '100%',
-			maxWidth : '1200px',
-		},
 		demo: {
 			padding: '24px',
 		},
@@ -138,11 +133,11 @@ module.exports = React.createClass({
 
 	render: function() {
 		return (
-			<div style={this.styles.main}>
-				<DocTitle title="Button" />
+			<Components.Page>
+				<Components.DocTitle title="Button" />
 				<MDL.Card style={this.styles.card} shadow={6}>
 					<div style={this.styles.demo}>
-						<DocSubtitle title="example" />
+						<Components.DocSubtitle title="example" />
 						<MDL.Tabs onChange={this._onTabChange}
 							tabLabels={['Floating Action Buttons','Raised Buttons','Flat Buttons','Icon Buttons',]} isRipple={true}>
 
@@ -272,9 +267,9 @@ module.exports = React.createClass({
 						/>
 				</MDL.Card>
 
-				<Props detail={this.propsDetail} title="Props" />
-				<Props detail={this.methodsDetail} title="Methods" />
-			</div>
+				<Components.Props detail={this.propsDetail} title="Props" />
+				<Components.Props detail={this.methodsDetail} title="Methods" />
+			</Components.Page>
 		);
 	},
 	});

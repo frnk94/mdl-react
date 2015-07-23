@@ -5,9 +5,13 @@
 
   <testsuite name="tooltip-test"
     errors="0" failures="0" hostname="" id="" package="tooltip-test" skipped="0"
-    tests="1" time="10.23" timestamp="Wed, 22 Jul 2015 06:51:29 GMT">
+    tests="1" time="12.93" timestamp="Thu, 23 Jul 2015 03:44:47 GMT">
   
-    <testcase name="Demo test Tooltip" time="10.23" assertions="1">
+    <testcase name="Demo test Tooltip" time="12.93" assertions="3">
+
+    
+
+    
 
     
     </testcase>

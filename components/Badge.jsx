@@ -27,7 +27,7 @@ module.exports = React.createClass({
 
 	getDefaultProps: function() {
 		return {
-			badge : 404,
+			badge : '?',
 			materialDesignIcon : false,
 			noBackground : false,
 			style : {

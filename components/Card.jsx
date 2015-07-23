@@ -15,7 +15,6 @@ module.exports = React.createClass({
 
 	getDefaultProps: function() {
 		return {
-			shadow : 2,
 			style : {},
 		};
 	},

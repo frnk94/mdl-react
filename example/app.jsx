@@ -13,7 +13,10 @@ var App = React.createClass({
 	],
 	render : function() {
 		var headerLinks = [
-			<a href='http://FandoraShop.com' target='_blank'>by Fandora Shop</a>
+			<a href='https://github.com/Fandora/mdl-react' target='_blank'>
+				<i className="fa fa-github" style={{fontSize:'15px',marginRight:'5px'}}> </i> GitHub
+			</a>,
+			<a href='http://FandoraShop.com' target='_blank'>by Fandora Shop</a>,
 		];
 		var waterfallLinks = [
 			<a href='http://www.getmdl.io/' target='_blank'>Material Design Lite</a>,
@@ -23,11 +26,12 @@ var App = React.createClass({
 			<a href='#badge'>Badge</a>,
 			<a href='#button'>Button</a>,
 			<a href='#card'>Card</a>,
-			<a href='#footer'>Footer</a>,
 			<a href='#grid'>Grid</a>,
+			<a href='#icon'>Icon</a>,
 			<a href='#layout'>Layout</a>,
 			<a href='#loading'>Loading</a>,
 			<a href='#menu'>Menu</a>,
+			<a href='#miniFooter'>Mini Footer</a>,
 			<a href='#slider'>Slider</a>,
 			<a href='#table'>Table</a>,
 			<a href='#tabs'>Tabs</a>,
@@ -57,7 +61,7 @@ var App = React.createClass({
 				// drawerButtonStyle={{color:'red'}}
 				// isTransparent={true}
 				// headerStyle={{background:"url('http://www.getmdl.io/assets/demos/transparent.jpg') center / cover"}}
-				contentStyle={{ minHeight : '1000px', padding : '24px' }}
+				contentStyle={{ minHeight : '1000px' }}
 				// noHeaderTitle={true}
 				noDrawerTitle={true}
 			>
@@ -81,9 +85,10 @@ var Badge = require('./views/Badge.jsx');
 var Toggle = require('./views/Toggle.jsx');
 var Tabs = require('./views/Tabs.jsx');
 var Grid = require('./views/Grid.jsx');
-var Footer = require('./views/Footer.jsx');
+var MiniFooter = require('./views/MiniFooter.jsx');
 var Tooltip = require('./views/Tooltip.jsx');
 var Layout = require('./views/Layout.jsx');
+var Icon = require('./views/Icon.jsx');
 
 var routes = (
 	<Router.Route handler={App}>
@@ -100,9 +105,10 @@ var routes = (
 		<Router.Route name='toggle' path='toggle' handler={Toggle} />
 		<Router.Route name='tabs' path='tabs' handler={Tabs} />
 		<Router.Route name='grid' path='grid' handler={Grid} />
-		<Router.Route name='footer' path='footer' handler={Footer} />
+		<Router.Route name='miniFooter' path='miniFooter' handler={MiniFooter} />
 		<Router.Route name='tooltip' path='tooltip' handler={Tooltip} />
 		<Router.Route name='layout' path='layout' handler={Layout} />
+		<Router.Route name='icon' path='icon' handler={Icon} />
 	</Router.Route>
 );
 
