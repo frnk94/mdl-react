@@ -1,16 +1,8 @@
 "use strict";
 
-<<<<<<< HEAD
 var React = require('react');
 var MDL = require('../../components');
-var Props = require('../document/Props.jsx');
-var DocTitle = require('../document/DocTitle.jsx');
-var DocSubtitle = require('../document/DocSubtitle.jsx');
-=======
-var React 			= require('react');
-var MDL 				= require('../../components');
-var Components 		= require('../components');
->>>>>>> f990d679332de90544ccedc8704cef38fd19854f
+var Components = require('../components');
 
 module.exports = React.createClass({
 
@@ -137,15 +129,8 @@ module.exports = React.createClass({
 								<div style={{color: 'red'}}> Another Action </div>
 								<div disabled>Disabled Action</div>
 							</MDL.Menu>
-<<<<<<< HEAD
 
 							<MDL.Menu style={this.styles.menu} openDirection='top-right'>
-=======
-							<MDL.Menu
-								style={this.styles.menu}
-								openDirection='top-right'
-								menuList={this.state.menuList}>
->>>>>>> f990d679332de90544ccedc8704cef38fd19854f
 								<MDL.Button type="IconButton"
 									text={<i className="material-icons">format_list_bulleted</i>}/>
 								<div onClick={function(e) {alert("Click");}.bind(this)}> Some Action </div>
