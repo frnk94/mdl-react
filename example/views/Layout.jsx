@@ -188,8 +188,20 @@ var ExampleTextField = React.createClass({
 					</div>
 				</MDL.Card>
 				{this._renderProps()}
+				{this._renderMethods()}
 			</Components.Page>
 		);
+	},
+
+	_renderMethods : function() {
+		var details = [
+			{
+				key : 'scrollTop',
+				type : 'function(number)',
+				content : 'Set the scrollTop of the content area.',
+			},
+		];
+		return <Components.Props detail={details} title="Methods" />
 	},
 
 	_renderProps : function() {

@@ -15,13 +15,9 @@ var App = React.createClass({
 		global._transitionTo = this.transitionTo;	// just for some test
 	},
 	componentDidUpdate: function(prevProps, prevState) {
-		// console.log('App.componentDidUpdate');
-		if(
-			window instanceof Object &&
-			window.scrollTo instanceof Function
-		) {
-			return window.scrollTo(0, 0);
-		}
+		console.log('App.componentDidUpdate');
+		// document.body.scrollTop = document.documentElement.scrollTop = 0;
+		this.refs.layout.scrollTop(0);
 	},
 	render : function() {
 		var headerLinks = [
@@ -58,7 +54,7 @@ var App = React.createClass({
 			<a href=''>Tab 3</a>,
 		];
 		return (
-			<MDL.Layout
+			<MDL.Layout ref='layout'
 				title='mdl-react'
 				href='#'
 				isFixedHeader={true}
