@@ -24,6 +24,7 @@ module.exports = {
 			console.log('gulp server');
 			server = fork.spawn('gulp', ['server']);
 			if(!self.headlessChrome) {
+				console.log('no headless chrome')
 				return cb();
 			}
 			console.log('start Xvfg');
