@@ -1,5 +1,18 @@
-<MDL.Card>
-	<MDL.CardTitle height="20">
+// css style
+var style = {
+	width: '256px',
+	height: '276px',
+	background: '#46B6AC',
+	color: '#ffffff',
+};
+
+var titleStyle = {
+	color :'#ffffff',
+};
+
+// react code
+<MDL.Card style={style}>
+	<MDL.CardTitle height="20" style={titleStyle}>
 		<h6>media</h6>
 	</MDL.CardTitle>
 	<MDL.CardMedia height="256" width="256">
