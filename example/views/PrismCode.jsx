@@ -28,12 +28,10 @@ module.exports = React.createClass({
 					/>
 				</MDL.Card>
 				<Components.MainContent>
-					<p>
-						Component for highlighting code.  <br/>
-						Note that, You should load
-						<a href='http://prismjs.com/' target='_blank'>Prism.js</a>
-						firstly.
-					</p>
+					{"Component for highlighting code."}<br/>
+					{"Note that, You should load "}
+					<a href='http://prismjs.com/' target='_blank'>Prism.js</a>
+					{" firstly."}
 				</Components.MainContent>
 				{this._renderProps()}
 			</Components.Page>
