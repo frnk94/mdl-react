@@ -1,5 +1,16 @@
-<MDL.Card style={firstStyle} width='512'>
-	<MDL.CardTitle height='176'>
+// css style
+var titleStyle = {
+	color: '#ffffff',
+	background: 'url("http://i.imgur.com/EJFxjMX.jpg") center / cover',
+};
+
+var iconStyle = {
+	color: '#ffffff',
+};
+
+// react code
+<MDL.Card width='512' shadow={2}>
+	<MDL.CardTitle height='176' style={titleStyle}>
 		Welcome
 	</MDL.CardTitle>
 	<MDL.CardSupportingText>
@@ -15,9 +26,9 @@
 			isDisabled={false} />
 		<br />
 	</MDL.CardAction>
-	<MDL.CardMenu>
+	<MDL.CardMenu style={menuStyle}>
 		<MDL.Button type="IconButton"
-			text={<i className="material-icons">share</i>}
+			text={<i style={iconStyle} className="material-icons">share</i>}
 			isRipple={true}
 			isMini={true}
 			isPrimary={true}
