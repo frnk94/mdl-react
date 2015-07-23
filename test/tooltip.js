@@ -6,11 +6,14 @@ module.exports = {
 			.click('div.mdl-layout__drawer-button')
 			.pause(1000)
 			.click('[href="#tooltip"]')
-			.pause(1000)
+			.pause(1000);
+		client
 			.moveToElement('#mdl-tooltip-1.material-icons',12,12)
+			.pause(1000)
 			.assert.visible('div.mdl-tooltip.mdl-tooltip--large');
 		client
 			.moveToElement('#mdl-tooltip-2',106,9)
+			.pause(1000)
 			.assert.visible('div.mdl-tooltip');
 		client
 			.end();

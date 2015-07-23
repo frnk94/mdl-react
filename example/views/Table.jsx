@@ -242,13 +242,14 @@ module.exports = React.createClass({
 						/>
 						<div style={buttonAreaStyle}>
 							<MDL.Button type="RaisedButton"
-							text="新增資料"
 							style={buttonStyle}
 							isRipple={true}
 							isAccent={true}
 							isMini={true}
 							isDisabled={false}
-							onClick={this.addData} />
+							onClick={this.addData}>
+								<button className='tableTestBtn01'>新增資料</button>
+							</MDL.Button>
 							<MDL.Button type="RaisedButton"
 								text="取得勾選值"
 								style={buttonStyle}
