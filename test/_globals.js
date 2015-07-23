@@ -4,8 +4,14 @@ var server;
 
 module.exports = {
 
+	'docker' : {
+		shouldStartServer : true,
+	},
+
 	before : function(cb) {
-		return cb();
+		if(!this.shouldStartServer) {
+			return cb();
+		}
 		console.log('gulp js:nowatch');
 		fork.exec('gulp js:nowatch', function(err) {
 			if(err) return cb(err);
