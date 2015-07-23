@@ -7,11 +7,10 @@ var _ = require('lodash');
 	Button
 		http://www.getmdl.io/components/index.html#buttons-section
 	Props
-		text:字串或 element
+		children:
 		type: 'FloatingActionButton', 'RaisedButton', 'FlatButton', 'IconButton'
-		id: 作為 HTML attribute for 的綁定
+		style
 		isRipple: 是否帶特效, 預設 true
-		style: 設定 style 進去
 		isPrimary: 是否使用 primary color
 		isAccent: 是否使用強調色
 		isMini: 是否 mini for FAB
@@ -27,7 +26,6 @@ module.exports = React.createClass({
 
 	getDefaultProps: function() {
 		return {
-			style: {},
 			isMini: false,
 			isRipple: true,
 			isPrimary: false,
@@ -36,7 +34,7 @@ module.exports = React.createClass({
 	},
 
 	propTypes: {
-		text: React.PropTypes.node.isRequired,
+		children: React.PropTypes.oneOfType([React.PropTypes.element,React.PropTypes.string]),
 		style: React.PropTypes.object,
 		type: React.PropTypes.oneOf(
 			['FloatingActionButton', 'RaisedButton', 'FlatButton', 'IconButton']
@@ -63,11 +61,13 @@ module.exports = React.createClass({
 			'mdl-button': true,
 			'mdl-js-button': true,
 			'mdl-js-ripple-effect': this.props.isRipple,
-			'mdl-button--primary': this.props.isPrimary,
+			'mdl-button--colored': this.props.isPrimary,
 			'mdl-button--accent': this.props.isAccent,
 		};
 		if (this.props.type === 'FloatingActionButton') {
 			classes['mdl-button--fab'] = true;
+			classes['mdl-button--color'] = false;
+			classed['mdl-button--primary'] = this.props.isPrimary;
 			classes['mdl-button--mini-fab'] = this.props.isMini;
 		} else if (this.props.type === 'RaisedButton') {
 			classes['mdl-button--raised'] = true;
@@ -75,17 +75,6 @@ module.exports = React.createClass({
 			classes['mdl-button--icon'] = true;
 		}
 		return cx(classes);
-	},
-
-
-	_getEventProps: function() {
-		var events = {};
-		for(var key in this.props) {
-			if(key.match(/^on/)) {
-				events[key] = this.props[key];
-			}
-		}
-		return events;
 	},
 
 	getDisabled: function() {
@@ -102,18 +91,30 @@ module.exports = React.createClass({
 		return this.state.isDisabled;
 	},
 
+	_getChild: function() {
+
+		var child = this.props.children instanceof Array? this.props.children[0] : this.props.children;
+		if (_.isString(child)) {
+			return <button style={this.props.style}>{child.trim()}</button>;
+		} else if (child) {
+			return child;
+		} else {
+			return <button />;
+		}
+
+	},
+
 	render: function() {
-		var eventHandlers = this._getEventProps();
-		return (
-			<button {...eventHandlers}
-				id={this.props.id}
-				className={this._getClasses()}
-				disabled={this.state.isDisabled}
-				style={this.props.style}
-			>
-				{this.props.text}
-			</button>
-		);
+
+		var element = this._getChild();
+		var classname = '';
+		if(element.props.hasOwnProperty('className')) classname = element.props.className;
+		var newProps = {
+			className: classname + ' ' + this._getClasses(),
+			disabled: this.state.isDisabled,
+		};
+		if(this.props.hasOwnProperty('style')) newProps['style'] = this.props.style;
+		return React.cloneElement(element, newProps);
 	},
 
 });

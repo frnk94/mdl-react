@@ -143,18 +143,13 @@ module.exports = React.createClass({
 	_renderControlPanel: function() {
 		return (
 			<div style={{margin: '10px auto'}}>
-				<MDL.Button type="FloatingActionButton"
-					text={<i className="material-icons">arrow_back</i>}
-					style={this.styles.button}
-					onClick={this.previousTab}
-					isMini
-					isAccent={true}/>
-				<MDL.Button type="FloatingActionButton"
-					onClick={this.nextTab}
-					text={<i className="material-icons">arrow_forward</i>}
-					style={this.styles.button}
-					isMini
-					isAccent={true}/>
+				<MDL.Button type="FloatingActionButton" isMini isAccent style={this.styles.button}>
+					<button onClick={this.previousTab}><i className="material-icons">arrow_back</i></button>
+				</MDL.Button>
+
+				<MDL.Button type="FloatingActionButton" isMini isAccent style={this.styles.button}>
+					<button onClick={this.nextTab}><i className="material-icons">arrow_forward</i></button>
+				</MDL.Button>
 			</div>
 		);
 	},
