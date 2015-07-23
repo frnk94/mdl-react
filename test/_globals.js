@@ -5,7 +5,7 @@ var server;
 module.exports = {
 
 	before : function(cb) {
-		// return cb();
+		return cb();
 		console.log('gulp js:nowatch');
 		fork.exec('gulp js:nowatch', function(err) {
 			if(err) return cb(err);
@@ -16,7 +16,7 @@ module.exports = {
 	},
 
 	after : function(cb) {
-		server.kill();
+		if(server) server.kill();
 		return cb();
 	},
 
