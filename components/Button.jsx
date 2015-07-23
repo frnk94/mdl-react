@@ -15,6 +15,7 @@ var _ = require('lodash');
 		isAccent: 是否使用強調色
 		isMini: 是否 mini for FAB
 		defaultDisabled: 預設是否禁愈用
+		id
 	States
 		isDisabled: 是否禁用Button，預設False
 	Methods
@@ -114,6 +115,7 @@ module.exports = React.createClass({
 			disabled: this.state.isDisabled,
 		};
 		if(this.props.hasOwnProperty('style')) newProps['style'] = this.props.style;
+		if(this.props.hasOwnProperty('id')) newProps['id'] = this.props.id;
 		return React.cloneElement(element, newProps);
 	},
 

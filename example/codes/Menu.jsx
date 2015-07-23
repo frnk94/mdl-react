@@ -1,8 +1,8 @@
 /* Left aligned menu below button */
 <MDL.Menu openDirection='bottom-left'>
-	<MDL.Button type="IconButton"
-		text={<i className="material-icons">mood</i>}/>
-	<div onClick={onClick}> Some Action </div>
+	<MDL.Button type="IconButton">
+		<button><i className="material-icons">mood</i></button>
+	</MDL.Button>
 	<div style={{color: 'red'}}> Another Action </div>
 	<div disabled>Disabled Action</div>
 </MDL.Menu>
