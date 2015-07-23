@@ -14,10 +14,10 @@ module.exports = {
 		.assert.elementPresent('tbody tr:nth-child(7)')
 		.click('tbody .mdl-checkbox:nth-child(1)')
 		.pause(1000)
-		.click('.mdl-button--primary')
-		.pause(1000)
-		.assert.visible(".showValueArea")
-		.assert.containsText(".showValueArea", "Au bar")
-		.end();
+		.click('.mdl-button--primary.tableTestBtn01')
+		.pause(2000)
+		.assert.visible("div.showValueArea")
+		.assert.containsText("div.showValueArea", "Au bar");
+		client.end();
 	}
 };

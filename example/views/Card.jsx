@@ -6,6 +6,26 @@ var Components = require('../components');
 
 module.exports = React.createClass({
 
+	getInitialState: function() {
+		return {
+			url: 'example1.js',
+		};
+	},
+
+	_onTabChange: function(tabIndex, e) {
+		if (tabIndex === 0) {
+			this.setState({url: 'example1.js'});
+		} else if (tabIndex === 1) {
+			this.setState({url: 'example2.js'});
+		} else if (tabIndex === 2) {
+			this.setState({url: 'example3.js'});
+		} else if (tabIndex === 3) {
+			this.setState({url: 'example4.js'});
+		} else if (tabIndex === 4) {
+			this.setState({url: 'example5.js'});
+		}
+	},
+
 	render: function() {
 
 		var gridDetail = [
@@ -13,7 +33,7 @@ module.exports = React.createClass({
 				key : 'shadow',
 				type : 'number',
 				state : 'optional',
-				content : 'Shadow size, default is 2. Just allow 2, 3, 4, 6, 8, 16.',
+				content : 'Shadow size, just allow 2, 3, 4, 6, 8, 16.',
 			},
 			{
 				key : 'height',
@@ -217,9 +237,9 @@ module.exports = React.createClass({
 			<Components.Page>
 				<Components.DocTitle title="Card" />
 				<MDL.Card style={cardStyle} shadow={6}>
-					<MDL.Tabs ref="tab" tabLabels={['Example 1','Example 2','Example 3','Example 4','Example 5',]} isRipple={true}>
+					<MDL.Tabs onChange={this._onTabChange} ref="tab" tabLabels={['Example 1','Example 2','Example 3','Example 4','Example 5',]} isRipple={true}>
 						<div style={demoStyle}>
-							<MDL.Card style={firstStyle} width='512'>
+							<MDL.Card style={firstStyle} width='512' shadow={2}>
 								<MDL.CardTitle height='176' style={firstTitleStyle}>
 									Welcome
 								</MDL.CardTitle>
@@ -268,7 +288,7 @@ module.exports = React.createClass({
 							</MDL.Card>
 						</div>
 						<div style={demoStyle}>
-							<MDL.Card width='256' height='256' style={thirdStyle}>
+							<MDL.Card width='256' height='256' style={thirdStyle} shadow={2}>
 								<MDL.CardTitle height='256'></MDL.CardTitle>
 								<MDL.CardAction style={thirdActionStyle}>
 									<span className="demo-card-image__filename">Image.jpg</span>
@@ -276,7 +296,7 @@ module.exports = React.createClass({
 							</MDL.Card>
 						</div>
 						<div style={demoStyle}>
-							<MDL.Card width='256' height='256' style={fourthStyle}>
+							<MDL.Card width='256' height='256' style={fourthStyle} shadow={2}>
 								<MDL.CardTitle height="203">
 									<h4 style={fourthColor}>
 										Featured event:<br />
@@ -308,7 +328,7 @@ module.exports = React.createClass({
 						</div>
 					</MDL.Tabs>
 					<MDL.PrismCode
-						src='http://fandora.github.io/mdl-react/example/codes/Card.js'
+						src={'http://fandora.github.io/mdl-react/example/codes/Cards/' + this.state.url}
 						lang='jsx'
 						style={prismCode}
 					/>
