@@ -61,11 +61,13 @@ module.exports = React.createClass({
 			'mdl-button': true,
 			'mdl-js-button': true,
 			'mdl-js-ripple-effect': this.props.isRipple,
-			'mdl-button--primary': this.props.isPrimary,
+			'mdl-button--colored': this.props.isPrimary,
 			'mdl-button--accent': this.props.isAccent,
 		};
 		if (this.props.type === 'FloatingActionButton') {
 			classes['mdl-button--fab'] = true;
+			classes['mdl-button--color'] = false;
+			classed['mdl-button--primary'] = this.props.isPrimary;
 			classes['mdl-button--mini-fab'] = this.props.isMini;
 		} else if (this.props.type === 'RaisedButton') {
 			classes['mdl-button--raised'] = true;
