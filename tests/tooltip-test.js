@@ -8,9 +8,11 @@ module.exports = {
 			.click('[href="#tooltip"]')
 			.pause(1000)
 			.moveToElement('#mdl-tooltip-1.material-icons',12,12)
-			.isVisible('div.mdl-tooltip.mdl-tooltip--large')
+			.assert.visible('div.mdl-tooltip.mdl-tooltip--large');
+		client
 			.moveToElement('#mdl-tooltip-2',106,9)
-			.isVisible('div.mdl-tooltip')
+			.assert.visible('div.mdl-tooltip');
+		client
 			.end();
 	}
 };
