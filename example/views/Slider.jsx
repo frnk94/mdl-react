@@ -158,21 +158,12 @@ module.exports = React.createClass({
 							onChange={this.onChange}
 						/><br />
 						<div style={buttonAreaStyle}>
-							<MDL.Button
-							type="RaisedButton"
-							text="Get Value"
-							style={buttonStyle}
-							isAccent={true}
-							onClick={this.getValue}
-							/>
-							<MDL.Button
-								type="RaisedButton"
-								text="set Value"
-								style={buttonStyle}
-								isRipple={true}
-								isPrimary={true}
-								onClick={this.setValue}
-							/>
+							<MDL.Button type="RaisedButton" isAccent={true}>
+								<button onClick={this.getValue} style={buttonStyle}>Get Value</button>
+							</MDL.Button>
+							<MDL.Button type="RaisedButton" isPrimary={true}>
+								<button onClick={this.setValue} style={buttonStyle}>set Value</button>
+							</MDL.Button>
 						</div>
 					</div>
 					<div style={valueStyle}>
