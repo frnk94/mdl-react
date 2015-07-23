@@ -8,7 +8,17 @@ module.exports = {
 		shouldStartServer : true,
 	},
 
+	'headlessChrome' : {
+		shouldStartServer : true,
+		headlessChrome : true
+	},
+
 	before : function(cb) {
+		console.log(
+			'before, this.shouldStartServer=%s this.headlessChrome=%s',
+			this.shouldStartServer,
+			this.headlessChrome
+		);
 		if(!this.shouldStartServer) {
 			return cb();
 		}
@@ -17,7 +27,16 @@ module.exports = {
 			if(err) return cb(err);
 			console.log('gulp server');
 			server = fork.spawn('gulp', ['server']);
-			return cb();
+			if(!this.headlessChrome) {
+				return cb();
+			}
+			console.log('start Xvfg');
+			fork.spawn('Xvfb', ':1 -screen 5 1024x768x8'.split(' '));
+			fork.exec('source test/_source.sh', function(err) {
+				if(err) return cb(err);
+				return cb();
+			});
+			// return cb();
 		});
 	},
 
