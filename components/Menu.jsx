@@ -1,6 +1,6 @@
 
-var React 	= require('react');
-var cx 			= require('classnames');
+var React = require('react');
+var cx = require('classnames');
 /**
  *	MENUS
  *		http://www.getmdl.io/components/index.html#menus-section

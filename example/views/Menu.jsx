@@ -1,9 +1,9 @@
 "use strict";
 
-var React 			= require('react');
-var MDL 				= require('../../components');
-var Props 			= require('../document/Props.jsx');
-var DocTitle 		= require('../document/DocTitle.jsx');
+var React = require('react');
+var MDL = require('../../components');
+var Props = require('../document/Props.jsx');
+var DocTitle = require('../document/DocTitle.jsx');
 var DocSubtitle = require('../document/DocSubtitle.jsx');
 
 module.exports = React.createClass({
