@@ -16,14 +16,9 @@ module.exports = React.createClass({
 		};
 	},
 
-	onChange: function(event) {
-		console.log('outside get value : ', event.target.value);
-	},
-
 	getValue: function() {
 		var result = this.refs.test.getValue();
-		console.log('outside get : ', result);
-		result = (<div key={'result'}><span>Get value : </span>{result}</div>);
+		result = (<div><span>Get value : </span>{result}</div>);
 		this.setState({
 			checkedValue : result,
 			valueArea : 'block',
@@ -31,7 +26,6 @@ module.exports = React.createClass({
 	},
 
 	setValue: function() {
-		console.log('outside setValue');
 		this.refs.test.setValue('80');
 	},
 
