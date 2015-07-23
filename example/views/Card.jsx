@@ -2,10 +2,7 @@
 
 var React = require('react');
 var MDL = require('../../components');
-var DocTitle = require('../document/DocTitle.jsx');
-var DocSubtitle = require('../document/DocSubtitle.jsx');
-var MainContent = require('../document/MainContent.jsx');
-var Props = require('../document/Props.jsx');
+var Components = require('../components');
 
 module.exports = React.createClass({
 
@@ -137,11 +134,6 @@ module.exports = React.createClass({
 			},
 		];
 
-		var style = {
-			width : '100%',
-			maxWidth : '1200px',
-		};
-
 		var firstStyle = {
 			width : '100px',
 			margin : '24px auto',
@@ -222,8 +214,8 @@ module.exports = React.createClass({
 		};
 
 		return (
-			<div style={style}>
-				<DocTitle title="Card" />
+			<Components.Page>
+				<Components.DocTitle title="Card" />
 				<MDL.Card style={cardStyle} shadow={6}>
 					<MDL.Tabs ref="tab" tabLabels={['Example 1','Example 2','Example 3','Example 4','Example 5',]} isRipple={true}>
 						<div style={demoStyle}>
@@ -321,19 +313,19 @@ module.exports = React.createClass({
 						style={prismCode}
 					/>
 				</MDL.Card>
-				<MainContent>
+				<Components.MainContent>
 					<p>The card component is a user interface element representing a virtual piece of paper that contains related data — such as a photo, some text, and a link — that are all about a single subject.</p>
 					<p>Cards are a convenient means of coherently displaying related content that is composed of different types of objects. They are also well-suited for presenting similar objects whose size or supported actions can vary considerably, like photos with captions of variable length. Cards have a constant width and a variable height, depending on their content.</p>
 					<p>Cards are a fairly new feature in user interfaces, and allow users an access point to more complex and detailed information. Their design and use is an important factor in the overall user experience. </p>
 					<p>Cards have five type sub component -- CardTitle, CardSupportingText, CardAction, CardMenu, CardMedia.</p>
-				</MainContent>
-				<Props detail={gridDetail} title="Props (Card)" />
-				<Props detail={gridDetail} title="Props (CardTitle)" />
-				<Props detail={gridSupportingDetail} title="Props (CardSupportingText)" />
-				<Props detail={gridActionDetail} title="Props (CardAction)" />
-				<Props detail={gridMenuDetail} title="Props (CardMenu)" />
-				<Props detail={gridMediaDetail} title="Props (CardMedia)" />
-			</div>
+				</Components.MainContent>
+				<Components.Props detail={gridDetail} title="Props (Card)" />
+				<Components.Props detail={gridDetail} title="Props (CardTitle)" />
+				<Components.Props detail={gridSupportingDetail} title="Props (CardSupportingText)" />
+				<Components.Props detail={gridActionDetail} title="Props (CardAction)" />
+				<Components.Props detail={gridMenuDetail} title="Props (CardMenu)" />
+				<Components.Props detail={gridMediaDetail} title="Props (CardMedia)" />
+			</Components.Page>
 		);
 	},
 

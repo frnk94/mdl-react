@@ -2,9 +2,7 @@
 
 var React 			= require('react');
 var MDL 				= require('../../components');
-var Props 			= require('../document/Props.jsx');
-var DocTitle 		= require('../document/DocTitle.jsx');
-var DocSubtitle = require('../document/DocSubtitle.jsx');
+var Components 		= require('../components');
 
 module.exports = React.createClass({
 
@@ -32,10 +30,6 @@ module.exports = React.createClass({
 	},
 
 	styles: {
-		main: {
-			width : '100%',
-			maxWidth : '1200px',
-		},
 		demo: {
 			padding: '24px',
 		},
@@ -102,15 +96,15 @@ module.exports = React.createClass({
 			},
 		];
 
-		return (<Props detail={propsDetail} title="Props" />);
+		return (<Components.Props detail={propsDetail} title="Props" />);
 	},
 	render: function() {
 		return (
-			<div style={this.styles.main}>
-				<DocTitle title="Menu" />
+			<Components.Page>
+				<Components.DocTitle title="Menu" />
 				<MDL.Card style={this.styles.card} shadow={6}>
 					<div style={this.styles.demo}>
-						<DocSubtitle title="example" />
+						<Components.DocSubtitle title="example" />
 						<div style={this.styles.block}>
 							<MDL.Menu
 								openDirection='bottom-left'
@@ -138,7 +132,6 @@ module.exports = React.createClass({
 									text={<i className="material-icons">message</i>}
 									isRipple={true}/>
 							</MDL.Menu>
-
 							<MDL.Menu
 								style={this.styles.menu}
 								openDirection='top-right'
@@ -156,7 +149,7 @@ module.exports = React.createClass({
 					/>
 				</MDL.Card>
 				{this._renderPropsDetail()}
-			</div>
+			</Components.Page>
 		);
 	},
 
