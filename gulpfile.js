@@ -72,14 +72,21 @@ gulp.task('compress', ['js:nowatch'], function() {
 	.pipe(gulp.dest('example/'));
 });
 
-gulp.task('release', ['js:release'], function() {
-	return gulp.src('lib/index.js')
-	.pipe(uglify({
-		compress : true,
-	}).on('error', gutil.log))
-	.pipe(rename(function (path) {
-		path.extname = '.js';
-		path.basename = 'index';
-	}))
-	.pipe(gulp.dest('lib/'));
+var react = require('gulp-react');
+gulp.task('release', function () {
+    return gulp.src('components/**/*.jsx')
+        .pipe(react())
+        .pipe(gulp.dest('lib'));
 });
+
+// gulp.task('release', ['js:release'], function() {
+// 	return gulp.src('lib/index.js')
+// 	.pipe(uglify({
+// 		compress : true,
+// 	}).on('error', gutil.log))
+// 	.pipe(rename(function (path) {
+// 		path.extname = '.js';
+// 		path.basename = 'index';
+// 	}))
+// 	.pipe(gulp.dest('lib/'));
+// });
