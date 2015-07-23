@@ -56,20 +56,19 @@ module.exports = React.createClass({
 	},
 
 	componentWillUpdate: function(nextProps, nextState) {
+		// for re-run mdl componentHandler
 		this.refs.table.getDOMNode().removeAttribute('data-upgraded');
 	},
 
 	getSelected: function() {
-		var result = [];
-		var self = this;
 		if(this.props.selectable) {
-			_.forEach(this.refs.tbody.getDOMNode().childNodes, function(element, index) {
+			var self = this;
+			return _.map(this.refs.tbody.getDOMNode().childNodes, function(element, index) {
 				if(element.className == 'is-selected') {
-					result.push(self.props.items[index]);
+					return self.props.items[index];
 				}
 			});
 		}
-		return result;
 	},
 
 	render: function() {
