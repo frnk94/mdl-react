@@ -38,6 +38,7 @@ var App = React.createClass({
 			<a href='#text-field'>Text Field</a>,
 			<a href='#toggle'>Toggle</a>,
 			<a href='#tooltip'>Tooltip</a>,
+			<a href='#prismCode'>(Non-MDL) PrismCode</a>,
 		];
 		var tabs = [
 			<a href=''>Tab 1</a>,
@@ -94,7 +95,7 @@ var routes = (
 	<Router.Route handler={App}>
 		<Router.DefaultRoute name='home' handler={Home} />
 		<Router.Route name='textField' path='text-field' handler={TextField} />
-		<Router.Route name='prismCode' path='prism-code' handler={PrismCode} />
+		<Router.Route name='prismCode' path='prismCode' handler={PrismCode} />
 		<Router.Route name='menu' path='menu' handler={Menu} />
 		<Router.Route name='table' path='table' handler={Table} />
 		<Router.Route name='button' path='button' handler={Button} />
@@ -116,7 +117,7 @@ var routes = (
 Router.run(routes, Router.HashLocation, function (Handler) {
 	React.render(
 		<Handler />,
-		document.getElementsByTagName('body')[0]
+		document.body
 	);
 	console.log('App 程式載入終了');
 });
