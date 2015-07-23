@@ -13,9 +13,9 @@ var watchify = require('watchify');
 var uglify = require('gulp-uglify');
 var assign = require('lodash').assign;
 
-function bundleGenerator(isWatch) {
+function bundleGenerator(path, dest, name, isWatch) {
 	var opts = assign({}, watchify.args, {
-		entries : './example/app.jsx',
+		entries : path,
 		transform : [reactify],
 	});
 	var b = browserify(opts);
@@ -28,9 +28,9 @@ function bundleGenerator(isWatch) {
 				.pipe(source('bundle.js'))
 				.pipe(rename(function (path) {
 					path.extname = '.js';
-					path.basename = 'app';
+					path.basename = name;
 				}))
-				.pipe(gulp.dest('./example'))
+				.pipe(gulp.dest(dest))
 				.pipe(connect.reload());
 	}
 	if(isWatch) {
@@ -41,8 +41,9 @@ function bundleGenerator(isWatch) {
 }
 
 // so you can run `gulp js` to build the file
-gulp.task('js', bundleGenerator(true));
-gulp.task('js:nowatch', bundleGenerator(false));
+gulp.task('js', bundleGenerator('./example/app.jsx','./example',  'app', true));
+gulp.task('js:nowatch', bundleGenerator('./example/app.jsx', './example', 'app', false));
+gulp.task('js:release', bundleGenerator('./components/index.js', './lib', 'index', false));
 
 gulp.task('default', ['js'], function() {
 	connect.server({
@@ -69,4 +70,16 @@ gulp.task('compress', ['js:nowatch'], function() {
 		path.basename = 'app.page';
 	}))
 	.pipe(gulp.dest('example/'));
+});
+
+gulp.task('release', ['js:release'], function() {
+	return gulp.src('lib/index.js')
+	.pipe(uglify({
+		compress : true,
+	}).on('error', gutil.log))
+	.pipe(rename(function (path) {
+		path.extname = '.js';
+		path.basename = 'index';
+	}))
+	.pipe(gulp.dest('lib/'));
 });

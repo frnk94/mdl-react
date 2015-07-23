@@ -5,7 +5,7 @@
   "scripts": {
     "test": "./node_modules/nightwatch/bin/nightwatch -e docker"
   },
-  "main": "./components",
+  "main": "./lib",
   "repository": {
     "type": "git",
     "url": "https://github.com/Fandora/mdl-react.git"
