@@ -77,6 +77,10 @@ var Layout = React.createClass({
 		this._mdlize();
 	},
 
+	scrollTop : function() {
+		this.refs.mdlContentDiv.getDOMNode().scrollTop = 0;
+	},
+
 	_mdlize : function() {
 		componentHandler.upgradeDom();
 		if(this.props.drawerButtonStyle) {
@@ -306,7 +310,7 @@ var Layout = React.createClass({
 			<div className={cx(classes)} style={this.props.style}>
 				{this._renderHeader()}
 				{this._renderDrawer()}
-				<main className="mdl-layout__content">
+				<main className="mdl-layout__content" ref='mdlContentDiv' >
 					<div className="page-content" style={this.props.contentStyle} >
 						{this.props.children}
 					</div>
@@ -350,7 +354,7 @@ var HeaderSearch = React.createClass({
 				>
 					<i className="material-icons">search</i>
 				</label>
-				<div className="mdl-textfield__expandable-holder">
+				<div className="mdl-textfield__expandable-holder" >
 					<input ref='input'
 						className="mdl-textfield__input"
 						type="text"

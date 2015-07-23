@@ -51,7 +51,7 @@ module.exports = React.createClass({
 				type : 'string',
 				state : 'required',
 				content : <p>
-					'The language of the source code. Language listed in '
+					{'The language of the source code. Language listed in '}
 					<a href='http://prismjs.com/#languages-list' target='_blank'>
 						{"http://prismjs.com/#languages-list"}
 					</a>
