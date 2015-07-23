@@ -13,8 +13,8 @@ var App = React.createClass({
 	],
 	render : function() {
 		var headerLinks = [
-			<a href='http://fandora.github.io/mdl-react' target='_blank'>
-				<i className="fa fa-github" style={{fontSize:'15px'}}> </i> GitHub
+			<a href='https://github.com/Fandora/mdl-react' target='_blank'>
+				<i className="fa fa-github" style={{fontSize:'15px',marginRight:'5px'}}> </i> GitHub
 			</a>,
 			<a href='http://FandoraShop.com' target='_blank'>by Fandora Shop</a>,
 		];
@@ -61,7 +61,7 @@ var App = React.createClass({
 				// drawerButtonStyle={{color:'red'}}
 				// isTransparent={true}
 				// headerStyle={{background:"url('http://www.getmdl.io/assets/demos/transparent.jpg') center / cover"}}
-				contentStyle={{ minHeight : '1000px', padding : '24px' }}
+				contentStyle={{ minHeight : '1000px' }}
 				// noHeaderTitle={true}
 				noDrawerTitle={true}
 			>

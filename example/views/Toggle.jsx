@@ -3,17 +3,11 @@
 
 var React 			= require('react');
 var MDL 				= require('../../components');
-var Props 			= require('../document/Props.jsx');
-var DocTitle 		= require('../document/DocTitle.jsx');
-var DocSubtitle = require('../document/DocSubtitle.jsx');
+var Components 		= require('../components');
 
 module.exports = React.createClass({
 
 	styles: {
-		main: {
-			width : '100%',
-			maxWidth : '1200px',
-		},
 		demo: {
 			padding: '24px',
 		},
@@ -166,7 +160,7 @@ module.exports = React.createClass({
 			},
 		];
 
-		return (<Props detail={detail} title="Props" />);
+		return (<Components.Props detail={detail} title="Props" />);
 	},
 
 	_renderMethodsDetail: function() {
@@ -188,7 +182,7 @@ module.exports = React.createClass({
 			},
 		];
 
-		return (<Props detail={detail} title="Methods" />);
+		return (<Components.Props detail={detail} title="Methods" />);
 	},
 
 	_renderEventsDetail: function() {
@@ -200,16 +194,16 @@ module.exports = React.createClass({
 			},
 		];
 
-		return (<Props detail={detail} title="Events" />);
+		return (<Components.Props detail={detail} title="Events" />);
 	},
 
 	render: function() {
 		return (
-			<div style={this.styles.main}>
-				<DocTitle title="Toggle" />
+			<Components.Page>
+				<Components.DocTitle title="Toggle" />
 				<MDL.Card style={this.styles.card} shadow={6}>
 					<div style={this.styles.demo}>
-						<DocSubtitle title="example" />
+						<Components.DocSubtitle title="example" />
 						<MDL.Tabs onChange={this._onTabChange}
 							tabLabels={['Checkbox','Radio','Icon Toggle','Switch',]} >
 							{this._renderCheckbox()}
@@ -228,7 +222,7 @@ module.exports = React.createClass({
 				{this._renderPropsDetail()}
 				{this._renderMethodsDetail()}
 				{this._renderEventsDetail()}
-			</div>
+			</Components.Page>
 		);
 	},
 

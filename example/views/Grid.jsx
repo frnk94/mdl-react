@@ -2,10 +2,7 @@
 
 var React = require('react');
 var MDL = require('../../components');
-var Props = require('../document/Props.jsx');
-var MainContent = require('../document/MainContent.jsx');
-var DocTitle = require('../document/DocTitle.jsx');
-var DocSubtitle = require('../document/DocSubtitle.jsx');
+var Components = require('../components');
 
 module.exports = React.createClass({
 
@@ -121,16 +118,12 @@ module.exports = React.createClass({
 			padding: '24px',
 		};
 
-		var style = {
-			maxWidth : '1200px',
-		};
-
 		return (
-			<div style={style}>
-				<DocTitle title="Grid" />
+			<Components.Page>
+				<Components.DocTitle title="Grid" />
 				<MDL.Card style={cardStyle} shadow={6}>
 					<div style={demoStyle}>
-						<DocSubtitle title="example" />
+						<Components.DocSubtitle title="example" />
 						<MDL.Grid>
 							<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
 							<MDL.GridCell col={1} style={cellStyle}>1</MDL.GridCell>
@@ -167,7 +160,7 @@ module.exports = React.createClass({
 						style={prismCode}
 					/>
 				</MDL.Card>
-				<MainContent>
+				<Components.MainContent>
 					<p>The grid component is a simplified method for laying out content for multiple screen sizes. It reduces the usual coding burden required to correctly display blocks of content in a variety of display conditions.</p>
 					<p>The grid is defined and enclosed by a container element. A grid has 12 columns in the desktop screen size, 8 in the tablet size, and 4 in the phone size, each size having predefined margins and gutters. Cells are laid out sequentially in a row, in the order they are defined, with some exceptions:
 						<br /><br />
@@ -177,10 +170,10 @@ module.exports = React.createClass({
 						<p>When you use this grid system, you need to write a Grid and let GridCell inside and then it will work. Please refer to the example. </p>
 
 
-				</MainContent>
-				<Props detail={gridDetail} title="Props (Grid)" />
-				<Props detail={gridCellDetail} title="Props (GridCell)" />
-			</div>
+				</Components.MainContent>
+				<Components.Props detail={gridDetail} title="Props (Grid)" />
+				<Components.Props detail={gridCellDetail} title="Props (GridCell)" />
+			</Components.Page>
 		);
 	}
 

@@ -3,8 +3,7 @@
 
 var React = require('react');
 var MDL = require('../../components');
-var Props = require('../document/Props.jsx');
-var DocTitle = require('../document/DocTitle.jsx');
+var Components = require('../components');
 
 var ExampleTextField = React.createClass({
 
@@ -30,10 +29,6 @@ var ExampleTextField = React.createClass({
 	render: function() {
 
 		var styles = {
-			root : {
-				width : '100%',
-				maxWidth : '1200px',
-			},
 			card : {
 				padding : '20px',
 				width : '100%',
@@ -76,8 +71,8 @@ var ExampleTextField = React.createClass({
 		];
 
 		return (
-			<div style={styles.root}>
-				<DocTitle title="Layout" />
+			<Components.Page>
+				<Components.DocTitle title="Layout" />
 				<MDL.Card style={styles.card} shadow={6}>
 					<div style={styles.layoutContainer}>
 						<MDL.Layout
@@ -193,7 +188,7 @@ var ExampleTextField = React.createClass({
 					</div>
 				</MDL.Card>
 				{this._renderProps()}
-			</div>
+			</Components.Page>
 		);
 	},
 
@@ -236,6 +231,12 @@ var ExampleTextField = React.createClass({
 				content : 'The CSS inline style of the root element of header',
 			},
 			{
+				key : 'headerTitleStyle',
+				type : 'object',
+				state : 'optional',
+				content : 'The CSS inline style of the title span in the header',
+			},
+			{
 				key : 'drawerLinks',
 				type : 'array of elements',
 				state : 'optional',
@@ -252,6 +253,12 @@ var ExampleTextField = React.createClass({
 				type : 'object',
 				state : 'optional',
 				content : 'The CSS inline style of the root element of drawer toggle button',
+			},
+			{
+				key : 'drawerTitleStyle',
+				type : 'object',
+				state : 'optional',
+				content : 'The CSS inline style of the title span in the drawer',
 			},
 			{
 				key : 'isFixHeader',
@@ -308,7 +315,7 @@ var ExampleTextField = React.createClass({
 				content : 'Callback function fired when the user submit',
 			},
 		];
-		return <Props detail={propsDetail} title="Props" />;
+		return <Components.Props detail={propsDetail} title="Props" />;
 	},
 
 });

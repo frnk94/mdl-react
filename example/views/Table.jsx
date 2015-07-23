@@ -5,9 +5,9 @@ var fs = require('fs');
 var React = require('react');
 var MDL = require('../../components');
 var _ = require('lodash');
-var Props = require('../document/Props.jsx');
-var DocTitle = require('../document/DocTitle.jsx');
-var DocSubtitle = require('../document/DocSubtitle.jsx');
+
+var Components = require('../components');
+
 
 module.exports = React.createClass({
 
@@ -225,17 +225,12 @@ module.exports = React.createClass({
 			padding: '24px',
 		};
 
-		var style = {
-			width : '100%',
-			maxWidth : '1200px',
-		};
-
 		return (
-			<div style={style}>
-				<DocTitle title="Table" />
+			<Components.Page>
+				<Components.DocTitle title="Table" />
 				<MDL.Card style={cardStyle} shadow={6}>
 					<div style={demoStyle}>
-						<DocSubtitle title="example" />
+						<Components.DocSubtitle title="example" />
 						<MDL.Table
 							ref="table"
 							selectable={true}
@@ -273,9 +268,9 @@ module.exports = React.createClass({
 						style={prismCode}
 					/>
 				</MDL.Card>
-				<Props detail={propsDetail} title="Props" />
-				<Props detail={eventsDetail} title="Methods" />
-			</div>
+				<Components.Props detail={propsDetail} title="Props" />
+				<Components.Props detail={eventsDetail} title="Methods" />
+			</Components.Page>
 		);
 
 	}
