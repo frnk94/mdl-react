@@ -13,6 +13,7 @@ var _ = require('lodash');
 		headers[].style, object, 樣式
 		items, array isRequired, 表格內容
 		items[]		存在多個 key 和 value, headers 也有的 key 才會顯示
+		items[]._selected		設成 true 的話則此選項則會勾選
 		itemStyles, array, 列樣式
 		shadow 		陰影的大小(只能填 2, 3, 4, 6, 8, 16)
 		style 		css 設定
@@ -21,12 +22,6 @@ var _ = require('lodash');
 */
 
 module.exports = React.createClass({
-
-	getDefaultProps: function() {
-		return {
-			shadow : 2,
-		};
-	},
 
 	propTypes: {
 		headers : React.PropTypes.arrayOf(React.PropTypes.shape({
@@ -52,11 +47,11 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount: function() {
-		componentHandler.upgradeDom();
+		this._initializeTable();
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
-		componentHandler.upgradeDom();
+		this._initializeTable();
 	},
 
 	componentWillUpdate: function(nextProps, nextState) {
@@ -72,6 +67,18 @@ module.exports = React.createClass({
 					return self.props.items[index];
 				}
 			}));
+		}
+	},
+
+	_initializeTable: function() {
+		componentHandler.upgradeDom();
+		var selfNode = React.findDOMNode(this);
+		if(this.props.selectable) {
+			var items = this.props.items.map(function(element, index) {
+				if(element._selected) {
+					selfNode.getElementsByClassName("mdl-js-checkbox")[index + 1].click();
+				}
+			});
 		}
 	},
 
