@@ -5,7 +5,7 @@
 	"custom_commands_path" : "",
 	"custom_assertions_path" : "",
 	"page_objects_path" : "",
-	"globals_path" : "test/_init.js",
+	"globals_path" : "test/_globals.js",
 	"live_output" : true,
 	"parallel_process_delay" : 500,
 	"test_workds" : true,
@@ -65,7 +65,7 @@
 			"selenium_port" : 4444
 		},
 		"saucelabs" : {
-			"launch_url" : "http://fandora.github.io/mdl-react/#/",
+			"launch_url" : "http://fandora.github.io/mdl-react",
 			"selenium_host" : "ondemand.saucelabs.com",
 			"selenium_port" : 80,
 			"username" : "xpsteven",
