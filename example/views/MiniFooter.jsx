@@ -47,6 +47,7 @@ module.exports = React.createClass({
 					<MDL.MiniFooter
 						leftSection={leftSection}
 						rightSection={rightSection}
+						style={{marginBottom:'20px'}}
 					/>
 					<MDL.PrismCode
 						src='example/codes/MiniFooter.jsx'
@@ -54,8 +55,21 @@ module.exports = React.createClass({
 						style={styles.prismCode}
 					/>
 				</MDL.Card>
+				{this._renderProps()}
 			</Components.Page>
 		);
+	},
+
+	_renderProps : function() {
+		var details = [
+			{
+				key : 'onSearchSubmit',
+				type : 'function(value)',
+				state : 'optional',
+				content : 'Callback function fired when the user submit',
+			},
+		];
+		return <Components.Props detail={details} title="Props" />;
 	},
 
 });

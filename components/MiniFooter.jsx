@@ -14,6 +14,7 @@ var MiniFooter = React.createClass({
 			links : React.PropTypes.arrayOf(React.PropTypes.node).isRequired,
 			logo : React.PropTypes.node,
 		}),
+		style : React.PropTypes.object,
 	},
 
 	getInitialState: function() {
@@ -55,7 +56,7 @@ var MiniFooter = React.createClass({
 
 	render: function() {
 		return (
-			<footer className="mdl-mini-footer">
+			<footer className="mdl-mini-footer" style={this.props.style} >
 				{this._generateSection(this.props.leftSection, 'left')}
 				{this._generateSection(this.props.rightSection, 'right')}
 			</footer>

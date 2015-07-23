@@ -28,7 +28,7 @@ var ExampleTextField = React.createClass({
 	},
 
 	_cron : function() {
-		console.log('_cron');
+		console.log('_cron', this.isMounted());
 		this.setState({
 			counter : ++this.state.counter,
 		});

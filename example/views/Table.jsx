@@ -249,23 +249,12 @@ module.exports = React.createClass({
 							shadow={2}
 						/>
 						<div style={buttonAreaStyle}>
-							<MDL.Button type="RaisedButton"
-							style={buttonStyle}
-							isRipple={true}
-							isAccent={true}
-							isMini={true}
-							isDisabled={false}
-							onClick={this.addData}>
-								<button className='tableTestBtn01'>新增資料</button>
+							<MDL.Button type="RaisedButton" isAccent={true}>
+								<button onClick={this.addData} className='tableTestBtn01' style={buttonStyle}>new data</button>
 							</MDL.Button>
-							<MDL.Button type="RaisedButton"
-								text="取得勾選值"
-								style={buttonStyle}
-								isRipple={true}
-								isPrimary={true}
-								isMini={true}
-								isDisabled={false}
-								onClick={this.getSelected} />
+							<MDL.Button type="RaisedButton" isPrimary={true}>
+								<button onClick={this.getSelected} className='tableTestBtn01' style={buttonStyle}>get value</button>
+							</MDL.Button>
 						</div>
 					</div>
 					<div className="showValueArea" style={valueStyle}>
