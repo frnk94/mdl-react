@@ -252,14 +252,9 @@ module.exports = React.createClass({
 									</MDL.Button>
 								</MDL.CardAction>
 								<MDL.CardMenu style={firstMenuStyle}>
-									<MDL.Button type="IconButton"
-										text={<i style={iconStyle} className="material-icons">share</i>}
-										isRipple={true}
-										isMini={true}
-										isPrimary={true}
-										isAccent={false}
-										isDisabled={false} />
-									<br />
+									<MDL.Button type="IconButton" isPrimary={true}>
+										<button><i style={iconStyle} className="material-icons">share</i></button>
+									</MDL.Button>
 								</MDL.CardMenu>
 							</MDL.Card>
 						</div>
@@ -296,14 +291,9 @@ module.exports = React.createClass({
 									</h4>
 								</MDL.CardTitle>
 								<MDL.CardAction border={true} style={fourthActionStyle}>
-									<MDL.Button type="FlatButton"
-										style={fourthColor}
-										text="Add to Calendar"
-										isRipple={true}
-										isPrimary={true}
-										isMini={true}
-										isAccent={false}
-										isDisabled={false} />
+									<MDL.Button type="FlatButton" isPrimary={true}>
+										<button style={fourthColor}>GET STARTED</button>
+									</MDL.Button>
 								</MDL.CardAction>
 							</MDL.Card>
 						</div>
