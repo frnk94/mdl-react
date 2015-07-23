@@ -67,7 +67,7 @@ module.exports = React.createClass({
 		};
 		if (this.props.type === 'FloatingActionButton') {
 			classes['mdl-button--fab'] = true;
-			classes['mdl-button--color'] = false;
+			classes['mdl-button--colored'] = false;
 			classes['mdl-button--primary'] = this.props.isPrimary;
 			classes['mdl-button--mini-fab'] = this.props.isMini;
 		} else if (this.props.type === 'RaisedButton') {
