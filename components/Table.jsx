@@ -47,6 +47,10 @@ module.exports = React.createClass({
 		shadow : React.PropTypes.oneOf([ 2, 3, 4, 6, 8, 16 ]),
 	},
 
+	shouldComponentUpdate: function(nextProps, nextState) {
+		return JSON.stringify(this.props) != JSON.stringify(nextProps);
+	},
+
 	componentDidMount: function() {
 		componentHandler.upgradeDom();
 	},
@@ -63,11 +67,11 @@ module.exports = React.createClass({
 	getSelected: function() {
 		if(this.props.selectable) {
 			var self = this;
-			return _.map(this.refs.tbody.getDOMNode().childNodes, function(element, index) {
+			return _.filter(_.map(this.refs.tbody.getDOMNode().childNodes, function(element, index) {
 				if(element.className == 'is-selected') {
 					return self.props.items[index];
 				}
-			});
+			}));
 		}
 	},
 
