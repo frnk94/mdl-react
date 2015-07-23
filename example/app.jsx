@@ -12,11 +12,10 @@ var App = React.createClass({
 		Router.Navigation,
 	],
 	componentDidMount: function() {
-		global._transitionTo = this.transitionTo;	// just for some test
+		global._transitionTo = this.transitionTo;
 	},
 	componentDidUpdate: function(prevProps, prevState) {
 		console.log('App.componentDidUpdate');
-		// document.body.scrollTop = document.documentElement.scrollTop = 0;
 		this.refs.layout.scrollTop(0);
 	},
 	render : function() {
@@ -58,20 +57,9 @@ var App = React.createClass({
 				title='mdl-react'
 				href='#'
 				isFixedHeader={true}
-				// isFixedDrawer={true}
-				// isScrollHeader={true}
-				// tabs={tabs}
-				// isFixedTabs={true}
-				// initialTabIndex={1}
-				// showHeaderSearch={true}
 				headerLinks={headerLinks}
-				// waterfallLinks={waterfallLinks}
 				drawerLinks={drawerLinks}
-				// drawerButtonStyle={{color:'red'}}
-				// isTransparent={true}
-				// headerStyle={{background:"url('http://www.getmdl.io/assets/demos/transparent.jpg') center / cover"}}
 				contentStyle={{ minHeight : '1000px' }}
-				// noHeaderTitle={true}
 				noDrawerTitle={true}
 			>
 				<Router.RouteHandler />
@@ -80,7 +68,6 @@ var App = React.createClass({
 	},
 });
 
-// 設定路由
 var Home = require('./views/Home.jsx');
 var TextField = require('./views/TextField.jsx');
 var PrismCode = require('./views/PrismCode.jsx');
@@ -121,11 +108,9 @@ var routes = (
 	</Router.Route>
 );
 
-// start app
 Router.create({
 	routes: routes,
 	location: Router.HashLocation,
-	// scrollBehavior: Router.ScrollToTopBehavior,
 }).run(function (Handler) {
 	React.render(
 		<div><Handler /></div>,
