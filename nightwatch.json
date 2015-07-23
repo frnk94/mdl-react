@@ -59,7 +59,7 @@
 				"path" : "test/screenshots"
 			}
 		},
-		"headlessChrome" : {
+		"headless" : {
 			"launch_url" : "http://localhost:8080"
 		},
 		"docker" : {
