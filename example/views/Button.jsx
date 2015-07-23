@@ -87,7 +87,7 @@ module.exports = React.createClass({
 				key : 'style',
 				type : 'object',
 				state : 'optional',
-				content : "If the child is `string`, this will modify the style of this element. Otherwise, use style directly in child.",
+				content : "If style prop exists, it will override the style of the child.",
 			},
 	],
 	methodsDetail: [
@@ -130,11 +130,11 @@ module.exports = React.createClass({
 		return (
 			<div style={this.styles.tab}>
 
-				<MDL.Button type="FloatingActionButton" isPrimary={true}>
-					<button style={this.styles.button}><i className="material-icons">notifications_none</i></button>
+				<MDL.Button type="FloatingActionButton" isPrimary={true} style={this.styles.button}>
+					<button><i className="material-icons">notifications_none</i></button>
 				</MDL.Button>
 
-				<MDL.Button type="FloatingActionButton" isAccent={true}>
+				<MDL.Button type="FloatingActionButton" isAccent={true} >
 					<button style={this.styles.button}><i className="material-icons">public</i></button>
 				</MDL.Button>
 

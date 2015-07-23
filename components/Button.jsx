@@ -26,7 +26,6 @@ module.exports = React.createClass({
 
 	getDefaultProps: function() {
 		return {
-			style: {},
 			isMini: false,
 			isRipple: true,
 			isPrimary: false,
@@ -108,10 +107,12 @@ module.exports = React.createClass({
 		var element = this._getChild();
 		var classname = '';
 		if(element.props.hasOwnProperty('className')) classname = element.props.className;
-		return React.cloneElement(element, {
+		var newProps = {
 			className: classname + ' ' + this._getClasses(),
 			disabled: this.state.isDisabled,
-		});
+		};
+		if(this.props.hasOwnProperty('style')) newProps['style'] = this.props.style;
+		return React.cloneElement(element, newProps);
 	},
 
 });
