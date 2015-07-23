@@ -1,5 +1,3 @@
-<Table selectable={true} headers={header} items={items} itemStyles={itemStyles} shadow={2} />
-
 var header = [
 	{
 		title : '歌曲',
@@ -57,3 +55,5 @@ var itemStyles = [
 	},
 	{},
 ];
+
+<Table selectable={true} headers={header} items={items} itemStyles={itemStyles} shadow={2} />
