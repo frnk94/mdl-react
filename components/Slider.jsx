@@ -43,18 +43,23 @@ var Slider = React.createClass({
 	getInitialState: function() {
 		return {
 			value : this.props.defaultValue,
-			changeIndex : 0,
+			// changeIndex : 0,
 		};
 	},
 
-	shouldComponentUpdate: function(nextProps, nextState) {
-		return (JSON.stringify(this.props) != JSON.stringify(nextProps) || JSON.stringify(this.state) != JSON.stringify(nextState));
-	},
+	// shouldComponentUpdate: function(nextProps, nextState) {
+	// 	return (
+	// 		JSON.stringify(this.props) != JSON.stringify(nextProps) || 
+	// 		JSON.stringify(this.state) != JSON.stringify(nextState)
+	// 	);
+	// },
 
 	componentDidMount: function() {
 		var node = this.refs.input.getDOMNode();
 		node.value = this.props.defaultValue;
 		node.setAttribute('class', 'mdl-slider mdl-js-slider');
+		componentHandler.upgradeDom();
+		// componentHandler.upgradeElement(node);
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
@@ -62,6 +67,7 @@ var Slider = React.createClass({
 		node.value = this.state.value;
 		node.setAttribute('class', 'mdl-slider mdl-js-slider');
 		componentHandler.upgradeDom();
+		// componentHandler.upgradeElement(node);
 	},
 
 	getValue : function() {
@@ -71,7 +77,7 @@ var Slider = React.createClass({
 	setValue : function(value) {
 		this.setState({
 			value : value,
-			changeIndex : this.state.changeIndex + 1,
+			// changeIndex : this.state.changeIndex + 1,
 		});
 	},
 
