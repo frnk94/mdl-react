@@ -4,7 +4,7 @@
 >
 		<i className="material-icons">add</i>
 </Tooltip>
-<MDL.Tooltip
+<Tooltip
 	text = 'this is a bird.'
 	large = {false}
 >
