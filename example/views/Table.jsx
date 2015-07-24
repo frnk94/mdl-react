@@ -95,7 +95,12 @@ module.exports = React.createClass({
 		});
 	},
 
+	_onRowSelected: function(data) {
+		console.log('onRowSelected', data);
+	},
+
 	render: function() {
+		var self = this;
 
 		var header = [
 			{
@@ -185,6 +190,12 @@ module.exports = React.createClass({
 				state : 'optional',
 				content : 'css style setting',
 			},
+			{
+				key : 'onRowSelected',
+				type : 'function',
+				state : 'optional',
+				content : 'Listen select event. It returns value of all selected.',
+			},
 		];
 
 		var eventsDetail = [
@@ -247,6 +258,7 @@ module.exports = React.createClass({
 							itemStyles={itemStyles}
 							style={tableStyle}
 							shadow={2}
+							onRowSelected={this._onRowSelected}
 						/>
 						<div style={buttonAreaStyle}>
 							<MDL.Button type="RaisedButton" isAccent={true}>

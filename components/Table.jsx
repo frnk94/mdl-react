@@ -17,6 +17,7 @@ var _ = require('lodash');
 		itemStyles, array, 列樣式
 		shadow 		陰影的大小(只能填 2, 3, 4, 6, 8, 16)
 		style 		css 設定
+		onRowSelected 		監聽點選動作，回傳所有選取值
 	Methods
 		getSelected 	取得勾選的資料值
 */
@@ -57,21 +58,48 @@ module.exports = React.createClass({
 		if(this.props.selectable) {
 			var items = this.props.items.map(function(element, index) {
 				if(element._selected) {
-					selfNode.getElementsByClassName("mdl-js-checkbox")[index + 1].click();
+					selfNode.getElementsByClassName("mdl-checkbox__input")[index + 1].click();
 				}
 			});
 		}
+		this._bindOnSelected();
+	},
+
+	_bindOnSelected: function() {
+		var selfNode = React.findDOMNode(this);
+		var self = this;
+		_.forEach(selfNode.getElementsByClassName("mdl-checkbox__input"), function(element, index) {
+			element.onchange = function() {
+				self.props.onRowSelected(self.getSelected());
+			};
+		});
+	},
+
+	_unbindOnSelected: function() {
+		var selfNode = React.findDOMNode(this);
+		_.forEach(selfNode.getElementsByClassName("mdl-checkbox__input"), function(element, index) {
+			element.onchange = null;
+		});
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
-		// this._initializeTable();
 		componentHandler.upgradeDom();
+		var selfNode = React.findDOMNode(this);
+		var self = this;
+		
+		if(this.props.selectable) {
+			if(JSON.stringify(prevProps.items) != JSON.stringify(this.props.items)) {
+				this._unbindOnSelected();
+				_.forEach(this.props.items, function(item, index) {
+					var isChecked = selfNode.getElementsByClassName("mdl-js-checkbox")[index + 1].classList.contains('is-checked');
+					if((isChecked && (self.props.items[index]._selected != true)) || ((isChecked != true) && self.props.items[index]._selected)) {
+						selfNode.getElementsByClassName("mdl-checkbox__input")[index + 1].click();
+					}
+				});
+				this._bindOnSelected();
+			}
+		}
 	},
-
-	// componentWillUpdate: function(nextProps, nextState) {
-		// for re-run mdl componentHandler
-		// this.refs.table.getDOMNode().removeAttribute('data-upgraded');
-	// },
 
 	componentWillReceiveProps: function(nextProps) {
 		if(
@@ -87,19 +115,17 @@ module.exports = React.createClass({
 	},
 
 	getSelected: function() {
-        if(this.props.selectable) {
-            var self = this;
-			console.log(this.refs.tbody.getDOMNode().childNodes);
-            return _.filter(_.map(this.refs.tbody.getDOMNode().childNodes, function(element, index) {
-                if(element.className == 'is-selected') {
-                    return self.props.items[index];
-                }
-            }));
-        }
-    },
+		if(this.props.selectable) {
+			var self = this;
+			return _.filter(_.map(this.refs.tbody.getDOMNode().childNodes, function(element, index) {
+				if(element.className == 'is-selected') {
+					return self.props.items[index];
+				}
+			}));
+		}
+	},
 
 	render: function() {
-
 		var classes = {
 			'mdl-data-table' : true,
 			'mdl-js-data-table' : true,
