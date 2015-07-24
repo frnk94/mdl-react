@@ -39,8 +39,6 @@ module.exports = React.createClass({
 	},
 
 	setTimer: function() {
-		// console.log('setTimer');
-		// here we change value of timer
 		this.setState({
 			timer: ++this.state.timer,
 		});
