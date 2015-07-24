@@ -75,9 +75,9 @@ module.exports = React.createClass({
 
 	componentWillReceiveProps: function(nextProps) {
 		if(
-			this.props.items != nextProps.items ||
-			this.props.headers != nextProps.headers ||
-			this.props.selectable != nextPros.selectable
+			this.props.items.length != nextProps.items.length ||
+			this.props.headers.length != nextProps.headers.length ||
+			this.props.selectable != nextProps.selectable
 		) {
 			console.log('debug: mdl table changed');
 			this.setState({
@@ -87,11 +87,16 @@ module.exports = React.createClass({
 	},
 
 	getSelected: function() {
-		if(this.props.selectable) {
-			var self = this;
-			return _.filter();
-		}
-	},
+        if(this.props.selectable) {
+            var self = this;
+			console.log(this.refs.tbody.getDOMNode().childNodes);
+            return _.filter(_.map(this.refs.tbody.getDOMNode().childNodes, function(element, index) {
+                if(element.className == 'is-selected') {
+                    return self.props.items[index];
+                }
+            }));
+        }
+    },
 
 	render: function() {
 
