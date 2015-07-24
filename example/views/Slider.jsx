@@ -150,8 +150,8 @@ module.exports = React.createClass({
 						<MDL.Slider
 							min = {0}
 							max = {100}
-							defaultValue = {this.state.timer*5}
-							step = {5}
+							defaultValue = {this.state.timer}
+							step = {1}
 						/><br />
 						<MDL.Slider
 							min = {0}
