@@ -6,6 +6,7 @@ describe('Badge', function() {
 	var target;
 
 	it('預設值是否為問號', function(done) {
+		// console.log('document', document);
 		target = React.render((
 			<Badge>
 				<div>yourText</div>
