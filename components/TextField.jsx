@@ -24,6 +24,8 @@ var id = 1;
 
 module.exports = React.createClass({
 
+	displayName : 'TextField',
+
 	propTypes: {
 		labelText : React.PropTypes.string,
 		isFloatingLabel : React.PropTypes.bool,

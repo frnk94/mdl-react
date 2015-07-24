@@ -12,6 +12,7 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var uglify = require('gulp-uglify');
 var assign = require('lodash').assign;
+var react = require('gulp-react');
 
 function bundleGenerator(path, dest, name, isWatch) {
 	var opts = assign({}, watchify.args, {
@@ -23,6 +24,9 @@ function bundleGenerator(path, dest, name, isWatch) {
 		b = watchify(b);
 	}
 	var bundle = function () {
+		gulp.src('components/**/*.jsx')
+			.pipe(react())
+			.pipe(gulp.dest('lib'));
 		return b.bundle()
 				.on('error', gutil.log.bind(gutil, 'Browserify Error'))
 				.pipe(source('bundle.js'))
@@ -72,21 +76,8 @@ gulp.task('compress', ['js:nowatch'], function() {
 	.pipe(gulp.dest('example/'));
 });
 
-var react = require('gulp-react');
 gulp.task('release', function () {
-    return gulp.src('components/**/*.jsx')
-        .pipe(react())
-        .pipe(gulp.dest('lib'));
+	return gulp.src('components/**/*.jsx')
+		.pipe(react())
+		.pipe(gulp.dest('lib'));
 });
-
-// gulp.task('release', ['js:release'], function() {
-// 	return gulp.src('lib/index.js')
-// 	.pipe(uglify({
-// 		compress : true,
-// 	}).on('error', gutil.log))
-// 	.pipe(rename(function (path) {
-// 		path.extname = '.js';
-// 		path.basename = 'index';
-// 	}))
-// 	.pipe(gulp.dest('lib/'));
-// });
