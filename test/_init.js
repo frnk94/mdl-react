@@ -2,7 +2,7 @@
 var jsdom = require('node-jsdom');
 
 // setup the simplest document possible
-var doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
+var doc = jsdom.jsdom('<!doctype html><html><head></head><body></body></html>');
 
 // get the window object out of the document
 var win = doc.defaultView;
