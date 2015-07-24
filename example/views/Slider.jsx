@@ -35,14 +35,14 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount : function() {
-		setInterval(this.setTimer, 1500);
+		setInterval(this.setTimer, 5000);
 	},
 
 	setTimer: function() {
-		console.log('setTimer');
+		// console.log('setTimer');
 		// here we change value of timer
 		this.setState({
-			timer: this.state.timer++,
+			timer: ++this.state.timer,
 		});
 	},
 
