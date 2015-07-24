@@ -21,6 +21,8 @@ var _ = require('lodash');
 		getSelected 	取得勾選的資料值
 */
 
+var counter = 0;
+
 module.exports = React.createClass({
 
 	propTypes: {
@@ -42,21 +44,49 @@ module.exports = React.createClass({
 		shadow : React.PropTypes.oneOf([ 2, 3, 4, 6, 8, 16 ]),
 	},
 
-	shouldComponentUpdate: function(nextProps, nextState) {
-		return JSON.stringify(this.props) != JSON.stringify(nextProps);
+	// shouldComponentUpdate: function(nextProps, nextState) {
+	// 	return JSON.stringify(this.props) != JSON.stringify(nextProps);
+	// },
+
+	getInitialState: function() {
+		return {
+			_counter : 0,
+		};
 	},
 
 	componentDidMount: function() {
-		this._initializeTable();
+		componentHandler.upgradeDom();
+		var selfNode = React.findDOMNode(this);
+		if(this.props.selectable) {
+			var items = this.props.items.map(function(element, index) {
+				if(element._selected) {
+					selfNode.getElementsByClassName("mdl-js-checkbox")[index + 1].click();
+				}
+			});
+		}
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
-		this._initializeTable();
+		// this._initializeTable();
+		componentHandler.upgradeDom();
 	},
 
 	componentWillUpdate: function(nextProps, nextState) {
 		// for re-run mdl componentHandler
-		this.refs.table.getDOMNode().removeAttribute('data-upgraded');
+		// this.refs.table.getDOMNode().removeAttribute('data-upgraded');
+	},
+
+	componentWillReceiveProps: function(nextProps) {
+		if(
+			this.props.items != nextProps.items ||
+			this.props.headers != nextProps.headers ||
+			this.props.selectable != nextPros.selectable
+		) {
+			console.log('debug: mdl table changed');
+			this.setState({
+				_counter : ++this.state._counter,
+			});
+		}
 	},
 
 	getSelected: function() {
@@ -67,18 +97,6 @@ module.exports = React.createClass({
 					return self.props.items[index];
 				}
 			}));
-		}
-	},
-
-	_initializeTable: function() {
-		componentHandler.upgradeDom();
-		var selfNode = React.findDOMNode(this);
-		if(this.props.selectable) {
-			var items = this.props.items.map(function(element, index) {
-				if(element._selected) {
-					selfNode.getElementsByClassName("mdl-js-checkbox")[index + 1].click();
-				}
-			});
 		}
 	},
 
@@ -98,18 +116,24 @@ module.exports = React.createClass({
 		var headers = this.props.headers.map(function(element, index) {
 			if(typeof element.title == 'string') {
 				return (
-					<th key={index} style={element.style} data-key={element.key}>{element.title}</th>
+					<th key={index}
+						style={element.style}
+					>
+						{element.title}
+					</th>
 				);
 			} else {
 				return (
-					<th key={index} style={element.style} data-key={element.key}>{element.key}</th>
+					<th key={index}
+						style={element.style}
+					>
+						{element.key}
+					</th>
 				);
 			}
 		});
 
-		var date = Date.now();
 		var items = this.props.items.map(function(element, index) {
-
 			var row = self.props.headers.map(function(headerElement, index) {
 				if(self.props.itemStyles instanceof Array) {
 					return (
@@ -124,17 +148,19 @@ module.exports = React.createClass({
 					);
 				}
 			});
-			var theKey = date + '-' + index;
 			return (
-				<tr key={theKey}>{row}</tr>
+				<tr key={index}>{row}</tr>
 			);
-
 		});
 
 		return (
-			<table ref="table" className={cx(classes)} style={this.props.style}>
+			<table ref="table"
+				key={this.state._counter}
+				className={cx(classes)}
+				style={this.props.style}
+			>
 				<thead>
-					<tr key={date}>
+					<tr>
 						{headers}
 					</tr>
 				</thead>
