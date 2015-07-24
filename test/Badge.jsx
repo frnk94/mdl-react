@@ -34,7 +34,7 @@ describe('Badge', function() {
 		target.setProps({
 			materialDesignIcon : false,
 		});
-		expect(jQuery('div.mdl-badge')).to.exist
+		expect(jQuery('div.mdl-badge')).to.exist;
 		return done();
 	});
 	it('觀察 materialDesignIcon 狀態 為 true', function(done) {
@@ -48,42 +48,42 @@ describe('Badge', function() {
 		target.setProps({
 			materialDesignIcon : false,
 		});
-		expect(jQuery('div.mdl-badge')).to.exist
+		expect(jQuery('div.mdl-badge')).to.exist;
 		return done();
 	});
 	it('改變 materialDesignIcon 狀態 為 true', function(done) {
 		target.setProps({
 			materialDesignIcon : true,
 		});
-		expect(jQuery('div.mdl-badge.icon.material-icons')).to.exist
+		expect(jQuery('div.mdl-badge.icon.material-icons')).to.exist;
 		return done();
 	});
 	it('觀察 noBackground 狀態 為 false', function(done) {
 		target.setProps({
 			noBackground : false,
 		});
-		expect(jQuery('div.mdl-badge')).to.exist
+		expect(jQuery('div.mdl-badge')).to.exist;
 		return done();
 	});
 	it('觀察 noBackground 狀態 為 true', function(done) {
 		target.setProps({
 			noBackground : true,
 		});
-		expect(jQuery('div.mdl-badge.mdl-badge--no-background')).to.exist
+		expect(jQuery('div.mdl-badge.mdl-badge--no-background')).to.exist;
 		return done();
 	});
 	it('改變 noBackground 狀態 為 false', function(done) {
 		target.setProps({
 			noBackground : false,
 		});
-		expect(jQuery('div.mdl-badge')).to.exist
+		expect(jQuery('div.mdl-badge')).to.exist;
 		return done();
 	});
 	it('改變 noBackground 狀態 為 true', function(done) {
 		target.setProps({
 			noBackground : true,
 		});
-		expect(jQuery('div.mdl-badge.mdl-badge--no-background')).to.exist
+		expect(jQuery('div.mdl-badge.mdl-badge--no-background')).to.exist;
 		return done();
 	});
 	it('觀察 noBackground && materialDesignIcon 狀態 為 true', function(done) {
@@ -91,7 +91,7 @@ describe('Badge', function() {
 			noBackground : true,
 			materialDesignIcon : true,
 		});
-		expect(jQuery('div.mdl-badge.icon.material-icons.mdl-badge--no-background')).to.exist
+		expect(jQuery('div.mdl-badge.icon.material-icons.mdl-badge--no-background')).to.exist;
 		return done();
 	});
 	it('觀察 noBackground && materialDesignIcon 狀態 為 true 且 badge 為 \'?\'', function(done) {
@@ -100,7 +100,7 @@ describe('Badge', function() {
 			materialDesignIcon : true,
 			badge : '?',
 		});
-		expect(jQuery('div.mdl-badge.icon.material-icons.mdl-badge--no-background').attr('data-badge')).equal('?')
+		expect(jQuery('div.mdl-badge.icon.material-icons.mdl-badge--no-background').attr('data-badge')).equal('?');
 		return done();
 	});
 
