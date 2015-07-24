@@ -24,6 +24,8 @@ var id = 1;
 
 module.exports = React.createClass({
 
+	displayName : 'TextField',
+
 	propTypes: {
 		labelText : React.PropTypes.string,
 		isFloatingLabel : React.PropTypes.bool,
@@ -37,6 +39,17 @@ module.exports = React.createClass({
 		isMultiline : React.PropTypes.bool,
 		rows : React.PropTypes.number,
 		style : React.PropTypes.object,
+	},
+
+
+	getValue : function() {
+		return this.state.value;
+	},
+
+	setValue : function(value) {
+		this.setState({
+			value : value,
+		});
 	},
 
 	getInitialState: function() {
@@ -69,16 +82,6 @@ module.exports = React.createClass({
 		) {
 			this.setValue(nextProps.defaultValue);
 		}
-	},
-
-	getValue : function() {
-		return this.state.value;
-	},
-
-	setValue : function(value) {
-		this.setState({
-			value : value,
-		});
 	},
 
 	_onChange : function(event) {

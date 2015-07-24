@@ -9,14 +9,18 @@ var Components = require('../components');
 
 module.exports = React.createClass({
 
+	display : 'SliderInfo',
+
 	getInitialState: function() {
 		return {
 			checkedValue: 'none',
 			valueArea: 'none',
+			timer: 0,
 		};
 	},
 
 	getValue: function() {
+		console.log('outside getValue');
 		var result = this.refs.test.getValue();
 		result = (<div><span>Get value : </span>{result}</div>);
 		this.setState({
@@ -26,7 +30,18 @@ module.exports = React.createClass({
 	},
 
 	setValue: function() {
+		console.log('outside setValue');
 		this.refs.test.setValue('80');
+	},
+
+	componentDidMount : function() {
+		setInterval(this.setTimer, 5000);
+	},
+
+	setTimer: function() {
+		this.setState({
+			timer: ++this.state.timer,
+		});
 	},
 
 	render: function() {
@@ -133,6 +148,12 @@ module.exports = React.createClass({
 						<MDL.Slider
 							min = {0}
 							max = {100}
+							defaultValue = {this.state.timer}
+							step = {1}
+						/><br />
+						<MDL.Slider
+							min = {0}
+							max = {100}
 							defaultValue = {10}
 							step = {5}
 						/><br />
@@ -149,7 +170,6 @@ module.exports = React.createClass({
 							max = {100}
 							defaultValue = {40}
 							step = {10}
-							onChange={this.onChange}
 						/><br />
 						<div style={buttonAreaStyle}>
 							<MDL.Button type="RaisedButton" isAccent={true}>

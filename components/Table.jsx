@@ -23,6 +23,8 @@ var _ = require('lodash');
 
 module.exports = React.createClass({
 
+	displayName : 'Table',
+
 	propTypes: {
 		headers : React.PropTypes.arrayOf(React.PropTypes.shape({
 			key : React.PropTypes.string.isRequired,

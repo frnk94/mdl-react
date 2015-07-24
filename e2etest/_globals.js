@@ -28,7 +28,7 @@ module.exports = {
 			}
 			console.log('start Xvfg');
 			fork.spawn('Xvfb', ':1 -screen 5 1024x768x8'.split(' '));
-			// fork.exec('source test/_source.sh', function(err) {
+			// fork.exec('source e2etest/_source.sh', function(err) {
 			// 	if(err) return cb(err);
 			// 	return cb();
 			// });
