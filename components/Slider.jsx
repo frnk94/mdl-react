@@ -43,23 +43,26 @@ var Slider = React.createClass({
 	getInitialState: function() {
 		return {
 			value : this.props.defaultValue,
-			// changeIndex : 0,
+			_counter : 0,
 		};
 	},
-
-	// shouldComponentUpdate: function(nextProps, nextState) {
-	// 	return (
-	// 		JSON.stringify(this.props) != JSON.stringify(nextProps) || 
-	// 		JSON.stringify(this.state) != JSON.stringify(nextState)
-	// 	);
-	// },
 
 	componentDidMount: function() {
 		var node = this.refs.input.getDOMNode();
 		node.value = this.props.defaultValue;
 		node.setAttribute('class', 'mdl-slider mdl-js-slider');
 		componentHandler.upgradeDom();
-		// componentHandler.upgradeElement(node);
+	},
+
+	componentWillReceiveProps: function(nextProps, nextState) {
+		if(
+			nextProps.defaultValue &&
+			this.props.defaultValue != nextProps.defaultValue
+		) {
+			this.setValue(nextProps.defaultValue);
+		} else {
+			this.setValue(this.refs.input.getDOMNode().value);
+		}
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
@@ -67,7 +70,6 @@ var Slider = React.createClass({
 		node.value = this.state.value;
 		node.setAttribute('class', 'mdl-slider mdl-js-slider');
 		componentHandler.upgradeDom();
-		// componentHandler.upgradeElement(node);
 	},
 
 	getValue : function() {
@@ -77,7 +79,7 @@ var Slider = React.createClass({
 	setValue : function(value) {
 		this.setState({
 			value : value,
-			// changeIndex : this.state.changeIndex + 1,
+			_counter : ++this.state._counter,
 		});
 	},
 

@@ -39,6 +39,17 @@ module.exports = React.createClass({
 		style : React.PropTypes.object,
 	},
 
+
+	getValue : function() {
+		return this.state.value;
+	},
+
+	setValue : function(value) {
+		this.setState({
+			value : value,
+		});
+	},
+
 	getInitialState: function() {
 		return {
 			value : this.props.defaultValue,
@@ -69,16 +80,6 @@ module.exports = React.createClass({
 		) {
 			this.setValue(nextProps.defaultValue);
 		}
-	},
-
-	getValue : function() {
-		return this.state.value;
-	},
-
-	setValue : function(value) {
-		this.setState({
-			value : value,
-		});
 	},
 
 	_onChange : function(event) {
