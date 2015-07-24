@@ -42,11 +42,8 @@ module.exports = React.createClass({
 		},
 		selectable : React.PropTypes.bool,
 		shadow : React.PropTypes.oneOf([ 2, 3, 4, 6, 8, 16 ]),
+		onRowSelected : React.PropTypes.func,
 	},
-
-	// shouldComponentUpdate: function(nextProps, nextState) {
-	// 	return JSON.stringify(this.props) != JSON.stringify(nextProps);
-	// },
 
 	getInitialState: function() {
 		return {
@@ -71,10 +68,10 @@ module.exports = React.createClass({
 		componentHandler.upgradeDom();
 	},
 
-	componentWillUpdate: function(nextProps, nextState) {
+	// componentWillUpdate: function(nextProps, nextState) {
 		// for re-run mdl componentHandler
 		// this.refs.table.getDOMNode().removeAttribute('data-upgraded');
-	},
+	// },
 
 	componentWillReceiveProps: function(nextProps) {
 		if(
@@ -92,11 +89,7 @@ module.exports = React.createClass({
 	getSelected: function() {
 		if(this.props.selectable) {
 			var self = this;
-			return _.filter(_.map(this.refs.tbody.getDOMNode().childNodes, function(element, index) {
-				if(element.className == 'is-selected') {
-					return self.props.items[index];
-				}
-			}));
+			return _.filter();
 		}
 	},
 
@@ -149,7 +142,7 @@ module.exports = React.createClass({
 				}
 			});
 			return (
-				<tr key={index}>{row}</tr>
+				<tr key={index} data-key={index}>{row}</tr>
 			);
 		});
 
