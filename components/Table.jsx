@@ -26,6 +26,8 @@ var counter = 0;
 
 module.exports = React.createClass({
 
+	displayName : 'Table',
+
 	propTypes: {
 		headers : React.PropTypes.arrayOf(React.PropTypes.shape({
 			key : React.PropTypes.string.isRequired,
@@ -47,58 +49,65 @@ module.exports = React.createClass({
 	},
 
 	getInitialState: function() {
+		var tmp = _.map(this.props.items, function(item, index) {
+			if(item._selected) return index;
+		});
+		this._selectedIndexes = this._getSelectedByProp(this.props);
 		return {
-			_counter : 0,
+			structureChangeCounter : 0,
+			// selectedIndexes : tmp,
 		};
 	},
 
 	componentDidMount: function() {
 		componentHandler.upgradeDom();
-		var selfNode = React.findDOMNode(this);
-		if(this.props.selectable) {
-			var items = this.props.items.map(function(element, index) {
-				if(element._selected) {
-					selfNode.getElementsByClassName("mdl-checkbox__input")[index + 1].click();
-				}
-			});
-		}
+		this._refreshSelected();
 		this._bindOnSelected();
 	},
 
 	_bindOnSelected: function() {
-		var selfNode = React.findDOMNode(this);
-		var self = this;
-		_.forEach(selfNode.getElementsByClassName("mdl-checkbox__input"), function(element, index) {
-			element.onchange = function() {
-				self.props.onRowSelected(self.getSelected());
-			};
-		});
+		var checkobxs = this._getNodeByClassName("mdl-checkbox__input");
+		_.forEach(checkobxs, function(element, index) {
+			element.onchange = this._onCheckboxChange;
+		}, this);
+	},
+
+	_onCheckboxChange : function() {
+		this._selectedIndexes = this._getSelectedByDom();
+		if(this.props.onRowSelected instanceof Function) {
+			this.props.onRowSelected(this.getSelected());
+		}
 	},
 
 	_unbindOnSelected: function() {
-		var selfNode = React.findDOMNode(this);
-		_.forEach(selfNode.getElementsByClassName("mdl-checkbox__input"), function(element, index) {
+		_.forEach(this._getNodeByClassName("mdl-checkbox__input"), function(element, index) {
 			element.onchange = null;
 		});
 	},
 
+	_getNodeByClassName : function(cname) {
+		return React.findDOMNode(this).getElementsByClassName(cname);
+	},
+
 	componentDidUpdate: function(prevProps, prevState) {
+		console.log('Table.componentDidUpdate');
 		componentHandler.upgradeDom();
-		var selfNode = React.findDOMNode(this);
-		var self = this;
-		
-		if(this.props.selectable) {
-			if(JSON.stringify(prevProps.items) != JSON.stringify(this.props.items)) {
-				this._unbindOnSelected();
-				_.forEach(this.props.items, function(item, index) {
-					var isChecked = selfNode.getElementsByClassName("mdl-js-checkbox")[index + 1].classList.contains('is-checked');
-					if((isChecked && (self.props.items[index]._selected != true)) || ((isChecked != true) && self.props.items[index]._selected)) {
-						selfNode.getElementsByClassName("mdl-checkbox__input")[index + 1].click();
-					}
-				});
-				this._bindOnSelected();
+		this._unbindOnSelected();
+		this._refreshSelected();
+		this._bindOnSelected();
+	},
+
+	_refreshSelected : function() {
+		var checkboxs = this._getNodeByClassName("mdl-checkbox__input");
+		var trs = this.refs.tbody.getDOMNode().childNodes;
+		console.log(trs, this._selectedIndexes);
+		_.forEach(trs, function(tr, index) {
+			var isTrChecked = tr.classList.contains('is-selected');
+			var isInSelectdIndexes = _.include(this._selectedIndexes, index);
+			if(isTrChecked != isInSelectdIndexes) {
+				checkboxs[index + 1].click();
 			}
-		}
+		}, this);
 	},
 
 	componentWillReceiveProps: function(nextProps) {
@@ -107,22 +116,61 @@ module.exports = React.createClass({
 			this.props.headers.length != nextProps.headers.length ||
 			this.props.selectable != nextProps.selectable
 		) {
-			console.log('debug: mdl table changed');
+			console.debug('mdl table structure changed');
 			this.setState({
-				_counter : ++this.state._counter,
+				structureChangeCounter : ++this.state.structureChangeCounter,
 			});
+		}
+		if(
+			!(_.isEqual(
+				this._getSelectedByProp(nextProps),
+				this._getSelectedByProp(this.props)
+			))
+		) {
+			console.debug('items[]._selected changed, so we use new one');
+			this._selectedIndexes = this._getSelectedByProp(nextProps);
+		}
+		if(
+			!(_.isEqual(
+				this._getSelectedByProp(nextProps),
+				this._selectedIndexes
+			))
+		) {
+			console.warn('mdl table items[]._selected is not sync with table');
+			console.warn('we strongly suggest should keep it synced');
+			// this._selectedIndexes = this._getSelectedByProp(nextProps);
 		}
 	},
 
-	getSelected: function() {
+	_getSelectedByProp : function(prop) {
+		var tmp = _.map(prop.items, function(item, index) {
+			if(item._selected) return index;
+		});
+		return _.filter(tmp, function(i) {
+			return i >= 0;
+		});
+	},
+
+	_getSelectedByDom : function() {
 		if(this.props.selectable) {
-			var self = this;
-			return _.filter(_.map(this.refs.tbody.getDOMNode().childNodes, function(element, index) {
-				if(element.className == 'is-selected') {
-					return self.props.items[index];
+			var trs = this.refs.tbody.getDOMNode().childNodes;
+			var selectedItems = _.map(trs, function(element, index) {
+				if(element.classList.contains('is-selected')) {
+					return index;
 				}
-			}));
+			}, this);
+			return _.filter(selectedItems, function(i) {
+				return i >= 0;
+			});
+		} else {
+			return [];
 		}
+	},
+
+	getSelected : function() {
+		return _.map(this._selectedIndexes, function(i) {
+			return this.props.items[i];
+		}, this);
 	},
 
 	render: function() {
@@ -136,26 +184,6 @@ module.exports = React.createClass({
 		if(this.props.selectable) {
 			classes['mdl-data-table--selectable'] = true;
 		}
-
-		var headers = this.props.headers.map(function(element, index) {
-			if(typeof element.title == 'string') {
-				return (
-					<th key={index}
-						style={element.style}
-					>
-						{element.title}
-					</th>
-				);
-			} else {
-				return (
-					<th key={index}
-						style={element.style}
-					>
-						{element.key}
-					</th>
-				);
-			}
-		});
 
 		var items = this.props.items.map(function(element, index) {
 			var row = self.props.headers.map(function(headerElement, index) {
@@ -179,15 +207,11 @@ module.exports = React.createClass({
 
 		return (
 			<table ref="table"
-				key={this.state._counter}
+				key={this.state.structureChangeCounter}
 				className={cx(classes)}
 				style={this.props.style}
 			>
-				<thead>
-					<tr>
-						{headers}
-					</tr>
-				</thead>
+				<TableHead headers={this.props.headers} />
 				<tbody ref="tbody">
 					{items}
 				</tbody>
@@ -196,4 +220,34 @@ module.exports = React.createClass({
 
 	}
 
+});
+
+
+var TableHead = React.createClass({
+	render: function() {
+		var headers = this.props.headers.map(function(element, index) {
+			if(typeof element.title == 'string') {
+				return (
+					<th key={index}
+						style={element.style}
+					>
+						{element.title}
+					</th>
+				);
+			} else {
+				return (
+					<th key={index}
+						style={element.style}
+					>
+						{element.key}
+					</th>
+				);
+			}
+		});
+		return (
+			<thead>
+				<tr>{headers}</tr>
+			</thead>
+		);
+	}
 });
