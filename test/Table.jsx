@@ -1,7 +1,7 @@
 
 var Table = require('../components/Table.jsx');
 
-describe('Badge', function() {
+describe('Table', function() {
 
 	var header = [
 		{
@@ -43,16 +43,17 @@ describe('Badge', function() {
 			/>
 		), document.body);
 		// console.log('印出 document.body', document.body.innerHTML);
-		expect(jQuery('div.mdl-badge').attr('data-badge')).equal('?');
+		expect(jQuery('table').toArray()).length(1);
+		expect(jQuery('tr').toArray()).length(3);
 		return done();
 	});
 
-	it('改變 badge 狀態', function(done) {
+	it('改變 items', function(done) {
 		items[1]._selected = true;
 		target.setProps({
 			items : items,
 		});
-		expect(jQuery('tr.is-selected').toArray().length).equal(1);
+		expect(jQuery('tr.is-selected').toArray()).length(1);
 		return done();
 	});
 
