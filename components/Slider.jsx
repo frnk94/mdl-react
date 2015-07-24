@@ -16,8 +16,6 @@ var React = require('react');
 		setValue								Set the value in the current sliders
 */
 
-var counter = 0;
-
 var Slider = React.createClass({
 
 	propTypes: {
@@ -84,11 +82,10 @@ var Slider = React.createClass({
 	},
 
 	render: function() {
-		var key = 'mdl-slider-' + (counter++);
 		return (
 			<div style={this.props.style}>
 				<input
-					key={key}
+					key={this.state._counter}
 					ref='input'
 					type="range"
 					min={this.props.min}
