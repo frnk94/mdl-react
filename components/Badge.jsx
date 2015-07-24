@@ -18,6 +18,8 @@ var cx = require('classnames');
 
 module.exports = React.createClass({
 
+	displayName : 'Badge',
+
 	propTypes: {
 		badge : React.PropTypes.node.isRequired,
 		materialDesignIcon : React.PropTypes.bool,

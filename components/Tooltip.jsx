@@ -20,6 +20,8 @@ var token = 1;
 
 module.exports = React.createClass({
 
+	displayName : 'Tooltip',
+
 	propTypes: {
 		children: React.PropTypes.element.isRequired,
 		large: React.PropTypes.bool,
@@ -34,6 +36,10 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount: function() {
+		componentHandler.upgradeDom();
+	},
+
+	componentDidUpdate: function(prevProps, prevState) {
 		componentHandler.upgradeDom();
 	},
 
