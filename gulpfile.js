@@ -75,7 +75,7 @@ gulp.task('compress', ['js:nowatch'], function() {
 	}).on('error', gutil.log))
 	.pipe(rename(function (path) {
 		path.extname = '.js';
-		path.basename = 'app.page';
+		path.basename = 'app.min';
 	}))
 	.pipe(gulp.dest('example/'));
 });
