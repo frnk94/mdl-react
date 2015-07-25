@@ -3802,8 +3802,7 @@ var ExampleTextField = React.createClass({displayName: "ExampleTextField",
 							isFixedTabs: true, 
 							initialTabIndex: 1, 
 							drawerLinks: links, 
-							noDrawerTitle: true, 
-							isFixedTabs: true
+							noDrawerTitle: true
 						}, 
 							React.createElement(MDL.PrismCode, {
 								src: "example/codes/Layouts/FixedTabs.jsx", 
