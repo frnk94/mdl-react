@@ -3,7 +3,7 @@
   "version": "0.0.6",
   "description": "Material Design Lite + React ",
   "scripts": {
-    "e2etest": "./node_modules/nightwatch/bin/nightwatch -e docker",
+    "test_e2e": "./node_modules/nightwatch/bin/nightwatch -e docker",
     "test": "./node_modules/mocha/bin/mocha --compilers js:babel/register test/_init.js test/**/*.jsx"
   },
   "main": "./lib",
