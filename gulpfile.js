@@ -23,6 +23,7 @@ function bundleGenerator(path, dest, name, isWatch) {
 		b = watchify(b);
 	}
 	var bundle = function () {
+		if(isWatch) release();
 		return b.bundle()
 				.on('error', gutil.log.bind(gutil, 'Browserify Error'))
 				.pipe(source('bundle.js'))
@@ -38,6 +39,12 @@ function bundleGenerator(path, dest, name, isWatch) {
 		b.on('log', gutil.log); // output build logs to terminal
 	}
 	return bundle;
+	////////////////
+	function release() {
+		gulp.src('components/**/*.jsx')
+			.pipe(react())
+			.pipe(gulp.dest('lib'));
+	}
 }
 
 // so you can run `gulp js` to build the file
@@ -74,19 +81,7 @@ gulp.task('compress', ['js:nowatch'], function() {
 
 var react = require('gulp-react');
 gulp.task('release', function () {
-    return gulp.src('components/**/*.jsx')
-        .pipe(react())
-        .pipe(gulp.dest('lib'));
+	return gulp.src('components/**/*.jsx')
+		.pipe(react())
+		.pipe(gulp.dest('lib'));
 });
-
-// gulp.task('release', ['js:release'], function() {
-// 	return gulp.src('lib/index.js')
-// 	.pipe(uglify({
-// 		compress : true,
-// 	}).on('error', gutil.log))
-// 	.pipe(rename(function (path) {
-// 		path.extname = '.js';
-// 		path.basename = 'index';
-// 	}))
-// 	.pipe(gulp.dest('lib/'));
-// });
