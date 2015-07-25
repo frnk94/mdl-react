@@ -265,7 +265,7 @@ module.exports = React.createClass({
 								<button onClick={this.addData} className='tableTestBtn01' style={buttonStyle}>new data</button>
 							</MDL.Button>
 							<MDL.Button type="RaisedButton" isPrimary={true}>
-								<button onClick={this.getSelected} className='tableTestBtn01' style={buttonStyle}>get value</button>
+								<button onClick={this.getSelected} className='tableTestBtn02' style={buttonStyle}>get value</button>
 							</MDL.Button>
 						</div>
 					</div>

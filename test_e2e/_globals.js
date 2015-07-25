@@ -1,6 +1,7 @@
 
 var fork = require('child_process');
 var server;
+var xvfb;
 
 module.exports = {
 
@@ -27,7 +28,7 @@ module.exports = {
 				return cb();
 			}
 			console.log('start Xvfg');
-			fork.spawn('Xvfb', ':1 -screen 5 1024x768x16'.split(' '));
+			xvfb = fork.spawn('Xvfb', ':1 -screen 5 1024x768x16'.split(' '));
 			// fork.exec('source test_e2e/_source.sh', function(err) {
 			// 	if(err) return cb(err);
 			// 	return cb();
@@ -38,6 +39,7 @@ module.exports = {
 
 	after : function(cb) {
 		if(server) server.kill();
+		if(xvfb) xvfb.kill();
 		return cb();
 	},
 
