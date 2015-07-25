@@ -1,7 +1,7 @@
 var React = require('react');
 
 module.exports = React.createClass({
-
+	displayName : 'MainContent',
 	render: function() {
 		var style = {
 			padding : '60px 0px',
@@ -15,6 +15,5 @@ module.exports = React.createClass({
 				{this.props.children}
 			</div>
 		);
-	}
-
+	},
 });

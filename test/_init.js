@@ -31,19 +31,27 @@ console.log('check window %s', window);
 console.log('check document %s', document);
 console.log('check navigator %s', navigator);
 
-// console.log('enable jsx loader');
-// require('node-jsx').install({extension: '.jsx'});
-
 var React = require('react/addons');
 global.React = React;
-// var TestUtils = React.addons.TestUtils;
-// global.TestUtils = TestUtils;
 
 var jQuery = require('jquery');
 global.jQuery = jQuery;
 global.$ = jQuery;
-// console.log(jQuery);
+
+function loadJavascript(src, fname) {
+	var vm = require('vm');
+	var fs = require('fs');
+	var code = fs.readFileSync(src, 'utf-8');
+	vm.runInThisContext(code, {
+		filename : fname,
+	});
+}
+
+loadJavascript('./node_modules/material-design-lite/material.js', 'material.js');
+loadJavascript('./example/js/classList.min.js', 'classList.min.js');
+console.log('componentHandler', componentHandler);
+
+///////////////////
 
 var chai = require('chai');
 global.expect = chai.expect;
-// global.assert = chai.assert;

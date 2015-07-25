@@ -3,7 +3,7 @@
 var React = require('react');
 
 module.exports = React.createClass({
-
+	displayName : 'DocTitle',
 	render: function() {
 		var titleStyle = {
 			fontSize: '24px',
@@ -18,6 +18,5 @@ module.exports = React.createClass({
 		return (
 			<h2 style={titleStyle}>{this.props.title}</h2>
 		);
-	}
-
+	},
 });

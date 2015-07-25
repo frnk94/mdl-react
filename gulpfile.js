@@ -24,9 +24,7 @@ function bundleGenerator(path, dest, name, isWatch) {
 		b = watchify(b);
 	}
 	var bundle = function () {
-		gulp.src('components/**/*.jsx')
-			.pipe(react())
-			.pipe(gulp.dest('lib'));
+		if(isWatch) release();
 		return b.bundle()
 				.on('error', gutil.log.bind(gutil, 'Browserify Error'))
 				.pipe(source('bundle.js'))
@@ -42,6 +40,12 @@ function bundleGenerator(path, dest, name, isWatch) {
 		b.on('log', gutil.log); // output build logs to terminal
 	}
 	return bundle;
+	////////////////
+	function release() {
+		gulp.src('components/**/*.jsx')
+			.pipe(react())
+			.pipe(gulp.dest('lib'));
+	}
 }
 
 // so you can run `gulp js` to build the file

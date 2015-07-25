@@ -1,7 +1,7 @@
 var React = require('react');
 
-var ComponentPage = React.createClass({
-
+module.exports = React.createClass({
+	displayName : 'DocPage',
 	render: function() {
 		var style = {
 			padding : '20px',
@@ -14,8 +14,5 @@ var ComponentPage = React.createClass({
 				{this.props.children}
 			</div>
 		);
-	}
-
+	},
 });
-
-module.exports = ComponentPage;

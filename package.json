@@ -3,8 +3,7 @@
   "version": "0.0.6",
   "description": "Material Design Lite + React ",
   "scripts": {
-    "e2etest": "./node_modules/nightwatch/bin/nightwatch -e docker",
-    "test": "./node_modules/mocha/bin/mocha --compilers js:babel/register test/_init.js test/**/*.jsx"
+    "test": "./node_modules/nightwatch/bin/nightwatch -e headless"
   },
   "main": "./lib",
   "repository": {
@@ -26,6 +25,7 @@
     "gulp-uglify": "~1.2.0",
     "lodash": "~3.10.0",
     "material-design-lite": "~1.0.0-3",
+    "node-jsdom": "^3.1.5",
     "react": "~0.13.3",
     "react-router": "~0.13.3",
     "superagent": "~1.2.0"
