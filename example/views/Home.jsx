@@ -26,7 +26,10 @@ module.exports = React.createClass({
 					</h5>
 					<p>
 						<MDL.Button type="RaisedButton" >
-							<a href='http://fandora.github.io/mdl-react/' style={btnStyle}>GitHub</a>
+							<a href='https://github.com/Fandora/mdl-react'
+							style={btnStyle}>
+								GitHub
+							</a>
 						</MDL.Button>
 						<MDL.Button type="RaisedButton" isAccent={true} >
 							<a href='#layout' style={btnStyle}>Components</a>

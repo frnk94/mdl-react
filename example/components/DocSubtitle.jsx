@@ -4,8 +4,9 @@ var React = require('react');
 
 module.exports = React.createClass({
 
-	render: function() {
+	displayName : 'DocSubtitle',
 
+	render: function() {
 		var exampleStyle = {
 			color: '#e0e0e0',
 			padding: '8px',
@@ -16,11 +17,9 @@ module.exports = React.createClass({
 			textTransform: 'uppercase',
 			fontWeight: 500,
 		};
-
 		return (
 			<div style={exampleStyle}>{this.props.title}</div>
 		);
-	}
+	},
 
 });
-

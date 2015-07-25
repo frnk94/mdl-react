@@ -5,9 +5,7 @@ var fs = require('fs');
 var React = require('react');
 var MDL = require('../../components');
 var _ = require('lodash');
-
 var Components = require('../components');
-
 
 module.exports = React.createClass({
 
@@ -57,6 +55,19 @@ module.exports = React.createClass({
 		};
 	},
 
+	// componentDidMount: function() {
+	// 	var self = this;
+	// 	setTimeout(function() {
+	// 		console.log('qq');
+	// 		var items = self.state.items;
+	// 		items[0]._selected = true;
+	// 		items[1]._selected = false;
+	// 		self.setState({
+	// 			items : items
+	// 		});
+	// 	}, 2000);
+	// },
+
 	getSelected: function() {
 		var self = this;
 		if(this.refs.table.getSelected().length == 0) {
@@ -95,7 +106,19 @@ module.exports = React.createClass({
 		});
 	},
 
+	_onRowSelected: function(data, indexes) {
+		console.log('onRowSelected', data);
+		var items = this.state.items.map(function(item, index) {
+			item._selected = _.include(indexes, index);
+			return item;
+		});
+		this.setState({
+			items : items,
+		});
+	},
+
 	render: function() {
+		var self = this;
 
 		var header = [
 			{
@@ -185,15 +208,25 @@ module.exports = React.createClass({
 				state : 'optional',
 				content : 'css style setting',
 			},
+			{
+				key : 'onRowSelected',
+				type : 'function',
+				state : 'optional',
+				content : 'Listen select event. It returns value of all selected.',
+			},
 		];
 
-		var eventsDetail = [
+		var methodsDetail = [
 			{
 				key : 'getSelected',
-				type : 'function',
-				state : '',
+				type : 'function(items)',
 				content : 'Get the data from the rows you selected.',
-			}
+			},
+			{
+				key : 'getSelectedIndexes',
+				type : 'function(indexes)',
+				content : 'Get the indexes from the rows you selected.',
+			},
 		];
 
 		var prismCode = {
@@ -247,13 +280,14 @@ module.exports = React.createClass({
 							itemStyles={itemStyles}
 							style={tableStyle}
 							shadow={2}
+							onRowSelected={this._onRowSelected}
 						/>
 						<div style={buttonAreaStyle}>
 							<MDL.Button type="RaisedButton" isAccent={true}>
 								<button onClick={this.addData} className='tableTestBtn01' style={buttonStyle}>new data</button>
 							</MDL.Button>
 							<MDL.Button type="RaisedButton" isPrimary={true}>
-								<button onClick={this.getSelected} className='tableTestBtn01' style={buttonStyle}>get value</button>
+								<button onClick={this.getSelected} className='tableTestBtn02' style={buttonStyle}>get value</button>
 							</MDL.Button>
 						</div>
 					</div>
@@ -267,7 +301,7 @@ module.exports = React.createClass({
 					/>
 				</MDL.Card>
 				<Components.Props detail={propsDetail} title="Props" />
-				<Components.Props detail={eventsDetail} title="Methods" />
+				<Components.Props detail={methodsDetail} title="Methods" />
 			</Components.Page>
 		);
 

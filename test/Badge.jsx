@@ -13,6 +13,7 @@ describe('Badge', function() {
 		), document.body);
 		return done();
 	});
+	
 	it('預設 badge 是否為問號', function(done) {
 		target = React.render((
 			<Badge>
@@ -23,6 +24,7 @@ describe('Badge', function() {
 		expect(jQuery('div.mdl-badge').attr('data-badge')).equal('?');
 		return done();
 	});
+
 	it('改變 badge 狀態', function(done) {
 		target.setProps({
 			badge : 10,
@@ -30,6 +32,7 @@ describe('Badge', function() {
 		expect(jQuery('div.mdl-badge').attr('data-badge')).equal('10');
 		return done();
 	});
+
 	it('觀察 materialDesignIcon 狀態 為 false', function(done) {
 		target.setProps({
 			materialDesignIcon : false,
@@ -37,6 +40,7 @@ describe('Badge', function() {
 		expect(jQuery('div.mdl-badge')).to.exist;
 		return done();
 	});
+
 	it('觀察 materialDesignIcon 狀態 為 true', function(done) {
 		target.setProps({
 			materialDesignIcon : true,
@@ -44,6 +48,7 @@ describe('Badge', function() {
 		expect(jQuery('div.mdl-badge.icon.material-icons')).to.exist;
 		return done();
 	});
+
 	it('改變 materialDesignIcon 狀態 為 false', function(done) {
 		target.setProps({
 			materialDesignIcon : false,
@@ -51,6 +56,7 @@ describe('Badge', function() {
 		expect(jQuery('div.mdl-badge')).to.exist;
 		return done();
 	});
+
 	it('改變 materialDesignIcon 狀態 為 true', function(done) {
 		target.setProps({
 			materialDesignIcon : true,
@@ -58,6 +64,7 @@ describe('Badge', function() {
 		expect(jQuery('div.mdl-badge.icon.material-icons')).to.exist;
 		return done();
 	});
+
 	it('觀察 noBackground 狀態 為 false', function(done) {
 		target.setProps({
 			noBackground : false,
@@ -65,6 +72,7 @@ describe('Badge', function() {
 		expect(jQuery('div.mdl-badge')).to.exist;
 		return done();
 	});
+
 	it('觀察 noBackground 狀態 為 true', function(done) {
 		target.setProps({
 			noBackground : true,
@@ -72,6 +80,7 @@ describe('Badge', function() {
 		expect(jQuery('div.mdl-badge.mdl-badge--no-background')).to.exist;
 		return done();
 	});
+
 	it('改變 noBackground 狀態 為 false', function(done) {
 		target.setProps({
 			noBackground : false,
@@ -79,6 +88,7 @@ describe('Badge', function() {
 		expect(jQuery('div.mdl-badge')).to.exist;
 		return done();
 	});
+
 	it('改變 noBackground 狀態 為 true', function(done) {
 		target.setProps({
 			noBackground : true,
@@ -86,6 +96,7 @@ describe('Badge', function() {
 		expect(jQuery('div.mdl-badge.mdl-badge--no-background')).to.exist;
 		return done();
 	});
+
 	it('觀察 noBackground && materialDesignIcon 狀態 為 true', function(done) {
 		target.setProps({
 			noBackground : true,
@@ -94,6 +105,7 @@ describe('Badge', function() {
 		expect(jQuery('div.mdl-badge.icon.material-icons.mdl-badge--no-background')).to.exist;
 		return done();
 	});
+
 	it('觀察 noBackground && materialDesignIcon 狀態 為 true 且 badge 為 \'?\'', function(done) {
 		target.setProps({
 			noBackground : true,
