@@ -177,7 +177,6 @@ var ExampleTextField = React.createClass({
 							initialTabIndex={1}
 							drawerLinks={links}
 							noDrawerTitle={true}
-							isFixedTabs={true}
 						>
 							<MDL.PrismCode
 								src='example/codes/Layouts/FixedTabs.jsx'
