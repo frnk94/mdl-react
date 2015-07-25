@@ -29,6 +29,5 @@ node_modules
 reports
 chromedriver*
 
-example/app.js
 example/out
 example/app.js
