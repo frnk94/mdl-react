@@ -57,6 +57,19 @@ module.exports = React.createClass({
 		};
 	},
 
+	// componentDidMount: function() {
+	// 	var self = this;
+	// 	setTimeout(function() {
+	// 		console.log('qq');
+	// 		var items = self.state.items;
+	// 		items[0]._selected = true;
+	// 		items[1]._selected = false;
+	// 		self.setState({
+	// 			items : items
+	// 		});
+	// 	}, 2000);
+	// },
+
 	getSelected: function() {
 		var self = this;
 		if(this.refs.table.getSelected().length == 0) {
@@ -95,8 +108,15 @@ module.exports = React.createClass({
 		});
 	},
 
-	_onRowSelected: function(data) {
+	_onRowSelected: function(data, indexes) {
 		console.log('onRowSelected', data);
+		var items = this.state.items.map(function(item, index) {
+			item._selected = _.include(indexes, index);
+			return item;
+		});
+		this.setState({
+			items : items,
+		});
 	},
 
 	render: function() {
