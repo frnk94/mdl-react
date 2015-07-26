@@ -43,8 +43,8 @@ describe('Table', function() {
 			/>
 		), document.body);
 		// console.log('印出 document.body', document.body.innerHTML);
-		expect(jQuery('table').toArray()).length(1);
-		expect(jQuery('tr').toArray()).length(3);
+		expect(jquery('table').toArray()).length(1);
+		expect(jquery('tr').toArray()).length(3);
 		return done();
 	});
 
@@ -53,7 +53,7 @@ describe('Table', function() {
 		target.setProps({
 			items : items,
 		});
-		expect(jQuery('tr.is-selected').toArray()).length(1);
+		expect(jquery('tr.is-selected').toArray()).length(1);
 		return done();
 	});
 
