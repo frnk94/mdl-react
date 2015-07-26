@@ -3,8 +3,8 @@
   "version": "0.0.7",
   "description": "Material Design Lite + React ",
   "scripts": {
-    "test": "node_modules/.bin/mochify --transform reactify --reporter spec;node_modules/nightwatch/bin/nightwatch -e headless",
-    "unit_test": "node_modules/.bin/mochify --transform reactify --reporter spec test/_init.js test/**/*.jsx"
+    "test": "node_modules/.bin/mochify --transform reactify --reporter list test/_init.js test/**/*.jsx;node_modules/nightwatch/bin/nightwatch -e headless",
+    "unit_test": "node_modules/.bin/mochify --transform reactify --reporter list test/_init.js test/**/*.jsx"
   },
   "main": "./lib",
   "repository": {
