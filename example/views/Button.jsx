@@ -91,23 +91,6 @@ module.exports = React.createClass({
 			content : "If style prop exists, it will override the style of the child.",
 		},
 	],
-	methodsDetail: [
-		{
-			key : 'setDisabled',
-			type : 'function( bool )',
-			content : 'Set true to activate the button, or set false to disable it.',
-		},
-		{
-			key : 'toggleButton',
-			type : 'function()',
-			content : 'If the button is disabled, the method will activate the button, vice versa.',
-		},
-		{
-			key : 'getDisabled',
-			type : 'function()',
-			content : 'Check whether the button is disabled. If the button is disabled, true will be returned.',
-		},
-	],
 
 	getInitialState: function() {
 		return {
