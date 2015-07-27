@@ -58,7 +58,7 @@ module.exports = {
 			.waitForElementVisible('code.language-jsx', 1000, false)
 			.assert.elementSizeNotWithin('.language-jsx', 50, 50);
 
-		client.click('[href="#mdl-tab-Starks"]')
+		client.click('[href="#mdl-tab-Starks"]');
 		client.expect.element('#mdl-tab-Starks').visible;
 		client.expect.element('#mdl-tab-Lannisters').not.visible;
 		client.expect.element('#mdl-tab-Targaryens').not.visible;
@@ -79,4 +79,4 @@ module.exports = {
 	after : function(client) {
 		client.end();
 	},
-}
+};
