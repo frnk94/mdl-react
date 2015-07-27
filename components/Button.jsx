@@ -35,7 +35,7 @@ module.exports = React.createClass({
 	},
 
 	propTypes: {
-		children: React.PropTypes.oneOfType([React.PropTypes.element,React.PropTypes.string]),
+		children: React.PropTypes.oneOfType([React.PropTypes.element, React.PropTypes.string]),
 		style: React.PropTypes.object,
 		type: React.PropTypes.oneOf(
 			['FloatingActionButton', 'RaisedButton', 'FlatButton', 'IconButton']
@@ -44,6 +44,7 @@ module.exports = React.createClass({
 		isRipple: React.PropTypes.bool,
 		isPrimary: React.PropTypes.bool,
 		isAccent: React.PropTypes.bool,
+		id: React.PropTypes.string,
 		defaultDisabled: React.PropTypes.bool,
 	},
 

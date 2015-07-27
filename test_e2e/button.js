@@ -10,8 +10,7 @@ module.exports = {
 			.click('[href="#button"]');
 	},
 
-	'Props Doc': function(client) {
-
+	'Props Doc' : function(client) {
 		client.expect.element('.mdl-card + div > h5').text.equal('Props');
 		var PROPS = ['text', 'type', 'isRipple', 'isPrimary', 'isAccent', 'isMini', 'defaultDisabled', 'id', 'style'];
 
@@ -26,8 +25,7 @@ module.exports = {
 		});
 	},
 
-	'Methods Doc': function(client) {
-
+	'Methods Doc' : function(client) {
 		client.expect.element('.mdl-card + div + div > h5').text.equal('Methods');
 		var METHODS = ['setDisabled', 'toggleButton', 'getDisabled'];
 
@@ -42,31 +40,79 @@ module.exports = {
 		});
 	},
 
-	'Code': function(client) {
-		//There are code existed in this part, and must have multiple line.
-		var TABS = ['Floating Action Buttons', 'Raised Buttons', 'Flat Buttons', 'Icon Buttons'];
-		client.waitForElementVisible('code[class=" language-jsx"]', 1000, true)
-					.assert.elementSizeNotWithin('code[class=" language-jsx"]', 50, 50);
-	},
+	'FAB' : function(client) {
+		client
+			.click('a[href="#mdl-tab-FloatingActionButtons"]')
+			.waitForElementVisible('code.language-jsx', 1000, false)
+			.assert.elementSizeNotWithin('.language-jsx', 50, 50)
+			.expect.element('.mdl-button--fab:nth-child(7)').attribute('disabled'); //element br will be counted in child
 
-	'FAB': function(client) {
-		//Check the type of button is FAB
-		//Check ripple works, the color is right, the button event is fired correctly.
+		client
+			.click('.mdl-button--fab:nth-child(3)')
+			.expect.element('.mdl-button--fab:nth-child(7)').not.attribute('disabled');
+
+		client
+			.click('.mdl-button--fab:nth-child(11)')
+			.expect.element('.mdl-button--fab:nth-child(7)').attribute('disabled');
+
+		client.elements('css selector', '#mdl-tab-FloatingActionButtons .mdl-button--fab', function(elems) {
+			client.assert.ok( elems.value.length  === 9, 'All of buttons are Raised Button.');
+		});
+
 	},
 
 	'Raised Button': function(client) {
-		//Check the type of button is Raised
-		//Check ripple works, the color is right, the button event is fired correctly.
+		client
+			.click('a[href="#mdl-tab-RaisedButtons"]')
+			.waitForElementVisible('code.language-jsx', 1000, false)
+			.assert.elementSizeNotWithin('.language-jsx', 50, 50)
+			.expect.element('.mdl-button--raised:nth-child(7)').attribute('disabled');
+
+		client
+			.click('.mdl-button--raised:nth-child(3)')
+			.expect.element('.mdl-button--raised:nth-child(7)').not.attribute('disabled');
+
+		client.elements('css selector', '#mdl-tab-RaisedButtons .mdl-button--raised', function(elems) {
+			client.assert.ok( elems.value.length  === 6, 'All of buttons are Raised Button.');
+		});
+
 	},
 
 	'Flat Button': function(client) {
-		//Check the type of button is Flat
-		//Check ripple works, the color is right, the button event is fired correctly.
+		client
+			.click('a[href="#mdl-tab-FlatButtons"]')
+			.waitForElementVisible('code.language-jsx', 1000, false)
+			.assert.elementSizeNotWithin('.language-jsx', 50, 50)
+			.expect.element('#mdl-tab-FlatButtons button:nth-child(7)').attribute('disabled');
+
+		client
+			.click('#mdl-tab-FlatButtons button:nth-child(3)')
+			.expect.element('#mdl-tab-FlatButtons button:nth-child(7)').not.attribute('disabled');
+
+
+		client.elements('css selector', '#mdl-tab-FlatButtons > div > *:not(br)', function(elems) {
+			client.assert.ok( elems.value.length  === 6, 'All of buttons are Raised Button.');
+		});
+
+
 	},
 
 	'Icon Button': function(client) {
-		//Check the type of button is Icon
-		//Check ripple works, the color is right, the button event is fired correctly.
+		client
+			.click('a[href="#mdl-tab-IconButtons"]')
+			.waitForElementVisible('code.language-jsx', 1000, false)
+			.assert.elementSizeNotWithin('.language-jsx', 50, 50)
+			.expect.element('.mdl-button--icon:nth-child(7)').attribute('disabled');
+
+		client
+			.click('.mdl-button--icon:nth-child(3)')
+			.expect.element('.mdl-button--icon:nth-child(7)').not.attribute('disabled');
+
+		client.elements('css selector', '#mdl-tab-IconButtons .mdl-button--icon', function(elems) {
+			client.assert.ok( elems.value.length  === 6, 'All of buttons are Raised Button.');
+		});
+
+
 	},
 
 	after : function(client) {
