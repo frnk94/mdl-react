@@ -12,11 +12,11 @@ module.exports = {
 
 	'Props Doc' : function(client) {
 		client.expect.element('.mdl-card + div > h5').text.equal('Props');
-		var PROPS = ['children', 'type', 'isRipple', 'isPrimary', 'isAccent', 'isMini', 'defaultDisabled', 'id', 'style'];
-
+		var PROPS = [
+			'children', 'type', 'isRipple', 'isPrimary', 'isAccent', 'isMini', 'style'
+		];
 		client.elements('css selector', '.mdl-card + div > div > div > h6', function(elems) {
 			client.assert.equal(elems.value.length, PROPS.length, "The total amount of props equals to " + PROPS.length);
-
 			elems.value.forEach(function(element, index) {
 				client.elementIdText(element.ELEMENT, function(result){
 					client.assert.equal(result.value, PROPS[index], 'The ' + (index + 1) + 'th prop equals is "' + PROPS[index]+'"');

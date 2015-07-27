@@ -4,7 +4,8 @@
   "description": "Material Design Lite + React ",
   "scripts": {
     "test": "node_modules/.bin/mochify --transform reactify --reporter list test/_init.js test/**/*.jsx;node_modules/nightwatch/bin/nightwatch -e headless",
-    "unit_test": "node_modules/.bin/mochify --transform reactify --reporter list test/_init.js test/**/*.jsx"
+    "unit_test": "node_modules/.bin/mochify --transform reactify --reporter list test/_init.js test/**/*.jsx",
+    "e2e_test" : "node_modules/nightwatch/bin/nightwatch -e headless"
   },
   "main": "./lib",
   "repository": {
