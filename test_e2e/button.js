@@ -12,7 +12,7 @@ module.exports = {
 
 	'Props Doc' : function(client) {
 		client.expect.element('.mdl-card + div > h5').text.equal('Props');
-		var PROPS = ['text', 'type', 'isRipple', 'isPrimary', 'isAccent', 'isMini', 'defaultDisabled', 'id', 'style'];
+		var PROPS = ['children', 'type', 'isRipple', 'isPrimary', 'isAccent', 'isMini', 'defaultDisabled', 'id', 'style'];
 
 		client.elements('css selector', '.mdl-card + div > div > div > h6', function(elems) {
 			client.assert.equal(elems.value.length, PROPS.length, "The total amount of props equals to " + PROPS.length);
@@ -55,10 +55,7 @@ module.exports = {
 			.click('.mdl-button--fab:nth-child(11)')
 			.expect.element('.mdl-button--fab:nth-child(7)').attribute('disabled');
 
-		client.elements('css selector', '#mdl-tab-FloatingActionButtons .mdl-button--fab', function(elems) {
-			client.assert.ok( elems.value.length  === 9, 'All of buttons are Raised Button.');
-		});
-
+		client.assert.elementCount('#mdl-tab-FloatingActionButtons .mdl-button--fab', 9);
 	},
 
 	'Raised Button': function(client) {
@@ -72,10 +69,7 @@ module.exports = {
 			.click('.mdl-button--raised:nth-child(3)')
 			.expect.element('.mdl-button--raised:nth-child(7)').not.attribute('disabled');
 
-		client.elements('css selector', '#mdl-tab-RaisedButtons .mdl-button--raised', function(elems) {
-			client.assert.ok( elems.value.length  === 6, 'All of buttons are Raised Button.');
-		});
-
+		client.assert.elementCount('#mdl-tab-RaisedButtons .mdl-button--raised', 6);
 	},
 
 	'Flat Button': function(client) {
@@ -89,12 +83,7 @@ module.exports = {
 			.click('#mdl-tab-FlatButtons button:nth-child(3)')
 			.expect.element('#mdl-tab-FlatButtons button:nth-child(7)').not.attribute('disabled');
 
-
-		client.elements('css selector', '#mdl-tab-FlatButtons > div > *:not(br)', function(elems) {
-			client.assert.ok( elems.value.length  === 6, 'All of buttons are Raised Button.');
-		});
-
-
+		client.assert.elementCount('#mdl-tab-FlatButtons > div > *:not(br)', 6);
 	},
 
 	'Icon Button': function(client) {
@@ -108,10 +97,7 @@ module.exports = {
 			.click('.mdl-button--icon:nth-child(3)')
 			.expect.element('.mdl-button--icon:nth-child(7)').not.attribute('disabled');
 
-		client.elements('css selector', '#mdl-tab-IconButtons .mdl-button--icon', function(elems) {
-			client.assert.ok( elems.value.length  === 6, 'All of buttons are Raised Button.');
-		});
-
+		client.assert.elementCount('#mdl-tab-IconButtons .mdl-button--icon', 6);
 
 	},
 
