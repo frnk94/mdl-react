@@ -1,7 +1,7 @@
+
 module.exports = {
 
 	before : function(client) {
-
 		client
 			.url(client.launch_url)
 			.waitForElementVisible('body', 200)
@@ -30,7 +30,7 @@ module.exports = {
 
 		client.expect.element('.mdl-card + div + div > h5').text.equal('Methods');
 		var METHODS = ['setDisabled', 'toggleButton', 'getDisabled'];
-		client.assert.elementCount('.mdl-card + div + div > div > div', METHODS.length);
+
 		client.elements('css selector', '.mdl-card + div + div > div > div > h6', function(elems) {
 			client.assert.equal(elems.value.length, METHODS.length, "The total amount of methods equals to " + METHODS.length);
 
@@ -45,7 +45,8 @@ module.exports = {
 	'Code': function(client) {
 		//There are code existed in this part, and must have multiple line.
 		var TABS = ['Floating Action Buttons', 'Raised Buttons', 'Flat Buttons', 'Icon Buttons'];
-
+		client.waitForElementVisible('code[class=" language-jsx"]', 1000, true)
+					.assert.elementSizeNotWithin('code[class=" language-jsx"]', 50, 50);
 	},
 
 	'FAB': function(client) {
