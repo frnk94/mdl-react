@@ -84,11 +84,18 @@ module.exports = React.createClass({
 				content : "Disables the button if set to true.",
 			},
 			{
+				key : 'id',
+				type : 'string',
+				state : 'optional',
+				content : "HTML `id` attribute for binding with another component. ",
+			},
+			{
 				key : 'style',
 				type : 'object',
 				state : 'optional',
 				content : "If style prop exists, it will override the style of the child.",
 			},
+
 	],
 	methodsDetail: [
 		{

@@ -35,7 +35,7 @@ module.exports = React.createClass({
 	},
 
 	propTypes: {
-		children: React.PropTypes.oneOfType([React.PropTypes.element,React.PropTypes.string]),
+		children: React.PropTypes.oneOfType([React.PropTypes.element, React.PropTypes.string]),
 		style: React.PropTypes.object,
 		type: React.PropTypes.oneOf(
 			['FloatingActionButton', 'RaisedButton', 'FlatButton', 'IconButton']
@@ -44,6 +44,7 @@ module.exports = React.createClass({
 		isRipple: React.PropTypes.bool,
 		isPrimary: React.PropTypes.bool,
 		isAccent: React.PropTypes.bool,
+		id: React.PropTypes.string,
 		defaultDisabled: React.PropTypes.bool,
 	},
 
@@ -93,7 +94,6 @@ module.exports = React.createClass({
 	},
 
 	_getChild: function() {
-
 		var child = this.props.children instanceof Array? this.props.children[0] : this.props.children;
 		if (_.isString(child)) {
 			return <button style={this.props.style}>{child.trim()}</button>;
@@ -102,11 +102,9 @@ module.exports = React.createClass({
 		} else {
 			return <button />;
 		}
-
 	},
 
 	render: function() {
-
 		var element = this._getChild();
 		var classname = '';
 		if(element.props.hasOwnProperty('className')) classname = element.props.className;
