@@ -1,19 +1,13 @@
 
 "use strict";
 
-var React 			= require('react');
-var MDL 				= require('../../components');
-var Props 			= require('../document/Props.jsx');
-var DocTitle 		= require('../document/DocTitle.jsx');
-var DocSubtitle = require('../document/DocSubtitle.jsx');
+var React = require('react');
+var MDL = require('../../components');
+var Components = require('../components');
 
 module.exports = React.createClass({
 
 	styles: {
-		main: {
-			width : '100%',
-			maxWidth : '1200px',
-		},
 		demo: {
 			padding: '24px',
 		},
@@ -41,12 +35,14 @@ module.exports = React.createClass({
 	},
 	propsDetail: [
 		{
-			key : 'text',
-			type : 'node',
+			key : 'children',
+			type : 'String or Element',
 			state : 'required',
 			content : (<div>
-				<p>This is what will be displayed inside the button.</p>
-				<p>If the type of button is IconButton, you should manually wrap the icon element inside.
+				<p>Material Design Lite Button Element</p>
+				<p>Only one child is allowed. If the child is `string`, it will be wrapped in `button` element automatically
+					and its style can be modified by the style props of `MDL.Button`.</p>
+				<p>If the type of button is IconButton, you should manually wrap the icon element.
 					(You can search the label of material icons in <a href="https://www.google.com/design/icons/" target="_blank">https://www.google.com/design/icons/</a>.
 						If the label consists of at least 2 words, remember using the underline symbol _ to joint words, i.e. open_in_browser.)</p>
 				</div>),
@@ -88,16 +84,10 @@ module.exports = React.createClass({
 				content : "Disables the button if set to true.",
 			},
 			{
-				key : 'id',
-				type : 'string',
-				state : 'optional',
-				content : 'HTML `id` attribute. It should be set when you need to manually bind the button with another component.',
-			},
-			{
 				key : 'style',
 				type : 'object',
 				state : 'optional',
-				content : "Override the inline-styles of the button's root element.",
+				content : "If style prop exists, it will override the style of the child.",
 			},
 	],
 	methodsDetail: [
@@ -136,132 +126,172 @@ module.exports = React.createClass({
 		}
 	},
 
+	_renderFAB: function() {
+		return (
+			<div style={this.styles.tab}>
+
+				<MDL.Button type="FloatingActionButton" isPrimary={true} style={this.styles.button}>
+					<button><i className="material-icons">notifications_none</i></button>
+				</MDL.Button>
+
+				<MDL.Button type="FloatingActionButton" isAccent={true} >
+					<button style={this.styles.button}><i className="material-icons">public</i></button>
+				</MDL.Button>
+
+				<MDL.Button type="FloatingActionButton" isPrimary={true} isRipple={false}>
+					<button onClick={function() {this.refs.FAB.toggleButton();}.bind(this)} style={this.styles.button}>
+						<i className="material-icons">star</i>
+					</button>
+				</MDL.Button>
+
+				<br />
+
+				<MDL.Button type="FloatingActionButton">
+					<button style={this.styles.button}>
+						<i className="material-icons">notifications_none</i>
+					</button>
+				</MDL.Button>
+
+				<MDL.Button type="FloatingActionButton" isRipple={false}>
+					<button style={this.styles.button}>
+						<i className="material-icons">public</i>
+					</button>
+				</MDL.Button>
+
+				<MDL.Button type="FloatingActionButton" defaultDisabled={true} ref="FAB">
+					<button style={this.styles.button}>
+						<i className="material-icons">star</i>
+					</button>
+				</MDL.Button>
+
+				<br />
+
+				<MDL.Button type="FloatingActionButton" isPrimary={true} isMini={true}>
+					<button style={this.styles.miniFAB}>
+						<i className="material-icons">notifications_none</i>
+					</button>
+				</MDL.Button>
+
+				<MDL.Button type="FloatingActionButton" isAccent={true} isMini={true}>
+					<button style={this.styles.miniFAB}>
+						<i className="material-icons">public</i>
+					</button>
+				</MDL.Button>
+
+				<MDL.Button type="FloatingActionButton" isPrimary isMini isRipple={false}>
+					<button style={this.styles.miniFAB} onClick={function() {this.refs.FAB.toggleButton();}.bind(this)}>
+						<i className="material-icons">star</i>
+					</button>
+				</MDL.Button>
+
+			</div>
+		);
+	},
+
+	_renderRaised: function() {
+		return (
+			<div style={this.styles.tab}>
+				<MDL.Button type="RaisedButton" style={this.styles.button} isPrimary={true}>
+					Primary
+				</MDL.Button>
+				<MDL.Button type="RaisedButton" isAccent={true}>
+					<a href="/" target="_blank" style={this.styles.button}>Link</a>
+				</MDL.Button>
+				<MDL.Button type="RaisedButton" isPrimary={true} isRipple={false}>
+					<button style={this.styles.button} onClick={ function() {this.refs.raised.toggleButton();}.bind(this)}>No Ripple</button>
+				</MDL.Button>
+
+				<br />
+
+				<MDL.Button type="RaisedButton" style={this.styles.button}>
+					Default
+				</MDL.Button>
+				<MDL.Button type="RaisedButton" isRipple={false}>
+					<a href="/" target="_blank" style={this.styles.button}>Link</a>
+				</MDL.Button>
+				<MDL.Button type="RaisedButton" ref="raised" defaultDisabled={true}>
+						<button style={this.styles.button}>Disabled</button>
+				</MDL.Button>
+
+			</div>
+		);
+	},
+
+	_renderFlat: function() {
+		return (
+			<div style={this.styles.tab}>
+				<MDL.Button type="FlatButton" style={this.styles.button} isPrimary={true}>
+					Primary
+				</MDL.Button>
+				<MDL.Button type="FlatButton" isAccent={true}>
+					<a href="/" target="_blank" style={this.styles.button}>Link</a>
+				</MDL.Button>
+				<MDL.Button type="FlatButton" isPrimary={true} isRipple={false}>
+					<button style={this.styles.button} onClick={ function() {this.refs.flat.toggleButton();}.bind(this) }>No Ripple</button>
+				</MDL.Button>
+
+				<br />
+
+				<MDL.Button type="FlatButton" style={this.styles.button}>
+					Default
+				</MDL.Button>
+				<MDL.Button type="FlatButton" isRipple={false}>
+					<a href="/" target="_blank" style={this.styles.button}>Link</a>
+				</MDL.Button>
+				<MDL.Button type="FlatButton" ref="flat" defaultDisabled={true}>
+						<button style={this.styles.button}>Disabled</button>
+				</MDL.Button>
+
+			</div>
+		);
+	},
+
+	_renderIcon: function() {
+		return (
+			<div style={this.styles.tab}>
+				<MDL.Button type="IconButton" isPrimary={true}>
+					<button style={this.styles.button}><i className="material-icons">mood</i></button>
+				</MDL.Button>
+
+				<MDL.Button type="IconButton" isAccent={true}>
+					<button style={this.styles.button}><i className="material-icons">mood</i></button>
+				</MDL.Button>
+
+				<MDL.Button type="IconButton" isPrimary={true} isRipple={false}>
+					<button style={this.styles.button} onClick={ function() {this.refs.icon.toggleButton();}.bind(this) }>
+						<i className="material-icons">mood</i>
+					</button>
+				</MDL.Button>
+
+				<br />
+				<MDL.Button type="IconButton">
+					<button style={this.styles.button}><i className="material-icons">plus_one</i></button>
+				</MDL.Button>
+				<MDL.Button type="IconButton" isRipple={false}>
+					<button style={this.styles.button}><i className="material-icons">plus_one</i></button>
+				</MDL.Button>
+				<MDL.Button type="IconButton" ref="icon" defaultDisabled={true}>
+					<button style={this.styles.button}><i className="material-icons">plus_one</i></button>
+				</MDL.Button>
+			</div>
+		);
+	},
+
 	render: function() {
 		return (
-			<div style={this.styles.main}>
-				<DocTitle title="Button" />
+			<Components.Page>
+				<Components.DocTitle title="Button" />
 				<MDL.Card style={this.styles.card} shadow={6}>
 					<div style={this.styles.demo}>
-						<DocSubtitle title="example" />
+						<Components.DocSubtitle title="example" />
 						<MDL.Tabs onChange={this._onTabChange}
 							tabLabels={['Floating Action Buttons','Raised Buttons','Flat Buttons','Icon Buttons',]} isRipple={true}>
 
-							<div style={this.styles.tab}>
-								<MDL.Button type="FloatingActionButton" style={this.styles.button}
-									text={<i className="material-icons">notifications_none</i>}
-									isPrimary={true}/>
-								<MDL.Button type="FloatingActionButton" style={this.styles.button}
-									text={<i className="material-icons">public</i>}
-									isAccent={true}/>
-								<MDL.Button type="FloatingActionButton" style={this.styles.button}
-									text={<i className="material-icons">star</i>}
-									onClick={ function() {this.refs.FAB.toggleButton();}.bind(this) }
-									isPrimary={true}
-									isRipple={false}/>
+							{this._renderFAB()}
+							{this._renderRaised()}
+							{this._renderFlat()}
+							{this._renderIcon()}
 
-								<br />
-								<MDL.Button type="FloatingActionButton" style={this.styles.button}
-									text={<i className="material-icons">notifications_none</i>}/>
-								<MDL.Button type="FloatingActionButton" style={this.styles.button}
-									text={<i className="material-icons">public</i>}
-									isRipple={false}/>
-								<MDL.Button type="FloatingActionButton" style={this.styles.button}
-									ref="FAB"
-									text={<i className="material-icons">star</i>}
-									defaultDisabled={true}/>
-								<br />
-								<MDL.Button type="FloatingActionButton" style={this.styles.miniFAB}
-									text={<i className="material-icons">notifications_none</i>}
-									isPrimary={true}
-									isMini={true} />
-								<MDL.Button type="FloatingActionButton" style={this.styles.miniFAB}
-									text={<i className="material-icons">public</i>}
-									isAccent={true}
-									isMini={true} />
-								<MDL.Button type="FloatingActionButton" style={this.styles.miniFAB}
-									text={<i className="material-icons">star</i>}
-									onClick={ function() {this.refs.FAB.toggleButton();}.bind(this) }
-									isPrimary={true}
-									isMini={true}
-									isRipple={false}/>
-
-							</div>
-
-							<div style={this.styles.tab}>
-								<MDL.Button type="RaisedButton" style={this.styles.button}
-									text="Primary"
-									isPrimary={true}/>
-								<MDL.Button type="RaisedButton" style={this.styles.button}
-									text="Accent"
-									isAccent={true}/>
-								<MDL.Button type="RaisedButton" style={this.styles.button}
-									text="No Ripple"
-									onClick={ function() {this.refs.raised.toggleButton();}.bind(this) }
-									isPrimary={true}
-									isRipple={false}/>
-
-								<br />
-								<MDL.Button type="RaisedButton" style={this.styles.button}
-									text="Default"/>
-								<MDL.Button type="RaisedButton" style={this.styles.button}
-									text="Default"
-									isRipple={false}/>
-								<MDL.Button type="RaisedButton" style={this.styles.button}
-									ref="raised"
-									text="Disabled"
-									defaultDisabled={true}/>
-
-							</div>
-
-							<div style={this.styles.tab}>
-								<MDL.Button type="FlatButton" style={this.styles.button}
-									text="Primary"
-									isPrimary={true}/>
-								<MDL.Button type="FlatButton" style={this.styles.button}
-									text="Accent"
-									isAccent={true}/>
-								<MDL.Button type="FlatButton" style={this.styles.button}
-									text="No Ripple"
-									onClick={ function() {this.refs.flat.toggleButton();}.bind(this) }
-									isPrimary={true}
-									isRipple={false}/>
-								<br />
-								<MDL.Button type="FlatButton" style={this.styles.button}
-									text="Default"/>
-								<MDL.Button type="FlatButton" style={this.styles.button}
-									text="Default"
-									isRipple={false}/>
-								<MDL.Button type="FlatButton" style={this.styles.button}
-									ref="flat"
-									text="Disabled"
-									defaultDisabled={true}/>
-
-							</div>
-
-							<div style={this.styles.tab}>
-								<MDL.Button type="IconButton" style={this.styles.button}
-									text={<i className="material-icons">mood</i>}
-									isPrimary={true}/>
-								<MDL.Button type="IconButton" style={this.styles.button}
-									text={<i className="material-icons">mood</i>}
-									isAccent={true}/>
-								<MDL.Button type="IconButton" style={this.styles.button}
-									text={<i className="material-icons">mood</i>}
-									onClick={ function() {this.refs.icon.toggleButton();}.bind(this) }
-									isPrimary={true}
-									isRipple={false}/>
-								<br />
-								<MDL.Button type="IconButton" style={this.styles.button}
-									text={<i className="material-icons">plus_one</i>}/>
-								<MDL.Button type="IconButton" style={this.styles.button}
-									text={<i className="material-icons">plus_one</i>}
-									isRipple={false}/>
-								<MDL.Button type="IconButton" style={this.styles.button}
-									ref="icon"
-									text={<i className="material-icons">plus_one</i>}
-									defaultDisabled={true}/>
-
-							</div>
 						</MDL.Tabs>
 					</div>
 
@@ -272,9 +302,9 @@ module.exports = React.createClass({
 						/>
 				</MDL.Card>
 
-				<Props detail={this.propsDetail} title="Props" />
-				<Props detail={this.methodsDetail} title="Methods" />
-			</div>
+				<Components.Props detail={this.propsDetail} title="Props" />
+				<Components.Props detail={this.methodsDetail} title="Methods" />
+			</Components.Page>
 		);
 	},
 	});

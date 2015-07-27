@@ -3,18 +3,17 @@
 
 var React = require('react');
 var MDL = require('../../components/');
-var Props = require('../document/Props.jsx');
-var DocTitle = require('../document/DocTitle.jsx');
-var DocSubtitle = require('../document/DocSubtitle.jsx');
+var Components = require('../components');
 
 module.exports = React.createClass({
 
-	render : function() {
+	displayName : 'MDL.Badge',
 
-		var style = {
-			width : '100%',
-			maxWidth : '1200px',
-		};
+	componentWillUnmount: function() {
+		console.log('Badge.componentWillUnmount');
+	},
+
+	render : function() {
 
 		var demoStyle = {
 			borderRadius: '0 0 2px 0',
@@ -76,11 +75,11 @@ module.exports = React.createClass({
 		];
 
 		return (
-			<div style={style}>
-				<DocTitle title="Badge" />
+			<Components.Page>
+				<Components.DocTitle title="Badge" />
 				<MDL.Card style={cardStyle} shadow={3}>
 					<div style={demoStyle}>
-						<DocSubtitle title="example" />
+						<Components.DocSubtitle title="example" />
 						<MDL.Badge
 							style={badgeStyle}
 						>
@@ -120,8 +119,8 @@ module.exports = React.createClass({
 						style={prismCode}
 					/>
 				</MDL.Card>
-				<Props detail={propsDetail} title="Props" />
-			</div>
+				<Components.Props detail={propsDetail} title="Props" />
+			</Components.Page>
 		);
 	},
 

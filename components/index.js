@@ -1,13 +1,4 @@
 
-/**
-
-How to use it
-1. add MDL's css to your html
-2. add MDL's js to your html
-3. add `var MDL = require('mdl-react');` to your jsx file
-
-*/
-
 module.exports = {
 
 	TextField : require('./TextField.jsx'),
@@ -30,6 +21,7 @@ module.exports = {
 	Tabs : require('./Tabs.jsx'),
 	Grid : require('./Grid.jsx'),
 	GridCell : require('./GridCell.jsx'),
-	Footer : require('./Footer.jsx'),
+	MiniFooter : require('./MiniFooter.jsx'),
+	Icon : require('./Icon.jsx'),
 
 };

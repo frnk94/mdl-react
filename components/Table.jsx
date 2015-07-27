@@ -13,20 +13,20 @@ var _ = require('lodash');
 		headers[].style, object, 樣式
 		items, array isRequired, 表格內容
 		items[]		存在多個 key 和 value, headers 也有的 key 才會顯示
+		items[]._selected		設成 true 的話則此選項則會勾選
 		itemStyles, array, 列樣式
 		shadow 		陰影的大小(只能填 2, 3, 4, 6, 8, 16)
 		style 		css 設定
+		onRowSelected 		監聽點選動作，回傳所有選取值
 	Methods
 		getSelected 	取得勾選的資料值
 */
 
+var counter = 0;
+
 module.exports = React.createClass({
 
-	getDefaultProps: function() {
-		return {
-			shadow : 2,
-		};
-	},
+	displayName : 'Table',
 
 	propTypes: {
 		headers : React.PropTypes.arrayOf(React.PropTypes.shape({
@@ -45,35 +45,132 @@ module.exports = React.createClass({
 		},
 		selectable : React.PropTypes.bool,
 		shadow : React.PropTypes.oneOf([ 2, 3, 4, 6, 8, 16 ]),
+		onRowSelected : React.PropTypes.func,
+	},
+
+	getInitialState: function() {
+		var tmp = _.map(this.props.items, function(item, index) {
+			if(item._selected) return index;
+		});
+		this._selectedIndexes = this._getSelectedByProp(this.props);
+		this._defaultSelectedIndexes = this._getSelectedByProp(this.props);
+		return {
+			structureChangeCounter : 0,
+		};
 	},
 
 	componentDidMount: function() {
 		componentHandler.upgradeDom();
+		this._refreshSelected();
+		this._bindOnSelected();
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
+		console.debug('Table.componentDidUpdate');
 		componentHandler.upgradeDom();
+		this._unbindOnSelected();
+		this._refreshSelected();
+		this._bindOnSelected();
 	},
 
-	componentWillUpdate: function(nextProps, nextState) {
-		this.refs.table.getDOMNode().removeAttribute('data-upgraded');
-	},
-
-	getSelected: function() {
-		var result = [];
-		var self = this;
-		if(this.props.selectable) {
-			_.forEach(this.refs.tbody.getDOMNode().childNodes, function(element, index) {
-				if(element.className == 'is-selected') {
-					result.push(self.props.items[index]);
-				}
+	componentWillReceiveProps: function(nextProps) {
+		if(
+			this.props.items.length != nextProps.items.length ||
+			this.props.headers.length != nextProps.headers.length ||
+			this.props.selectable != nextProps.selectable
+		) {
+			console.debug('mdl table structure changed');
+			this.setState({
+				structureChangeCounter : ++this.state.structureChangeCounter,
 			});
 		}
-		return result;
+		if(
+			!(_.isEqual(
+				this._getSelectedByProp(nextProps),
+				this._defaultSelectedIndexes
+			))
+		) {
+			console.debug('items[]._selected changed, so we use new one');
+			this._selectedIndexes = this._getSelectedByProp(nextProps);
+			this._defaultSelectedIndexes = this._getSelectedByProp(nextProps);
+		}
+	},
+
+	getSelected : function() {
+		return _.map(this._selectedIndexes, function(i) {
+			return this.props.items[i];
+		}, this);
+	},
+
+	getSelectedIndexes : function() {
+		return this._selectedIndexes;
+	},
+
+	_bindOnSelected: function() {
+		var checkobxs = this._getNodeByClassName("mdl-checkbox__input");
+		_.forEach(checkobxs, function(element, index) {
+			element.onchange = this._onCheckboxChange;
+		}, this);
+	},
+
+	_onCheckboxChange : function(event) {
+		this._selectedIndexes = this._getSelectedByDom();
+		if(this.props.onRowSelected instanceof Function) {
+			this.props.onRowSelected(
+				this.getSelected(),
+				this._selectedIndexes
+			);
+		}
+	},
+
+	_unbindOnSelected: function() {
+		_.forEach(this._getNodeByClassName("mdl-checkbox__input"), function(element, index) {
+			element.onchange = null;
+		});
+	},
+
+	_getNodeByClassName : function(cname) {
+		return React.findDOMNode(this).getElementsByClassName(cname);
+	},
+
+	_refreshSelected : function() {
+		var checkboxs = this._getNodeByClassName("mdl-checkbox__input");
+		var trs = this.refs.tbody.getDOMNode().childNodes;
+		_.forEach(trs, function(tr, index) {
+			var isTrChecked = tr.classList.contains('is-selected');
+			var isInSelectdIndexes = _.include(this._selectedIndexes, index);
+			if(isTrChecked != isInSelectdIndexes) {
+				checkboxs[index + 1].click();
+			}
+		}, this);
+	},
+
+	_getSelectedByProp : function(prop) {
+		var tmp = _.map(prop.items, function(item, index) {
+			if(item._selected) return index;
+		});
+		return _.filter(tmp, function(i) {
+			return i >= 0;
+		});
+	},
+
+	_getSelectedByDom : function() {
+		if(this.props.selectable) {
+			var trNodes = this.refs.tbody.getDOMNode().childNodes;
+			var selectedItems = _.map(trNodes, function(element, index) {
+				if(element.classList.contains('is-selected')) {
+					return index;
+				}
+			}, this);
+			return _.filter(selectedItems, function(i) {
+				return i >= 0;
+			});
+		} else {
+			return [];
+		}
 	},
 
 	render: function() {
-
 		var classes = {
 			'mdl-data-table' : true,
 			'mdl-js-data-table' : true,
@@ -85,21 +182,7 @@ module.exports = React.createClass({
 			classes['mdl-data-table--selectable'] = true;
 		}
 
-		var headers = this.props.headers.map(function(element, index) {
-			if(typeof element.title == 'string') {
-				return (
-					<th key={index} style={element.style} data-key={element.key}>{element.title}</th>
-				);
-			} else {
-				return (
-					<th key={index} style={element.style} data-key={element.key}>{element.key}</th>
-				);
-			}
-		});
-
-		var date = Date.now();
 		var items = this.props.items.map(function(element, index) {
-
 			var row = self.props.headers.map(function(headerElement, index) {
 				if(self.props.itemStyles instanceof Array) {
 					return (
@@ -114,20 +197,18 @@ module.exports = React.createClass({
 					);
 				}
 			});
-			var theKey = date + '-' + index;
 			return (
-				<tr key={theKey}>{row}</tr>
+				<tr key={index} data-key={index}>{row}</tr>
 			);
-
 		});
 
 		return (
-			<table ref="table" className={cx(classes)} style={this.props.style}>
-				<thead>
-					<tr key={date}>
-						{headers}
-					</tr>
-				</thead>
+			<table ref="table"
+				key={this.state.structureChangeCounter}
+				className={cx(classes)}
+				style={this.props.style}
+			>
+				<TableHead headers={this.props.headers} />
 				<tbody ref="tbody">
 					{items}
 				</tbody>
@@ -136,4 +217,34 @@ module.exports = React.createClass({
 
 	}
 
+});
+
+
+var TableHead = React.createClass({
+	render: function() {
+		var headers = this.props.headers.map(function(element, index) {
+			if(typeof element.title == 'string') {
+				return (
+					<th key={index}
+						style={element.style}
+					>
+						{element.title}
+					</th>
+				);
+			} else {
+				return (
+					<th key={index}
+						style={element.style}
+					>
+						{element.key}
+					</th>
+				);
+			}
+		});
+		return (
+			<thead>
+				<tr>{headers}</tr>
+			</thead>
+		);
+	}
 });

@@ -3,27 +3,26 @@
 
 var React = require('react');
 var MDL = require('../../components');
-var Props = require('../document/Props.jsx');
-var DocTitle = require('../document/DocTitle.jsx');
-var DocSubtitle = require('../document/DocSubtitle.jsx');
+
+var Components = require('../components');
+
 
 module.exports = React.createClass({
 
+	display : 'SliderInfo',
+
 	getInitialState: function() {
 		return {
-			checkedValue: 'none', 
+			checkedValue: 'none',
 			valueArea: 'none',
+			timer: 0,
 		};
 	},
 
-	onChange: function(event) {
-		console.log('outside get value : ', event.target.value);
-	},
-
 	getValue: function() {
+		console.log('outside getValue');
 		var result = this.refs.test.getValue();
-		console.log('outside get : ', result);
-		result = (<div key={'result'}><span>Get value : </span>{result}</div>);
+		result = (<div><span>Get value : </span>{result}</div>);
 		this.setState({
 			checkedValue : result,
 			valueArea : 'block',
@@ -35,12 +34,17 @@ module.exports = React.createClass({
 		this.refs.test.setValue('80');
 	},
 
-	render: function() {
+	componentDidMount : function() {
+		setInterval(this.setTimer, 5000);
+	},
 
-		var style = {
-			width : '100%',
-			maxWidth : '1200px',
-		};
+	setTimer: function() {
+		this.setState({
+			timer: ++this.state.timer,
+		});
+	},
+
+	render: function() {
 
 		var demoStyle = {
 			borderRadius: '0 0 2px 0',
@@ -132,14 +136,20 @@ module.exports = React.createClass({
 		];
 
 		return (
-			<div style={style}>
-				<DocTitle title="Slider" />
+			<Components.Page>
+				<Components.DocTitle title="Slider" />
 				<MDL.Card style={cardStyle} shadow={3}>
 					<div style={demoStyle}>
-						<DocSubtitle title="example" />
+						<Components.DocSubtitle title="example" />
 						<MDL.Slider
 							min = {0}
 							max = {100}
+						/><br />
+						<MDL.Slider
+							min = {0}
+							max = {100}
+							defaultValue = {this.state.timer}
+							step = {1}
 						/><br />
 						<MDL.Slider
 							min = {0}
@@ -153,31 +163,21 @@ module.exports = React.createClass({
 							defaultValue = {80}
 							disabled = {true}
 						/><br />
-						<DocSubtitle title="Methods (E.g setValue = 80)" />
+						<Components.DocSubtitle title="Methods (E.g setValue = 80)" />
 						<MDL.Slider
 							ref='test'
 							min = {0}
 							max = {100}
 							defaultValue = {40}
 							step = {10}
-							onChange={this.onChange}
 						/><br />
 						<div style={buttonAreaStyle}>
-							<MDL.Button
-							type="RaisedButton"
-							text="Get Value"
-							style={buttonStyle}
-							isAccent={true}
-							onClick={this.getValue}
-							/>
-							<MDL.Button
-								type="RaisedButton"
-								text="set Value"
-								style={buttonStyle}
-								isRipple={true}
-								isPrimary={true}
-								onClick={this.setValue}
-							/>
+							<MDL.Button type="RaisedButton" isAccent={true}>
+								<button onClick={this.getValue} style={buttonStyle}>Get Value</button>
+							</MDL.Button>
+							<MDL.Button type="RaisedButton" isPrimary={true}>
+								<button onClick={this.setValue} style={buttonStyle}>set Value</button>
+							</MDL.Button>
 						</div>
 					</div>
 					<div style={valueStyle}>
@@ -188,9 +188,9 @@ module.exports = React.createClass({
 						style={prismCode}
 					/>
 				</MDL.Card>
-				<Props detail={propsDetail} title="Props" />
-				<Props detail={eventsDetail} title="Methods" />
-			</div>
+				<Components.Props detail={propsDetail} title="Props" />
+				<Components.Props detail={eventsDetail} title="Methods" />
+			</Components.Page>
 		);
 	},
 

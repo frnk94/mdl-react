@@ -16,8 +16,6 @@ var React = require('react');
 		setValue								Set the value in the current sliders
 */
 
-var counter = 0;
-
 var Slider = React.createClass({
 
 	propTypes: {
@@ -43,6 +41,7 @@ var Slider = React.createClass({
 	getInitialState: function() {
 		return {
 			value : this.props.defaultValue,
+			_counter : 0,
 		};
 	},
 
@@ -50,6 +49,18 @@ var Slider = React.createClass({
 		var node = this.refs.input.getDOMNode();
 		node.value = this.props.defaultValue;
 		node.setAttribute('class', 'mdl-slider mdl-js-slider');
+		componentHandler.upgradeDom();
+	},
+
+	componentWillReceiveProps: function(nextProps, nextState) {
+		if(
+			nextProps.defaultValue &&
+			this.props.defaultValue != nextProps.defaultValue
+		) {
+			this.setValue(nextProps.defaultValue);
+		} else {
+			this.setValue(this.refs.input.getDOMNode().value);
+		}
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
@@ -66,15 +77,15 @@ var Slider = React.createClass({
 	setValue : function(value) {
 		this.setState({
 			value : value,
+			_counter : ++this.state._counter,
 		});
 	},
 
 	render: function() {
-		var key = 'mdl-slider-' + (counter++);
 		return (
 			<div style={this.props.style}>
 				<input
-					key={key}
+					key={this.state._counter}
 					ref='input'
 					type="range"
 					min={this.props.min}

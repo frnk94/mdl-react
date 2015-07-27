@@ -3,8 +3,8 @@
 
 var React = require('react');
 var MDL = require('../../components');
-var Props = require('../document/Props.jsx');
-var DocTitle = require('../document/DocTitle.jsx');
+
+var Components = require('../components');
 
 var ExampleTextField = React.createClass({
 
@@ -28,7 +28,7 @@ var ExampleTextField = React.createClass({
 	},
 
 	_cron : function() {
-		console.log('_cron');
+		console.log('_cron', this.isMounted());
 		this.setState({
 			counter : ++this.state.counter,
 		});
@@ -37,10 +37,6 @@ var ExampleTextField = React.createClass({
 	render: function() {
 
 		var styles = {
-			root : {
-				width : '100%',
-				maxWidth : '1200px',
-			},
 			card : {
 				padding : '20px',
 				width : '100%',
@@ -48,8 +44,8 @@ var ExampleTextField = React.createClass({
 		};
 
 		return (
-			<div style={styles.root}>
-				<DocTitle title="Text Field" />
+			<Components.Page>
+				<Components.DocTitle title="Text Field" />
 				<MDL.Card style={styles.card} shadow={6}>
 					<MDL.TextField
 						defaultValue='no label text'
@@ -89,7 +85,7 @@ var ExampleTextField = React.createClass({
 					/>
 				</MDL.Card>
 				{this._renderProps()}
-			</div>
+			</Components.Page>
 		);
 	},
 
@@ -150,7 +146,7 @@ var ExampleTextField = React.createClass({
 				content : "Override the inline-styles of the root element",
 			},
 		];
-		return <Props detail={propsDetail} title="Props" />;
+		return <Components.Props detail={propsDetail} title="Props" />;
 	},
 
 });

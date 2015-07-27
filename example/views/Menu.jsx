@@ -1,41 +1,12 @@
 "use strict";
 
-var React 			= require('react');
-var MDL 				= require('../../components');
-var Props 			= require('../document/Props.jsx');
-var DocTitle 		= require('../document/DocTitle.jsx');
-var DocSubtitle = require('../document/DocSubtitle.jsx');
+var React = require('react');
+var MDL = require('../../components');
+var Components = require('../components');
 
 module.exports = React.createClass({
 
-	getInitialState: function() {
-		return {
-			menuList: [
-				{
-					text: 'Some Action',
-					events: {
-						onClick: function(e) {
-							alert("Click");
-						},
-					},
-				},
-				{
-					text: 'Another Action',
-					style: {color: 'red'},
-				},
-				{
-					text: 'Disabled Action',
-					isDisabled: true,
-				},
-			],
-		};
-	},
-
 	styles: {
-		main: {
-			width : '100%',
-			maxWidth : '1200px',
-		},
 		demo: {
 			padding: '24px',
 		},
@@ -64,21 +35,13 @@ module.exports = React.createClass({
 		var propsDetail = [
 			{
 				key : 'children',
-				type : 'element',
-				state : 'required',
-				content : 'A clickable element that will open the menu list. If there are multiple children, only the first child will be rendered.',
-			},
-			{
-				key : 'menuList',
-				type : 'Array of Object',
+				type : 'Array of element',
 				state : 'required',
 				content : (
 					<div>
-						<p>There are four properties can contains in object</p>
-						<p><b>text</b>: string or element. required. The text will be rendered on the list by the order in array.</p>
-						<p><b>events</b>: object. optional. properties should be React events. When you interact with the the item, some of events will be triggered.</p>
-						<p><b>style</b>: object. optional. Override the inline-styles of the item's element.</p>
-						<p><b>isDisabled</b>: boolean. optional. Disables item if set to true.</p>
+						<p>The amount of children must have at least 2 element. One is the clickable element to open menu list, and the others are the items in menu list.</p>
+						<p><b>Clickable Element</b>: This element must be the first child.</p>
+						<p><b>Item in menu list</b>: If you want to disable this item, put `disabled` in props.</p>
 					</div>
 				),
 			},
@@ -102,50 +65,57 @@ module.exports = React.createClass({
 			},
 		];
 
-		return (<Props detail={propsDetail} title="Props" />);
+		return (<Components.Props detail={propsDetail} title="Props" />);
 	},
 	render: function() {
 		return (
-			<div style={this.styles.main}>
-				<DocTitle title="Menu" />
+			<Components.Page>
+				<Components.DocTitle title="Menu" />
 				<MDL.Card style={this.styles.card} shadow={6}>
 					<div style={this.styles.demo}>
-						<DocSubtitle title="example" />
+						<Components.DocSubtitle title="example" />
 						<div style={this.styles.block}>
-							<MDL.Menu
-								openDirection='bottom-left'
-								menuList={this.state.menuList}>
-								<MDL.Button type="IconButton"
-									text={<i className="material-icons">mood</i>}
-									isRipple={true}/>
+
+							<MDL.Menu openDirection='bottom-left'>
+								<MDL.Button type="IconButton">
+									<button><i className="material-icons">mood</i></button>
+								</MDL.Button>
+								<div onClick={function(e) {alert("Click");}.bind(this)}> Some Action </div>
+								<div style={{color: 'red'}}> Another Action </div>
+								<div disabled>Disabled Action</div>
 							</MDL.Menu>
 
 							<MDL.Menu
+								isRipple={false}
 								style={this.styles.menu}
-								openDirection='bottom-right'
-								menuList={this.state.menuList}>
-								<MDL.Button type="IconButton"
-									text={<i className="material-icons">airplay</i>}
-									isRipple={true}/>
+								openDirection='bottom-right'>
+
+								<MDL.Button type="IconButton">
+									<button><i className="material-icons">airplay</i></button>
+								</MDL.Button>
+								<div onClick={function(e) {alert("Click");}.bind(this)}> Some Action </div>
+								<div style={{color: 'red'}}> Another Action </div>
+								<div disabled>Disabled Action</div>
 							</MDL.Menu>
 						</div>
 
 						<div style={this.styles.block}>
-							<MDL.Menu
-								openDirection='top-left'
-								menuList={this.state.menuList}>
-								<MDL.Button type="IconButton"
-									text={<i className="material-icons">message</i>}
-									isRipple={true}/>
+							<MDL.Menu openDirection='top-left'>
+								<MDL.Button type="IconButton">
+									<button><i className="material-icons">message</i></button>
+								</MDL.Button>
+								<div onClick={function(e) {alert("Click");}.bind(this)}> Some Action </div>
+								<div style={{color: 'red'}}> Another Action </div>
+								<div disabled>Disabled Action</div>
 							</MDL.Menu>
 
-							<MDL.Menu
-								style={this.styles.menu}
-								openDirection='top-right'
-								menuList={this.state.menuList}>
-								<MDL.Button type="IconButton"
-									text={<i className="material-icons">format_list_bulleted</i>}
-									isRipple={true}/>
+							<MDL.Menu style={this.styles.menu} openDirection='top-right'>
+								<MDL.Button type="IconButton">
+									<button><i className="material-icons">format_list_bulleted</i></button>
+								</MDL.Button>
+								<div onClick={function(e) {alert("Click");}.bind(this)}> Some Action </div>
+								<div style={{color: 'red'}}> Another Action </div>
+								<div disabled>Disabled Action</div>
 							</MDL.Menu>
 						</div>
 					</div>
@@ -156,7 +126,7 @@ module.exports = React.createClass({
 					/>
 				</MDL.Card>
 				{this._renderPropsDetail()}
-			</div>
+			</Components.Page>
 		);
 	},
 

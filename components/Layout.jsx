@@ -29,10 +29,12 @@ var Layout = React.createClass({
 		noDrawerTitle : React.PropTypes.bool,
 
 		headerStyle : React.PropTypes.object,
+		headerTitleStyle : React.PropTypes.object,
 		headerLinks : React.PropTypes.arrayOf(React.PropTypes.element),
 
 		drawerStyle : React.PropTypes.object,
 		drawerButtonStyle : React.PropTypes.object,
+		drawerTitleStyle : React.PropTypes.object,
 		drawerLinks : React.PropTypes.arrayOf(React.PropTypes.element),
 
 		isFixedHeader : React.PropTypes.bool,
@@ -75,6 +77,10 @@ var Layout = React.createClass({
 		this._mdlize();
 	},
 
+	scrollTop : function() {
+		this.refs.mdlContentDiv.getDOMNode().scrollTop = 0;
+	},
+
 	_mdlize : function() {
 		componentHandler.upgradeDom();
 		if(this.props.drawerButtonStyle) {
@@ -87,7 +93,15 @@ var Layout = React.createClass({
 		}
 	},
 
+	_closeDrawer : function() {
+		var drawerNode = document.getElementsByClassName('mdl-layout__drawer');
+		if(drawerNode && drawerNode.length > 0) {
+			drawerNode[0].className = drawerNode[0].className.replace('is-visible', '');
+		}
+	},
+
 	_generateLinks : function(items, className, activeIndex) {
+		var self = this;
 		return items.map(function(item, index) {
 			var newClassName = (item.props.className || '') + ' ' + className;
 			if(
@@ -99,6 +113,12 @@ var Layout = React.createClass({
 			return React.cloneElement(item, {
 				key : index,
 				className : newClassName,
+				onClick : function(e) {
+					self._closeDrawer();
+				},
+				onTouchTap : function(e) {
+					self._closeDrawer();
+				},
 			});
 		});
 	},
@@ -202,7 +222,11 @@ var Layout = React.createClass({
 			return (
 				<header className={className} style={this.props.headerStyle} >
 					<div className="mdl-layout__header-row">
-						{!this.props.noHeaderTitle ? titleComponent : null}
+						{
+							!this.props.noHeaderTitle
+							? this._rendreTitle(this.props.headerTitleStyle)
+							: null
+						}
 						<div className="mdl-layout-spacer"></div>
 						{haderNav}
 						{headerSearch}
@@ -223,11 +247,39 @@ var Layout = React.createClass({
 			var items = this._generateLinks(this.props.drawerLinks, 'mdl-navigation__link');
 			return (
 				<div className="mdl-layout__drawer" style={this.props.drawerStyle} >
-					{!this.props.noDrawerTitle ? titleComponent : null}
+					{
+						!this.props.noDrawerTitle
+						? this._rendreTitle(this.props.drawerTitleStyle)
+						: null
+					}
 					<nav className="mdl-navigation">
 						{items}
 					</nav>
 				</div>
+			);
+		}
+
+
+	},
+
+	_rendreTitle : function(style) {
+		if(this.props.title && this.props.href) {
+			style = _.extend({
+				textDecoration: 'none',
+				color : 'inherit',
+			}, style);
+			return (
+				<span className="mdl-layout-title">
+					<a href={this.props.href} style={style} >
+						{this.props.title}
+					</a>
+				</span>
+			);
+		} else if(this.props.title) {
+			return (
+				<span className="mdl-layout-title" style={style} >
+					{this.props.title}
+				</span>
 			);
 		}
 	},
@@ -254,32 +306,11 @@ var Layout = React.createClass({
 			classes['mdl-layout--fixed-tabs'] = true
 		}
 
-		var titleComponent = null;
-		if(this.props.title && this.props.href) {
-			var style = {
-				textDecoration: 'none',
-				color : 'inherit',
-			};
-			titleComponent = (
-				<span className="mdl-layout-title">
-					<a href={this.props.href} style={style} >
-						{this.props.title}
-					</a>
-				</span>
-			);
-		} else if(this.props.title) {
-			titleComponent = (
-				<span className="mdl-layout-title">
-					{this.props.title}
-				</span>
-			);
-		}
-
 		return (
 			<div className={cx(classes)} style={this.props.style}>
-				{this._renderHeader(titleComponent)}
-				{this._renderDrawer(titleComponent)}
-				<main className="mdl-layout__content">
+				{this._renderHeader()}
+				{this._renderDrawer()}
+				<main className="mdl-layout__content" ref='mdlContentDiv' >
 					<div className="page-content" style={this.props.contentStyle} >
 						{this.props.children}
 					</div>
@@ -323,7 +354,7 @@ var HeaderSearch = React.createClass({
 				>
 					<i className="material-icons">search</i>
 				</label>
-				<div className="mdl-textfield__expandable-holder">
+				<div className="mdl-textfield__expandable-holder" >
 					<input ref='input'
 						className="mdl-textfield__input"
 						type="text"

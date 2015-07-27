@@ -2,17 +2,11 @@
 
 var React 			= require('react');
 var MDL 				= require('../../components');
-var Props 			= require('../document/Props.jsx');
-var DocTitle 		= require('../document/DocTitle.jsx');
-var DocSubtitle = require('../document/DocSubtitle.jsx');
+var Components 		= require('../components');
 
 module.exports = React.createClass({
 
 	styles: {
-		main: {
-			width : '100%',
-			maxWidth : '1200px',
-		},
 		demo: {
 			padding: '24px',
 		},
@@ -75,7 +69,7 @@ module.exports = React.createClass({
 			},
 		];
 
-		return (<Props detail={detail} title="Props" />);
+		return (<Components.Props detail={detail} title="Props" />);
 	},
 
 	_renderMethodsDetail: function() {
@@ -97,7 +91,7 @@ module.exports = React.createClass({
 			},
 		];
 
-		return (<Props detail={detail} title="Methods" />);
+		return (<Components.Props detail={detail} title="Methods" />);
 	},
 
 	_renderEventsDetail: function() {
@@ -109,7 +103,7 @@ module.exports = React.createClass({
 			},
 		];
 
-		return (<Props detail={detail} title="Events" />);
+		return (<Components.Props detail={detail} title="Events" />);
 	},
 
 	_renderTab1: function() {
@@ -149,18 +143,13 @@ module.exports = React.createClass({
 	_renderControlPanel: function() {
 		return (
 			<div style={{margin: '10px auto'}}>
-				<MDL.Button type="FloatingActionButton"
-					text={<i className="material-icons">arrow_back</i>}
-					style={this.styles.button}
-					onClick={this.previousTab}
-					isMini
-					isAccent={true}/>
-				<MDL.Button type="FloatingActionButton"
-					onClick={this.nextTab}
-					text={<i className="material-icons">arrow_forward</i>}
-					style={this.styles.button}
-					isMini
-					isAccent={true}/>
+				<MDL.Button type="FloatingActionButton" isMini isAccent style={this.styles.button}>
+					<button onClick={this.previousTab}><i className="material-icons">arrow_back</i></button>
+				</MDL.Button>
+
+				<MDL.Button type="FloatingActionButton" isMini isAccent style={this.styles.button}>
+					<button onClick={this.nextTab}><i className="material-icons">arrow_forward</i></button>
+				</MDL.Button>
 			</div>
 		);
 	},
@@ -181,11 +170,11 @@ module.exports = React.createClass({
 
 	render: function() {
 		return (
-			<div style={this.styles.main}>
-				<DocTitle title="Tabs" />
+			<Components.Page>
+				<Components.DocTitle title="Tabs" />
 				<MDL.Card style={this.styles.card} shadow={6}>
 					<div style={this.styles.demo}>
-						<DocSubtitle title="example" />
+						<Components.DocSubtitle title="example" />
 						<MDL.Tabs ref="tab"
 							tabLabels={['Starks','Lannisters','Targaryens',]} defaultIndex={1} onChange={this.changedTab}
 						>
@@ -204,7 +193,7 @@ module.exports = React.createClass({
 				{this._renderPropsDetail()}
 				{this._renderMethodsDetail()}
 				{this._renderEventsDetail()}
-			</div>
+			</Components.Page>
 		);
 	},
 

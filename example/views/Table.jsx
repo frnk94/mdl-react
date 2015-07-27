@@ -5,9 +5,7 @@ var fs = require('fs');
 var React = require('react');
 var MDL = require('../../components');
 var _ = require('lodash');
-var Props = require('../document/Props.jsx');
-var DocTitle = require('../document/DocTitle.jsx');
-var DocSubtitle = require('../document/DocSubtitle.jsx');
+var Components = require('../components');
 
 module.exports = React.createClass({
 
@@ -35,6 +33,7 @@ module.exports = React.createClass({
 					singer : 'Berry',
 					country : '法國',
 					link : 'https://www.youtube.com/watch?v=9iPGvsRijrc',
+					_selected : true,
 				},
 				{
 					id : 3,
@@ -49,11 +48,25 @@ module.exports = React.createClass({
 					singer : 'Ed Sheeran',
 					country : '英國',
 					link : 'https://www.youtube.com/watch?v=SPKBtZHuzKY',
+					_selected : true,
 				},
 			],
 			valueArea : 'none',
 		};
 	},
+
+	// componentDidMount: function() {
+	// 	var self = this;
+	// 	setTimeout(function() {
+	// 		console.log('qq');
+	// 		var items = self.state.items;
+	// 		items[0]._selected = true;
+	// 		items[1]._selected = false;
+	// 		self.setState({
+	// 			items : items
+	// 		});
+	// 	}, 2000);
+	// },
 
 	getSelected: function() {
 		var self = this;
@@ -93,7 +106,19 @@ module.exports = React.createClass({
 		});
 	},
 
+	_onRowSelected: function(data, indexes) {
+		console.log('onRowSelected', data);
+		var items = this.state.items.map(function(item, index) {
+			item._selected = _.include(indexes, index);
+			return item;
+		});
+		this.setState({
+			items : items,
+		});
+	},
+
 	render: function() {
+		var self = this;
 
 		var header = [
 			{
@@ -160,6 +185,12 @@ module.exports = React.createClass({
 				content : 'The content what you want to show, is a array of objects. Every object has many key and value. Every column will follow header\'s "key" to show the same key content.',
 			},
 			{
+				key : 'items[]._selected',
+				type : 'boolean',
+				state : 'optional',
+				content : 'If this value is true, this item will be selected at the beginning.',
+			},
+			{
 				key : 'itemStyles',
 				type : 'array',
 				state : 'optional',
@@ -169,7 +200,7 @@ module.exports = React.createClass({
 				key : 'shadow',
 				type : 'number',
 				state : 'optional',
-				content : 'Shadow size, default is 2. Just allow 2, 3, 4, 6, 8, 16.',
+				content : 'Shadow size, just allow 2, 3, 4, 6, 8, 16.',
 			},
 			{
 				key : 'style',
@@ -177,15 +208,25 @@ module.exports = React.createClass({
 				state : 'optional',
 				content : 'css style setting',
 			},
+			{
+				key : 'onRowSelected',
+				type : 'function',
+				state : 'optional',
+				content : 'Listen select event. It returns value of all selected.',
+			},
 		];
 
-		var eventsDetail = [
+		var methodsDetail = [
 			{
 				key : 'getSelected',
-				type : 'function',
-				state : '',
+				type : 'function(items)',
 				content : 'Get the data from the rows you selected.',
-			}
+			},
+			{
+				key : 'getSelectedIndexes',
+				type : 'function(indexes)',
+				content : 'Get the indexes from the rows you selected.',
+			},
 		];
 
 		var prismCode = {
@@ -225,17 +266,12 @@ module.exports = React.createClass({
 			padding: '24px',
 		};
 
-		var style = {
-			width : '100%',
-			maxWidth : '1200px',
-		};
-
 		return (
-			<div style={style}>
-				<DocTitle title="Table" />
+			<Components.Page>
+				<Components.DocTitle title="Table" />
 				<MDL.Card style={cardStyle} shadow={6}>
 					<div style={demoStyle}>
-						<DocSubtitle title="example" />
+						<Components.DocSubtitle title="example" />
 						<MDL.Table
 							ref="table"
 							selectable={true}
@@ -244,24 +280,15 @@ module.exports = React.createClass({
 							itemStyles={itemStyles}
 							style={tableStyle}
 							shadow={2}
+							onRowSelected={this._onRowSelected}
 						/>
 						<div style={buttonAreaStyle}>
-							<MDL.Button type="RaisedButton"
-							text="新增資料"
-							style={buttonStyle}
-							isRipple={true}
-							isAccent={true}
-							isMini={true}
-							isDisabled={false}
-							onClick={this.addData} />
-							<MDL.Button type="RaisedButton"
-								text="取得勾選值"
-								style={buttonStyle}
-								isRipple={true}
-								isPrimary={true}
-								isMini={true}
-								isDisabled={false}
-								onClick={this.getSelected} />
+							<MDL.Button type="RaisedButton" isAccent={true}>
+								<button onClick={this.addData} className='tableTestBtn01' style={buttonStyle}>new data</button>
+							</MDL.Button>
+							<MDL.Button type="RaisedButton" isPrimary={true}>
+								<button onClick={this.getSelected} className='tableTestBtn02' style={buttonStyle}>get value</button>
+							</MDL.Button>
 						</div>
 					</div>
 					<div className="showValueArea" style={valueStyle}>
@@ -273,9 +300,9 @@ module.exports = React.createClass({
 						style={prismCode}
 					/>
 				</MDL.Card>
-				<Props detail={propsDetail} title="Props" />
-				<Props detail={eventsDetail} title="Methods" />
-			</div>
+				<Components.Props detail={propsDetail} title="Props" />
+				<Components.Props detail={methodsDetail} title="Methods" />
+			</Components.Page>
 		);
 
 	}

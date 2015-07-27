@@ -2,12 +2,29 @@
 
 var React = require('react');
 var MDL = require('../../components');
-var DocTitle = require('../document/DocTitle.jsx');
-var DocSubtitle = require('../document/DocSubtitle.jsx');
-var MainContent = require('../document/MainContent.jsx');
-var Props = require('../document/Props.jsx');
+var Components = require('../components');
 
 module.exports = React.createClass({
+
+	getInitialState: function() {
+		return {
+			url: 'example1.js',
+		};
+	},
+
+	_onTabChange: function(tabIndex, e) {
+		if (tabIndex === 0) {
+			this.setState({url: 'example1.js'});
+		} else if (tabIndex === 1) {
+			this.setState({url: 'example2.js'});
+		} else if (tabIndex === 2) {
+			this.setState({url: 'example3.js'});
+		} else if (tabIndex === 3) {
+			this.setState({url: 'example4.js'});
+		} else if (tabIndex === 4) {
+			this.setState({url: 'example5.js'});
+		}
+	},
 
 	render: function() {
 
@@ -16,7 +33,7 @@ module.exports = React.createClass({
 				key : 'shadow',
 				type : 'number',
 				state : 'optional',
-				content : 'Shadow size, default is 2. Just allow 2, 3, 4, 6, 8, 16.',
+				content : 'Shadow size, just allow 2, 3, 4, 6, 8, 16.',
 			},
 			{
 				key : 'height',
@@ -137,11 +154,6 @@ module.exports = React.createClass({
 			},
 		];
 
-		var style = {
-			width : '100%',
-			maxWidth : '1200px',
-		};
-
 		var firstStyle = {
 			width : '100px',
 			margin : '24px auto',
@@ -222,12 +234,12 @@ module.exports = React.createClass({
 		};
 
 		return (
-			<div style={style}>
-				<DocTitle title="Card" />
+			<Components.Page>
+				<Components.DocTitle title="Card" />
 				<MDL.Card style={cardStyle} shadow={6}>
-					<MDL.Tabs ref="tab" tabLabels={['Example 1','Example 2','Example 3','Example 4','Example 5',]} isRipple={true}>
+					<MDL.Tabs onChange={this._onTabChange} ref="tab" tabLabels={['Example 1','Example 2','Example 3','Example 4','Example 5',]} isRipple={true}>
 						<div style={demoStyle}>
-							<MDL.Card style={firstStyle} width='512'>
+							<MDL.Card style={firstStyle} width='512' shadow={2}>
 								<MDL.CardTitle height='176' style={firstTitleStyle}>
 									Welcome
 								</MDL.CardTitle>
@@ -235,24 +247,14 @@ module.exports = React.createClass({
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...
 								</MDL.CardSupportingText>
 								<MDL.CardAction border={true}>
-									<MDL.Button type="FlatButton"
-										text="GET STARTED"
-										isRipple={true}
-										isPrimary={true}
-										isMini={true}
-										isAccent={false}
-										isDisabled={false} />
-									<br />
+									<MDL.Button type="FlatButton" isPrimary={true}>
+										GET STARTED
+									</MDL.Button>
 								</MDL.CardAction>
 								<MDL.CardMenu style={firstMenuStyle}>
-									<MDL.Button type="IconButton"
-										text={<i style={iconStyle} className="material-icons">share</i>}
-										isRipple={true}
-										isMini={true}
-										isPrimary={true}
-										isAccent={false}
-										isDisabled={false} />
-									<br />
+									<MDL.Button type="IconButton" isPrimary={true}>
+										<button><i style={iconStyle} className="material-icons">share</i></button>
+									</MDL.Button>
 								</MDL.CardMenu>
 							</MDL.Card>
 						</div>
@@ -265,18 +267,14 @@ module.exports = React.createClass({
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis.
 								</MDL.CardSupportingText>
 								<MDL.CardAction border={true}>
-									<MDL.Button type="FlatButton"
-										text="View Updates"
-										isRipple={true}
-										isPrimary={true}
-										isMini={true}
-										isAccent={false}
-										isDisabled={false} />
+									<MDL.Button type="FlatButton" isPrimary={true}>
+										View Updates
+									</MDL.Button>
 								</MDL.CardAction>
 							</MDL.Card>
 						</div>
 						<div style={demoStyle}>
-							<MDL.Card width='256' height='256' style={thirdStyle}>
+							<MDL.Card width='256' height='256' style={thirdStyle} shadow={2}>
 								<MDL.CardTitle height='256'></MDL.CardTitle>
 								<MDL.CardAction style={thirdActionStyle}>
 									<span className="demo-card-image__filename">Image.jpg</span>
@@ -284,7 +282,7 @@ module.exports = React.createClass({
 							</MDL.Card>
 						</div>
 						<div style={demoStyle}>
-							<MDL.Card width='256' height='256' style={fourthStyle}>
+							<MDL.Card width='256' height='256' style={fourthStyle} shadow={2}>
 								<MDL.CardTitle height="203">
 									<h4 style={fourthColor}>
 										Featured event:<br />
@@ -293,14 +291,9 @@ module.exports = React.createClass({
 									</h4>
 								</MDL.CardTitle>
 								<MDL.CardAction border={true} style={fourthActionStyle}>
-									<MDL.Button type="FlatButton"
-										style={fourthColor}
-										text="Add to Calendar"
-										isRipple={true}
-										isPrimary={true}
-										isMini={true}
-										isAccent={false}
-										isDisabled={false} />
+									<MDL.Button type="FlatButton" isPrimary={true}>
+										<button style={fourthColor}>GET STARTED</button>
+									</MDL.Button>
 								</MDL.CardAction>
 							</MDL.Card>
 						</div>
@@ -316,24 +309,24 @@ module.exports = React.createClass({
 						</div>
 					</MDL.Tabs>
 					<MDL.PrismCode
-						src='http://fandora.github.io/mdl-react/example/codes/Card.js'
+						src={'http://fandora.github.io/mdl-react/example/codes/Cards/' + this.state.url}
 						lang='jsx'
 						style={prismCode}
 					/>
 				</MDL.Card>
-				<MainContent>
+				<Components.MainContent>
 					<p>The card component is a user interface element representing a virtual piece of paper that contains related data — such as a photo, some text, and a link — that are all about a single subject.</p>
 					<p>Cards are a convenient means of coherently displaying related content that is composed of different types of objects. They are also well-suited for presenting similar objects whose size or supported actions can vary considerably, like photos with captions of variable length. Cards have a constant width and a variable height, depending on their content.</p>
 					<p>Cards are a fairly new feature in user interfaces, and allow users an access point to more complex and detailed information. Their design and use is an important factor in the overall user experience. </p>
 					<p>Cards have five type sub component -- CardTitle, CardSupportingText, CardAction, CardMenu, CardMedia.</p>
-				</MainContent>
-				<Props detail={gridDetail} title="Props (Card)" />
-				<Props detail={gridDetail} title="Props (CardTitle)" />
-				<Props detail={gridSupportingDetail} title="Props (CardSupportingText)" />
-				<Props detail={gridActionDetail} title="Props (CardAction)" />
-				<Props detail={gridMenuDetail} title="Props (CardMenu)" />
-				<Props detail={gridMediaDetail} title="Props (CardMedia)" />
-			</div>
+				</Components.MainContent>
+				<Components.Props detail={gridDetail} title="Props (Card)" />
+				<Components.Props detail={gridDetail} title="Props (CardTitle)" />
+				<Components.Props detail={gridSupportingDetail} title="Props (CardSupportingText)" />
+				<Components.Props detail={gridActionDetail} title="Props (CardAction)" />
+				<Components.Props detail={gridMenuDetail} title="Props (CardMenu)" />
+				<Components.Props detail={gridMediaDetail} title="Props (CardMedia)" />
+			</Components.Page>
 		);
 	},
 

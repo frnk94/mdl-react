@@ -1,3 +1,6 @@
+
+"use strict";
+
 var React = require('react');
 var cx = require('classnames');
 
@@ -15,7 +18,6 @@ module.exports = React.createClass({
 
 	getDefaultProps: function() {
 		return {
-			shadow : 2,
 			style : {},
 		};
 	},
@@ -45,7 +47,7 @@ module.exports = React.createClass({
 				{this.props.children}
 			</div>
 		);
-		
+
 	}
 
 });

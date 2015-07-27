@@ -1,18 +1,11 @@
 
-var React 	= require('react');
-var cx 			= require('classnames');
-var _ 			= require('lodash');
-
+var React = require('react');
+var cx = require('classnames');
 /**
  *	MENUS
  *		http://www.getmdl.io/components/index.html#menus-section
  *	Props
- *		children: isRequired, clickable element
- *		menuList: isRequired, Array of Object, Object can contains 4 properties:
- *			text, isRequired, must be String or React Component
- *			events, Object, properties should be React events
- *			style, Object, 選項個別CSS樣式
- *			isDisabled, bool, 是否關閉選項
+ *		children: isRequired, it must have one clickable element and at least menu item.
  *		openDirection: Placement of the menu relative to the IconButton.
  *		isRipple: 是否使用Ripple動畫，default true
  *		style: Object, Menu List 整體 CSS 樣式
@@ -30,26 +23,17 @@ module.exports = React.createClass({
 	},
 
 	propTypes: {
-		children: React.PropTypes.element.isRequired,
+		children: React.PropTypes.arrayOf(React.PropTypes.element).isRequired,
 		openDirection: React.PropTypes.oneOf(['bottom-left', 'bottom-right', 'top-left', 'top-right']),
 		isRipple: React.PropTypes.bool,
 		style: React.PropTypes.object,
-		menuList: React.PropTypes.arrayOf(React.PropTypes.shape({
-			text: React.PropTypes.oneOfType([
-				React.PropTypes.string,
-				React.PropTypes.element,
-			]).isRequired,
-			events: React.PropTypes.object,
-			style: React.PropTypes.object,
-			isDisabled: React.PropTypes.bool,
-		})).isRequired,
 	},
 
 	id: 'mdl-menu-',
 
 	componentWillMount: function() {
-		if(this.props.children instanceof Array){
-			console.warn("MDL.Menu: Menu should only have one child inside");
+		if(this.props.children instanceof Array && this.props.children.length < 2){
+			console.warn("MDL.Menu: Menu should contain at least one clickable element and one list element");
 		}
 
 		this.id += id++;
@@ -78,11 +62,9 @@ module.exports = React.createClass({
 		return cx(classes);
 	},
 
-	_getChild: function() {
+	_getButton: function() {
 		if (this.props.children instanceof Array){
 			return React.cloneElement(this.props.children[0], {id: this.id});
-		} else if (this.props.children) {
-			return React.cloneElement(this.props.children, {id: this.id});
 		} else {
 			return <div/>;
 		}
@@ -93,17 +75,24 @@ module.exports = React.createClass({
 		var style = this.props.style;
 		style.position = 'relative';
 
-		var list = this.props.menuList.map(function(item, index) {
-			return (
-				<li key={index} disabled={item.isDisabled} className="mdl-menu__item" style={item.style} {...item.events} >
-					{item.text}
-				</li>
-			);
-		});
+		var list;
+		if (this.props.children instanceof Array) {
+			list = this.props.children.map(function(child, index) {
+				if(!index) return;
+				return (
+					<li key={index} disabled={child.props.disabled} className="mdl-menu__item">
+						{child}
+					</li>
+				);
+			});
+		} else {
+			list = <div />
+		}
+
 
 		return (
 			<div style={style}>
-				{this._getChild()}
+				{this._getButton()}
 				<ul className={this._getClasses()} htmlFor={this.id}>
 					{list}
 				</ul>
