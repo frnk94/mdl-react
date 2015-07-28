@@ -11,7 +11,7 @@
 
 /* Colored Raised button without ripple */
 <MDL.Button type="RaisedButton" isPrimary={true} isRipple={false}>
-	<button onClick={ function() {this.refs.raised.toggleButton();}.bind(this)}>No Ripple</button>
+	<button>No Ripple</button>
 </MDL.Button>
 
 
@@ -26,6 +26,6 @@
 </MDL.Button>
 
 /* Disabled Raised button */
-<MDL.Button type="RaisedButton" ref="raised" defaultDisabled={true}>
+<MDL.Button type="RaisedButton" ref="raised" isDisabled={this.state.raisedIsDisabled}>
 		<button>Disabled</button>
 </MDL.Button>

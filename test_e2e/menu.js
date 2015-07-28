@@ -27,9 +27,8 @@ module.exports = {
 	'Menu Test': function(client) {
 		client
 			.click('css selector', '#mdl-menu-1 + .mdl-menu__container > ul > li:nth-child(1)')
-			.waitForElementVisible('code.language-jsx', 1000, false)
-			.assert.elementSizeNotWithin('.language-jsx', 50, 50);
-
+			// .waitForElementVisible('code.language-jsx', 1000, false)
+			// .assert.elementSizeNotWithin('.language-jsx', 50, 50);
 
 		client
 			.assert.cssClassNotPresent("#mdl-menu-1 + .mdl-menu__container", "is-visible")

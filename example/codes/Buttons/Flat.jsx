@@ -11,7 +11,7 @@
 
 /* Primary-colored flat button without ripple */
 <MDL.Button type="FlatButton" isPrimary={true} isRipple={false}>
-	<button onClick={ function() {this.refs.flat.toggleButton();}.bind(this) }>No Ripple</button>
+	<button>No Ripple</button>
 </MDL.Button>
 
 
@@ -26,6 +26,6 @@
 </MDL.Button>
 
 /* Disabled Flat button */
-<MDL.Button type="FlatButton" ref="flat" defaultDisabled={true}>
+<MDL.Button type="FlatButton" ref="flat" isDisabled={this.state.flatIsDisabled}>
 		<button>Disabled</button>
 </MDL.Button>
