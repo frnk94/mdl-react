@@ -87,14 +87,6 @@ var _ = require('lodash');
 		isPrimary: 是否使用 primary color
 		isAccent: 是否使用強調色
 		isMini: 是否 mini for FAB
-		defaultDisabled: 預設是否禁愈用
-		id
-	States
-		isDisabled: 是否禁用Button，預設False
-	Methods
-		setDisabled: 設定Button啟動或禁用
-		toggleButton: 啟動或禁用Button
-		getDisabled: 取得Button目前狀態
 */
 module.exports = React.createClass({displayName: "exports",
 
@@ -108,22 +100,20 @@ module.exports = React.createClass({displayName: "exports",
 	},
 
 	propTypes: {
-		children: React.PropTypes.oneOfType([React.PropTypes.element,React.PropTypes.string]),
+		children: React.PropTypes.oneOfType([React.PropTypes.element, React.PropTypes.string]),
 		style: React.PropTypes.object,
-		type: React.PropTypes.oneOf(
-			['FloatingActionButton', 'RaisedButton', 'FlatButton', 'IconButton']
-		).isRequired,
+		id : React.PropTypes.string,
+		type: React.PropTypes.oneOf([
+			'FloatingActionButton',
+			'RaisedButton',
+			'FlatButton',
+			'IconButton'
+		]).isRequired,
 		isMini: React.PropTypes.bool,
 		isRipple: React.PropTypes.bool,
 		isPrimary: React.PropTypes.bool,
 		isAccent: React.PropTypes.bool,
-		defaultDisabled: React.PropTypes.bool,
-	},
-
-	getInitialState: function() {
-		return {
-			isDisabled: this.props.defaultDisabled,
-		};
+		isDisabled: React.PropTypes.bool,
 	},
 
 	componentDidMount: function() {
@@ -151,44 +141,28 @@ module.exports = React.createClass({displayName: "exports",
 		return cx(classes);
 	},
 
-	getDisabled: function() {
-		return this.state.isDisabled;
-	},
-
-	setDisabled: function(isDisabled) {
-		this.setState({isDisabled: Boolean(isDisabled)});
-		return this.state.isDisabled;
-	},
-
-	toggleButton: function() {
-		this.setDisabled(!this.state.isDisabled);
-		return this.state.isDisabled;
-	},
-
 	_getChild: function() {
-
-		var child = this.props.children instanceof Array? this.props.children[0] : this.props.children;
+		var child = this.props.children instanceof Array
+					? this.props.children[0]
+					: this.props.children;
 		if (_.isString(child)) {
-			return React.createElement("button", {style: this.props.style}, child.trim());
+			return React.createElement("button", null, child.trim());
 		} else if (child) {
 			return child;
 		} else {
 			return React.createElement("button", null);
 		}
-
 	},
 
 	render: function() {
-
 		var element = this._getChild();
-		var classname = '';
-		if(element.props.hasOwnProperty('className')) classname = element.props.className;
+		var classname = element.props.className || '';
 		var newProps = {
-			className: classname + ' ' + this._getClasses(),
-			disabled: this.state.isDisabled,
+			className : classname + ' ' + this._getClasses(),
+			disabled : this.props.isDisabled,
+			style : _.extend(element.props.style || {}, this.props.style),
+			id : this.props.id,
 		};
-		if(this.props.hasOwnProperty('style')) newProps['style'] = this.props.style;
-		if(this.props.hasOwnProperty('id')) newProps['id'] = this.props.id;
 		return React.cloneElement(element, newProps);
 	},
 
@@ -652,7 +626,9 @@ var React = require('react');
 var cx = require('classnames');
 var _ = require('lodash');
 
-var Layout = React.createClass({displayName: "Layout",
+module.exports = React.createClass({
+
+	displayName : 'Layout',
 
 	propTypes: {
 
@@ -746,14 +722,22 @@ var Layout = React.createClass({displayName: "Layout",
 			) {
 				newClassName += ' is-active';
 			}
+			// console.log(item.props, item.props.onClick instanceof Function);
 			return React.cloneElement(item, {
 				key : index,
 				className : newClassName,
 				onClick : function(e) {
+					// console.log('link.onClick');
 					self._closeDrawer();
+					if(item.props.onClick instanceof Function) {
+						item.props.onClick(e);
+					}
 				},
 				onTouchTap : function(e) {
 					self._closeDrawer();
+					if(item.props.onTouchTap instanceof Function) {
+						item.props.onTouchTap(e);
+					}
 				},
 			});
 		});
@@ -761,118 +745,103 @@ var Layout = React.createClass({displayName: "Layout",
 
 	_renderHeader : function(titleComponent) {
 
-		if(
-			this.props.headerLinks.length > 0 ||
-			this.props.tabs.length > 0 ||
-			this.props.showHeaderSearch
-		) {
-
-			var haderNav = null;
-			if(
-				this.props.headerLinks.length > 0 &&
-				!this.props.showHeaderSearch
-			) {
-				var headerNavClassName = 'mdl-navigation';
-				if(this.props.isHideHeaderMenuWhenMobile) {
-					headerNavClassName += ' mdl-layout--large-screen-only';
-				}
-				var items = this._generateLinks(
-					this.props.headerLinks,
-					'mdl-navigation__link'
-				);
-				haderNav = (
-					React.createElement("nav", {className: headerNavClassName}, 
-						items
-					)
-				);
+		var haderNavOrSearch = null;
+		if(!this.props.showHeaderSearch) {
+			var headerNavClassName = 'mdl-navigation';
+			if(this.props.isHideHeaderMenuWhenMobile) {
+				headerNavClassName += ' mdl-layout--large-screen-only';
 			}
-
-			var headerSearch = null;
-			if(this.props.showHeaderSearch) {
-				headerSearch = (
-					React.createElement(HeaderSearch, {
-						submit: this.props.onSearchSubmit, 
-						style: this.props.searchInputStyle}
-					)
-				);
-			}
-
-			var secondHeaderRow = null;
-			if(
-				this.props.waterfallLinks.length > 0 &&
-				this.props.tabs == 0
-			) {
-				var items = this._generateLinks(
-					this.props.waterfallLinks,
-					'mdl-navigation__link'
-				);
-				if(
-					this.props.showHeaderSearch &&
-					items.length > 0
-				) {
-					items[items.length - 1] = React.cloneElement(
-						items[items.length - 1],
-						{
-							style : { paddingRight : 0 },
-						}
-					);
-				}
-				secondHeaderRow = (
-					React.createElement("div", {className: "mdl-layout__header-row"}, 
-						React.createElement("div", {className: "mdl-layout-spacer"}), 
-						React.createElement("nav", {className: "waterfall-demo-header-nav mdl-navigation"}, 
-							items
-						)
-					)
-				);
-			}
-
-			var headerTabs = null;
-			if(
-				this.props.tabs.length > 0
-			) {
-				var tabs = this._generateLinks(
-					this.props.tabs, 'mdl-layout__tab', this.props.initialTabIndex
-				);
-				headerTabs = (
-					React.createElement("div", {className: "mdl-layout__tab-bar mdl-js-ripple-effect"}, 
-						tabs
-					)
-				);
-			}
-
-			var className = 'mdl-layout__header';
-			if(this.props.isTransparent) {
-				className += ' mdl-layout__header--transparent';
-			}
-			if(this.props.isScrollHeader) {
-				className += ' mdl-layout__header--scroll';
-			}
-			if(
-				this.props.waterfallLinks.length > 0 &&
-				this.props.tabs.length == 0
-			) {
-				className += ' mdl-layout__header--waterfall';
-			}
-
-			return (
-				React.createElement("header", {className: className, style: this.props.headerStyle}, 
-					React.createElement("div", {className: "mdl-layout__header-row"}, 
-						
-							!this.props.noHeaderTitle
-							? this._rendreTitle(this.props.headerTitleStyle)
-							: null, 
-						
-						React.createElement("div", {className: "mdl-layout-spacer"}), 
-						haderNav, 
-						headerSearch
-					), 
-					secondHeaderRow, 
-					headerTabs
+			var items = this._generateLinks(
+				this.props.headerLinks,
+				'mdl-navigation__link'
+			);
+			haderNavOrSearch = (
+				React.createElement("nav", {className: headerNavClassName}, 
+					items
 				)
 			);
-
+		} else {
+			haderNavOrSearch = (
+				React.createElement(HeaderSearch, {
+					submit: this.props.onSearchSubmit, 
+					style: this.props.searchInputStyle}
+				)
+			);
 		}
+
+		var secondHeaderRow = null;
+		if(
+			this.props.waterfallLinks.length > 0 &&
+			this.props.tabs == 0
+		) {
+			var items = this._generateLinks(
+				this.props.waterfallLinks,
+				'mdl-navigation__link'
+			);
+			if(
+				this.props.showHeaderSearch &&
+				items.length > 0
+			) {
+				items[items.length - 1] = React.cloneElement(
+					items[items.length - 1],
+					{
+						style : { paddingRight : 0 },
+					}
+				);
+			}
+			secondHeaderRow = (
+				React.createElement("div", {className: "mdl-layout__header-row"}, 
+					React.createElement("div", {className: "mdl-layout-spacer"}), 
+					React.createElement("nav", {className: "waterfall-demo-header-nav mdl-navigation"}, 
+						items
+					)
+				)
+			);
+		}
+
+		var headerTabs = null;
+		if(
+			this.props.tabs.length > 0
+		) {
+			var tabs = this._generateLinks(
+				this.props.tabs, 'mdl-layout__tab', this.props.initialTabIndex
+			);
+			headerTabs = (
+				React.createElement("div", {className: "mdl-layout__tab-bar mdl-js-ripple-effect"}, 
+					tabs
+				)
+			);
+		}
+
+		var className = 'mdl-layout__header';
+		if(this.props.isTransparent) {
+			className += ' mdl-layout__header--transparent';
+		}
+		if(this.props.isScrollHeader) {
+			className += ' mdl-layout__header--scroll';
+		}
+		if(
+			this.props.waterfallLinks.length > 0 &&
+			this.props.tabs.length == 0
+		) {
+			className += ' mdl-layout__header--waterfall';
+		}
+
+		return (
+			React.createElement("header", {className: className, style: this.props.headerStyle}, 
+				React.createElement("div", {className: "mdl-layout__header-row"}, 
+					
+						!this.props.noHeaderTitle
+						? this._rendreTitle(this.props.headerTitleStyle)
+						: null, 
+					
+					React.createElement("div", {className: "mdl-layout-spacer"}), 
+					haderNavOrSearch
+				), 
+				secondHeaderRow, 
+				headerTabs
+			)
+		);
 
 	},
 
@@ -1006,8 +975,6 @@ var HeaderSearch = React.createClass({displayName: "HeaderSearch",
 
 });
 
-module.exports = Layout;
-
 },{"classnames":51,"lodash":52,"react":246}],13:[function(require,module,exports){
 
 var React = require('react');
@@ -1112,6 +1079,7 @@ var cx = require('classnames');
  *		isRipple: 是否使用Ripple動畫，default true
  *		style: Object, Menu List 整體 CSS 樣式
  */
+
 var id = 1;
 
 module.exports = React.createClass({displayName: "exports",
@@ -1126,7 +1094,12 @@ module.exports = React.createClass({displayName: "exports",
 
 	propTypes: {
 		children: React.PropTypes.arrayOf(React.PropTypes.element).isRequired,
-		openDirection: React.PropTypes.oneOf(['bottom-left', 'bottom-right', 'top-left', 'top-right']),
+		openDirection: React.PropTypes.oneOf([
+			'bottom-left',
+			'bottom-right',
+			'top-left',
+			'top-right',
+		]),
 		isRipple: React.PropTypes.bool,
 		style: React.PropTypes.object,
 	},
@@ -1137,7 +1110,6 @@ module.exports = React.createClass({displayName: "exports",
 		if(this.props.children instanceof Array && this.props.children.length < 2){
 			console.warn("MDL.Menu: Menu should contain at least one clickable element and one list element");
 		}
-
 		this.id += id++;
 	},
 
@@ -1188,7 +1160,7 @@ module.exports = React.createClass({displayName: "exports",
 				);
 			});
 		} else {
-			list = React.createElement("div", null)
+			list = null;
 		}
 
 
@@ -1842,7 +1814,7 @@ var cx = require('classnames');
 		setValue
 */
 
-var id = 1;
+var _counter = 1;
 
 module.exports = React.createClass({
 
@@ -1890,7 +1862,7 @@ module.exports = React.createClass({
 		if(this.props.defaultValue) {
 			this.state.value = this.props.defaultValue;
 		}
-		this.state.id = 'mdl-textfield-' + Date.now();
+		this.state.id = 'mdl-textfield-' + _counter++;
 	},
 
 	componentDidMount: function() {
@@ -1941,21 +1913,7 @@ module.exports = React.createClass({
 		}
 	},
 
-	_renderLabel : function() {
-		if(this.props.labelText) {
-			return (
-				React.createElement("label", {
-					className: "mdl-textfield__label", 
-					htmlFor: this.state.id
-				}, 
-					this.props.labelText
-				)
-			);
-		}
-	},
-
 	render : function() {
-
 		var classes = {
 			'mdl-textfield' : true,
 			'mdl-js-textfield' : true,
@@ -1963,7 +1921,6 @@ module.exports = React.createClass({
 		if(this.props.isFloatingLabel) {
 			classes['mdl-textfield--floating-label'] = true;
 		}
-
 		var error = null;
 		if(this.props.errorText) {
 			error = (
@@ -1972,17 +1929,53 @@ module.exports = React.createClass({
 				)
 			);
 		}
-
 		return (
 			React.createElement("div", {className: cx(classes), style: this.props.style}, 
 				this._renderInput(), 
-				this._renderLabel(), 
-				error
+				React.createElement(TextFieldLabel, {text: this.props.labelText, for: this.state.id}), 
+				React.createElement(TextFieldError, {text: this.props.errorText})
 			)
 		);
-
 	},
 
+});
+
+var TextFieldError = React.createClass({displayName: "TextFieldError",
+	propTypes: {
+		text : React.PropTypes.string,
+	},
+	render: function() {
+		if(this.props.text) {
+			return (
+				React.createElement("span", {className: "mdl-textfield__error"}, 
+					this.props.errorText
+				)
+			);
+		} else {
+			return null;
+		}
+	}
+});
+
+var TextFieldLabel = React.createClass({displayName: "TextFieldLabel",
+	propTypes: {
+		for : React.PropTypes.string,
+		text : React.PropTypes.string,
+	},
+	render: function() {
+		if(this.props.text) {
+			return (
+				React.createElement("label", {
+					className: "mdl-textfield__label", 
+					htmlFor: this.props.for
+				}, 
+					this.props.text
+				)
+			);
+		} else {
+			return null;
+		}
+	}
 });
 
 },{"classnames":51,"react":246}],21:[function(require,module,exports){
@@ -2268,7 +2261,7 @@ var App = React.createClass({displayName: "App",
 			React.createElement("a", {href: "https://facebook.github.io/react/", target: "_blank"}, "React"),
 		];
 		var drawerLinks = [
-			React.createElement("a", {href: "#badge"}, "Badge"),
+			React.createElement("a", {href: "#badge", onClick: function(){console.log('badge.onClick');}}, "Badge"),
 			React.createElement("a", {href: "#button"}, "Button"),
 			React.createElement("a", {href: "#card"}, "Card"),
 			React.createElement("a", {href: "#grid"}, "Grid"),
@@ -2726,72 +2719,60 @@ module.exports = React.createClass({displayName: "exports",
 				React.createElement("p", null, "If the type of button is IconButton, you should manually wrap the icon element." + ' ' +
 					"(You can search the label of material icons in ", React.createElement("a", {href: "https://www.google.com/design/icons/", target: "_blank"}, "https://www.google.com/design/icons/"), "." + ' ' +
 						"If the label consists of at least 2 words, remember using the underline symbol _ to joint words, i.e. open_in_browser.)")
-				)),
-			},
-			{
-				key : 'type',
-				type : 'one of "FloatingActionButton", "RaisedButton", "FlatButton", "IconButton"',
-				state : 'required',
-				content : 'The type of button that will be displayed',
-			},
-			{
-				key : 'isRipple',
-				type : 'boolean',
-				state : 'default: true',
-				content : 'If false, the click event will not activate ripple animation.',
-			},
-			{
-				key : 'isPrimary',
-				type : 'boolean',
-				state : 'optional',
-				content : 'If true, the button use the primary colors.',
-			},
-			{
-				key : 'isAccent',
-				type : 'boolean',
-				state : 'optional',
-				content : "If true, the button use the accent colors.",
-			},
-			{
-				key : 'isMini',
-				type : 'boolean',
-				state : 'optional',
-				content : "If true, the button will be Mini FAB. This props only works on type 'FloatingActionButton'.",
-			},
-			{
-				key : 'defaultDisabled',
-				type : 'boolean',
-				state : 'optional',
-				content : "Disables the button if set to true.",
-			},
-			{
-				key : 'style',
-				type : 'object',
-				state : 'optional',
-				content : "If style prop exists, it will override the style of the child.",
-			},
-	],
-	methodsDetail: [
-		{
-			key : 'setDisabled',
-			type : 'function( bool )',
-			content : 'Set true to activate the button, or set false to disable it.',
+				)
+			),
 		},
 		{
-			key : 'toggleButton',
-			type : 'function()',
-			content : 'If the button is disabled, the method will activate the button, vice versa.',
+			key : 'type',
+			type : 'one of "FloatingActionButton", "RaisedButton", "FlatButton", "IconButton"',
+			state : 'required',
+			content : 'The type of button that will be displayed',
 		},
 		{
-			key : 'getDisabled',
-			type : 'function()',
-			content : 'Check whether the button is disabled. If the button is disabled, true will be returned.',
+			key : 'isRipple',
+			type : 'boolean',
+			state : 'default: true',
+			content : 'If false, the click event will not activate ripple animation.',
+		},
+		{
+			key : 'isPrimary',
+			type : 'boolean',
+			state : 'optional',
+			content : 'If true, the button use the primary colors.',
+		},
+		{
+			key : 'isAccent',
+			type : 'boolean',
+			state : 'optional',
+			content : "If true, the button use the accent colors.",
+		},
+		{
+			key : 'isMini',
+			type : 'boolean',
+			state : 'optional',
+			content : "If true, the button will be Mini FAB. This props only works on type 'FloatingActionButton'.",
+		},
+		{
+			key : 'isDisabled',
+			type : 'boolean',
+			state : 'optional',
+			content : "Disables the button if set to true.",
+		},
+		{
+			key : 'style',
+			type : 'object',
+			state : 'optional',
+			content : "If style prop exists, it will override the style of the child.",
 		},
 	],
 
 	getInitialState: function() {
 		return {
-			url: 'FAB.jsx'
+			url: 'FAB.jsx',
+			fabIsDisabled: true,
+			raisedIsDisabled: true,
+			flatIsDisabled: true,
+			iconIsDisabled: true,
 		};
 	},
 
@@ -2820,7 +2801,8 @@ module.exports = React.createClass({displayName: "exports",
 				), 
 
 				React.createElement(MDL.Button, {type: "FloatingActionButton", isPrimary: true, isRipple: false}, 
-					React.createElement("button", {onClick: function() {this.refs.FAB.toggleButton();}.bind(this), style: this.styles.button}, 
+					React.createElement("button", {style: this.styles.button, 
+						onClick: function() {this.setState({fabIsDisabled: !this.state.fabIsDisabled});}.bind(this)}, 
 						React.createElement("i", {className: "material-icons"}, "star")
 					)
 				), 
@@ -2839,7 +2821,7 @@ module.exports = React.createClass({displayName: "exports",
 					)
 				), 
 
-				React.createElement(MDL.Button, {type: "FloatingActionButton", defaultDisabled: true, ref: "FAB"}, 
+				React.createElement(MDL.Button, {type: "FloatingActionButton", isDisabled: this.state.fabIsDisabled, ref: "FAB"}, 
 					React.createElement("button", {style: this.styles.button}, 
 						React.createElement("i", {className: "material-icons"}, "star")
 					)
@@ -2860,7 +2842,8 @@ module.exports = React.createClass({displayName: "exports",
 				), 
 
 				React.createElement(MDL.Button, {type: "FloatingActionButton", isPrimary: true, isMini: true, isRipple: false}, 
-					React.createElement("button", {style: this.styles.miniFAB, onClick: function() {this.refs.FAB.toggleButton();}.bind(this)}, 
+					React.createElement("button", {style: this.styles.miniFAB, 
+						onClick: function() {this.setState({fabIsDisabled: !this.state.fabIsDisabled});}.bind(this)}, 
 						React.createElement("i", {className: "material-icons"}, "star")
 					)
 				)
@@ -2879,7 +2862,10 @@ module.exports = React.createClass({displayName: "exports",
 					React.createElement("a", {href: "/", target: "_blank", style: this.styles.button}, "Link")
 				), 
 				React.createElement(MDL.Button, {type: "RaisedButton", isPrimary: true, isRipple: false}, 
-					React.createElement("button", {style: this.styles.button, onClick:  function() {this.refs.raised.toggleButton();}.bind(this)}, "No Ripple")
+					React.createElement("button", {style: this.styles.button, 
+						onClick: function() {this.setState({raisedIsDisabled: !this.state.raisedIsDisabled});}.bind(this)}, 
+						"No Ripple"
+					)
 				), 
 
 				React.createElement("br", null), 
@@ -2890,7 +2876,7 @@ module.exports = React.createClass({displayName: "exports",
 				React.createElement(MDL.Button, {type: "RaisedButton", isRipple: false}, 
 					React.createElement("a", {href: "/", target: "_blank", style: this.styles.button}, "Link")
 				), 
-				React.createElement(MDL.Button, {type: "RaisedButton", ref: "raised", defaultDisabled: true}, 
+				React.createElement(MDL.Button, {type: "RaisedButton", ref: "raised", isDisabled: this.state.raisedIsDisabled}, 
 						React.createElement("button", {style: this.styles.button}, "Disabled")
 				)
 
@@ -2908,7 +2894,10 @@ module.exports = React.createClass({displayName: "exports",
 					React.createElement("a", {href: "/", target: "_blank", style: this.styles.button}, "Link")
 				), 
 				React.createElement(MDL.Button, {type: "FlatButton", isPrimary: true, isRipple: false}, 
-					React.createElement("button", {style: this.styles.button, onClick:  function() {this.refs.flat.toggleButton();}.bind(this) }, "No Ripple")
+					React.createElement("button", {style: this.styles.button, 
+						onClick:  function() {this.setState({flatIsDisabled: !this.state.flatIsDisabled});}.bind(this) }, 
+						"No Ripple"
+					)
 				), 
 
 				React.createElement("br", null), 
@@ -2919,7 +2908,7 @@ module.exports = React.createClass({displayName: "exports",
 				React.createElement(MDL.Button, {type: "FlatButton", isRipple: false}, 
 					React.createElement("a", {href: "/", target: "_blank", style: this.styles.button}, "Link")
 				), 
-				React.createElement(MDL.Button, {type: "FlatButton", ref: "flat", defaultDisabled: true}, 
+				React.createElement(MDL.Button, {type: "FlatButton", ref: "flat", isDisabled: this.state.flatIsDisabled}, 
 						React.createElement("button", {style: this.styles.button}, "Disabled")
 				)
 
@@ -2939,7 +2928,8 @@ module.exports = React.createClass({displayName: "exports",
 				), 
 
 				React.createElement(MDL.Button, {type: "IconButton", isPrimary: true, isRipple: false}, 
-					React.createElement("button", {style: this.styles.button, onClick:  function() {this.refs.icon.toggleButton();}.bind(this) }, 
+					React.createElement("button", {style: this.styles.button, 
+						onClick:  function() {this.setState({iconIsDisabled: !this.state.iconIsDisabled})}.bind(this) }, 
 						React.createElement("i", {className: "material-icons"}, "mood")
 					)
 				), 
@@ -2951,7 +2941,7 @@ module.exports = React.createClass({displayName: "exports",
 				React.createElement(MDL.Button, {type: "IconButton", isRipple: false}, 
 					React.createElement("button", {style: this.styles.button}, React.createElement("i", {className: "material-icons"}, "plus_one"))
 				), 
-				React.createElement(MDL.Button, {type: "IconButton", ref: "icon", defaultDisabled: true}, 
+				React.createElement(MDL.Button, {type: "IconButton", ref: "icon", isDisabled: this.state.iconIsDisabled}, 
 					React.createElement("button", {style: this.styles.button}, React.createElement("i", {className: "material-icons"}, "plus_one"))
 				)
 			)
@@ -2983,8 +2973,7 @@ module.exports = React.createClass({displayName: "exports",
 						)
 				), 
 
-				React.createElement(Components.Props, {detail: this.propsDetail, title: "Props"}), 
-				React.createElement(Components.Props, {detail: this.methodsDetail, title: "Methods"})
+				React.createElement(Components.Props, {detail: this.propsDetail, title: "Props"})
 			)
 		);
 	},
@@ -5076,10 +5065,11 @@ module.exports = React.createClass({displayName: "exports",
 
 var React = require('react');
 var MDL = require('../../components');
-
 var Components = require('../components');
 
-var ExampleTextField = React.createClass({displayName: "ExampleTextField",
+module.exports = React.createClass({
+
+	displayName : 'ExampleTextField',
 
 	propTypes: {
 		style : React.PropTypes.string
@@ -5157,12 +5147,34 @@ var ExampleTextField = React.createClass({displayName: "ExampleTextField",
 						lang: "jsx"}
 					)
 				), 
-				this._renderProps()
+				React.createElement(TextFieldMethods, null), 
+				React.createElement(TextFieldProps, null)
 			)
 		);
 	},
 
-	_renderProps : function() {
+});
+
+var TextFieldMethods = React.createClass({displayName: "TextFieldMethods",
+	render: function() {
+		var detail = [
+			{
+				key : 'setValue',
+				type : 'function(str)',
+				content : 'Set value to the text filed',
+			},
+			{
+				key : 'getValue',
+				type : 'function(str)',
+				content : 'Get the value from the text field',
+			},
+		];
+		return React.createElement(Components.Props, {detail: detail, title: "Methods"});
+	}
+});
+
+var TextFieldProps = React.createClass({displayName: "TextFieldProps",
+	render: function() {
 		var propsDetail = [
 			{
 				key : 'labelText',
@@ -5220,11 +5232,8 @@ var ExampleTextField = React.createClass({displayName: "ExampleTextField",
 			},
 		];
 		return React.createElement(Components.Props, {detail: propsDetail, title: "Props"});
-	},
-
+	}
 });
-
-module.exports = ExampleTextField;
 
 },{"../../components":23,"../components":31,"react":246}],47:[function(require,module,exports){
 
