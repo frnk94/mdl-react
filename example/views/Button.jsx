@@ -94,7 +94,11 @@ module.exports = React.createClass({
 
 	getInitialState: function() {
 		return {
-			url: 'FAB.jsx'
+			url: 'FAB.jsx',
+			fabIsDisabled: true,
+			raisedIsDisabled: true,
+			flatIsDisabled: true,
+			iconIsDisabled: true,
 		};
 	},
 
@@ -123,7 +127,8 @@ module.exports = React.createClass({
 				</MDL.Button>
 
 				<MDL.Button type="FloatingActionButton" isPrimary={true} isRipple={false}>
-					<button onClick={function() {this.refs.FAB.toggleButton();}.bind(this)} style={this.styles.button}>
+					<button style={this.styles.button}
+						onClick={function() {this.setState({fabIsDisabled: !this.state.fabIsDisabled});}.bind(this)} >
 						<i className="material-icons">star</i>
 					</button>
 				</MDL.Button>
@@ -142,7 +147,7 @@ module.exports = React.createClass({
 					</button>
 				</MDL.Button>
 
-				<MDL.Button type="FloatingActionButton" isDisabled={true} ref="FAB">
+				<MDL.Button type="FloatingActionButton" isDisabled={this.state.fabIsDisabled} ref="FAB">
 					<button style={this.styles.button}>
 						<i className="material-icons">star</i>
 					</button>
@@ -163,7 +168,8 @@ module.exports = React.createClass({
 				</MDL.Button>
 
 				<MDL.Button type="FloatingActionButton" isPrimary isMini isRipple={false}>
-					<button style={this.styles.miniFAB} onClick={function() {this.refs.FAB.toggleButton();}.bind(this)}>
+					<button style={this.styles.miniFAB}
+						onClick={function() {this.setState({fabIsDisabled: !this.state.fabIsDisabled});}.bind(this)} >
 						<i className="material-icons">star</i>
 					</button>
 				</MDL.Button>
@@ -182,7 +188,10 @@ module.exports = React.createClass({
 					<a href="/" target="_blank" style={this.styles.button}>Link</a>
 				</MDL.Button>
 				<MDL.Button type="RaisedButton" isPrimary={true} isRipple={false}>
-					<button style={this.styles.button} onClick={ function() {this.refs.raised.toggleButton();}.bind(this)}>No Ripple</button>
+					<button style={this.styles.button}
+						onClick={function() {this.setState({raisedIsDisabled: !this.state.raisedIsDisabled});}.bind(this)}>
+						No Ripple
+					</button>
 				</MDL.Button>
 
 				<br />
@@ -193,7 +202,7 @@ module.exports = React.createClass({
 				<MDL.Button type="RaisedButton" isRipple={false}>
 					<a href="/" target="_blank" style={this.styles.button}>Link</a>
 				</MDL.Button>
-				<MDL.Button type="RaisedButton" ref="raised" isDisabled={true}>
+				<MDL.Button type="RaisedButton" ref="raised" isDisabled={this.state.raisedIsDisabled}>
 						<button style={this.styles.button}>Disabled</button>
 				</MDL.Button>
 
@@ -211,7 +220,10 @@ module.exports = React.createClass({
 					<a href="/" target="_blank" style={this.styles.button}>Link</a>
 				</MDL.Button>
 				<MDL.Button type="FlatButton" isPrimary={true} isRipple={false}>
-					<button style={this.styles.button} onClick={ function() {this.refs.flat.toggleButton();}.bind(this) }>No Ripple</button>
+					<button style={this.styles.button}
+						onClick={ function() {this.setState({flatIsDisabled: !this.state.flatIsDisabled});}.bind(this) }>
+						No Ripple
+					</button>
 				</MDL.Button>
 
 				<br />
@@ -222,7 +234,7 @@ module.exports = React.createClass({
 				<MDL.Button type="FlatButton" isRipple={false}>
 					<a href="/" target="_blank" style={this.styles.button}>Link</a>
 				</MDL.Button>
-				<MDL.Button type="FlatButton" ref="flat" isDisabled={true}>
+				<MDL.Button type="FlatButton" ref="flat" isDisabled={this.state.flatIsDisabled}>
 						<button style={this.styles.button}>Disabled</button>
 				</MDL.Button>
 
@@ -242,7 +254,8 @@ module.exports = React.createClass({
 				</MDL.Button>
 
 				<MDL.Button type="IconButton" isPrimary={true} isRipple={false}>
-					<button style={this.styles.button} onClick={ function() {this.refs.icon.toggleButton();}.bind(this) }>
+					<button style={this.styles.button}
+						onClick={ function() {this.setState({iconIsDisabled: !this.state.iconIsDisabled})}.bind(this) }>
 						<i className="material-icons">mood</i>
 					</button>
 				</MDL.Button>
@@ -254,7 +267,7 @@ module.exports = React.createClass({
 				<MDL.Button type="IconButton" isRipple={false}>
 					<button style={this.styles.button}><i className="material-icons">plus_one</i></button>
 				</MDL.Button>
-				<MDL.Button type="IconButton" ref="icon" isDisabled={true}>
+				<MDL.Button type="IconButton" ref="icon" isDisabled={this.state.iconIsDisabled}>
 					<button style={this.styles.button}><i className="material-icons">plus_one</i></button>
 				</MDL.Button>
 			</div>
@@ -287,7 +300,6 @@ module.exports = React.createClass({
 				</MDL.Card>
 
 				<Components.Props detail={this.propsDetail} title="Props" />
-				<Components.Props detail={this.methodsDetail} title="Methods" />
 			</Components.Page>
 		);
 	},
