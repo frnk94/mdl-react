@@ -25,7 +25,7 @@
 
 	"test_settings" : {
 		"default" : {
-			"launch_url" : "http://fandora.github.io/mdl-react/#/menu",
+			"launch_url" : "http://localhost:8080",
 			"selenium_port"  : 4445,
 			"selenium_host"  : "localhost",
 			"silent" : true,
