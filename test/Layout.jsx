@@ -5,11 +5,15 @@ var Layout = require('../components/Layout.jsx');
 describe('Layout', function() {
 
 	var target;
+	var isClicked = false;
 
-	it('create Layout', function(done) {
-		var isClicked = false;
+	before(function() {
+		$('div#test').remove();
+		$('<div id="test"></div>').appendTo(document.body);
+	});
+
+	it('create Layout', function() {
 		function myOnClick(e) {
-			console.log('clicked');
 			isClicked = true;
 		};
 		var links = [
@@ -26,19 +30,16 @@ describe('Layout', function() {
 			>
 				put your content here
 			</Layout>
-		), jquery('#test').get(0));
-		return done();
-		// expect(jquery('#testLink1')).length(1);
-		// jquery('#testLink1').get(0).click();
-		// setTimeout(function() {
-		// 	expect(isClicked).equal(true);
-		// 	return done();
-		// }, 100);
+		), document.getElementById('test'));
+		expect(jquery('#testLink1')).length(1);
 	});
 
-	it('test2', function(done) {
-		console.log(typeof jquery('#testLink1').gte(0).click);
-		return done();
+	it('test click', function(done) {
+		mouseClick(jquery('#testLink1').get(0));
+		setTimeout(function() {
+			expect(isClicked).equal(true);
+			return done();
+		}, 500);
 	});
 
 });
