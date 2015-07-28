@@ -15,7 +15,7 @@
 
 /* Primary-colored FAB button without Ripple */
 <MDL.Button type="FloatingActionButton" isPrimary={true} isRipple={false}>
-	<button onClick={function() {this.refs.FAB.toggleButton();}.bind(this)}>
+	<button>
 		<i className="material-icons">star</i>
 	</button>
 </MDL.Button>
@@ -35,7 +35,7 @@
 </MDL.Button>
 
 /* Disabled FAB button */
-<MDL.Button type="FloatingActionButton" defaultDisabled={true} ref="FAB">
+<MDL.Button type="FloatingActionButton" isDisabled={this.state.fabIsDisabled} ref="FAB">
 	<button>
 		<i className="material-icons">star</i>
 	</button>
@@ -58,7 +58,7 @@
 
 /* Primary-colored mini FAB button without Ripple */
 <MDL.Button type="FloatingActionButton" isPrimary isMini isRipple={false}>
-	<button onClick={function() {this.refs.FAB.toggleButton();}.bind(this)}>
+	<button>
 		<i className="material-icons">star</i>
 	</button>
 </MDL.Button>

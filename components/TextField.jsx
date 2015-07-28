@@ -20,7 +20,7 @@ var cx = require('classnames');
 		setValue
 */
 
-var id = 1;
+var _counter = 1;
 
 module.exports = React.createClass({
 
@@ -68,7 +68,7 @@ module.exports = React.createClass({
 		if(this.props.defaultValue) {
 			this.state.value = this.props.defaultValue;
 		}
-		this.state.id = 'mdl-textfield-' + Date.now();
+		this.state.id = 'mdl-textfield-' + _counter++;
 	},
 
 	componentDidMount: function() {
@@ -119,21 +119,7 @@ module.exports = React.createClass({
 		}
 	},
 
-	_renderLabel : function() {
-		if(this.props.labelText) {
-			return (
-				<label
-					className="mdl-textfield__label"
-					htmlFor={this.state.id}
-				>
-					{this.props.labelText}
-				</label>
-			);
-		}
-	},
-
 	render : function() {
-
 		var classes = {
 			'mdl-textfield' : true,
 			'mdl-js-textfield' : true,
@@ -141,7 +127,6 @@ module.exports = React.createClass({
 		if(this.props.isFloatingLabel) {
 			classes['mdl-textfield--floating-label'] = true;
 		}
-
 		var error = null;
 		if(this.props.errorText) {
 			error = (
@@ -150,15 +135,51 @@ module.exports = React.createClass({
 				</span>
 			);
 		}
-
 		return (
 			<div className={cx(classes)} style={this.props.style} >
 				{this._renderInput()}
-				{this._renderLabel()}
-				{error}
+				<TextFieldLabel text={this.props.labelText} for={this.state.id} />
+				<TextFieldError text={this.props.errorText} />
 			</div>
 		);
-
 	},
 
+});
+
+var TextFieldError = React.createClass({
+	propTypes: {
+		text : React.PropTypes.string,
+	},
+	render: function() {
+		if(this.props.text) {
+			return (
+				<span className="mdl-textfield__error">
+					{this.props.errorText}
+				</span>
+			);
+		} else {
+			return null;
+		}
+	}
+});
+
+var TextFieldLabel = React.createClass({
+	propTypes: {
+		for : React.PropTypes.string,
+		text : React.PropTypes.string,
+	},
+	render: function() {
+		if(this.props.text) {
+			return (
+				<label
+					className="mdl-textfield__label"
+					htmlFor={this.props.for}
+				>
+					{this.props.text}
+				</label>
+			);
+		} else {
+			return null;
+		}
+	}
 });

@@ -1,9 +1,10 @@
 {
   "name": "mdl-react",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Material Design Lite + React ",
   "scripts": {
-    "test": "./node_modules/nightwatch/bin/nightwatch -e headless"
+    "test": "node_modules/.bin/mochify --transform reactify --reporter spec test/_init.js test/**/*.jsx;node_modules/nightwatch/bin/nightwatch -e headless",
+    "unit_test": "node_modules/.bin/mochify --transform reactify --reporter spec test/_init.js test/**/*.jsx --ui tdd"
   },
   "main": "./lib",
   "repository": {
@@ -42,6 +43,7 @@
     "gulp-util": "~3.0.5",
     "jquery": "~2.1.4",
     "mocha": "~2.2.5",
+    "mochify": "~2.11.0",
     "nightwatch": "~0.7.9",
     "node-jsdom": "~3.1.5",
     "reactify": "~1.1.1",

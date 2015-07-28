@@ -1,57 +1,36 @@
 
-var jsdom = require('node-jsdom');
+var chai = require('chai');
+global.expect = chai.expect;
 
-// setup the simplest document possible
-var doc = jsdom.jsdom('<!doctype html><html><head></head><body></body></html>');
-
-// get the window object out of the document
-var win = doc.defaultView;
-
-// set globals for mocha that make access to document and window feel
-// natural in the test environment
-global.document = doc;
-global.window = win;
-
-// take all properties of the window object and also attach it to the
-// mocha global object
-propagateToGlobal(win);
-
-// from mocha-jsdom https://github.com/rstacruz/mocha-jsdom/blob/master/index.js#L80
-function propagateToGlobal (window) {
-	for (var key in window) {
-		// console.log('key %s', key);
-		if (!window.hasOwnProperty(key)) continue;
-		if (key in global) continue;
-		global[key] = window[key];
-	}
-}
-
-console.log('loaded jsdom');
-console.log('check window %s', window);
-console.log('check document %s', document);
-console.log('check navigator %s', navigator);
+var jquery = require('jquery');
+global.jquery = global.$ = jquery;
 
 var React = require('react/addons');
 global.React = React;
 
-var jQuery = require('jquery');
-global.jQuery = jQuery;
-global.$ = jQuery;
-
-function loadJavascript(src, fname) {
-	var vm = require('vm');
-	var fs = require('fs');
-	var code = fs.readFileSync(src, 'utf-8');
-	vm.runInThisContext(code, {
-		filename : fname,
-	});
+global.mouseClick = function mouseclick( element ) {
+	// create a mouse click event
+	var ev = document.createEvent( 'MouseEvents' );
+	ev.initMouseEvent( 'click', true, true, window, 1, 0, 0 );
+	// send click to element
+	element.dispatchEvent(ev);
 }
 
-loadJavascript('./node_modules/material-design-lite/material.js', 'material.js');
-loadJavascript('./example/js/classList.min.js', 'classList.min.js');
-console.log('componentHandler', componentHandler);
+before('load', function(done) {
+	console.log('load mdl');
+	jquery.getScript("https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js");
+	// console.log('load react');
+	// jquery.getScript("https://fb.me/react-0.13.3.js");
+	console.log('add test div to body');
+	// $('<div id="test"></div>').appendTo(document.body);
+	setTimeout(done, 1000);
+});
 
-///////////////////
+describe('check global', function() {
 
-var chai = require('chai');
-global.expect = chai.expect;
+	it('make sure componentHandler existed', function() {
+		expect(componentHandler).a('object');
+		expect(componentHandler.upgradeDom).a('function');
+	});
+
+});

@@ -30,3 +30,7 @@ reports
 chromedriver*
 
 example/out
+example/app.js
+
+test/test.html
+test.html

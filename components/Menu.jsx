@@ -10,6 +10,7 @@ var cx = require('classnames');
  *		isRipple: 是否使用Ripple動畫，default true
  *		style: Object, Menu List 整體 CSS 樣式
  */
+
 var id = 1;
 
 module.exports = React.createClass({
@@ -24,7 +25,12 @@ module.exports = React.createClass({
 
 	propTypes: {
 		children: React.PropTypes.arrayOf(React.PropTypes.element).isRequired,
-		openDirection: React.PropTypes.oneOf(['bottom-left', 'bottom-right', 'top-left', 'top-right']),
+		openDirection: React.PropTypes.oneOf([
+			'bottom-left',
+			'bottom-right',
+			'top-left',
+			'top-right',
+		]),
 		isRipple: React.PropTypes.bool,
 		style: React.PropTypes.object,
 	},
@@ -35,7 +41,6 @@ module.exports = React.createClass({
 		if(this.props.children instanceof Array && this.props.children.length < 2){
 			console.warn("MDL.Menu: Menu should contain at least one clickable element and one list element");
 		}
-
 		this.id += id++;
 	},
 
@@ -86,7 +91,7 @@ module.exports = React.createClass({
 				);
 			});
 		} else {
-			list = <div />
+			list = null;
 		}
 
 

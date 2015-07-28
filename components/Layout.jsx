@@ -16,7 +16,9 @@ var React = require('react');
 var cx = require('classnames');
 var _ = require('lodash');
 
-var Layout = React.createClass({
+module.exports = React.createClass({
+
+	displayName : 'Layout',
 
 	propTypes: {
 
@@ -110,14 +112,22 @@ var Layout = React.createClass({
 			) {
 				newClassName += ' is-active';
 			}
+			// console.log(item.props, item.props.onClick instanceof Function);
 			return React.cloneElement(item, {
 				key : index,
 				className : newClassName,
 				onClick : function(e) {
+					// console.log('link.onClick');
 					self._closeDrawer();
+					if(item.props.onClick instanceof Function) {
+						item.props.onClick(e);
+					}
 				},
 				onTouchTap : function(e) {
 					self._closeDrawer();
+					if(item.props.onTouchTap instanceof Function) {
+						item.props.onTouchTap(e);
+					}
 				},
 			});
 		});
@@ -125,118 +135,103 @@ var Layout = React.createClass({
 
 	_renderHeader : function(titleComponent) {
 
-		if(
-			this.props.headerLinks.length > 0 ||
-			this.props.tabs.length > 0 ||
-			this.props.showHeaderSearch
-		) {
+		var haderNavOrSearch = null;
+		if(!this.props.showHeaderSearch) {
+			var headerNavClassName = 'mdl-navigation';
+			if(this.props.isHideHeaderMenuWhenMobile) {
+				headerNavClassName += ' mdl-layout--large-screen-only';
+			}
+			var items = this._generateLinks(
+				this.props.headerLinks,
+				'mdl-navigation__link'
+			);
+			haderNavOrSearch = (
+				<nav className={headerNavClassName}>
+					{items}
+				</nav>
+			);
+		} else {
+			haderNavOrSearch = (
+				<HeaderSearch
+					submit={this.props.onSearchSubmit}
+					style={this.props.searchInputStyle}
+				/>
+			);
+		}
 
-			var haderNav = null;
+		var secondHeaderRow = null;
+		if(
+			this.props.waterfallLinks.length > 0 &&
+			this.props.tabs == 0
+		) {
+			var items = this._generateLinks(
+				this.props.waterfallLinks,
+				'mdl-navigation__link'
+			);
 			if(
-				this.props.headerLinks.length > 0 &&
-				!this.props.showHeaderSearch
+				this.props.showHeaderSearch &&
+				items.length > 0
 			) {
-				var headerNavClassName = 'mdl-navigation';
-				if(this.props.isHideHeaderMenuWhenMobile) {
-					headerNavClassName += ' mdl-layout--large-screen-only';
-				}
-				var items = this._generateLinks(
-					this.props.headerLinks,
-					'mdl-navigation__link'
+				items[items.length - 1] = React.cloneElement(
+					items[items.length - 1],
+					{
+						style : { paddingRight : 0 },
+					}
 				);
-				haderNav = (
-					<nav className={headerNavClassName}>
+			}
+			secondHeaderRow = (
+				<div className="mdl-layout__header-row">
+					<div className="mdl-layout-spacer"></div>
+					<nav className="waterfall-demo-header-nav mdl-navigation">
 						{items}
 					</nav>
-				);
-			}
-
-			var headerSearch = null;
-			if(this.props.showHeaderSearch) {
-				headerSearch = (
-					<HeaderSearch
-						submit={this.props.onSearchSubmit}
-						style={this.props.searchInputStyle}
-					/>
-				);
-			}
-
-			var secondHeaderRow = null;
-			if(
-				this.props.waterfallLinks.length > 0 &&
-				this.props.tabs == 0
-			) {
-				var items = this._generateLinks(
-					this.props.waterfallLinks,
-					'mdl-navigation__link'
-				);
-				if(
-					this.props.showHeaderSearch &&
-					items.length > 0
-				) {
-					items[items.length - 1] = React.cloneElement(
-						items[items.length - 1],
-						{
-							style : { paddingRight : 0 },
-						}
-					);
-				}
-				secondHeaderRow = (
-					<div className="mdl-layout__header-row">
-						<div className="mdl-layout-spacer"></div>
-						<nav className="waterfall-demo-header-nav mdl-navigation">
-							{items}
-						</nav>
-					</div>
-				);
-			}
-
-			var headerTabs = null;
-			if(
-				this.props.tabs.length > 0
-			) {
-				var tabs = this._generateLinks(
-					this.props.tabs, 'mdl-layout__tab', this.props.initialTabIndex
-				);
-				headerTabs = (
-					<div className="mdl-layout__tab-bar mdl-js-ripple-effect">
-						{tabs}
-					</div>
-				);
-			}
-
-			var className = 'mdl-layout__header';
-			if(this.props.isTransparent) {
-				className += ' mdl-layout__header--transparent';
-			}
-			if(this.props.isScrollHeader) {
-				className += ' mdl-layout__header--scroll';
-			}
-			if(
-				this.props.waterfallLinks.length > 0 &&
-				this.props.tabs.length == 0
-			) {
-				className += ' mdl-layout__header--waterfall';
-			}
-
-			return (
-				<header className={className} style={this.props.headerStyle} >
-					<div className="mdl-layout__header-row">
-						{
-							!this.props.noHeaderTitle
-							? this._rendreTitle(this.props.headerTitleStyle)
-							: null
-						}
-						<div className="mdl-layout-spacer"></div>
-						{haderNav}
-						{headerSearch}
-					</div>
-					{secondHeaderRow}
-					{headerTabs}
-				</header>
+				</div>
 			);
-
 		}
+
+		var headerTabs = null;
+		if(
+			this.props.tabs.length > 0
+		) {
+			var tabs = this._generateLinks(
+				this.props.tabs, 'mdl-layout__tab', this.props.initialTabIndex
+			);
+			headerTabs = (
+				<div className="mdl-layout__tab-bar mdl-js-ripple-effect">
+					{tabs}
+				</div>
+			);
+		}
+
+		var className = 'mdl-layout__header';
+		if(this.props.isTransparent) {
+			className += ' mdl-layout__header--transparent';
+		}
+		if(this.props.isScrollHeader) {
+			className += ' mdl-layout__header--scroll';
+		}
+		if(
+			this.props.waterfallLinks.length > 0 &&
+			this.props.tabs.length == 0
+		) {
+			className += ' mdl-layout__header--waterfall';
+		}
+
+		return (
+			<header className={className} style={this.props.headerStyle} >
+				<div className="mdl-layout__header-row">
+					{
+						!this.props.noHeaderTitle
+						? this._rendreTitle(this.props.headerTitleStyle)
+						: null
+					}
+					<div className="mdl-layout-spacer"></div>
+					{haderNavOrSearch}
+				</div>
+				{secondHeaderRow}
+				{headerTabs}
+			</header>
+		);
 
 	},
 
@@ -369,5 +364,3 @@ var HeaderSearch = React.createClass({
 	},
 
 });
-
-module.exports = Layout;

@@ -5,119 +5,87 @@ describe('Badge', function() {
 
 	var target;
 
-	it('創建 pure text children', function(done) {
-		target = React.render((
-			<Badge>
-				yourText
-			</Badge>
-		), document.body);
-		return done();
+	before(function() {
+		$('div#test').remove();
+		$('<div id="test"></div>').appendTo(document.body);
 	});
-	
-	it('預設 badge 是否為問號', function(done) {
+
+	it('create pure text children', function(done) {
 		target = React.render((
 			<Badge>
 				yourText
 			</Badge>
-		), document.body);
-		// console.log('印出 document.body', document.body.innerHTML);
-		expect(jQuery('div.mdl-badge').attr('data-badge')).equal('?');
+		), document.getElementById('test'));
 		return done();
 	});
 
-	it('改變 badge 狀態', function(done) {
+	it('default badge', function(done) {
+		target = React.render((
+			<Badge>
+				yourText
+			</Badge>
+		), document.getElementById('test'));
+		expect(jquery('div.mdl-badge').attr('data-badge')).equal('?');
+		return done();
+	});
+
+	it('change badge', function(done) {
 		target.setProps({
 			badge : 10,
 		});
-		expect(jQuery('div.mdl-badge').attr('data-badge')).equal('10');
+		expect(jquery('div.mdl-badge').attr('data-badge')).equal('10');
 		return done();
 	});
 
-	it('觀察 materialDesignIcon 狀態 為 false', function(done) {
+	it('change materialDesignIcon as false', function(done) {
 		target.setProps({
 			materialDesignIcon : false,
 		});
-		expect(jQuery('div.mdl-badge')).to.exist;
+		expect(jquery('div.mdl-badge')).to.exist;
 		return done();
 	});
 
-	it('觀察 materialDesignIcon 狀態 為 true', function(done) {
+	it('change materialDesignIcon as true', function(done) {
 		target.setProps({
 			materialDesignIcon : true,
 		});
-		expect(jQuery('div.mdl-badge.icon.material-icons')).to.exist;
+		expect(jquery('div.mdl-badge.icon.material-icons')).to.exist;
 		return done();
 	});
 
-	it('改變 materialDesignIcon 狀態 為 false', function(done) {
-		target.setProps({
-			materialDesignIcon : false,
-		});
-		expect(jQuery('div.mdl-badge')).to.exist;
-		return done();
-	});
-
-	it('改變 materialDesignIcon 狀態 為 true', function(done) {
-		target.setProps({
-			materialDesignIcon : true,
-		});
-		expect(jQuery('div.mdl-badge.icon.material-icons')).to.exist;
-		return done();
-	});
-
-	it('觀察 noBackground 狀態 為 false', function(done) {
+	it('change noBackground as false', function(done) {
 		target.setProps({
 			noBackground : false,
 		});
-		expect(jQuery('div.mdl-badge')).to.exist;
+		expect(jquery('div.mdl-badge')).to.exist;
 		return done();
 	});
 
-	it('觀察 noBackground 狀態 為 true', function(done) {
+	it('change noBackground as true', function(done) {
 		target.setProps({
 			noBackground : true,
 		});
-		expect(jQuery('div.mdl-badge.mdl-badge--no-background')).to.exist;
+		expect(jquery('div.mdl-badge.mdl-badge--no-background')).to.exist;
 		return done();
 	});
 
-	it('改變 noBackground 狀態 為 false', function(done) {
-		target.setProps({
-			noBackground : false,
-		});
-		expect(jQuery('div.mdl-badge')).to.exist;
-		return done();
-	});
-
-	it('改變 noBackground 狀態 為 true', function(done) {
-		target.setProps({
-			noBackground : true,
-		});
-		expect(jQuery('div.mdl-badge.mdl-badge--no-background')).to.exist;
-		return done();
-	});
-
-	it('觀察 noBackground && materialDesignIcon 狀態 為 true', function(done) {
+	it('change noBackground && materialDesignIcon as true', function(done) {
 		target.setProps({
 			noBackground : true,
 			materialDesignIcon : true,
 		});
-		expect(jQuery('div.mdl-badge.icon.material-icons.mdl-badge--no-background')).to.exist;
+		expect(jquery('div.mdl-badge.icon.material-icons.mdl-badge--no-background')).to.exist;
 		return done();
 	});
 
-	it('觀察 noBackground && materialDesignIcon 狀態 為 true 且 badge 為 \'?\'', function(done) {
+	it('complext test', function(done) {
 		target.setProps({
 			noBackground : true,
 			materialDesignIcon : true,
 			badge : '?',
 		});
-		expect(jQuery('div.mdl-badge.icon.material-icons.mdl-badge--no-background').attr('data-badge')).equal('?');
+		expect(jquery('div.mdl-badge.icon.material-icons.mdl-badge--no-background').attr('data-badge')).equal('?');
 		return done();
-	});
-
-	after(function() {
-		document.body.innerHTML = '';
 	});
 
 });
