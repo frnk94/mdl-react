@@ -33,6 +33,7 @@ module.exports = {
 		client
 			.assert.cssClassNotPresent("#mdl-menu-1 + .mdl-menu__container", "is-visible")
 			.click('#mdl-menu-1')
+			.pause(300)
 			.assert.cssClassPresent("#mdl-menu-1 + .mdl-menu__container", "is-visible")
 			.moveToElement('#mdl-menu-1 + .mdl-menu__container > ul > li:nth-child(1)', 17, 20, function() {
 				client
