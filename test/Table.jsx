@@ -36,12 +36,17 @@ describe('Table', function() {
 
 	var target;
 
+	before(function() {
+		$('div#test').remove();
+		$('<div id="test"></div>').appendTo(document.body);
+	});
+
 	it('建立 Table', function(done) {
 		target = React.render((
 			<Table selectable={true} headers={header}
 				items={items}  shadow={2}
 			/>
-		), document.body);
+		), document.getElementById('test'));
 		// console.log('印出 document.body', document.body.innerHTML);
 		expect(jquery('table').toArray()).length(1);
 		expect(jquery('tr').toArray()).length(3);
@@ -55,10 +60,6 @@ describe('Table', function() {
 		});
 		expect(jquery('tr.is-selected').toArray()).length(1);
 		return done();
-	});
-
-	after(function() {
-		document.body.innerHTML = '';
 	});
 
 });
