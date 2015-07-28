@@ -5,12 +5,17 @@ describe('Badge', function() {
 
 	var target;
 
+	before(function() {
+		$('div#test').remove();
+		$('<div id="test"></div>').appendTo(document.body);
+	});
+
 	it('create pure text children', function(done) {
 		target = React.render((
 			<Badge>
 				yourText
 			</Badge>
-		), document.body);
+		), document.getElementById('test'));
 		return done();
 	});
 
@@ -19,8 +24,7 @@ describe('Badge', function() {
 			<Badge>
 				yourText
 			</Badge>
-		), document.body);
-		// console.log('印出 document.body', document.body.innerHTML);
+		), document.getElementById('test'));
 		expect(jquery('div.mdl-badge').attr('data-badge')).equal('?');
 		return done();
 	});
@@ -82,10 +86,6 @@ describe('Badge', function() {
 		});
 		expect(jquery('div.mdl-badge.icon.material-icons.mdl-badge--no-background').attr('data-badge')).equal('?');
 		return done();
-	});
-
-	after(function() {
-		document.body.innerHTML = '';
 	});
 
 });
