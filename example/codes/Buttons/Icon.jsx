@@ -15,7 +15,7 @@
 
 /* Primary-colored Icon button without Ripple */
 <MDL.Button type="IconButton" isPrimary={true} isRipple={false}>
-	<button onClick={ function() {this.refs.icon.toggleButton();}.bind(this) }>
+	<button>
 		<i className="material-icons">mood</i>
 	</button>
 </MDL.Button>
@@ -36,7 +36,7 @@
 </MDL.Button>
 
 /* Disabled Icon button */
-<MDL.Button type="IconButton" ref="icon" defaultDisabled={true}>
+<MDL.Button type="IconButton" ref="icon" isDisabled={this.state.iconIsDisabled}>
 	<button>
 		<i className="material-icons">plus_one</i>
 	</button>

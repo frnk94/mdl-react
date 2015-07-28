@@ -7,9 +7,9 @@
 	"page_objects_path" : "",
 	"globals_path" : "test_e2e/_globals.js",
 
-	"live_output" : false,
+	"live_output" : true,
 	"parallel_process_delay" : 500,
-	"test_workers" : true,
+	"test_workers" : false,
 
 	"selenium" : {
 		"start_process" : true,

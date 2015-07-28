@@ -45,79 +45,60 @@ module.exports = React.createClass({
 				<p>If the type of button is IconButton, you should manually wrap the icon element.
 					(You can search the label of material icons in <a href="https://www.google.com/design/icons/" target="_blank">https://www.google.com/design/icons/</a>.
 						If the label consists of at least 2 words, remember using the underline symbol _ to joint words, i.e. open_in_browser.)</p>
-				</div>),
-			},
-			{
-				key : 'type',
-				type : 'one of "FloatingActionButton", "RaisedButton", "FlatButton", "IconButton"',
-				state : 'required',
-				content : 'The type of button that will be displayed',
-			},
-			{
-				key : 'isRipple',
-				type : 'boolean',
-				state : 'default: true',
-				content : 'If false, the click event will not activate ripple animation.',
-			},
-			{
-				key : 'isPrimary',
-				type : 'boolean',
-				state : 'optional',
-				content : 'If true, the button use the primary colors.',
-			},
-			{
-				key : 'isAccent',
-				type : 'boolean',
-				state : 'optional',
-				content : "If true, the button use the accent colors.",
-			},
-			{
-				key : 'isMini',
-				type : 'boolean',
-				state : 'optional',
-				content : "If true, the button will be Mini FAB. This props only works on type 'FloatingActionButton'.",
-			},
-			{
-				key : 'defaultDisabled',
-				type : 'boolean',
-				state : 'optional',
-				content : "Disables the button if set to true.",
-			},
-			{
-				key : 'id',
-				type : 'string',
-				state : 'optional',
-				content : "HTML `id` attribute for binding with another component. ",
-			},
-			{
-				key : 'style',
-				type : 'object',
-				state : 'optional',
-				content : "If style prop exists, it will override the style of the child.",
-			},
-
-	],
-	methodsDetail: [
-		{
-			key : 'setDisabled',
-			type : 'function( bool )',
-			content : 'Set true to activate the button, or set false to disable it.',
+				</div>
+			),
 		},
 		{
-			key : 'toggleButton',
-			type : 'function()',
-			content : 'If the button is disabled, the method will activate the button, vice versa.',
+			key : 'type',
+			type : 'one of "FloatingActionButton", "RaisedButton", "FlatButton", "IconButton"',
+			state : 'required',
+			content : 'The type of button that will be displayed',
 		},
 		{
-			key : 'getDisabled',
-			type : 'function()',
-			content : 'Check whether the button is disabled. If the button is disabled, true will be returned.',
+			key : 'isRipple',
+			type : 'boolean',
+			state : 'default: true',
+			content : 'If false, the click event will not activate ripple animation.',
+		},
+		{
+			key : 'isPrimary',
+			type : 'boolean',
+			state : 'optional',
+			content : 'If true, the button use the primary colors.',
+		},
+		{
+			key : 'isAccent',
+			type : 'boolean',
+			state : 'optional',
+			content : "If true, the button use the accent colors.",
+		},
+		{
+			key : 'isMini',
+			type : 'boolean',
+			state : 'optional',
+			content : "If true, the button will be Mini FAB. This props only works on type 'FloatingActionButton'.",
+		},
+		{
+			key : 'isDisabled',
+			type : 'boolean',
+			state : 'optional',
+			content : "Disables the button if set to true.",
+		},
+		{
+			key : 'style',
+			type : 'object',
+			state : 'optional',
+			content : "If style prop exists, it will override the style of the child.",
 		},
 	],
 
 	getInitialState: function() {
 		return {
-			url: 'FAB.jsx'
+			url: 'FAB.jsx',
+			fabIsDisabled: true,
+			raisedIsDisabled: true,
+			flatIsDisabled: true,
+			iconIsDisabled: true,
 		};
 	},
 
@@ -146,7 +127,8 @@ module.exports = React.createClass({
 				</MDL.Button>
 
 				<MDL.Button type="FloatingActionButton" isPrimary={true} isRipple={false}>
-					<button onClick={function() {this.refs.FAB.toggleButton();}.bind(this)} style={this.styles.button}>
+					<button style={this.styles.button}
+						onClick={function() {this.setState({fabIsDisabled: !this.state.fabIsDisabled});}.bind(this)} >
 						<i className="material-icons">star</i>
 					</button>
 				</MDL.Button>
@@ -165,7 +147,7 @@ module.exports = React.createClass({
 					</button>
 				</MDL.Button>
 
-				<MDL.Button type="FloatingActionButton" defaultDisabled={true} ref="FAB">
+				<MDL.Button type="FloatingActionButton" isDisabled={this.state.fabIsDisabled} ref="FAB">
 					<button style={this.styles.button}>
 						<i className="material-icons">star</i>
 					</button>
@@ -186,7 +168,8 @@ module.exports = React.createClass({
 				</MDL.Button>
 
 				<MDL.Button type="FloatingActionButton" isPrimary isMini isRipple={false}>
-					<button style={this.styles.miniFAB} onClick={function() {this.refs.FAB.toggleButton();}.bind(this)}>
+					<button style={this.styles.miniFAB}
+						onClick={function() {this.setState({fabIsDisabled: !this.state.fabIsDisabled});}.bind(this)} >
 						<i className="material-icons">star</i>
 					</button>
 				</MDL.Button>
@@ -205,7 +188,10 @@ module.exports = React.createClass({
 					<a href="/" target="_blank" style={this.styles.button}>Link</a>
 				</MDL.Button>
 				<MDL.Button type="RaisedButton" isPrimary={true} isRipple={false}>
-					<button style={this.styles.button} onClick={ function() {this.refs.raised.toggleButton();}.bind(this)}>No Ripple</button>
+					<button style={this.styles.button}
+						onClick={function() {this.setState({raisedIsDisabled: !this.state.raisedIsDisabled});}.bind(this)}>
+						No Ripple
+					</button>
 				</MDL.Button>
 
 				<br />
@@ -216,7 +202,7 @@ module.exports = React.createClass({
 				<MDL.Button type="RaisedButton" isRipple={false}>
 					<a href="/" target="_blank" style={this.styles.button}>Link</a>
 				</MDL.Button>
-				<MDL.Button type="RaisedButton" ref="raised" defaultDisabled={true}>
+				<MDL.Button type="RaisedButton" ref="raised" isDisabled={this.state.raisedIsDisabled}>
 						<button style={this.styles.button}>Disabled</button>
 				</MDL.Button>
 
@@ -234,7 +220,10 @@ module.exports = React.createClass({
 					<a href="/" target="_blank" style={this.styles.button}>Link</a>
 				</MDL.Button>
 				<MDL.Button type="FlatButton" isPrimary={true} isRipple={false}>
-					<button style={this.styles.button} onClick={ function() {this.refs.flat.toggleButton();}.bind(this) }>No Ripple</button>
+					<button style={this.styles.button}
+						onClick={ function() {this.setState({flatIsDisabled: !this.state.flatIsDisabled});}.bind(this) }>
+						No Ripple
+					</button>
 				</MDL.Button>
 
 				<br />
@@ -245,7 +234,7 @@ module.exports = React.createClass({
 				<MDL.Button type="FlatButton" isRipple={false}>
 					<a href="/" target="_blank" style={this.styles.button}>Link</a>
 				</MDL.Button>
-				<MDL.Button type="FlatButton" ref="flat" defaultDisabled={true}>
+				<MDL.Button type="FlatButton" ref="flat" isDisabled={this.state.flatIsDisabled}>
 						<button style={this.styles.button}>Disabled</button>
 				</MDL.Button>
 
@@ -265,7 +254,8 @@ module.exports = React.createClass({
 				</MDL.Button>
 
 				<MDL.Button type="IconButton" isPrimary={true} isRipple={false}>
-					<button style={this.styles.button} onClick={ function() {this.refs.icon.toggleButton();}.bind(this) }>
+					<button style={this.styles.button}
+						onClick={ function() {this.setState({iconIsDisabled: !this.state.iconIsDisabled})}.bind(this) }>
 						<i className="material-icons">mood</i>
 					</button>
 				</MDL.Button>
@@ -277,7 +267,7 @@ module.exports = React.createClass({
 				<MDL.Button type="IconButton" isRipple={false}>
 					<button style={this.styles.button}><i className="material-icons">plus_one</i></button>
 				</MDL.Button>
-				<MDL.Button type="IconButton" ref="icon" defaultDisabled={true}>
+				<MDL.Button type="IconButton" ref="icon" isDisabled={this.state.iconIsDisabled}>
 					<button style={this.styles.button}><i className="material-icons">plus_one</i></button>
 				</MDL.Button>
 			</div>
@@ -310,7 +300,6 @@ module.exports = React.createClass({
 				</MDL.Card>
 
 				<Components.Props detail={this.propsDetail} title="Props" />
-				<Components.Props detail={this.methodsDetail} title="Methods" />
 			</Components.Page>
 		);
 	},
