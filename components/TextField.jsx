@@ -52,6 +52,7 @@ module.exports = React.createClass({
 				value : value,
 				changeCounter : ++this.state.changeCounter,
 			});
+			componentHandler.upgradeDom();
 		}
 		else {
 			this.setState({
