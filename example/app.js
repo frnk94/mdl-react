@@ -1564,6 +1564,7 @@ module.exports = React.createClass({
 
 	_refreshSelected : function() {
 		var checkboxs = this._getNodeByClassName("mdl-checkbox__input");
+		if(checkboxs.length == 0) return;
 		var trs = this.refs.tbody.getDOMNode().childNodes;
 		_.forEach(trs, function(tr, index) {
 			var isTrChecked = tr.classList.contains('is-selected');
@@ -1846,6 +1847,7 @@ module.exports = React.createClass({
 				value : value,
 				changeCounter : ++this.state.changeCounter,
 			});
+			componentHandler.upgradeDom();
 		}
 		else {
 			this.setState({
