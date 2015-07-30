@@ -15,7 +15,7 @@ var _ = require('lodash');
  *		style: Object, Menu List 整體 CSS 樣式
  */
 
-var id = 1;
+var _counter = 0;
 
 module.exports = React.createClass({
 
@@ -47,10 +47,10 @@ module.exports = React.createClass({
         },
 	},
 
-	id: 'mdl-menu-',
-
-	componentWillMount: function() {
-		this.id += id++;
+	getInitialState: function() {
+		return {
+			id : 'mdl-menu-' + (_counter++),
+		};
 	},
 
 	componentDidMount: function() {
@@ -101,10 +101,10 @@ module.exports = React.createClass({
 
 		return (
 			<div style={style}>
-				<MenuBtn>
+				<MenuBtn id={this.state.id} >
 					{this.props.children[0]}
 				</MenuBtn>
-				<ul className={this._getClasses()} htmlFor={this.id}>
+				<ul className={this._getClasses()} htmlFor={this.state.id} >
 					{list}
 				</ul>
 			</div>
@@ -117,8 +117,11 @@ module.exports = React.createClass({
 var MenuBtn = React.createClass({
 	propTypes: {
 		children : React.PropTypes.element.isRequired,
+		id : React.PropTypes.string.isRequired,
 	},
 	render: function() {
-		return React.cloneElement(this.props.children, {id: this.id});
+		return React.cloneElement(this.props.children, {
+			id : this.props.id,
+		});
 	},
 });
