@@ -47,14 +47,24 @@ module.exports = React.createClass({
 	},
 
 	setValue : function(value) {
-		this.setState({
-			value : value,
-		});
+		if(this.refs.input.getDOMNode().value == '' && value != '') {
+			this.setState({
+				value : value,
+				changeCounter : ++this.state.changeCounter,
+			});
+		}
+		else {
+			this.setState({
+				value : value,
+			});
+		}
+		
 	},
 
 	getInitialState: function() {
 		return {
 			value : this.props.defaultValue,
+			changeCounter : 0,
 		};
 	},
 
@@ -136,7 +146,7 @@ module.exports = React.createClass({
 			);
 		}
 		return (
-			<div className={cx(classes)} style={this.props.style} >
+			<div key={this.state.changeCounter} className={cx(classes)} style={this.props.style} >
 				{this._renderInput()}
 				<TextFieldLabel text={this.props.labelText} for={this.state.id} />
 				<TextFieldError text={this.props.errorText} />
