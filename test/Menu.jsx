@@ -49,4 +49,9 @@ describe('Badge', function() {
 		expect($('#test ul > li')).length(2);
 	});
 
+	it('測試點擊 button', function() {
+		mouseClick($('button.TEST_CLASS_3').get(0));
+		expect(jquery('div.TEST_CLASS_2:visible')).length(1);
+	});
+
 });
