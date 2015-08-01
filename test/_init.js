@@ -9,10 +9,17 @@ var React = require('react/addons');
 global.React = React;
 
 global.mouseClick = function mouseclick( element ) {
-	// create a mouse click event
-	var ev = document.createEvent( 'MouseEvents' );
-	ev.initMouseEvent( 'click', true, true, window, 1, 0, 0 );
-	// send click to element
+	var ev;
+	if(MouseEvent instanceof Function) {
+		ev = new MouseEvent('click', {
+			'view': window,
+			'bubbles': true,
+			'cancelable': true
+		});
+	} else {
+		ev = document.createEvent('MouseEvents');
+		ev.initMouseEvent( 'click', true, true, window, 1, 0, 0 );
+	}
 	element.dispatchEvent(ev);
 }
 
