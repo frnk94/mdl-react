@@ -2399,7 +2399,7 @@ module.exports = {
 
 	TextField : require('./TextField.jsx'),
 	Layout : require('./Layout.jsx'),
-	LayoutHeaderNav : require('./LayoutComponents/HeaderNav.jsx'),
+	// LayoutHeaderNav : require('./LayoutComponents/HeaderNav.jsx'),
 	PrismCode : require('./PrismCode.jsx'),
 	Menu : require('./Menu.jsx'),
 	Table : require('./Table.jsx'),
@@ -2423,7 +2423,7 @@ module.exports = {
 
 };
 
-},{"./Badge.jsx":1,"./Button.jsx":2,"./Card.jsx":3,"./CardComponents/CardAction.jsx":4,"./CardComponents/CardMedia.jsx":5,"./CardComponents/CardMenu.jsx":6,"./CardComponents/CardSupportingText.jsx":7,"./CardComponents/CardTitle.jsx":8,"./Grid.jsx":9,"./GridCell.jsx":10,"./Icon.jsx":11,"./Layout.jsx":12,"./LayoutComponents/HeaderNav.jsx":13,"./Loading.jsx":18,"./Menu.jsx":19,"./MiniFooter.jsx":20,"./PrismCode.jsx":21,"./Slider.jsx":22,"./Table.jsx":23,"./Tabs.jsx":24,"./TextField.jsx":25,"./Toggle.jsx":26,"./Tooltip.jsx":27}],29:[function(require,module,exports){
+},{"./Badge.jsx":1,"./Button.jsx":2,"./Card.jsx":3,"./CardComponents/CardAction.jsx":4,"./CardComponents/CardMedia.jsx":5,"./CardComponents/CardMenu.jsx":6,"./CardComponents/CardSupportingText.jsx":7,"./CardComponents/CardTitle.jsx":8,"./Grid.jsx":9,"./GridCell.jsx":10,"./Icon.jsx":11,"./Layout.jsx":12,"./Loading.jsx":18,"./Menu.jsx":19,"./MiniFooter.jsx":20,"./PrismCode.jsx":21,"./Slider.jsx":22,"./Table.jsx":23,"./Tabs.jsx":24,"./TextField.jsx":25,"./Toggle.jsx":26,"./Tooltip.jsx":27}],29:[function(require,module,exports){
 (function (global){
 
 "use strict";
