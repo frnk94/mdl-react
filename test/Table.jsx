@@ -62,4 +62,21 @@ describe('Table', function() {
 		return done();
 	});
 
+	it('.forceRender()', function(done) {
+		mouseClick($('table input').get(0));
+		expect(jquery('tr.is-selected').toArray()).length(2);
+		target.forceRender();
+		expect(jquery('tr.is-selected').toArray()).length(1);
+		return done();
+		// setTimeout(function() {
+		// 	target.forceRender();
+		// 	setTimeout(function() {
+		// 		expect(jquery('table').toArray()).length(1);
+		// 		expect(jquery('tr').toArray()).length(3);
+		// 		expect(jquery('tr.is-selected').toArray()).length(1);
+		// 		return done();
+		// 	}, 100);
+		// }, 100);
+	});
+
 });
