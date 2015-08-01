@@ -62,7 +62,6 @@ var App = React.createClass({
 				contentStyle={{ minHeight : '1000px' }}
 				noDrawerTitle={true}
 			>
-				<MDL.LayoutHeaderNav />
 				<Router.RouteHandler />
 			</MDL.Layout>
 		);
