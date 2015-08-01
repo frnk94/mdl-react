@@ -19,14 +19,11 @@ var _ = require('lodash');
 		style 		css 設定
 		onRowSelected 		監聽點選動作，回傳所有選取值
 	Methods
-		getSelected 	取得勾選的資料值
+		getSelected 		取得勾選的資料值
+		getSelectedIndexes	取得勾選的索引值
 */
 
-var counter = 0;
-
-module.exports = React.createClass({
-
-	displayName : 'Table',
+var Table = React.createClass({
 
 	propTypes: {
 		headers : React.PropTypes.arrayOf(React.PropTypes.shape({
@@ -48,6 +45,23 @@ module.exports = React.createClass({
 		onRowSelected : React.PropTypes.func,
 	},
 
+	getSelected : function() {
+		return _.map(this._selectedIndexes, function(i) {
+			return this.props.items[i];
+		}, this);
+	},
+
+	getSelectedIndexes : function() {
+		return this._selectedIndexes;
+	},
+
+	forceRender : function() {
+		this._selectedIndexes = this._getSelectedByProp(this.props);
+		this.setState({
+			counter : ++this.state.counter,
+		});
+	},
+
 	getInitialState: function() {
 		var tmp = _.map(this.props.items, function(item, index) {
 			if(item._selected) return index;
@@ -55,7 +69,9 @@ module.exports = React.createClass({
 		this._selectedIndexes = this._getSelectedByProp(this.props);
 		this._defaultSelectedIndexes = this._getSelectedByProp(this.props);
 		return {
-			structureChangeCounter : 0,
+			counter : 0,
+			itemsLength : this.props.items.length,
+			headersLength : this.props.headers.length,
 		};
 	},
 
@@ -75,13 +91,15 @@ module.exports = React.createClass({
 
 	componentWillReceiveProps: function(nextProps) {
 		if(
-			this.props.items.length != nextProps.items.length ||
-			this.props.headers.length != nextProps.headers.length ||
+			this.state.itemsLength != nextProps.items.length ||
+			this.state.headersLength != nextProps.headers.length ||
 			this.props.selectable != nextProps.selectable
 		) {
 			console.debug('mdl table structure changed');
 			this.setState({
-				structureChangeCounter : ++this.state.structureChangeCounter,
+				counter : ++this.state.counter,
+				itemsLength : nextProps.items.length,
+				headersLength : nextProps.headers.length,
 			});
 		}
 		if(
@@ -94,16 +112,6 @@ module.exports = React.createClass({
 			this._selectedIndexes = this._getSelectedByProp(nextProps);
 			this._defaultSelectedIndexes = this._getSelectedByProp(nextProps);
 		}
-	},
-
-	getSelected : function() {
-		return _.map(this._selectedIndexes, function(i) {
-			return this.props.items[i];
-		}, this);
-	},
-
-	getSelectedIndexes : function() {
-		return this._selectedIndexes;
 	},
 
 	_bindOnSelected: function() {
@@ -135,6 +143,7 @@ module.exports = React.createClass({
 
 	_refreshSelected : function() {
 		var checkboxs = this._getNodeByClassName("mdl-checkbox__input");
+		if(checkboxs.length == 0) return;
 		var trs = this.refs.tbody.getDOMNode().childNodes;
 		_.forEach(trs, function(tr, index) {
 			var isTrChecked = tr.classList.contains('is-selected');
@@ -204,7 +213,7 @@ module.exports = React.createClass({
 
 		return (
 			<table ref="table"
-				key={this.state.structureChangeCounter}
+				key={this.state.counter}
 				className={cx(classes)}
 				style={this.props.style}
 			>
@@ -248,3 +257,5 @@ var TableHead = React.createClass({
 		);
 	}
 });
+
+module.exports = Table;

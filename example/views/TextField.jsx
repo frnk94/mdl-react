@@ -3,10 +3,11 @@
 
 var React = require('react');
 var MDL = require('../../components');
-
 var Components = require('../components');
 
-var ExampleTextField = React.createClass({
+module.exports = React.createClass({
+
+	displayName : 'ExampleTextField',
 
 	propTypes: {
 		style : React.PropTypes.string
@@ -84,12 +85,34 @@ var ExampleTextField = React.createClass({
 						lang='jsx'
 					/>
 				</MDL.Card>
-				{this._renderProps()}
+				<TextFieldMethods />
+				<TextFieldProps />
 			</Components.Page>
 		);
 	},
 
-	_renderProps : function() {
+});
+
+var TextFieldMethods = React.createClass({
+	render: function() {
+		var detail = [
+			{
+				key : 'setValue',
+				type : 'function(str)',
+				content : 'Set value to the text filed',
+			},
+			{
+				key : 'getValue',
+				type : 'function(str)',
+				content : 'Get the value from the text field',
+			},
+		];
+		return <Components.Props detail={detail} title="Methods" />;
+	}
+});
+
+var TextFieldProps = React.createClass({
+	render: function() {
 		var propsDetail = [
 			{
 				key : 'labelText',
@@ -147,8 +170,5 @@ var ExampleTextField = React.createClass({
 			},
 		];
 		return <Components.Props detail={propsDetail} title="Props" />;
-	},
-
+	}
 });
-
-module.exports = ExampleTextField;

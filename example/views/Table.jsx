@@ -227,6 +227,12 @@ module.exports = React.createClass({
 				type : 'function(indexes)',
 				content : 'Get the indexes from the rows you selected.',
 			},
+			{
+				key : 'forceRender',
+				type : 'function()',
+				content : 'Force this component flush and render. ' +
+							'Discard the current selected indexes.',
+			},
 		];
 
 		var prismCode = {

@@ -2,16 +2,16 @@ var React = require('react');
 
 module.exports  = React.createClass({
 
-    displayName : 'HeaderNav',
+	displayName : 'LayoutHeaderNav',
 
-    // propTypes: {
-    //     : React.PropTypes.string
-    // },
+	// propTypes: {
+	//     : React.PropTypes.string
+	// },
 
-    render: function() {
-        return (
-            <div />
-        );
-    }
+	render: function() {
+		return (
+			<div />
+		);
+	}
 
 });

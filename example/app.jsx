@@ -30,7 +30,7 @@ var App = React.createClass({
 			<a href='https://facebook.github.io/react/' target='_blank'>React</a>,
 		];
 		var drawerLinks = [
-			<a href='#badge'>Badge</a>,
+			<a href='#badge' onClick={function(){console.log('badge.onClick');}} >Badge</a>,
 			<a href='#button'>Button</a>,
 			<a href='#card'>Card</a>,
 			<a href='#grid'>Grid</a>,
