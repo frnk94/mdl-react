@@ -1,6 +1,6 @@
 {
   "name": "mdl-react",
-  "version": "0.0.10-1",
+  "version": "0.0.10",
   "description": "Material Design Lite + React ",
   "scripts": {
     "test": "node_modules/.bin/mochify --transform reactify --reporter spec test/_init.js test/**/*.jsx;node_modules/nightwatch/bin/nightwatch -e headless",
