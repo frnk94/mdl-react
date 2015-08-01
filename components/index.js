@@ -3,7 +3,6 @@ module.exports = {
 
 	TextField : require('./TextField.jsx'),
 	Layout : require('./Layout.jsx'),
-	// LayoutHeaderNav : require('./LayoutComponents/HeaderNav.jsx'),
 	PrismCode : require('./PrismCode.jsx'),
 	Menu : require('./Menu.jsx'),
 	Table : require('./Table.jsx'),
