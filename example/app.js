@@ -2317,7 +2317,7 @@ var App = React.createClass({displayName: "App",
 			React.createElement("a", {href: "#text-field"}, "Text Field"),
 			React.createElement("a", {href: "#toggle"}, "Toggle"),
 			React.createElement("a", {href: "#tooltip"}, "Tooltip"),
-			React.createElement("a", {href: "#prismCode"}, "(Non-MDL) PrismCode"),
+			React.createElement("a", {href: "#prismCode"}, "PrismCode"),
 		];
 		var tabs = [
 			React.createElement("a", {href: ""}, "Tab 1"),
@@ -3573,7 +3573,18 @@ module.exports = React.createClass({displayName: "exports",
 						), 
 						React.createElement(MDL.Button, {type: "RaisedButton", isAccent: true}, 
 							React.createElement("a", {href: "#layout", style: btnStyle}, "Components")
+						), 
+						React.createElement(MDL.Button, {type: "RaisedButton"}, 
+							React.createElement("a", {href: "http://www.getmdl.io/", style: btnStyle}, 
+								"MDL"
+							)
+						), 
+						React.createElement(MDL.Button, {type: "RaisedButton"}, 
+							React.createElement("a", {href: "http://www.getmdl.io/", style: btnStyle}, 
+								"React"
+							)
 						)
+
 					)
 				)
 			)
