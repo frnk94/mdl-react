@@ -3730,12 +3730,13 @@ module.exports = React.createClass({displayName: "exports",
 							React.createElement("a", {href: "#layout", style: btnStyle}, "Components")
 						), 
 						React.createElement(MDL.Button, {type: "RaisedButton"}, 
-							React.createElement("a", {href: "http://www.getmdl.io/", style: btnStyle}, 
+							React.createElement("a", {href: "http://www.getmdl.io/", target: "_blank", style: btnStyle}, 
 								"MDL"
 							)
 						), 
 						React.createElement(MDL.Button, {type: "RaisedButton"}, 
-							React.createElement("a", {href: "http://www.getmdl.io/", style: btnStyle}, 
+							React.createElement("a", {href: "http://facebook.github.io/react/", target: "_blank", 
+							style: btnStyle}, 
 								"React"
 							)
 						)
