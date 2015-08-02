@@ -19,7 +19,7 @@ var cx = require('classnames');
 
 module.exports = React.createClass({
 
-	displayName : 'Badge',
+	displayName : 'MDL:Badge',
 
 	propTypes: {
 		badge : React.PropTypes.node.isRequired,
@@ -88,7 +88,9 @@ var _ = require('lodash');
 		isAccent: 是否使用強調色
 		isMini: 是否 mini for FAB
 */
-module.exports = React.createClass({displayName: "exports",
+module.exports = React.createClass({
+
+	displayName : 'MDL.Button',
 
 	getDefaultProps: function() {
 		return {
@@ -185,7 +187,9 @@ var cx = require('classnames');
 		style 		css 設定
 */
 
-module.exports = React.createClass({displayName: "exports",
+module.exports = React.createClass({
+
+	displayName : 'MDL:Card',
 
 	getDefaultProps: function() {
 		return {
@@ -461,7 +465,9 @@ var React = require('react');
 		style 		css 設定
 */
 
-var Grid = React.createClass({displayName: "Grid",
+module.exports = React.createClass({
+
+	displayName : 'MDL:Grid',
 
 	propTypes: {
 		style : React.PropTypes.object,
@@ -474,8 +480,6 @@ var Grid = React.createClass({displayName: "Grid",
 	}
 
 });
-
-module.exports = Grid;
 
 },{"react":251}],10:[function(require,module,exports){
 var React = require('react');
@@ -501,7 +505,9 @@ var cx = require('classnames');
 		style 			css setting
 */
 
-module.exports = React.createClass({displayName: "exports",
+module.exports = React.createClass({
+
+	displayName : 'MDL:GridCell',
 
 	getDefaultProps: function() {
 		return {
@@ -571,7 +577,7 @@ module.exports = React.createClass({displayName: "exports",
 			React.createElement("div", {className: cx(classes), style: this.props.style}, 
 				this.props.children
 			)
-			
+
 		);
 	}
 
@@ -583,7 +589,9 @@ module.exports = React.createClass({displayName: "exports",
 
 var React = require('react');
 
-var Icon = React.createClass({displayName: "Icon",
+module.exports = React.createClass({
+
+	displayName : 'MDL:Icon',
 
 	propTypes: {
 		children : React.PropTypes.string.isRequired,
@@ -604,8 +612,6 @@ var Icon = React.createClass({displayName: "Icon",
 	},
 
 });
-
-module.exports = Icon;
 
 },{"react":251}],12:[function(require,module,exports){
 
@@ -633,7 +639,7 @@ var _HeaderWaterfall = LayoutComponents._HeaderWaterfall;
 
 module.exports = React.createClass({
 
-	displayName : 'Layout',
+	displayName : 'MDL:Layout',
 
 	propTypes: {
 
@@ -770,36 +776,6 @@ module.exports = React.createClass({
 			);
 		}
 
-		// var secondHeaderRow = null;
-		// if(
-		// 	this.props.waterfallLinks.length > 0 &&
-		// 	this.props.tabs == 0
-		// ) {
-		// 	var items = this._generateLinks(
-		// 		this.props.waterfallLinks,
-		// 		'mdl-navigation__link'
-		// 	);
-		// 	if(
-		// 		this.props.showHeaderSearch &&
-		// 		items.length > 0
-		// 	) {
-		// 		items[items.length - 1] = React.cloneElement(
-		// 			items[items.length - 1],
-		// 			{
-		// 				style : { paddingRight : 0 },
-		// 			}
-		// 		);
-		// 	}
-		// 	secondHeaderRow = (
-		// 		<div className="mdl-layout__header-row">
-		// 			<div className="mdl-layout-spacer"></div>
-		// 			<nav className="waterfall-demo-header-nav mdl-navigation">
-		// 				{items}
-		// 			</nav>
-		// 		</div>
-		// 	);
-		// }
-
 		var className = 'mdl-layout__header';
 		if(this.props.isTransparent) {
 			className += ' mdl-layout__header--transparent';
@@ -819,7 +795,8 @@ module.exports = React.createClass({
 				React.createElement("div", {className: "mdl-layout__header-row"}, 
 					React.createElement(_HeaderTitle, {
 						disabled: this.props.noHeaderTitle, 
-						style: this.props.headerTitleStyle
+						style: this.props.headerTitleStyle, 
+						href: this.props.href
 					}, 
 						this.props.title
 					), 
@@ -854,7 +831,8 @@ module.exports = React.createClass({
 				React.createElement("div", {className: "mdl-layout__drawer", style: this.props.drawerStyle}, 
 					React.createElement(_HeaderTitle, {
 						disabled: this.props.noDrawerTitle, 
-						style: this.props.drawerTitleStyle
+						style: this.props.drawerTitleStyle, 
+						href: this.props.href
 					}, 
 						this.props.title
 					), 
@@ -1128,7 +1106,9 @@ var _ = require('lodash');
 		singleColor,
 		buffer,
 */
-module.exports = React.createClass({displayName: "exports",
+module.exports = React.createClass({
+
+	displayName : 'MDL:Loading',
 
 	propTypes: {
 		type :  React.PropTypes.oneOf(['Spinner', 'ProgressBar']).isRequired,
@@ -1224,7 +1204,9 @@ var _ = require('lodash');
 
 var _counter = 0;
 
-module.exports = React.createClass({displayName: "exports",
+module.exports = React.createClass({
+
+	displayName : 'MDL:Menu',
 
 	getDefaultProps: function() {
 		return {
@@ -1245,13 +1227,13 @@ module.exports = React.createClass({displayName: "exports",
 		isRipple: React.PropTypes.bool,
 		style: React.PropTypes.object,
 		children : function(props, propName, componentName) {
-        	if(!_.isArray(props[propName])) {
+			if(!_.isArray(props[propName])) {
 				throw new Error('MDL.Menu: children should be an array');
 			}
 			if(props[propName].length < 2) {
-				throw new Error('MDL.Menu:  the length children should be greater than 2');
+				throw new Error('MDL.Menu:  the length children should be greater than 1');
 			}
-        },
+		},
 	},
 
 	getInitialState: function() {
@@ -1293,14 +1275,18 @@ module.exports = React.createClass({displayName: "exports",
 
 	render: function() {
 
-		var style = this.props.style;
-		style.position = 'relative';
+		var style = _.extend({
+			position : 'relative',
+		}, this.props.style);
 
 		var list = null;
 		list = this._getFlatenChildren().map(function(child, index) {
 			if(index == 0) return;	// 忽略按鈕
 			return (
-				React.createElement("li", {key: index, disabled: child.props.disabled, className: "mdl-menu__item"}, 
+				React.createElement("li", {key: index, 
+					disabled: child.props.disabled, 
+					className: "mdl-menu__item"
+				}, 
 					child
 				)
 			);
@@ -1339,7 +1325,9 @@ var MenuBtn = React.createClass({displayName: "MenuBtn",
 
 var React = require('react');
 
-var MiniFooter = React.createClass({displayName: "MiniFooter",
+var MiniFooter = React.createClass({
+
+	displayName : 'MDL:MiniFooter',
 
 	propTypes: {
 		leftSection : React.PropTypes.shape({
@@ -1421,7 +1409,9 @@ var _ = require('lodash');
 
 */
 
-module.exports = React.createClass({displayName: "exports",
+module.exports = React.createClass({
+
+	displayName : 'MDL:PrismCode',
 
 	propTypes: {
 		src : React.PropTypes.string.isRequired,
@@ -1609,7 +1599,9 @@ var _ = require('lodash');
 		getSelectedIndexes	取得勾選的索引值
 */
 
-var Table = React.createClass({displayName: "Table",
+var Table = React.createClass({
+
+	displayName : 'MDL:Table',
 
 	propTypes: {
 		headers : React.PropTypes.arrayOf(React.PropTypes.shape({
@@ -1869,7 +1861,9 @@ var React = require('react');
  *		getTabIndex: get the index of currently active tab
  */
 
-module.exports = React.createClass({displayName: "exports",
+module.exports = React.createClass({
+
+	displayName : 'MDL:Tabs',
 
 	getDefaultProps: function() {
 		return {
@@ -1986,7 +1980,7 @@ var _counter = 1;
 
 module.exports = React.createClass({
 
-	displayName : 'TextField',
+	displayName : 'MDL:TextField',
 
 	propTypes: {
 		labelText : React.PropTypes.string,
@@ -2021,7 +2015,7 @@ module.exports = React.createClass({
 				value : value,
 			});
 		}
-		
+
 	},
 
 	getInitialState: function() {
@@ -2183,9 +2177,11 @@ var _ = require('lodash');
  *		getChecked: whether the checkbox is checked
  */
 
-var id = 1;
+var counter = 1;
 
-module.exports = React.createClass({displayName: "exports",
+module.exports = React.createClass({
+
+	displayName : 'MDL:Toggle',
 
 	getDefaultProps: function() {
 		return {
@@ -2209,16 +2205,14 @@ module.exports = React.createClass({displayName: "exports",
 		isDisabled: React.PropTypes.bool,
 	},
 
-	id: 'mdl-toggle-',
+	id : 'mdl-toggle-',
 
 	componentWillMount: function() {
-
 		if (this.props.type == "radio") {
 			if(!this.props.name) console.warn('MDL.Toggle: Radio button needs props name');
 			if(!this.props.value) console.warn('MDL.Toggle: Radio button needs props value');
 		}
-
-		this.id += id++;
+		this.id += counter++;
 	},
 
 	componentDidMount: function() {
@@ -2256,7 +2250,6 @@ module.exports = React.createClass({displayName: "exports",
 		classes.label['mdl-js-' + this.props.type] = true;
 		classes.input['mdl-' + this.props.type + '__input'] = true;
 		classes.text['mdl-' + this.props.type + '__label'] = true;
-
 		return classes;
 	},
 
@@ -2290,9 +2283,13 @@ module.exports = React.createClass({displayName: "exports",
 			);
 
 		return (
-			React.createElement("label", {ref: "label", style: this.props.style, className: cx(classes.label), htmlFor: this.id}, 
-			  input, 
-			  text
+			React.createElement("label", {ref: "label", 
+				style: this.props.style, 
+				className: cx(classes.label), 
+				htmlFor: this.id
+			}, 
+				input, 
+				text
 			)
 		);
 	},
@@ -2322,7 +2319,7 @@ var token = 1;
 
 module.exports = React.createClass({
 
-	displayName : 'Tooltip',
+	displayName : 'MDL:Tooltip',
 
 	propTypes: {
 		children: React.PropTypes.element.isRequired,
