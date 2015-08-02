@@ -47,19 +47,20 @@ module.exports = React.createClass({
 	},
 
 	setValue : function(value) {
-		if(this.refs.input.getDOMNode().value == '' && value != '') {
+		if(
+			this.refs.input.getDOMNode().value == '' &&
+			value != ''
+		) {
 			this.setState({
 				value : value,
 				changeCounter : ++this.state.changeCounter,
 			});
-			componentHandler.upgradeDom();
 		}
 		else {
 			this.setState({
 				value : value,
 			});
 		}
-
 	},
 
 	getInitialState: function() {
@@ -83,6 +84,10 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount: function() {
+		componentHandler.upgradeDom();
+	},
+
+	componentDidUpdate: function(prevProps, prevState) {
 		componentHandler.upgradeDom();
 	},
 
@@ -149,8 +154,12 @@ module.exports = React.createClass({
 		return (
 			<div key={this.state.changeCounter} className={cx(classes)} style={this.props.style} >
 				{this._renderInput()}
-				<TextFieldLabel text={this.props.labelText} for={this.state.id} />
-				<TextFieldError text={this.props.errorText} />
+				<TextFieldLabel for={this.state.id}>
+					{this.props.labelText}
+				</TextFieldLabel>
+				<TextFieldError>
+					{this.props.errorText}
+				</TextFieldError>
 			</div>
 		);
 	},
@@ -158,14 +167,11 @@ module.exports = React.createClass({
 });
 
 var TextFieldError = React.createClass({
-	propTypes: {
-		text : React.PropTypes.string,
-	},
 	render: function() {
-		if(this.props.text) {
+		if(this.props.children) {
 			return (
 				<span className="mdl-textfield__error">
-					{this.props.errorText}
+					{this.props.children}
 				</span>
 			);
 		} else {
@@ -177,16 +183,15 @@ var TextFieldError = React.createClass({
 var TextFieldLabel = React.createClass({
 	propTypes: {
 		for : React.PropTypes.string,
-		text : React.PropTypes.string,
 	},
 	render: function() {
-		if(this.props.text) {
+		if(this.props.children) {
 			return (
 				<label
 					className="mdl-textfield__label"
 					htmlFor={this.props.for}
 				>
-					{this.props.text}
+					{this.props.children}
 				</label>
 			);
 		} else {
