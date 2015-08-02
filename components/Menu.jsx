@@ -19,6 +19,8 @@ var _counter = 0;
 
 module.exports = React.createClass({
 
+	displayName : 'MDL:Menu',
+
 	getDefaultProps: function() {
 		return {
 			style: {},
@@ -38,13 +40,13 @@ module.exports = React.createClass({
 		isRipple: React.PropTypes.bool,
 		style: React.PropTypes.object,
 		children : function(props, propName, componentName) {
-        	if(!_.isArray(props[propName])) {
+			if(!_.isArray(props[propName])) {
 				throw new Error('MDL.Menu: children should be an array');
 			}
 			if(props[propName].length < 2) {
-				throw new Error('MDL.Menu:  the length children should be greater than 2');
+				throw new Error('MDL.Menu:  the length children should be greater than 1');
 			}
-        },
+		},
 	},
 
 	getInitialState: function() {
@@ -86,14 +88,18 @@ module.exports = React.createClass({
 
 	render: function() {
 
-		var style = this.props.style;
-		style.position = 'relative';
+		var style = _.extend({
+			position : 'relative',
+		}, this.props.style);
 
 		var list = null;
 		list = this._getFlatenChildren().map(function(child, index) {
 			if(index == 0) return;	// 忽略按鈕
 			return (
-				<li key={index} disabled={child.props.disabled} className="mdl-menu__item">
+				<li key={index}
+					disabled={child.props.disabled}
+					className="mdl-menu__item"
+				>
 					{child}
 				</li>
 			);

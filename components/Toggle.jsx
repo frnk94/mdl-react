@@ -23,9 +23,11 @@ var _ = require('lodash');
  *		getChecked: whether the checkbox is checked
  */
 
-var id = 1;
+var counter = 1;
 
 module.exports = React.createClass({
+
+	displayName : 'MDL:Toggle',
 
 	getDefaultProps: function() {
 		return {
@@ -49,16 +51,14 @@ module.exports = React.createClass({
 		isDisabled: React.PropTypes.bool,
 	},
 
-	id: 'mdl-toggle-',
+	id : 'mdl-toggle-',
 
 	componentWillMount: function() {
-
 		if (this.props.type == "radio") {
 			if(!this.props.name) console.warn('MDL.Toggle: Radio button needs props name');
 			if(!this.props.value) console.warn('MDL.Toggle: Radio button needs props value');
 		}
-
-		this.id += id++;
+		this.id += counter++;
 	},
 
 	componentDidMount: function() {
@@ -96,7 +96,6 @@ module.exports = React.createClass({
 		classes.label['mdl-js-' + this.props.type] = true;
 		classes.input['mdl-' + this.props.type + '__input'] = true;
 		classes.text['mdl-' + this.props.type + '__label'] = true;
-
 		return classes;
 	},
 
@@ -130,9 +129,13 @@ module.exports = React.createClass({
 			);
 
 		return (
-			<label ref="label" style={this.props.style} className={cx(classes.label)} htmlFor={this.id} >
-			  {input}
-			  {text}
+			<label ref="label"
+				style={this.props.style}
+				className={cx(classes.label)}
+				htmlFor={this.id}
+			>
+				{input}
+				{text}
 			</label>
 		);
 	},

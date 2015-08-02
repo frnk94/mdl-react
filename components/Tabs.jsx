@@ -22,6 +22,8 @@ var React = require('react');
 
 module.exports = React.createClass({
 
+	displayName : 'MDL:Tabs',
+
 	getDefaultProps: function() {
 		return {
 			isRipple: true,

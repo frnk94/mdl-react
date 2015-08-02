@@ -11,7 +11,9 @@ var React = require('react');
 		style 		css 設定
 */
 
-var Grid = React.createClass({
+module.exports = React.createClass({
+
+	displayName : 'MDL:Grid',
 
 	propTypes: {
 		style : React.PropTypes.object,
@@ -24,5 +26,3 @@ var Grid = React.createClass({
 	}
 
 });
-
-module.exports = Grid;
