@@ -25,6 +25,8 @@ var _ = require('lodash');
 
 var Table = React.createClass({
 
+	displayName : 'MDL:Table',
+
 	propTypes: {
 		headers : React.PropTypes.arrayOf(React.PropTypes.shape({
 			key : React.PropTypes.string.isRequired,

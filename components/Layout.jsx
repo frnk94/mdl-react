@@ -23,7 +23,7 @@ var _HeaderWaterfall = LayoutComponents._HeaderWaterfall;
 
 module.exports = React.createClass({
 
-	displayName : 'Layout',
+	displayName : 'MDL:Layout',
 
 	propTypes: {
 
@@ -160,36 +160,6 @@ module.exports = React.createClass({
 			);
 		}
 
-		// var secondHeaderRow = null;
-		// if(
-		// 	this.props.waterfallLinks.length > 0 &&
-		// 	this.props.tabs == 0
-		// ) {
-		// 	var items = this._generateLinks(
-		// 		this.props.waterfallLinks,
-		// 		'mdl-navigation__link'
-		// 	);
-		// 	if(
-		// 		this.props.showHeaderSearch &&
-		// 		items.length > 0
-		// 	) {
-		// 		items[items.length - 1] = React.cloneElement(
-		// 			items[items.length - 1],
-		// 			{
-		// 				style : { paddingRight : 0 },
-		// 			}
-		// 		);
-		// 	}
-		// 	secondHeaderRow = (
-		// 		<div className="mdl-layout__header-row">
-		// 			<div className="mdl-layout-spacer"></div>
-		// 			<nav className="waterfall-demo-header-nav mdl-navigation">
-		// 				{items}
-		// 			</nav>
-		// 		</div>
-		// 	);
-		// }
-
 		var className = 'mdl-layout__header';
 		if(this.props.isTransparent) {
 			className += ' mdl-layout__header--transparent';
@@ -210,6 +180,7 @@ module.exports = React.createClass({
 					<_HeaderTitle
 						disabled={this.props.noHeaderTitle}
 						style={this.props.headerTitleStyle}
+						href={this.props.href}
 					>
 						{this.props.title}
 					</_HeaderTitle>
@@ -245,6 +216,7 @@ module.exports = React.createClass({
 					<_HeaderTitle
 						disabled={this.props.noDrawerTitle}
 						style={this.props.drawerTitleStyle}
+						href={this.props.href}
 					>
 						{this.props.title}
 					</_HeaderTitle>

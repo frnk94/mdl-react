@@ -17,6 +17,8 @@ var _ = require('lodash');
 */
 module.exports = React.createClass({
 
+	displayName : 'MDL.Button',
+
 	getDefaultProps: function() {
 		return {
 			isMini: false,

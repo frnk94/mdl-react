@@ -18,6 +18,8 @@ var _ = require('lodash');
 
 module.exports = React.createClass({
 
+	displayName : 'MDL:PrismCode',
+
 	propTypes: {
 		src : React.PropTypes.string.isRequired,
 		lang : React.PropTypes.string,
