@@ -2003,19 +2003,20 @@ module.exports = React.createClass({
 	},
 
 	setValue : function(value) {
-		if(this.refs.input.getDOMNode().value == '' && value != '') {
+		if(
+			this.refs.input.getDOMNode().value == '' &&
+			value != ''
+		) {
 			this.setState({
 				value : value,
 				changeCounter : ++this.state.changeCounter,
 			});
-			componentHandler.upgradeDom();
 		}
 		else {
 			this.setState({
 				value : value,
 			});
 		}
-
 	},
 
 	getInitialState: function() {
@@ -2039,6 +2040,10 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount: function() {
+		componentHandler.upgradeDom();
+	},
+
+	componentDidUpdate: function(prevProps, prevState) {
 		componentHandler.upgradeDom();
 	},
 
@@ -2105,8 +2110,12 @@ module.exports = React.createClass({
 		return (
 			React.createElement("div", {key: this.state.changeCounter, className: cx(classes), style: this.props.style}, 
 				this._renderInput(), 
-				React.createElement(TextFieldLabel, {text: this.props.labelText, for: this.state.id}), 
-				React.createElement(TextFieldError, {text: this.props.errorText})
+				React.createElement(TextFieldLabel, {for: this.state.id}, 
+					this.props.labelText
+				), 
+				React.createElement(TextFieldError, null, 
+					this.props.errorText
+				)
 			)
 		);
 	},
@@ -2114,14 +2123,11 @@ module.exports = React.createClass({
 });
 
 var TextFieldError = React.createClass({displayName: "TextFieldError",
-	propTypes: {
-		text : React.PropTypes.string,
-	},
 	render: function() {
-		if(this.props.text) {
+		if(this.props.children) {
 			return (
 				React.createElement("span", {className: "mdl-textfield__error"}, 
-					this.props.errorText
+					this.props.children
 				)
 			);
 		} else {
@@ -2133,16 +2139,15 @@ var TextFieldError = React.createClass({displayName: "TextFieldError",
 var TextFieldLabel = React.createClass({displayName: "TextFieldLabel",
 	propTypes: {
 		for : React.PropTypes.string,
-		text : React.PropTypes.string,
 	},
 	render: function() {
-		if(this.props.text) {
+		if(this.props.children) {
 			return (
 				React.createElement("label", {
 					className: "mdl-textfield__label", 
 					htmlFor: this.props.for
 				}, 
-					this.props.text
+					this.props.children
 				)
 			);
 		} else {
