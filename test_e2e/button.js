@@ -35,7 +35,7 @@ module.exports = {
 
 	'FAB' : function(client) {
 		client
-			.click('a[href="#mdl-tab-FloatingActionButtons"]')
+			.click('a[href="#mdl-tab-1-FloatingActionButtons"]')
 			// .waitForElementVisible('code.language-jsx', 1000, false)
 			// .assert.elementSizeNotWithin('.language-jsx', 50, 50)
 			.expect.element('.mdl-button--fab:nth-child(7)').attribute('disabled'); //element br will be counted in child
@@ -48,12 +48,12 @@ module.exports = {
 			.click('.mdl-button--fab:nth-child(11)')
 			.expect.element('.mdl-button--fab:nth-child(7)').attribute('disabled');
 
-		client.assert.elementCount('#mdl-tab-FloatingActionButtons .mdl-button--fab', 9);
+		client.assert.elementCount('#mdl-tab-1-FloatingActionButtons .mdl-button--fab', 9);
 	},
 
 	'Raised Button': function(client) {
 		client
-			.click('a[href="#mdl-tab-RaisedButtons"]')
+			.click('a[href="#mdl-tab-1-RaisedButtons"]')
 			// .waitForElementVisible('code.language-jsx', 1000, false)
 			// .assert.elementSizeNotWithin('.language-jsx', 50, 50)
 			.expect.element('.mdl-button--raised:nth-child(7)').attribute('disabled');
@@ -62,26 +62,26 @@ module.exports = {
 			.click('.mdl-button--raised:nth-child(3)')
 			.expect.element('.mdl-button--raised:nth-child(7)').not.attribute('disabled');
 
-		client.assert.elementCount('#mdl-tab-RaisedButtons .mdl-button--raised', 6);
+		client.assert.elementCount('#mdl-tab-1-RaisedButtons .mdl-button--raised', 6);
 	},
 
 	'Flat Button': function(client) {
 		client
-			.click('a[href="#mdl-tab-FlatButtons"]')
+			.click('a[href="#mdl-tab-1-FlatButtons"]')
 			// .waitForElementVisible('code.language-jsx', 1000, false)
 			// .assert.elementSizeNotWithin('.language-jsx', 50, 50)
-			.expect.element('#mdl-tab-FlatButtons button:nth-child(7)').attribute('disabled');
+			.expect.element('#mdl-tab-1-FlatButtons button:nth-child(7)').attribute('disabled');
 
 		client
-			.click('#mdl-tab-FlatButtons button:nth-child(3)')
-			.expect.element('#mdl-tab-FlatButtons button:nth-child(7)').not.attribute('disabled');
+			.click('#mdl-tab-1-FlatButtons button:nth-child(3)')
+			.expect.element('#mdl-tab-1-FlatButtons button:nth-child(7)').not.attribute('disabled');
 
-		client.assert.elementCount('#mdl-tab-FlatButtons > div > *:not(br)', 6);
+		client.assert.elementCount('#mdl-tab-1-FlatButtons > div > *:not(br)', 6);
 	},
 
 	'Icon Button': function(client) {
 		client
-			.click('a[href="#mdl-tab-IconButtons"]')
+			.click('a[href="#mdl-tab-1-IconButtons"]')
 			// .waitForElementVisible('code.language-jsx', 1000, false)
 			// .assert.elementSizeNotWithin('.language-jsx', 50, 50)
 			.expect.element('.mdl-button--icon:nth-child(7)').attribute('disabled');
@@ -90,7 +90,7 @@ module.exports = {
 			.click('.mdl-button--icon:nth-child(3)')
 			.expect.element('.mdl-button--icon:nth-child(7)').not.attribute('disabled');
 
-		client.assert.elementCount('#mdl-tab-IconButtons .mdl-button--icon', 6);
+		client.assert.elementCount('#mdl-tab-1-IconButtons .mdl-button--icon', 6);
 
 	},
 

@@ -58,22 +58,22 @@ module.exports = {
 			// .waitForElementVisible('code.language-jsx', 1000, false)
 			// .assert.elementSizeNotWithin('.language-jsx', 50, 50);
 
-		client.click('[href="#mdl-tab-0-Starks"]');
-		client.expect.element('#mdl-tab-0-Starks').visible;
-		client.expect.element('#mdl-tab-0-Lannisters').not.visible;
-		client.expect.element('#mdl-tab-0-Targaryens').not.visible;
+		client.click('[href="#mdl-tab-1-Starks"]');
+		client.expect.element('#mdl-tab-1-Starks').visible;
+		client.expect.element('#mdl-tab-1-Lannisters').not.visible;
+		client.expect.element('#mdl-tab-1-Targaryens').not.visible;
 
-		client.click('[href="#mdl-tab-0-Targaryens"]');
-		client.expect.element('#mdl-tab-0-Targaryens').visible;
-		client.expect.element('#mdl-tab-0-Lannisters').not.visible;
-		client.expect.element('#mdl-tab-0-Starks').not.visible;
+		client.click('[href="#mdl-tab-1-Targaryens"]');
+		client.expect.element('#mdl-tab-1-Targaryens').visible;
+		client.expect.element('#mdl-tab-1-Lannisters').not.visible;
+		client.expect.element('#mdl-tab-1-Starks').not.visible;
 
 		client.click('.mdl-card > div + div > button:nth-child(1)');
-		client.expect.element('#mdl-tab-0-Lannisters').visible;
+		client.expect.element('#mdl-tab-1-Lannisters').visible;
 
 		client.click('.mdl-card > div + div > button:nth-child(2)');
 		client.click('.mdl-card > div + div > button:nth-child(2)');
-		client.expect.element('#mdl-tab-0-Starks').visible;
+		client.expect.element('#mdl-tab-1-Starks').visible;
 	},
 
 	after : function(client) {
