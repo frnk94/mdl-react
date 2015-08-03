@@ -57,20 +57,20 @@ module.exports = {
 
 	'Checkbox Test' : function(client) {
 		client
-			.click('[href="#mdl-tab-Checkbox"]')
+			.click('[href="#mdl-tab-1-Checkbox"]')
 			// .waitForElementVisible('code.language-jsx', 1000, false)
 			// .assert.elementSizeNotWithin('.language-jsx', 50, 50)
-			.assert.cssClassPresent('#mdl-tab-Checkbox > div label:nth-child(2)', 'is-checked')
-			.assert.cssClassPresent('#mdl-tab-Checkbox > div label:nth-child(4)', 'is-disabled')
+			.assert.cssClassPresent('#mdl-tab-1-Checkbox > div label:nth-child(2)', 'is-checked')
+			.assert.cssClassPresent('#mdl-tab-1-Checkbox > div label:nth-child(4)', 'is-disabled')
 
-			.click('#mdl-tab-Checkbox > div label:nth-child(1)')
-			.click('#mdl-tab-Checkbox > div label:nth-child(2)')
-			.click('#mdl-tab-Checkbox > div label:nth-child(3)')
-			.assert.cssClassPresent('#mdl-tab-Checkbox > div label:nth-child(1)', 'is-checked')
-			.assert.cssClassNotPresent('#mdl-tab-Checkbox > div label:nth-child(2)', 'is-checked')
-			.assert.cssClassPresent('#mdl-tab-Checkbox > div label:nth-child(3)', 'is-checked')
+			.click('#mdl-tab-1-Checkbox > div label:nth-child(1)')
+			.click('#mdl-tab-1-Checkbox > div label:nth-child(2)')
+			.click('#mdl-tab-1-Checkbox > div label:nth-child(3)')
+			.assert.cssClassPresent('#mdl-tab-1-Checkbox > div label:nth-child(1)', 'is-checked')
+			.assert.cssClassNotPresent('#mdl-tab-1-Checkbox > div label:nth-child(2)', 'is-checked')
+			.assert.cssClassPresent('#mdl-tab-1-Checkbox > div label:nth-child(3)', 'is-checked')
 
-			.click('#mdl-tab-Checkbox > div label:nth-child(5)')
+			.click('#mdl-tab-1-Checkbox > div label:nth-child(5)')
 			.pause(100)
 			.acceptAlert(function(result) {
 				client.assert.ok( result.state === 'success', "The click event can be trigger. ");
@@ -79,38 +79,38 @@ module.exports = {
 
 	'Radio Test' : function(client) {
 		client
-			.click('[href="#mdl-tab-Radio"]')
+			.click('[href="#mdl-tab-1-Radio"]')
 			// .waitForElementVisible('code.language-jsx', 1000, false)
 			// .assert.elementSizeNotWithin('.language-jsx', 50, 50)
-			.assert.cssClassPresent('#mdl-tab-Radio > div label:nth-child(3)', 'is-checked')
-			.assert.cssClassPresent('#mdl-tab-Radio > div label:nth-child(7)', 'is-disabled')
+			.assert.cssClassPresent('#mdl-tab-1-Radio > div label:nth-child(3)', 'is-checked')
+			.assert.cssClassPresent('#mdl-tab-1-Radio > div label:nth-child(7)', 'is-disabled')
 
-			.click('#mdl-tab-Radio > div label:nth-child(1)')
-			.click('#mdl-tab-Radio > div label:nth-child(3)')
-			.click('#mdl-tab-Radio > div label:nth-child(5)')
-			.click('#mdl-tab-Radio > div label:nth-child(5)')
-			.click('#mdl-tab-Radio > div label:nth-child(1)')
-			.click('#mdl-tab-Radio > div label:nth-child(1)')
-			.assert.elementCount('#mdl-tab-Radio > div label.is-checked', 1)
-			.assert.cssClassPresent('#mdl-tab-Radio > div label.is-checked:nth-child(1)', 'is-checked');
+			.click('#mdl-tab-1-Radio > div label:nth-child(1)')
+			.click('#mdl-tab-1-Radio > div label:nth-child(3)')
+			.click('#mdl-tab-1-Radio > div label:nth-child(5)')
+			.click('#mdl-tab-1-Radio > div label:nth-child(5)')
+			.click('#mdl-tab-1-Radio > div label:nth-child(1)')
+			.click('#mdl-tab-1-Radio > div label:nth-child(1)')
+			.assert.elementCount('#mdl-tab-1-Radio > div label.is-checked', 1)
+			.assert.cssClassPresent('#mdl-tab-1-Radio > div label.is-checked:nth-child(1)', 'is-checked');
 	},
 
 	'Icon Test' : function(client) {
 		client
-			.click('[href="#mdl-tab-IconToggle"]')
+			.click('[href="#mdl-tab-1-IconToggle"]')
 			// .waitForElementVisible('code.language-jsx', 1000, false)
 			// .assert.elementSizeNotWithin('.language-jsx', 50, 50)
-			.assert.cssClassPresent('#mdl-tab-IconToggle > div label:nth-child(3)', 'is-checked')
-			.assert.cssClassPresent('#mdl-tab-IconToggle > div label:nth-child(7)', 'is-disabled')
+			.assert.cssClassPresent('#mdl-tab-1-IconToggle > div label:nth-child(3)', 'is-checked')
+			.assert.cssClassPresent('#mdl-tab-1-IconToggle > div label:nth-child(7)', 'is-disabled')
 
-			.click('#mdl-tab-IconToggle > div label:nth-child(1)')
-			.click('#mdl-tab-IconToggle > div label:nth-child(3)')
-			.click('#mdl-tab-IconToggle > div label:nth-child(5)')
-			.assert.cssClassPresent('#mdl-tab-IconToggle > div label:nth-child(1)', 'is-checked')
-			.assert.cssClassNotPresent('#mdl-tab-IconToggle > div label:nth-child(3)', 'is-checked')
-			.assert.cssClassPresent('#mdl-tab-IconToggle > div label:nth-child(5)', 'is-checked')
+			.click('#mdl-tab-1-IconToggle > div label:nth-child(1)')
+			.click('#mdl-tab-1-IconToggle > div label:nth-child(3)')
+			.click('#mdl-tab-1-IconToggle > div label:nth-child(5)')
+			.assert.cssClassPresent('#mdl-tab-1-IconToggle > div label:nth-child(1)', 'is-checked')
+			.assert.cssClassNotPresent('#mdl-tab-1-IconToggle > div label:nth-child(3)', 'is-checked')
+			.assert.cssClassPresent('#mdl-tab-1-IconToggle > div label:nth-child(5)', 'is-checked')
 
-			.click('#mdl-tab-IconToggle > div label:nth-child(9)')
+			.click('#mdl-tab-1-IconToggle > div label:nth-child(9)')
 			.pause(100)
 			.acceptAlert(function(result) {
 				client.assert.ok( result.state === 'success', "The click event can be trigger. ");
@@ -119,20 +119,20 @@ module.exports = {
 
 	'Switch Test' : function(client) {
 		client
-			.click('[href="#mdl-tab-Switch"]')
+			.click('[href="#mdl-tab-1-Switch"]')
 			// .waitForElementVisible('code.language-jsx', 1000, false)
 			// .assert.elementSizeNotWithin('.language-jsx', 50, 50)
-			.assert.cssClassPresent('#mdl-tab-Switch > div label:nth-child(2)', 'is-checked')
-			.assert.cssClassPresent('#mdl-tab-Switch > div label:nth-child(4)', 'is-disabled')
+			.assert.cssClassPresent('#mdl-tab-1-Switch > div label:nth-child(2)', 'is-checked')
+			.assert.cssClassPresent('#mdl-tab-1-Switch > div label:nth-child(4)', 'is-disabled')
 
-			.click('#mdl-tab-Switch > div label:nth-child(1)')
-			.click('#mdl-tab-Switch > div label:nth-child(2)')
-			.click('#mdl-tab-Switch > div label:nth-child(3)')
-			.assert.cssClassPresent('#mdl-tab-Switch > div label:nth-child(1)', 'is-checked')
-			.assert.cssClassNotPresent('#mdl-tab-Switch > div label:nth-child(2)', 'is-checked')
-			.assert.cssClassPresent('#mdl-tab-Switch > div label:nth-child(3)', 'is-checked')
+			.click('#mdl-tab-1-Switch > div label:nth-child(1)')
+			.click('#mdl-tab-1-Switch > div label:nth-child(2)')
+			.click('#mdl-tab-1-Switch > div label:nth-child(3)')
+			.assert.cssClassPresent('#mdl-tab-1-Switch > div label:nth-child(1)', 'is-checked')
+			.assert.cssClassNotPresent('#mdl-tab-1-Switch > div label:nth-child(2)', 'is-checked')
+			.assert.cssClassPresent('#mdl-tab-1-Switch > div label:nth-child(3)', 'is-checked')
 
-			.click('#mdl-tab-Switch > div label:nth-child(5)')
+			.click('#mdl-tab-1-Switch > div label:nth-child(5)')
 			.pause(100)
 			.acceptAlert(function(result) {
 				client.assert.ok( result.state === 'success', "The click event can be trigger. ");
