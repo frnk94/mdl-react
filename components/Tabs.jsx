@@ -20,6 +20,7 @@ var React = require('react');
  *		getTabIndex: get the index of currently active tab
  */
 
+var _counter = 1;
 module.exports = React.createClass({
 
 	displayName : 'MDL:Tabs',
@@ -59,6 +60,8 @@ module.exports = React.createClass({
 		} else if (this.props.tabLabels.length !== this.props.children.length){
 			console.warn("MDL.Tab: The number of `tabLabels` should be same as props `children`");
 		}
+
+		this.state.id = 'mdl-tab-' + _counter++ + '-';
 	},
 
 	componentDidMount: function() {
@@ -84,9 +87,9 @@ module.exports = React.createClass({
 		var tabBars = [];
 		var tabPanels = [];
 		this.props.tabLabels.map(function(label, index){
-			var id = 'mdl-tab-' + label.split(' ').join('');
+			var id = this.state.id + label.split(' ').join('');
 			tabBars.push(
-				<a key={label} href={'#'+id}
+				<a key={label} href={'#' + id}
 					className={"mdl-tabs__tab " + (index == this.state.tabIndex? 'is-active':'')}
 					onClick={this.setTabIndex.bind(this, index)}>
 					{label}
