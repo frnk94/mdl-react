@@ -62,4 +62,12 @@ describe('Table', function() {
 		return done();
 	});
 
+	it('.forceRender()', function(done) {
+		mouseClick($('table input').get(0));
+		expect(jquery('tr.is-selected').toArray()).length(2);
+		target.forceRender();
+		expect(jquery('tr.is-selected').toArray()).length(1);
+		return done();
+	});
+
 });

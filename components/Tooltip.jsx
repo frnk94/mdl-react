@@ -20,7 +20,7 @@ var token = 1;
 
 module.exports = React.createClass({
 
-	displayName : 'Tooltip',
+	displayName : 'MDL:Tooltip',
 
 	propTypes: {
 		children: React.PropTypes.element.isRequired,

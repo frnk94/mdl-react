@@ -16,6 +16,8 @@ var cx = require('classnames');
 
 module.exports = React.createClass({
 
+	displayName : 'MDL:Card',
+
 	getDefaultProps: function() {
 		return {
 			style : {},

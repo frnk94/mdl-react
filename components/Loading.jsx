@@ -14,6 +14,8 @@ var _ = require('lodash');
 */
 module.exports = React.createClass({
 
+	displayName : 'MDL:Loading',
+
 	propTypes: {
 		type :  React.PropTypes.oneOf(['Spinner', 'ProgressBar']).isRequired,
 		indeterminate : React.PropTypes.bool,

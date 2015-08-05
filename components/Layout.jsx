@@ -15,10 +15,15 @@
 var React = require('react');
 var cx = require('classnames');
 var _ = require('lodash');
+var LayoutComponents = require('./LayoutComponents');
+var _HeaderTitle = LayoutComponents._HeaderTitle;
+var _HeaderSearch = LayoutComponents._HeaderSearch;
+var _HeaderTabs = LayoutComponents._HeaderTabs;
+var _HeaderWaterfall = LayoutComponents._HeaderWaterfall;
 
 module.exports = React.createClass({
 
-	displayName : 'Layout',
+	displayName : 'MDL:Layout',
 
 	propTypes: {
 
@@ -32,7 +37,7 @@ module.exports = React.createClass({
 
 		headerStyle : React.PropTypes.object,
 		headerTitleStyle : React.PropTypes.object,
-		headerLinks : React.PropTypes.arrayOf(React.PropTypes.element),
+		// headerLinks : React.PropTypes.arrayOf(React.PropTypes.element),
 
 		drawerStyle : React.PropTypes.object,
 		drawerButtonStyle : React.PropTypes.object,
@@ -135,8 +140,11 @@ module.exports = React.createClass({
 
 	_renderHeader : function(titleComponent) {
 
-		var haderNavOrSearch = null;
-		if(!this.props.showHeaderSearch) {
+		var haderNav = null;
+		if(
+			this.props.headerLinks.length > 0 &&
+			!this.props.showHeaderSearch
+		) {
 			var headerNavClassName = 'mdl-navigation';
 			if(this.props.isHideHeaderMenuWhenMobile) {
 				headerNavClassName += ' mdl-layout--large-screen-only';
@@ -145,61 +153,10 @@ module.exports = React.createClass({
 				this.props.headerLinks,
 				'mdl-navigation__link'
 			);
-			haderNavOrSearch = (
+			haderNav = (
 				<nav className={headerNavClassName}>
 					{items}
 				</nav>
-			);
-		} else {
-			haderNavOrSearch = (
-				<HeaderSearch
-					submit={this.props.onSearchSubmit}
-					style={this.props.searchInputStyle}
-				/>
-			);
-		}
-
-		var secondHeaderRow = null;
-		if(
-			this.props.waterfallLinks.length > 0 &&
-			this.props.tabs == 0
-		) {
-			var items = this._generateLinks(
-				this.props.waterfallLinks,
-				'mdl-navigation__link'
-			);
-			if(
-				this.props.showHeaderSearch &&
-				items.length > 0
-			) {
-				items[items.length - 1] = React.cloneElement(
-					items[items.length - 1],
-					{
-						style : { paddingRight : 0 },
-					}
-				);
-			}
-			secondHeaderRow = (
-				<div className="mdl-layout__header-row">
-					<div className="mdl-layout-spacer"></div>
-					<nav className="waterfall-demo-header-nav mdl-navigation">
-						{items}
-					</nav>
-				</div>
-			);
-		}
-
-		var headerTabs = null;
-		if(
-			this.props.tabs.length > 0
-		) {
-			var tabs = this._generateLinks(
-				this.props.tabs, 'mdl-layout__tab', this.props.initialTabIndex
-			);
-			headerTabs = (
-				<div className="mdl-layout__tab-bar mdl-js-ripple-effect">
-					{tabs}
-				</div>
 			);
 		}
 
@@ -220,16 +177,30 @@ module.exports = React.createClass({
 		return (
 			<header className={className} style={this.props.headerStyle} >
 				<div className="mdl-layout__header-row">
-					{
-						!this.props.noHeaderTitle
-						? this._rendreTitle(this.props.headerTitleStyle)
-						: null
-					}
+					<_HeaderTitle
+						disabled={this.props.noHeaderTitle}
+						style={this.props.headerTitleStyle}
+						href={this.props.href}
+					>
+						{this.props.title}
+					</_HeaderTitle>
 					<div className="mdl-layout-spacer"></div>
-					{haderNavOrSearch}
+					{haderNav}
+					<_HeaderSearch
+						enabled={this.props.showHeaderSearch}
+						submit={this.props.onSearchSubmit}
+						style={this.props.searchInputStyle}
+					></_HeaderSearch>
 				</div>
-				{secondHeaderRow}
-				{headerTabs}
+				<_HeaderWaterfall
+					disabled={this.props.tabs > 0 || this.props.waterfallLinks == 0}
+					children={this.props.waterfallLinks}
+					showHeaderSearch={this.props.showHeaderSearch}
+				/>
+				<_HeaderTabs
+					activeIndex={this.props.initialTabIndex}
+					children={this.props.tabs}
+				/>
 			</header>
 		);
 
@@ -242,39 +213,17 @@ module.exports = React.createClass({
 			var items = this._generateLinks(this.props.drawerLinks, 'mdl-navigation__link');
 			return (
 				<div className="mdl-layout__drawer" style={this.props.drawerStyle} >
-					{
-						!this.props.noDrawerTitle
-						? this._rendreTitle(this.props.drawerTitleStyle)
-						: null
-					}
+					<_HeaderTitle
+						disabled={this.props.noDrawerTitle}
+						style={this.props.drawerTitleStyle}
+						href={this.props.href}
+					>
+						{this.props.title}
+					</_HeaderTitle>
 					<nav className="mdl-navigation">
 						{items}
 					</nav>
 				</div>
-			);
-		}
-
-
-	},
-
-	_rendreTitle : function(style) {
-		if(this.props.title && this.props.href) {
-			style = _.extend({
-				textDecoration: 'none',
-				color : 'inherit',
-			}, style);
-			return (
-				<span className="mdl-layout-title">
-					<a href={this.props.href} style={style} >
-						{this.props.title}
-					</a>
-				</span>
-			);
-		} else if(this.props.title) {
-			return (
-				<span className="mdl-layout-title" style={style} >
-					{this.props.title}
-				</span>
 			);
 		}
 	},
@@ -314,53 +263,5 @@ module.exports = React.createClass({
 		);
 
 	}
-
-});
-
-var counter = 0;
-
-var HeaderSearch = React.createClass({
-
-	propTypes: {
-		submit : React.PropTypes.func,
-		inputStyle : React.PropTypes.object,
-	},
-
-	_onKeyPress : function(e) {
-		if(
-			e.which == 13 &&
-			this.props.submit instanceof Function
-		) {
-			console.log(this.refs.input.getDOMNode().value);
-			this.props.submit(this.refs.input.getDOMNode().value);
-		}
-	},
-
-	render : function() {
-		var inputId = 'fixed-header-drawer-exp-' + (++counter);
-		var inputStyle = _.extend({
-			borderBottomColor : 'white',
-		}, this.props.inputStyle);
-		return (
-			<div className="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
-				<label
-					className="mdl-button mdl-js-button mdl-button--icon"
-					htmlFor={inputId}
-				>
-					<i className="material-icons">search</i>
-				</label>
-				<div className="mdl-textfield__expandable-holder" >
-					<input ref='input'
-						className="mdl-textfield__input"
-						type="text"
-						name="sample"
-						id={inputId}
-						style={inputStyle}
-						onKeyPress={this._onKeyPress}
-					/>
-				</div>
-			</div>
-		);
-	},
 
 });

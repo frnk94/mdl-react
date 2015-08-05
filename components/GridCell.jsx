@@ -23,6 +23,8 @@ var cx = require('classnames');
 
 module.exports = React.createClass({
 
+	displayName : 'MDL:GridCell',
+
 	getDefaultProps: function() {
 		return {
 			col : 0,
@@ -91,7 +93,7 @@ module.exports = React.createClass({
 			<div className={cx(classes)} style={this.props.style}>
 				{this.props.children}
 			</div>
-			
+
 		);
 	}
 

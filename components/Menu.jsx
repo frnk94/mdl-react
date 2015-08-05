@@ -1,6 +1,10 @@
 
+'use strict';
+
 var React = require('react');
 var cx = require('classnames');
+var _ = require('lodash');
+
 /**
  *	MENUS
  *		http://www.getmdl.io/components/index.html#menus-section
@@ -11,9 +15,11 @@ var cx = require('classnames');
  *		style: Object, Menu List 整體 CSS 樣式
  */
 
-var id = 1;
+var _counter = 0;
 
 module.exports = React.createClass({
+
+	displayName : 'MDL:Menu',
 
 	getDefaultProps: function() {
 		return {
@@ -24,7 +30,7 @@ module.exports = React.createClass({
 	},
 
 	propTypes: {
-		children: React.PropTypes.arrayOf(React.PropTypes.element).isRequired,
+		// children: React.PropTypes.arrayOf(React.PropTypes.element).isRequired,
 		openDirection: React.PropTypes.oneOf([
 			'bottom-left',
 			'bottom-right',
@@ -33,29 +39,43 @@ module.exports = React.createClass({
 		]),
 		isRipple: React.PropTypes.bool,
 		style: React.PropTypes.object,
+		children : function(props, propName, componentName) {
+			if(!_.isArray(props[propName])) {
+				throw new Error('MDL.Menu: children should be an array');
+			}
+			if(props[propName].length < 2) {
+				throw new Error('MDL.Menu:  the length children should be greater than 1');
+			}
+		},
 	},
 
-	id: 'mdl-menu-',
-
-	componentWillMount: function() {
-		if(this.props.children instanceof Array && this.props.children.length < 2){
-			console.warn("MDL.Menu: Menu should contain at least one clickable element and one list element");
-		}
-		this.id += id++;
+	getInitialState: function() {
+		return {
+			id : 'mdl-menu-' + (_counter++),
+		};
 	},
 
 	componentDidMount: function() {
 		componentHandler.upgradeDom();
 	},
 
-	_getClasses: function() {
+	_getFlatenChildren : function() {
+		// flaten children
+		return _.reduce(
+			[].concat(this.props.children),
+			function(prev, curr) {
+				return prev.concat(curr);
+			},
+			[]
+		);
+	},
 
+	_getClasses: function() {
 		var classes = {
 			"mdl-menu": true,
 			"mdl-js-menu": true,
 			"mdl-js-ripple-effect": this.props.isRipple,
 		};
-
 		if (this.props.openDirection === 'top-right') {
 			classes['mdl-menu--top-right'] = true;
 		} else if (this.props.openDirection === 'bottom-right') {
@@ -63,46 +83,51 @@ module.exports = React.createClass({
 		} else if (this.props.openDirection === 'top-left') {
 			classes['mdl-menu--top-left'] = true;
 		}
-
 		return cx(classes);
-	},
-
-	_getButton: function() {
-		if (this.props.children instanceof Array){
-			return React.cloneElement(this.props.children[0], {id: this.id});
-		} else {
-			return <div/>;
-		}
 	},
 
 	render: function() {
 
-		var style = this.props.style;
-		style.position = 'relative';
+		var style = _.extend({
+			position : 'relative',
+		}, this.props.style);
 
-		var list;
-		if (this.props.children instanceof Array) {
-			list = this.props.children.map(function(child, index) {
-				if(!index) return;
-				return (
-					<li key={index} disabled={child.props.disabled} className="mdl-menu__item">
-						{child}
-					</li>
-				);
-			});
-		} else {
-			list = null;
-		}
-
+		var list = null;
+		list = this._getFlatenChildren().map(function(child, index) {
+			if(index == 0) return;	// 忽略按鈕
+			return (
+				<li key={index}
+					disabled={child.props.disabled}
+					className="mdl-menu__item"
+				>
+					{child}
+				</li>
+			);
+		});
 
 		return (
 			<div style={style}>
-				{this._getButton()}
-				<ul className={this._getClasses()} htmlFor={this.id}>
+				<MenuBtn id={this.state.id} >
+					{this.props.children[0]}
+				</MenuBtn>
+				<ul className={this._getClasses()} htmlFor={this.state.id} >
 					{list}
 				</ul>
 			</div>
 		);
+
 	},
 
+});
+
+var MenuBtn = React.createClass({
+	propTypes: {
+		children : React.PropTypes.element.isRequired,
+		id : React.PropTypes.string.isRequired,
+	},
+	render: function() {
+		return React.cloneElement(this.props.children, {
+			id : this.props.id,
+		});
+	},
 });

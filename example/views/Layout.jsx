@@ -5,7 +5,7 @@ var React = require('react');
 var MDL = require('../../components');
 var Components = require('../components');
 
-var ExampleTextField = React.createClass({
+var ExampleLayout = React.createClass({
 
 	propTypes: {
 		style : React.PropTypes.string
@@ -200,7 +200,7 @@ var ExampleTextField = React.createClass({
 				content : 'Set the scrollTop of the content area.',
 			},
 		];
-		return <Components.Props detail={details} title="Methods" />
+		return <Components.Props detail={details} title="Methods" key='a' />
 	},
 
 	_renderProps : function() {
@@ -331,4 +331,4 @@ var ExampleTextField = React.createClass({
 
 });
 
-module.exports = ExampleTextField;
+module.exports = ExampleLayout;

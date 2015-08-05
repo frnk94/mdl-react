@@ -45,7 +45,7 @@ var App = React.createClass({
 			<a href='#text-field'>Text Field</a>,
 			<a href='#toggle'>Toggle</a>,
 			<a href='#tooltip'>Tooltip</a>,
-			<a href='#prismCode'>(Non-MDL) PrismCode</a>,
+			<a href='#prismCode'>PrismCode</a>,
 		];
 		var tabs = [
 			<a href=''>Tab 1</a>,

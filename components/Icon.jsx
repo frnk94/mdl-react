@@ -3,7 +3,9 @@
 
 var React = require('react');
 
-var Icon = React.createClass({
+module.exports = React.createClass({
+
+	displayName : 'MDL:Icon',
 
 	propTypes: {
 		children : React.PropTypes.string.isRequired,
@@ -24,5 +26,3 @@ var Icon = React.createClass({
 	},
 
 });
-
-module.exports = Icon;

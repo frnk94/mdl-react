@@ -5,6 +5,8 @@ var React = require('react');
 
 var MiniFooter = React.createClass({
 
+	displayName : 'MDL:MiniFooter',
+
 	propTypes: {
 		leftSection : React.PropTypes.shape({
 			links : React.PropTypes.arrayOf(React.PropTypes.node).isRequired,

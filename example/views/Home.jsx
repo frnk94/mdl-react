@@ -34,6 +34,18 @@ module.exports = React.createClass({
 						<MDL.Button type="RaisedButton" isAccent={true} >
 							<a href='#layout' style={btnStyle}>Components</a>
 						</MDL.Button>
+						<MDL.Button type="RaisedButton" >
+							<a href='http://www.getmdl.io/' target='_blank' style={btnStyle}>
+								MDL
+							</a>
+						</MDL.Button>
+						<MDL.Button type="RaisedButton" >
+							<a href='http://facebook.github.io/react/' target='_blank'
+							style={btnStyle}>
+								React
+							</a>
+						</MDL.Button>
+
 					</p>
 				</MDL.Card>
 			</div>
