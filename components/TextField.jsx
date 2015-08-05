@@ -98,10 +98,12 @@ module.exports = React.createClass({
 	_onChange : function(event) {
 		this.setState({
 			value : event.target.value,
+		}, function() {
+			if(this.props.onChange instanceof Function) {
+				this.props.onChange(event);
+			}
 		});
-		if(this.props.onChange instanceof Function) {
-			this.props.onChange(event);
-		}
+		
 	},
 
 	_renderInput : function() {
